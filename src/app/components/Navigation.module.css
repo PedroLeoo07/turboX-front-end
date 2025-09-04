@@ -76,6 +76,76 @@
   font-weight: 500;
 }
 
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  background: rgba(255, 0, 0, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.userIcon {
+  font-size: 1.2rem;
+}
+
+.userName {
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.authButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 20px;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.authButton.login {
+  border-color: rgba(0, 255, 0, 0.5);
+}
+
+.authButton.login:hover {
+  border-color: #00ff00;
+  background: rgba(0, 255, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+.authButton.logout {
+  border-color: rgba(255, 0, 0, 0.5);
+}
+
+.authButton.logout:hover {
+  border-color: #ff0000;
+  background: rgba(255, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+.authIcon {
+  font-size: 1.2rem;
+}
+
+.authLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
@@ -86,9 +156,64 @@
 }
 
 /* Responsividade */
+@media (max-width: 1200px) {
+  .navigation {
+    padding: 18px 30px;
+  }
+  
+  .navItem {
+    padding: 12px 20px;
+  }
+  
+  .navLabel {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .navigation {
+    padding: 16px 25px;
+  }
+  
+  .logo {
+    font-size: 2.2rem;
+  }
+  
+  .navItems {
+    gap: 8px;
+  }
+  
+  .navItem {
+    padding: 10px 18px;
+  }
+  
+  .navLabel {
+    font-size: 0.85rem;
+  }
+  
+  .userInfo {
+    padding: 8px 15px;
+  }
+  
+  .userName {
+    font-size: 0.9rem;
+  }
+  
+  .userEmail {
+    font-size: 0.75rem;
+  }
+  
+  .authButton {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+}
+
 @media (max-width: 768px) {
   .navigation {
     padding: 15px 20px;
+    flex-wrap: wrap;
+    gap: 10px;
   }
   
   .logo {
@@ -97,10 +222,13 @@
   
   .navItems {
     gap: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .navItem {
-    padding: 10px 15px;
+    padding: 8px 12px;
+    min-width: auto;
   }
   
   .navLabel {
@@ -109,5 +237,147 @@
   
   .navIcon {
     font-size: 1.2rem;
+  }
+  
+  .userSection {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .userInfo {
+    padding: 6px 12px;
+  }
+  
+  .userName {
+    font-size: 0.85rem;
+  }
+  
+  .userEmail {
+    font-size: 0.7rem;
+  }
+  
+  .authButton {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .navigation {
+    padding: 12px 15px;
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+  }
+  
+  .navItems {
+    gap: 3px;
+  }
+  
+  .navItem {
+    padding: 6px 10px;
+    flex-direction: row;
+    gap: 3px;
+  }
+  
+  .navLabel {
+    font-size: 0.75rem;
+    display: none;
+  }
+  
+  .navIcon {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navigation {
+    padding: 10px 12px;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .logo {
+    font-size: 1.6rem;
+  }
+  
+  .navItems {
+    justify-content: space-around;
+    width: 100%;
+    gap: 0;
+  }
+  
+  .navItem {
+    padding: 8px;
+    flex: 1;
+    max-width: 60px;
+  }
+  
+  .navLabel {
+    display: none;
+  }
+  
+  .navIcon {
+    font-size: 1.3rem;
+  }
+  
+  .userSection {
+    order: 0;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .userInfo {
+    padding: 5px 10px;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .userName {
+    font-size: 0.8rem;
+  }
+  
+  .userEmail {
+    font-size: 0.65rem;
+  }
+  
+  .authButton {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .navigation {
+    padding: 8px 10px;
+  }
+  
+  .logo {
+    font-size: 1.4rem;
+  }
+  
+  .navItem {
+    padding: 6px;
+    max-width: 50px;
+  }
+  
+  .navIcon {
+    font-size: 1.1rem;
+  }
+  
+  .userName {
+    font-size: 0.75rem;
+  }
+  
+  .userEmail {
+    font-size: 0.6rem;
+  }
+  
+  .authButton {
+    padding: 4px 8px;
+    font-size: 0.75rem;
   }
 }

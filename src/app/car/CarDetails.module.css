@@ -356,17 +356,120 @@
   margin-bottom: 20px;
 }
 
-/* Responsividade */
+/* Responsividade Aprimorada */
+@media (max-width: 1400px) {
+  .main {
+    padding: 20px 35px 35px;
+  }
+  
+  .carHero {
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .main {
+    padding: 20px 30px 30px;
+  }
+  
+  .carHero {
+    gap: 35px;
+  }
+  
+  .carImageLarge {
+    font-size: 12rem;
+    padding: 35px;
+  }
+  
+  .carTitle {
+    font-size: 3.2rem;
+  }
+  
+  .carPrice {
+    font-size: 2.3rem;
+  }
+  
+  .carDescription {
+    font-size: 1rem;
+  }
+  
+  .specsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  
+  .performanceGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
 @media (max-width: 1024px) {
+  .main {
+    padding: 20px 25px 25px;
+  }
+  
   .carHero {
     grid-template-columns: 1fr;
     gap: 30px;
     text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .carImageLarge {
+    font-size: 10rem;
+    padding: 30px;
+  }
+  
+  .carTitle {
+    font-size: 3rem;
+  }
+  
+  .carPrice {
+    font-size: 2.1rem;
+  }
+  
+  .carDescription {
+    font-size: 0.95rem;
+    max-width: 600px;
+    margin: 0 auto 20px;
+  }
+  
+  .quickStats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .specsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .performanceGrid {
+    gap: 12px;
   }
   
   .upgradeContent {
     grid-template-columns: 1fr;
     gap: 30px;
+  }
+  
+  .section {
+    padding: 25px;
+  }
+  
+  .sectionTitle {
+    font-size: 2.2rem;
+  }
+  
+  .actionButtons {
+    gap: 12px;
+  }
+  
+  .primaryButton, .secondaryButton {
+    padding: 12px 25px;
+    font-size: 1rem;
   }
 }
 
@@ -375,47 +478,336 @@
     padding: 20px;
   }
   
+  .header {
+    margin-bottom: 25px;
+  }
+  
+  .backButton {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+  
+  .carHero {
+    gap: 25px;
+    margin-bottom: 35px;
+  }
+  
   .carImageLarge {
     font-size: 8rem;
-    padding: 20px;
+    padding: 25px;
   }
   
   .carTitle {
     font-size: 2.5rem;
+    margin-bottom: 12px;
   }
   
   .carPrice {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .carDescription {
+    font-size: 0.9rem;
+    margin-bottom: 18px;
   }
   
   .quickStats {
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 10px;
   }
   
-  .actionButtons {
-    flex-direction: column;
+  .stat {
+    padding: 12px;
+    text-align: center;
   }
   
-  .upgradeTeaser {
-    padding: 30px 20px;
+  .statValue {
+    font-size: 1.3rem;
   }
-}
-
-@media (max-width: 480px) {
-  .carTitle {
-    font-size: 2rem;
+  
+  .statLabel {
+    font-size: 0.8rem;
+  }
+  
+  .section {
+    padding: 20px;
+    margin-bottom: 20px;
   }
   
   .sectionTitle {
     font-size: 2rem;
+    margin-bottom: 15px;
+    text-align: center;
   }
   
   .specsGrid {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .spec {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .specLabel {
+    font-size: 0.85rem;
+  }
+  
+  .specValue {
+    font-size: 1rem;
   }
   
   .performanceGrid {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .performanceItem {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .performanceLabel {
+    font-size: 0.85rem;
+  }
+  
+  .performanceValue {
+    font-size: 1rem;
+  }
+  
+  .actionButtons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .primaryButton, .secondaryButton {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .upgradeTeaser {
+    padding: 25px 15px;
+    text-align: center;
+  }
+  
+  .upgradeTitle {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .upgradeDescription {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  
+  .upgradeStats {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .upgradeStat {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding: 15px;
+  }
+  
+  .carImageLarge {
+    font-size: 7rem;
+    padding: 20px;
+  }
+  
+  .carTitle {
+    font-size: 2.2rem;
+  }
+  
+  .carPrice {
+    font-size: 1.6rem;
+  }
+  
+  .carDescription {
+    font-size: 0.85rem;
+  }
+  
+  .section {
+    padding: 18px 15px;
+  }
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  
+  .stat {
+    padding: 10px;
+  }
+  
+  .statValue {
+    font-size: 1.2rem;
+  }
+  
+  .spec, .performanceItem {
+    padding: 8px;
+  }
+  
+  .primaryButton, .secondaryButton {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+  
+  .upgradeTeaser {
+    padding: 20px 12px;
+  }
+  
+  .upgradeTitle {
+    font-size: 1.6rem;
+  }
+  
+  .upgradeDescription {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 12px;
+  }
+  
+  .header {
+    margin-bottom: 20px;
+  }
+  
+  .backButton {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+  
+  .carImageLarge {
+    font-size: 6rem;
+    padding: 15px;
+  }
+  
+  .carTitle {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .carPrice {
+    font-size: 1.4rem;
+  }
+  
+  .carDescription {
+    font-size: 0.8rem;
+  }
+  
+  .section {
+    padding: 15px 12px;
+    margin-bottom: 15px;
+  }
+  
+  .sectionTitle {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+  
+  .stat {
+    padding: 8px;
+  }
+  
+  .statValue {
+    font-size: 1.1rem;
+  }
+  
+  .statLabel {
+    font-size: 0.75rem;
+  }
+  
+  .spec, .performanceItem {
+    padding: 6px;
+  }
+  
+  .specLabel, .performanceLabel {
+    font-size: 0.8rem;
+  }
+  
+  .specValue, .performanceValue {
+    font-size: 0.9rem;
+  }
+  
+  .primaryButton, .secondaryButton {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .upgradeTeaser {
+    padding: 18px 10px;
+  }
+  
+  .upgradeTitle {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+  }
+  
+  .upgradeDescription {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+  
+  .upgradeStat {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .main {
+    padding: 10px;
+  }
+  
+  .carImageLarge {
+    font-size: 5rem;
+    padding: 12px;
+  }
+  
+  .carTitle {
+    font-size: 1.8rem;
+  }
+  
+  .carPrice {
+    font-size: 1.2rem;
+  }
+  
+  .carDescription {
+    font-size: 0.75rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.4rem;
+  }
+  
+  .statValue {
+    font-size: 1rem;
+  }
+  
+  .statLabel {
+    font-size: 0.7rem;
+  }
+  
+  .upgradeTitle {
+    font-size: 1.2rem;
+  }
+  
+  .upgradeDescription {
+    font-size: 0.75rem;
+  }
+  
+  .upgradeStat {
+    font-size: 0.75rem;
   }
 }

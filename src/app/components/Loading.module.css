@@ -151,6 +151,129 @@
   }
 }
 
+/* Media Queries para Responsividade */
+@media (max-width: 1024px) {
+  .logo {
+    font-size: 3.5rem;
+  }
+  
+  .tagline {
+    font-size: 1.1rem;
+  }
+  
+  .progressContainer {
+    width: 280px;
+  }
+  
+  .loadingText {
+    font-size: 0.9rem;
+  }
+  
+  .carContainer {
+    width: 80px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logoContainer {
+    margin-bottom: 40px;
+  }
+  
+  .logo {
+    font-size: 3rem;
+  }
+  
+  .tagline {
+    font-size: 1rem;
+  }
+  
+  .progressContainer {
+    width: 250px;
+  }
+  
+  .progressText {
+    font-size: 0.85rem;
+  }
+  
+  .roadLine {
+    height: 2px;
+  }
+  
+  .carContainer {
+    width: 70px;
+    height: 35px;
+  }
+  
+  .loadingText {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .loadingContainer {
+    padding: 20px;
+  }
+  
+  .logoContainer {
+    margin-bottom: 30px;
+  }
+  
+  .logo {
+    font-size: 2.5rem;
+  }
+  
+  .tagline {
+    font-size: 0.9rem;
+  }
+  
+  .progressContainer {
+    width: 220px;
+    margin-bottom: 30px;
+  }
+  
+  .progressText {
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+  }
+  
+  .progressBar {
+    height: 6px;
+  }
+  
+  .roadLine {
+    height: 1px;
+  }
+  
+  .carContainer {
+    width: 60px;
+    height: 30px;
+  }
+  
+  .loadingText {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .logo {
+    font-size: 2rem;
+  }
+  
+  .tagline {
+    font-size: 0.8rem;
+  }
+  
+  .progressContainer {
+    width: 200px;
+  }
+  
+  .carContainer {
+    width: 50px;
+    height: 25px;
+  }
+}
+
 @keyframes fadeInOut {
   0%, 100% {
     opacity: 0.6;

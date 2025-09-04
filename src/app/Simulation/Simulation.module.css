@@ -501,11 +501,151 @@
   box-shadow: 0 10px 25px rgba(255, 0, 0, 0.4);
 }
 
-/* Responsividade */
+/* Responsividade Aprimorada */
+@media (max-width: 1400px) {
+  .main {
+    padding: 20px 35px 35px;
+  }
+  
+  .simulationContent {
+    gap: 35px;
+  }
+}
+
 @media (max-width: 1200px) {
+  .main {
+    padding: 20px 30px 30px;
+  }
+  
   .simulationContent {
     grid-template-columns: 1fr;
     gap: 30px;
+  }
+  
+  .buildsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .upgradeSection {
+    padding: 25px;
+  }
+  
+  .stageButtons {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main {
+    padding: 20px 25px 25px;
+  }
+  
+  .header {
+    margin-bottom: 35px;
+  }
+  
+  .title {
+    font-size: 2.8rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+    max-width: 500px;
+  }
+  
+  .carSelection {
+    padding: 18px 25px;
+    margin-bottom: 35px;
+  }
+  
+  .selectedCar {
+    gap: 15px;
+  }
+  
+  .carIcon {
+    font-size: 2.5rem;
+  }
+  
+  .carInfo h3 {
+    font-size: 1.3rem;
+  }
+  
+  .carInfo p {
+    font-size: 0.9rem;
+  }
+  
+  .changeCarButton {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .buildsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .build {
+    padding: 15px;
+  }
+  
+  .buildName {
+    font-size: 1.1rem;
+  }
+  
+  .buildDescription {
+    font-size: 0.8rem;
+  }
+  
+  .upgradeSection {
+    padding: 20px;
+  }
+  
+  .upgradeTitle {
+    font-size: 1.4rem;
+  }
+  
+  .stageButton {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .upgradeControls {
+    gap: 15px;
+  }
+  
+  .upgradeButton {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .performanceSection {
+    padding: 20px;
+  }
+  
+  .performanceTitle {
+    font-size: 1.4rem;
+  }
+  
+  .chartContainer {
+    margin-bottom: 20px;
+  }
+  
+  .chartBar {
+    padding: 8px;
+  }
+  
+  .metric {
+    font-size: 0.8rem;
+  }
+  
+  .value {
+    font-size: 0.9rem;
+  }
+  
+  .navActionButton {
+    padding: 12px 25px;
+    font-size: 1rem;
   }
 }
 
@@ -514,18 +654,120 @@
     padding: 20px;
   }
   
+  .header {
+    margin-bottom: 30px;
+  }
+  
   .title {
     font-size: 2.5rem;
+    margin-bottom: 12px;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    max-width: 100%;
   }
   
   .carSelection {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
+    text-align: center;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+  }
+  
+  .selectedCar {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .carIcon {
+    font-size: 3rem;
+  }
+  
+  .carInfo h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+  
+  .carInfo p {
+    font-size: 0.85rem;
+  }
+  
+  .changeCarButton {
+    width: 100%;
+    max-width: 200px;
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+  
+  .buildsGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .build {
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .buildName {
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+  
+  .buildDescription {
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+  }
+  
+  .selectBuildButton {
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .upgradeSection {
+    padding: 15px;
+  }
+  
+  .upgradeTitle {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
     text-align: center;
   }
   
   .stageButtons {
     grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  
+  .stageButton {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .upgradeControls {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .upgradeButton {
+    width: 100%;
+    max-width: 200px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .performanceSection {
+    padding: 15px;
+  }
+  
+  .performanceTitle {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    text-align: center;
   }
   
   .performanceComparison {
@@ -535,30 +777,271 @@
   
   .arrow {
     transform: rotate(90deg);
+    margin: 10px 0;
   }
   
-  .saveForm {
-    flex-direction: column;
-  }
-  
-  .navigationActions {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .title {
-    font-size: 2rem;
-  }
-  
-  .buildsGrid {
-    grid-template-columns: 1fr;
+  .chartContainer {
+    margin-bottom: 15px;
   }
   
   .chartBar {
     grid-template-columns: 1fr;
     gap: 5px;
     text-align: center;
+    padding: 6px;
+  }
+  
+  .metric {
+    font-size: 0.75rem;
+  }
+  
+  .value {
+    font-size: 0.85rem;
+  }
+  
+  .barContainer {
+    margin: 5px 0;
+  }
+  
+  .saveForm {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .saveInput {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .saveButton {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+  
+  .navigationActions {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .navActionButton {
+    width: 100%;
+    max-width: 250px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding: 15px;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .carSelection {
+    padding: 12px 15px;
+  }
+  
+  .carIcon {
+    font-size: 2.5rem;
+  }
+  
+  .carInfo h3 {
+    font-size: 1.1rem;
+  }
+  
+  .carInfo p {
+    font-size: 0.8rem;
+  }
+  
+  .upgradeSection, .performanceSection {
+    padding: 12px;
+  }
+  
+  .upgradeTitle, .performanceTitle {
+    font-size: 1.2rem;
+  }
+  
+  .stageButton {
+    padding: 5px 8px;
+    font-size: 0.75rem;
+  }
+  
+  .upgradeButton {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .navActionButton {
+    max-width: 220px;
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 12px;
+  }
+  
+  .header {
+    margin-bottom: 25px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .subtitle {
+    font-size: 0.85rem;
+  }
+  
+  .carSelection {
+    padding: 10px 12px;
+    margin-bottom: 25px;
+  }
+  
+  .carIcon {
+    font-size: 2rem;
+  }
+  
+  .carInfo h3 {
+    font-size: 1rem;
+  }
+  
+  .carInfo p {
+    font-size: 0.75rem;
+  }
+  
+  .changeCarButton {
+    max-width: 180px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .buildsGrid {
+    gap: 10px;
+  }
+  
+  .build {
+    padding: 10px;
+  }
+  
+  .buildName {
+    font-size: 0.9rem;
+  }
+  
+  .buildDescription {
+    font-size: 0.7rem;
+  }
+  
+  .selectBuildButton {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+  
+  .upgradeSection, .performanceSection {
+    padding: 10px;
+  }
+  
+  .upgradeTitle, .performanceTitle {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+  
+  .stageButtons {
+    gap: 6px;
+  }
+  
+  .stageButton {
+    padding: 4px 6px;
+    font-size: 0.7rem;
+  }
+  
+  .upgradeButton {
+    max-width: 180px;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+  
+  .chartBar {
+    padding: 4px;
+  }
+  
+  .metric {
+    font-size: 0.7rem;
+  }
+  
+  .value {
+    font-size: 0.8rem;
+  }
+  
+  .saveInput {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .saveButton {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .navActionButton {
+    max-width: 200px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .main {
+    padding: 10px;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .carIcon {
+    font-size: 1.8rem;
+  }
+  
+  .carInfo h3 {
+    font-size: 0.9rem;
+  }
+  
+  .carInfo p {
+    font-size: 0.7rem;
+  }
+  
+  .upgradeTitle, .performanceTitle {
+    font-size: 1rem;
+  }
+  
+  .stageButton {
+    padding: 3px 5px;
+    font-size: 0.65rem;
+  }
+  
+  .upgradeButton {
+    max-width: 160px;
+    font-size: 0.7rem;
+  }
+  
+  .navActionButton {
+    max-width: 180px;
+    font-size: 0.75rem;
   }
 }

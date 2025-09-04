@@ -7,11 +7,32 @@ html, body {
   padding: 0;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  min-height: 100vh;
 }
 
 body {
   font-family: 'Arial', sans-serif;
   background: #000000;
+  line-height: 1.6;
+}
+
+/* Responsividade Global */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 320px) {
+  html {
+    font-size: 12px;
+  }
 }
 
 /* Scrollbar personalizada */
@@ -30,4 +51,53 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #ff1111, #ff4444);
+}
+
+/* Estilos para dispositivos móveis */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+}
+
+/* Prevent zoom on iOS */
+@media screen and (max-width: 768px) {
+  input[type="color"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="email"],
+  input[type="month"],
+  input[type="number"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="text"],
+  input[type="time"],
+  input[type="url"],
+  input[type="week"],
+  select:focus,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Utilidades de responsividade */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
 }

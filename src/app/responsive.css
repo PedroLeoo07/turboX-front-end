@@ -1,0 +1,330 @@
+/* TurboX - Utilidades de Responsividade */
+
+/* Breakpoints */
+/* 
+  xs: 0-319px
+  sm: 320-479px  
+  md: 480-639px
+  lg: 640-767px
+  xl: 768-1023px
+  2xl: 1024-1199px
+  3xl: 1200-1399px
+  4xl: 1400px+
+*/
+
+/* Visibilidade por dispositivo */
+.mobile-only {
+  display: block;
+}
+
+.tablet-only {
+  display: none;
+}
+
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .mobile-only {
+    display: none;
+  }
+  
+  .tablet-only {
+    display: block;
+  }
+  
+  .desktop-only {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mobile-only {
+    display: none;
+  }
+  
+  .tablet-only {
+    display: none;
+  }
+  
+  .desktop-only {
+    display: block;
+  }
+}
+
+/* Grid responsivo */
+.responsive-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.responsive-grid.cols-1 {
+  grid-template-columns: 1fr;
+}
+
+.responsive-grid.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.responsive-grid.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.responsive-grid.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1023px) {
+  .responsive-grid.cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .responsive-grid.cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .responsive-grid.cols-4,
+  .responsive-grid.cols-3,
+  .responsive-grid.cols-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .responsive-grid {
+    gap: 15px;
+  }
+}
+
+/* Flex responsivo */
+.responsive-flex {
+  display: flex;
+  gap: 20px;
+}
+
+.responsive-flex.wrap {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 767px) {
+  .responsive-flex {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* Espaçamentos responsivos */
+.padding-responsive {
+  padding: 40px;
+}
+
+.margin-responsive {
+  margin: 40px;
+}
+
+@media (max-width: 1023px) {
+  .padding-responsive {
+    padding: 30px;
+  }
+  
+  .margin-responsive {
+    margin: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .padding-responsive {
+    padding: 20px;
+  }
+  
+  .margin-responsive {
+    margin: 20px;
+  }
+}
+
+@media (max-width: 479px) {
+  .padding-responsive {
+    padding: 15px;
+  }
+  
+  .margin-responsive {
+    margin: 15px;
+  }
+}
+
+/* Tipografia responsiva */
+.text-responsive-xl {
+  font-size: 3rem;
+}
+
+.text-responsive-lg {
+  font-size: 2.5rem;
+}
+
+.text-responsive-md {
+  font-size: 2rem;
+}
+
+.text-responsive-sm {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 1023px) {
+  .text-responsive-xl {
+    font-size: 2.5rem;
+  }
+  
+  .text-responsive-lg {
+    font-size: 2rem;
+  }
+  
+  .text-responsive-md {
+    font-size: 1.75rem;
+  }
+  
+  .text-responsive-sm {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .text-responsive-xl {
+    font-size: 2rem;
+  }
+  
+  .text-responsive-lg {
+    font-size: 1.75rem;
+  }
+  
+  .text-responsive-md {
+    font-size: 1.5rem;
+  }
+  
+  .text-responsive-sm {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .text-responsive-xl {
+    font-size: 1.75rem;
+  }
+  
+  .text-responsive-lg {
+    font-size: 1.5rem;
+  }
+  
+  .text-responsive-md {
+    font-size: 1.25rem;
+  }
+  
+  .text-responsive-sm {
+    font-size: 1rem;
+  }
+}
+
+/* Botões responsivos */
+.button-responsive {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 767px) {
+  .button-responsive {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .button-responsive {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+}
+
+/* Imagens responsivas */
+.image-responsive {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Cards responsivos */
+.card-responsive {
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+@media (max-width: 767px) {
+  .card-responsive {
+    padding: 20px;
+    border-radius: 15px;
+  }
+}
+
+@media (max-width: 479px) {
+  .card-responsive {
+    padding: 15px;
+    border-radius: 12px;
+  }
+}
+
+/* Hide/Show em diferentes breakpoints */
+@media (max-width: 319px) {
+  .hide-xs {
+    display: none !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .hide-sm {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .hide-md {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hide-lg {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .show-md-up {
+    display: block !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .show-lg-up {
+    display: block !important;
+  }
+}
+
+/* Scrolling horizontal para tables em mobile */
+.table-responsive {
+  overflow-x: auto;
+}
+
+@media (max-width: 767px) {
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .table-responsive table {
+    min-width: 600px;
+  }
+}

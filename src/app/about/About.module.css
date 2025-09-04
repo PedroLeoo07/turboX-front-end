@@ -353,66 +353,483 @@
   }
 }
 
-/* Responsividade */
+/* Responsividade Aprimorada */
+@media (max-width: 1400px) {
+  .main {
+    padding: 0 35px 35px;
+  }
+  
+  .aboutContent {
+    gap: 50px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .main {
+    padding: 0 30px 30px;
+  }
+  
+  .hero {
+    padding: 50px 0;
+  }
+  
+  .name {
+    font-size: 3.2rem;
+  }
+  
+  .title {
+    font-size: 1.4rem;
+  }
+  
+  .bio {
+    font-size: 1rem;
+    max-width: 500px;
+  }
+  
+  .avatar {
+    width: 180px;
+    height: 180px;
+    font-size: 7.5rem;
+  }
+  
+  .skillsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
 @media (max-width: 1024px) {
+  .main {
+    padding: 0 25px 25px;
+  }
+  
+  .hero {
+    padding: 40px 0;
+  }
+  
+  .profileSection {
+    gap: 25px;
+  }
+  
+  .name {
+    font-size: 3rem;
+  }
+  
+  .title {
+    font-size: 1.3rem;
+  }
+  
+  .bio {
+    font-size: 0.95rem;
+    max-width: 450px;
+  }
+  
+  .avatar {
+    width: 160px;
+    height: 160px;
+    font-size: 7rem;
+  }
+  
   .aboutContent {
     grid-template-columns: 1fr;
     gap: 40px;
   }
   
+  .section {
+    padding: 30px;
+  }
+  
+  .sectionTitle {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .skillsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .skill {
+    padding: 15px;
+  }
+  
+  .skillName {
+    font-size: 0.95rem;
+  }
+  
+  .skillLevel {
+    font-size: 0.8rem;
+  }
+  
+  .projectsGrid {
+    gap: 18px;
+  }
+  
+  .project {
+    padding: 20px;
+  }
+  
+  .projectTitle {
+    font-size: 1.3rem;
+  }
+  
+  .projectDescription {
+    font-size: 0.9rem;
+  }
+  
   .highlights {
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .highlight {
+    flex: 1;
+    min-width: 200px;
+    padding: 15px;
   }
 }
 
 @media (max-width: 768px) {
   .main {
-    padding: 0 20px 40px;
+    padding: 0 20px 20px;
+  }
+  
+  .hero {
+    padding: 30px 0;
+  }
+  
+  .profileSection {
+    gap: 20px;
   }
   
   .name {
     font-size: 2.5rem;
+    line-height: 1.1;
   }
   
   .title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .bio {
+    font-size: 0.9rem;
+    max-width: 100%;
+    text-align: center;
   }
   
   .avatar {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     font-size: 6rem;
+  }
+  
+  .section {
+    padding: 25px 20px;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  
+  .skillsGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .skill {
+    padding: 12px;
+  }
+  
+  .skillName {
+    font-size: 0.9rem;
+  }
+  
+  .skillLevel {
+    font-size: 0.75rem;
+  }
+  
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .project {
+    padding: 18px;
+  }
+  
+  .projectTitle {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+  
+  .projectDescription {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  
+  .techStack {
+    gap: 6px;
+    margin-top: 10px;
+  }
+  
+  .tech {
+    padding: 4px 8px;
+    font-size: 0.7rem;
   }
   
   .appNavigation {
     flex-direction: column;
     align-items: center;
+    gap: 10px;
+  }
+  
+  .navButton {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+    font-size: 0.9rem;
   }
   
   .contactLinks {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .contactLink {
+    padding: 12px;
   }
   
   .highlights {
     flex-direction: column;
+    gap: 12px;
+  }
+  
+  .highlight {
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .highlightValue {
+    font-size: 1.8rem;
+  }
+  
+  .highlightLabel {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding: 0 15px 15px;
+  }
+  
+  .hero {
+    padding: 25px 0;
+  }
+  
+  .name {
+    font-size: 2.2rem;
+  }
+  
+  .title {
+    font-size: 1.1rem;
+  }
+  
+  .bio {
+    font-size: 0.85rem;
+  }
+  
+  .avatar {
+    width: 120px;
+    height: 120px;
+    font-size: 5rem;
+  }
+  
+  .section {
+    padding: 20px 15px;
+  }
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  
+  .skill {
+    padding: 10px;
+  }
+  
+  .project {
+    padding: 15px;
+  }
+  
+  .projectTitle {
+    font-size: 1.1rem;
+  }
+  
+  .projectDescription {
+    font-size: 0.8rem;
+  }
+  
+  .navButton {
+    padding: 8px;
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 480px) {
+  .main {
+    padding: 0 12px 12px;
+  }
+  
+  .hero {
+    padding: 20px 0;
+  }
+  
+  .profileSection {
+    gap: 15px;
+  }
+  
   .name {
     font-size: 2rem;
+    margin-bottom: 8px;
+  }
+  
+  .title {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+  
+  .bio {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+    font-size: 4rem;
+  }
+  
+  .section {
+    padding: 18px 12px;
   }
   
   .sectionTitle {
-    font-size: 2rem;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
   }
   
-  .skillsGrid {
-    grid-template-columns: 1fr;
+  .skill {
+    padding: 8px;
   }
   
-  .projectsGrid {
-    grid-template-columns: 1fr;
+  .skillName {
+    font-size: 0.85rem;
+  }
+  
+  .skillLevel {
+    font-size: 0.7rem;
+  }
+  
+  .project {
+    padding: 12px;
+  }
+  
+  .projectTitle {
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+  
+  .projectDescription {
+    font-size: 0.75rem;
+  }
+  
+  .tech {
+    padding: 3px 6px;
+    font-size: 0.65rem;
+  }
+  
+  .navButton {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+  
+  .contactLink {
+    padding: 10px;
+  }
+  
+  .highlight {
+    padding: 10px;
+  }
+  
+  .highlightValue {
+    font-size: 1.5rem;
+  }
+  
+  .highlightLabel {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .main {
+    padding: 0 10px 10px;
+  }
+  
+  .name {
+    font-size: 1.8rem;
+  }
+  
+  .title {
+    font-size: 0.9rem;
+  }
+  
+  .bio {
+    font-size: 0.75rem;
+  }
+  
+  .avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 3rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.4rem;
+  }
+  
+  .skill {
+    padding: 6px;
+  }
+  
+  .skillName {
+    font-size: 0.8rem;
+  }
+  
+  .project {
+    padding: 10px;
+  }
+  
+  .projectTitle {
+    font-size: 0.9rem;
+  }
+  
+  .projectDescription {
+    font-size: 0.7rem;
+  }
+  
+  .highlightValue {
+    font-size: 1.2rem;
+  }
+  
+  .highlightLabel {
+    font-size: 0.7rem;
   }
 }

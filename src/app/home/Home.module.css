@@ -283,38 +283,186 @@
   }
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
+/* Responsividade Aprimorada */
+@media (max-width: 1400px) {
+  .hero {
+    padding: 100px 60px;
+  }
+  
+  .features {
+    padding: 80px 60px;
+  }
+}
+
+@media (max-width: 1200px) {
   .header {
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
+    padding: 18px 30px;
+  }
+  
+  .logo {
+    font-size: 2.2rem;
+  }
+  
+  .nav {
+    gap: 25px;
+  }
+  
+  .navLink {
+    font-size: 1rem;
+  }
+  
+  .hero {
+    padding: 80px 40px;
+  }
+  
+  .title {
+    font-size: 3.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.3rem;
+    max-width: 600px;
+  }
+  
+  .features {
+    padding: 70px 40px;
+  }
+  
+  .featureGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 16px 25px;
+  }
+  
+  .logo {
+    font-size: 2rem;
   }
   
   .nav {
     gap: 20px;
   }
   
+  .navLink {
+    font-size: 0.95rem;
+  }
+  
+  .hero {
+    padding: 70px 30px;
+  }
+  
   .title {
-    font-size: 2.5rem;
+    font-size: 3rem;
+    line-height: 1.1;
   }
   
   .subtitle {
     font-size: 1.2rem;
+    max-width: 550px;
+  }
+  
+  .ctaButtons {
+    gap: 15px;
+  }
+  
+  .primaryButton, .secondaryButton {
+    padding: 14px 28px;
+    font-size: 1.05rem;
+  }
+  
+  .features {
+    padding: 60px 30px;
+  }
+  
+  .featureGrid {
+    gap: 20px;
+  }
+  
+  .feature {
+    padding: 25px;
+  }
+  
+  .feature h3 {
+    font-size: 1.3rem;
+  }
+  
+  .feature p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px;
+  }
+  
+  .nav {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .navLink {
+    font-size: 0.9rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+    max-width: 100%;
+    margin-bottom: 25px;
   }
   
   .hero {
     padding: 60px 20px;
+    text-align: center;
   }
   
   .ctaButtons {
     flex-direction: column;
     align-items: center;
+    gap: 12px;
+  }
+  
+  .primaryButton, .secondaryButton {
+    width: 100%;
+    max-width: 280px;
+    padding: 12px 25px;
+    font-size: 1rem;
   }
   
   .features {
-    padding: 60px 20px;
-    gap: 30px;
+    padding: 50px 20px;
+  }
+  
+  .featureGrid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .feature {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .feature h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .feature p {
+    font-size: 0.9rem;
+    line-height: 1.4;
   }
   
   .main {
@@ -322,17 +470,142 @@
   }
 }
 
-@media (max-width: 480px) {
-  .title {
-    font-size: 2rem;
-  }
-  
-  .primaryButton, .secondaryButton {
-    padding: 12px 30px;
-    font-size: 1rem;
+@media (max-width: 640px) {
+  .header {
+    padding: 12px 15px;
   }
   
   .logo {
+    font-size: 1.8rem;
+  }
+  
+  .nav {
+    gap: 10px;
+  }
+  
+  .navLink {
+    font-size: 0.85rem;
+    padding: 5px 8px;
+  }
+  
+  .hero {
+    padding: 50px 15px;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .primaryButton, .secondaryButton {
+    max-width: 250px;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+  
+  .features {
+    padding: 40px 15px;
+  }
+  
+  .feature {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 10px 12px;
+  }
+  
+  .logo {
+    font-size: 1.6rem;
+  }
+  
+  .nav {
+    gap: 8px;
+  }
+  
+  .navLink {
+    font-size: 0.8rem;
+    padding: 4px 6px;
+  }
+  
+  .hero {
+    padding: 40px 12px;
+  }
+  
+  .title {
     font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  
+  .primaryButton, .secondaryButton {
+    max-width: 220px;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+  
+  .features {
+    padding: 35px 12px;
+  }
+  
+  .feature {
+    padding: 12px;
+  }
+  
+  .feature h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+  
+  .feature p {
+    font-size: 0.85rem;
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 320px) {
+  .logo {
+    font-size: 1.4rem;
+  }
+  
+  .nav {
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+  }
+  
+  .navLink {
+    font-size: 0.75rem;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .primaryButton, .secondaryButton {
+    max-width: 200px;
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+  
+  .feature h3 {
+    font-size: 1rem;
+  }
+  
+  .feature p {
+    font-size: 0.8rem;
   }
 }
