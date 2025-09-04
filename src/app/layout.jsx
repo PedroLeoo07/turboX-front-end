@@ -1,10 +1,10 @@
 import "./globals.css";
 
 export const metadata = {
-    title: "escreva o TÍTULO para aparecer na aba do navegador",
-    description: "Projeto pra mostrar tudo que eu sei",
+    title: "TurboX",
+    description: "Projeto TurboX - Plataforma de carros turbo",
     icons: {
-        icon: "/icons/favicon.ico",
+        icon: "/icons/icon.png",
     },
 };
 

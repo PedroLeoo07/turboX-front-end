@@ -5,5 +5,29 @@
 html, body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 
+body {
+  font-family: 'Arial', sans-serif;
+  background: #000000;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #222;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff0000, #ff3333);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff1111, #ff4444);
 }
