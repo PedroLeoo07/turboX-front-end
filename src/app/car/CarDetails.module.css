@@ -1,0 +1,421 @@
+.carDetailsContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000000 0%, #1a0000 50%, #000000 100%);
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+}
+
+.main {
+  padding: 20px 40px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.backButton {
+  background: rgba(255, 0, 0, 0.2);
+  color: #fff;
+  border: 2px solid rgba(255, 0, 0, 0.5);
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.backButton:hover {
+  background: rgba(255, 0, 0, 0.3);
+  transform: translateX(-5px);
+}
+
+.carHero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  margin-bottom: 60px;
+  align-items: center;
+}
+
+.carImageLarge {
+  font-size: 15rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 30px;
+  padding: 40px;
+  border: 2px solid rgba(255, 0, 0, 0.3);
+}
+
+.carMainInfo {
+  text-align: left;
+}
+
+.carTitle {
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.carModel {
+  color: #ff0000;
+  text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.carYear {
+  font-size: 1.5rem;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.carPrice {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ff0000;
+  margin-bottom: 30px;
+  text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.quickStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.quickStat {
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 0, 0, 0.1);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.quickStatValue {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ff0000;
+  line-height: 1;
+}
+
+.quickStatLabel {
+  font-size: 1rem;
+  color: #ccc;
+  margin-top: 5px;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 15px;
+}
+
+.simulateButton, .favoriteButton {
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.simulateButton {
+  background: linear-gradient(45deg, #ff0000, #ff3333);
+  color: #fff;
+  flex: 2;
+}
+
+.favoriteButton {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 0, 0, 0.5);
+  flex: 1;
+}
+
+.simulateButton:hover, .favoriteButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  color: #ff0000;
+  margin-bottom: 30px;
+  text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+  text-align: center;
+}
+
+.specsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.specCard {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.specCard:hover {
+  border-color: rgba(255, 0, 0, 0.5);
+  transform: translateY(-5px);
+}
+
+.specIcon {
+  font-size: 2rem;
+  width: 50px;
+  text-align: center;
+}
+
+.specLabel {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.specValue {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.performanceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.performanceCard {
+  text-align: center;
+  padding: 40px 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.performanceCard:hover {
+  transform: translateY(-10px);
+  border-color: rgba(255, 0, 0, 0.5);
+  box-shadow: 0 20px 40px rgba(255, 0, 0, 0.1);
+}
+
+.performanceIcon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.performanceCard h3 {
+  color: #ff0000;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.performanceValue {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 15px;
+  text-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.performanceCard p {
+  color: #ccc;
+  line-height: 1.4;
+}
+
+.featuresList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.featureItem:hover {
+  border-color: rgba(255, 0, 0, 0.5);
+  transform: translateX(10px);
+}
+
+.featureCheck {
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.featureText {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.upgradeTeaser {
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+  padding: 50px;
+  border-radius: 30px;
+  border: 2px solid rgba(255, 0, 0, 0.3);
+}
+
+.upgradeContent {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.upgradeInfo h3 {
+  font-size: 2rem;
+  color: #ff0000;
+  margin-bottom: 20px;
+}
+
+.upgradeInfo p {
+  font-size: 1.1rem;
+  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.upgradeFeatures {
+  list-style: none;
+  padding: 0;
+}
+
+.upgradeFeatures li {
+  padding: 8px 0;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.upgradeActions {
+  text-align: center;
+}
+
+.startSimulationButton {
+  background: linear-gradient(45deg, #ff0000, #ff6600);
+  color: #fff;
+  border: none;
+  padding: 20px 40px;
+  border-radius: 30px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.startSimulationButton:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(255, 0, 0, 0.4);
+}
+
+.upgradeStats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.upgradeStat {
+  padding: 10px;
+  background: rgba(255, 0, 0, 0.2);
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.errorMessage {
+  text-align: center;
+  padding: 100px 20px;
+  color: #fff;
+}
+
+.errorMessage h2 {
+  color: #ff0000;
+  margin-bottom: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .carHero {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+  
+  .upgradeContent {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 20px;
+  }
+  
+  .carImageLarge {
+    font-size: 8rem;
+    padding: 20px;
+  }
+  
+  .carTitle {
+    font-size: 2.5rem;
+  }
+  
+  .carPrice {
+    font-size: 2rem;
+  }
+  
+  .quickStats {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .actionButtons {
+    flex-direction: column;
+  }
+  
+  .upgradeTeaser {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carTitle {
+    font-size: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .specsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .performanceGrid {
+    grid-template-columns: 1fr;
+  }
+}

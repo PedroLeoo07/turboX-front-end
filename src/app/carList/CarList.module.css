@@ -1,0 +1,265 @@
+.carListContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000000 0%, #1a0000 50%, #000000 100%);
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+}
+
+.main {
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  background: linear-gradient(45deg, #ff0000, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #ccc;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.filters {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  margin-bottom: 30px;
+}
+
+.searchBox {
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 0, 0, 0.3);
+  border-radius: 25px;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #ff0000;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.searchInput::placeholder {
+  color: #888;
+}
+
+.filterControls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.filterSelect {
+  padding: 12px 15px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 0, 0, 0.3);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: #ff0000;
+}
+
+.filterSelect option {
+  background: #000;
+  color: #fff;
+}
+
+.results {
+  margin-bottom: 20px;
+}
+
+.resultCount {
+  color: #ccc;
+  font-size: 1rem;
+}
+
+.carGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.carCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 25px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  animation: slideUp 0.6s ease-out;
+}
+
+.carCard:hover {
+  transform: translateY(-10px);
+  border-color: rgba(255, 0, 0, 0.5);
+  box-shadow: 0 20px 40px rgba(255, 0, 0, 0.1);
+}
+
+.carImage {
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.carInfo {
+  text-align: center;
+}
+
+.carTitle {
+  font-size: 1.5rem;
+  color: #ff0000;
+  margin-bottom: 5px;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.carYear {
+  color: #888;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.carSpecs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.spec {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.specLabel {
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.specValue {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.carPrice {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ff0000;
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.viewDetailsBtn {
+  background: linear-gradient(45deg, #ff0000, #ff3333);
+  color: #fff;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.viewDetailsBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
+}
+
+.noResults {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+}
+
+.noResultsIcon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.noResults h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .main {
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .carGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .carSpecs {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .filterControls {
+    grid-template-columns: 1fr;
+  }
+  
+  .filters {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .carCard {
+    padding: 20px;
+  }
+}

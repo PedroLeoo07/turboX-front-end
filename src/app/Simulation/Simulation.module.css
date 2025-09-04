@@ -1,0 +1,564 @@
+.simulationContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000000 0%, #1a0000 50%, #000000 100%);
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+}
+
+.main {
+  padding: 20px 40px 40px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  background: linear-gradient(45deg, #ff0000, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #ccc;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.carSelection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  margin-bottom: 40px;
+}
+
+.selectedCar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.carImage {
+  font-size: 4rem;
+}
+
+.carInfo h2 {
+  color: #ff0000;
+  margin-bottom: 5px;
+  font-size: 1.8rem;
+}
+
+.carInfo p {
+  color: #ccc;
+  margin: 0;
+}
+
+.selectCarButton {
+  background: linear-gradient(45deg, #ff0000, #ff3333);
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.selectCarButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
+}
+
+.simulationContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.leftPanel, .rightPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  color: #ff0000;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+.stageSelection {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+.stageButtons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.stageButton {
+  padding: 15px 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 0, 0, 0.3);
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.stageButton:hover {
+  border-color: rgba(255, 0, 0, 0.6);
+}
+
+.stageButton.active {
+  background: linear-gradient(45deg, #ff0000, #ff3333);
+  border-color: #ff0000;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+}
+
+.upgrades {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+.upgradeGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.upgradeCard {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 0, 0, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upgradeCard:hover {
+  border-color: rgba(255, 0, 0, 0.5);
+  transform: translateX(5px);
+}
+
+.upgradeCard.selected {
+  background: rgba(255, 0, 0, 0.2);
+  border-color: #ff0000;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.upgradeIcon {
+  font-size: 1.8rem;
+  width: 40px;
+  text-align: center;
+}
+
+.upgradeInfo {
+  flex: 1;
+}
+
+.upgradeInfo h4 {
+  color: #fff;
+  margin-bottom: 3px;
+  font-size: 1rem;
+}
+
+.upgradeInfo p {
+  color: #888;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.upgradeCheckbox {
+  font-size: 1.2rem;
+}
+
+.performance {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+.performanceComparison {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.performanceColumn {
+  text-align: center;
+}
+
+.performanceColumn h4 {
+  color: #ccc;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.arrow {
+  font-size: 2rem;
+  color: #ff0000;
+}
+
+.statCard {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.statCard.modified {
+  border-color: rgba(255, 0, 0, 0.5);
+  background: rgba(255, 0, 0, 0.1);
+}
+
+.statValue {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1;
+}
+
+.statLabel {
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 3px;
+}
+
+.statGain {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  background: #ff0000;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.performanceChart h4 {
+  color: #ff0000;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.chartBars {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.chartBar {
+  display: grid;
+  grid-template-columns: 80px 1fr 80px;
+  gap: 10px;
+  align-items: center;
+}
+
+.barLabel {
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.barContainer {
+  height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff0000, #ff3333);
+  border-radius: 10px;
+  transition: width 1s ease-in-out;
+}
+
+.barValue {
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+.saveShare {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+.saveForm {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.buildNameInput {
+  flex: 1;
+  padding: 12px 15px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 0, 0, 0.3);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.buildNameInput:focus {
+  outline: none;
+  border-color: #ff0000;
+}
+
+.buildNameInput::placeholder {
+  color: #888;
+}
+
+.saveButton {
+  background: linear-gradient(45deg, #ff0000, #ff3333);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.saveButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(255, 0, 0, 0.3);
+}
+
+.shareSection p {
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.shareLink {
+  display: flex;
+  gap: 10px;
+}
+
+.shareLinkInput {
+  flex: 1;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.copyButton {
+  background: rgba(255, 0, 0, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.copyButton:hover {
+  background: rgba(255, 0, 0, 0.3);
+}
+
+.savedBuilds {
+  margin-bottom: 40px;
+}
+
+.buildsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.buildCard {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.buildCard:hover {
+  border-color: rgba(255, 0, 0, 0.5);
+  transform: translateY(-5px);
+}
+
+.buildHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 10px;
+}
+
+.buildHeader h4 {
+  color: #ff0000;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.buildDate {
+  color: #888;
+  font-size: 0.8rem;
+}
+
+.buildCar {
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.buildStats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.buildActions {
+  display: flex;
+  gap: 10px;
+}
+
+.loadButton, .deleteButton {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.loadButton {
+  background: linear-gradient(45deg, #ff0000, #ff3333);
+  color: #fff;
+  flex: 1;
+}
+
+.deleteButton {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  width: 40px;
+}
+
+.loadButton:hover, .deleteButton:hover {
+  transform: translateY(-2px);
+}
+
+.navigationActions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.navActionButton {
+  background: linear-gradient(45deg, #ff0000, #ff3333);
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navActionButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 0, 0, 0.4);
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+  .simulationContent {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .carSelection {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .stageButtons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .performanceComparison {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .arrow {
+    transform: rotate(90deg);
+  }
+  
+  .saveForm {
+    flex-direction: column;
+  }
+  
+  .navigationActions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .buildsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .chartBar {
+    grid-template-columns: 1fr;
+    gap: 5px;
+    text-align: center;
+  }
+}
