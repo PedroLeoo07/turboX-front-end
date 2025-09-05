@@ -1,9 +1,23 @@
 "use client";
 
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
 import styles from './Home.module.css';
 
-export default function Home({ navigateTo }) {
+export default function Home({ navigateTo, isLoggedIn, user }) {
+  useEffect(() => {
+    if (isLoggedIn && user) {
+      toast.success(`Bem-vindo de volta, ${user.name}! 🏎️`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  }, [isLoggedIn, user]);
   return (
     <div className={styles.homeContainer}>
       <Navigation currentPage="home" navigateTo={navigateTo} />

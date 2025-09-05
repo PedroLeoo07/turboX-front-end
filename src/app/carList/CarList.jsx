@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { carsAPI } from '../services/api';
 import Navigation from '../components/Navigation';
 import styles from './CarList.module.css';
 
@@ -81,15 +83,38 @@ const carsData = [
 ];
 
 export default function CarList({ navigateTo }) {
+  const [cars, setCars] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBrand, setSelectedBrand] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [sortBy, setSortBy] = useState('power');
 
-  const brands = [...new Set(carsData.map(car => car.brand))];
-  const categories = [...new Set(carsData.map(car => car.category))];
+  // Buscar carros da API
+  useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        setLoading(true);
+        const response = await carsAPI.getAll();
+        setCars(response.cars || carsData); // Fallback para dados mock se API falhar
+        toast.success('Carros carregados com sucesso!');
+      } catch (error) {
+        console.error('Erro ao carregar carros:', error);
+        // Se a API falhar, usar dados mock
+        setCars(carsData);
+        toast.info('Usando dados locais (API indisponível)');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const filteredCars = carsData
+    fetchCars();
+  }, []);
+
+  const brands = [...new Set(cars.map(car => car.brand))];
+  const categories = [...new Set(cars.map(car => car.category))];
+
+  const filteredCars = cars
     .filter(car => {
       const matchesSearch = car.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            car.brand.toLowerCase().includes(searchTerm.toLowerCase());
@@ -115,6 +140,20 @@ export default function CarList({ navigateTo }) {
   const handleCarClick = (car) => {
     navigateTo('details', car);
   };
+
+  if (loading) {
+    return (
+      <div className={styles.carListContainer}>
+        <Navigation currentPage="cars" navigateTo={navigateTo} />
+        <main className={styles.main}>
+          <div className={styles.loadingContainer}>
+            <div className={styles.loadingSpinner}></div>
+            <p>Carregando carros...</p>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.carListContainer}>

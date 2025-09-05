@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { authAPI } from '../services/api';
 import styles from './Login.module.css';
 
 export default function Login({ navigateTo, onLogin }) {
@@ -75,19 +77,42 @@ export default function Login({ navigateTo, onLogin }) {
 
     setIsLoading(true);
 
-    // Simular chamada para API
-    setTimeout(() => {
-      const userData = {
-        id: Math.random().toString(36).substr(2, 9),
-        name: isSignUp ? formData.name : formData.email.split('@')[0],
-        email: formData.email,
-        avatar: '👨‍💻',
-        memberSince: new Date().toLocaleDateString()
-      };
+    try {
+      let userData;
+      
+      if (isSignUp) {
+        // Registro
+        const registerData = {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password
+        };
+        
+        const response = await authAPI.register(registerData);
+        userData = response.user;
+      } else {
+        // Login
+        const loginData = {
+          email: formData.email,
+          password: formData.password
+        };
+        
+        const response = await authAPI.login(loginData);
+        userData = response.user;
+        
+        // Salvar token de autenticação
+        if (response.token) {
+          localStorage.setItem('authToken', response.token);
+        }
+      }
 
       onLogin(userData);
+    } catch (error) {
+      console.error('Erro na autenticação:', error);
+      // O erro já é tratado pelo interceptor do axios
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   const toggleMode = () => {
@@ -109,6 +134,8 @@ export default function Login({ navigateTo, onLogin }) {
       avatar: '👨‍💻',
       memberSince: '01/01/2025'
     };
+    
+    toast.success('Login demo realizado com sucesso!');
     onLogin(demoUser);
   };
 
