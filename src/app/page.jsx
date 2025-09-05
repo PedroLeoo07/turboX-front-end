@@ -12,13 +12,14 @@ import styles from './page.module.css';
 
 export default function Main() {
   const [showHome, setShowHome] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedCar, setSelectedCar] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
 
   const handleLoadingComplete = () => {
-    setShowHome(true);
+    setShowLogin(true);
   };
 
   const navigateTo = (page, car = null) => {
@@ -29,6 +30,7 @@ export default function Main() {
   const handleLogin = (userData) => {
     setIsLoggedIn(true);
     setUser(userData);
+    setShowHome(true);
     setCurrentPage('home');
   };
 
@@ -59,8 +61,10 @@ export default function Main() {
 
   return (
     <main className={styles.main}>
-      {!showHome ? (
+      {!showLogin ? (
         <Loading onComplete={handleLoadingComplete} />
+      ) : !showHome ? (
+        <Login navigateTo={navigateTo} onLogin={handleLogin} />
       ) : (
         renderPage()
       )}
