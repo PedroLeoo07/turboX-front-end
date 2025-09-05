@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .logoContainer {
@@ -20,6 +20,7 @@
 
 .logo {
   font-size: 4rem;
+  font-family: 'Anton', sans-serif;
   font-weight: bold;
   margin-bottom: 10px;
   animation: pulse 2s infinite;
@@ -40,6 +41,7 @@
 .tagline {
   color: #666;
   font-size: 1.2rem;
+  font-family: 'Montserrat', sans-serif;
   font-style: italic;
   animation: fadeInOut 3s infinite;
 }

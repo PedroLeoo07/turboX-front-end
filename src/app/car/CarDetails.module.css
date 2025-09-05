@@ -2,7 +2,7 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #000000 0%, #1a0000 50%, #000000 100%);
   color: #fff;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .main {
@@ -54,6 +54,7 @@
 
 .carTitle {
   font-size: 3.5rem;
+  font-family: 'Anton', sans-serif;
   margin-bottom: 10px;
   color: #fff;
 }
@@ -146,6 +147,7 @@
 
 .sectionTitle {
   font-size: 2.5rem;
+  font-family: 'Anton', sans-serif;
   color: #ff0000;
   margin-bottom: 30px;
   text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);

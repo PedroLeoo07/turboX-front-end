@@ -2,7 +2,7 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #000000 0%, #1a0000 50%, #000000 100%);
   color: #fff;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   opacity: 0;
   animation: fadeIn 1s ease-in-out forwards;
 }
@@ -79,6 +79,7 @@
 
 .title {
   font-size: 4rem;
+  font-family: 'Anton', sans-serif;
   margin-bottom: 20px;
   background: linear-gradient(45deg, #ff0000, #ffffff);
   -webkit-background-clip: text;
@@ -94,6 +95,7 @@
 
 .subtitle {
   font-size: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
   color: #ccc;
   margin-bottom: 50px;
   animation: slideUp 1s ease-out 0.5s both;
