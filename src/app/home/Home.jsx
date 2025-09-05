@@ -18,99 +18,293 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
       });
     }
   }, [isLoggedIn, user]);
+
   return (
-    <div className={styles.homeContainer}>
+    <div className={styles.container}>
       <Navigation currentPage="home" navigateTo={navigateTo} />
       
-      <main className={styles.main}>
-        <section className={styles.hero}>
-          <h1 className={styles.title}>
-            Bem-vindo à <span className={styles.highlight}>TurboX</span>
-          </h1>
-          <p className={styles.subtitle}>
-            Acelere sua paixão por carros turbinados. Explore, simule e otimize a performance dos melhores carros esportivos.
+      {/* HERO SECTION */}
+      <section className={styles.hero}>
+        <div className={styles.heroBackground}></div>
+        <div className={styles.heroContent}>
+          <div className={styles.heroLeft}>
+            {/* LOGO PRINCIPAL */}
+            <div className={styles.logo}>
+              <span className={styles.logoTurbo}>TURBO</span>
+              <span className={styles.logoX}>X</span>
+              <div className={styles.logoGlow}></div>
+            </div>
+            
+            {/* TÍTULO PRINCIPAL */}
+            <h1 className={styles.heroTitle}>
+              <span className={styles.titleWord1}>Simule.</span>
+              <span className={styles.titleWord2}>Prepare.</span>
+              <span className={styles.titleWord3}>Acelere.</span>
+            </h1>
+            
+            {/* SUBTÍTULO */}
+            <p className={styles.heroSubtitle}>
+              O simulador de preparações automotivas mais avançado do Brasil. 
+              Transforme qualquer carro em uma máquina de alta performance 
+              com simulações realísticas e upgrades detalhados.
+            </p>
+            
+            {/* BOTÕES DE AÇÃO */}
+            <div className={styles.heroButtons}>
+              <button 
+                onClick={() => navigateTo('simulation')}
+                className={styles.primaryBtn}
+              >
+                <span>🚀</span>
+                Começar Simulação
+                <div className={styles.btnRipple}></div>
+              </button>
+              <button 
+                onClick={() => navigateTo('carList')}
+                className={styles.secondaryBtn}
+              >
+                <span>🏎️</span>
+                Explorar Carros
+              </button>
+            </div>
+            
+            {/* ESTATÍSTICAS */}
+            <div className={styles.stats}>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>50+</div>
+                <div className={styles.statLabel}>Carros</div>
+              </div>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>200+</div>
+                <div className={styles.statLabel}>Upgrades</div>
+              </div>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>∞</div>
+                <div className={styles.statLabel}>Possibilidades</div>
+              </div>
+            </div>
+          </div>
+          
+          {/* LADO DIREITO - VISUAL */}
+          <div className={styles.heroRight}>
+            <div className={styles.carDisplay}>
+              <div className={styles.carIcon}>🏎️</div>
+              <div className={styles.speedLines}></div>
+              <div className={styles.particles}>
+                <span className={styles.particle1}>✨</span>
+                <span className={styles.particle2}>⭐</span>
+                <span className={styles.particle3}>💫</span>
+                <span className={styles.particle4}>✨</span>
+                <span className={styles.particle5}>🔥</span>
+              </div>
+            </div>
+            
+            {/* PAINEL DE PERFORMANCE */}
+            <div className={styles.performanceCard}>
+              <div className={styles.cardHeader}>
+                <span className={styles.cardIcon}>⚡</span>
+                <span>Performance Monitor</span>
+              </div>
+              <div className={styles.powerDisplay}>
+                <div className={styles.powerNumber}>750</div>
+                <div className={styles.powerUnit}>HP</div>
+              </div>
+              <div className={styles.gauges}>
+                <div className={styles.gauge}>
+                  <div className={styles.gaugeFill}></div>
+                  <span>Torque</span>
+                </div>
+                <div className={styles.gauge}>
+                  <div className={styles.gaugeFill}></div>
+                  <span>Boost</span>
+                </div>
+                <div className={styles.gauge}>
+                  <div className={styles.gaugeFill}></div>
+                  <span>RPM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURES SECTION */}
+      <section className={styles.features}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              <span className={styles.titleIcon}>🚀</span>
+              Por que escolher o TurboX?
+            </h2>
+            <p className={styles.sectionSubtitle}>
+              A plataforma mais completa para simular preparações automotivas
+            </p>
+          </div>
+          
+          <div className={styles.featuresGrid}>
+            <div className={styles.featureCard} onClick={() => navigateTo('carList')}>
+              <div className={styles.cardTop}>
+                <div className={styles.featureIcon}>🏎️</div>
+                <div className={styles.featureBadge}>50+ Modelos</div>
+              </div>
+              <h3 className={styles.featureTitle}>Catálogo Completo</h3>
+              <p className={styles.featureDesc}>
+                Desde hatchbacks até supercarros. Cada modelo com 
+                especificações técnicas reais e dados precisos de performance.
+              </p>
+              <div className={styles.featureFooter}>
+                <span>Explorar modelos</span>
+                <span className={styles.arrow}>→</span>
+              </div>
+            </div>
+
+            <div className={styles.featureCard} onClick={() => navigateTo('simulation')}>
+              <div className={styles.cardTop}>
+                <div className={styles.featureIcon}>⚙️</div>
+                <div className={styles.featureBadge}>200+ Peças</div>
+              </div>
+              <h3 className={styles.featureTitle}>Sistema de Upgrades</h3>
+              <p className={styles.featureDesc}>
+                Turbos, intercoolers, escape, injeção, suspensão e muito mais. 
+                Cada upgrade calculado com precisão real.
+              </p>
+              <div className={styles.featureFooter}>
+                <span>Começar upgrade</span>
+                <span className={styles.arrow}>→</span>
+              </div>
+            </div>
+
+            <div className={styles.featureCard} onClick={() => navigateTo('simulation')}>
+              <div className={styles.cardTop}>
+                <div className={styles.featureIcon}>📊</div>
+                <div className={styles.featureBadge}>Tempo Real</div>
+              </div>
+              <h3 className={styles.featureTitle}>Simulação Avançada</h3>
+              <p className={styles.featureDesc}>
+                Veja instantaneamente como cada modificação impacta 
+                potência, torque, 0-100km/h e consumo.
+              </p>
+              <div className={styles.featureFooter}>
+                <span>Testar agora</span>
+                <span className={styles.arrow}>→</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT SECTION */}
+      <section className={styles.about}>
+        <div className={styles.container}>
+          <div className={styles.aboutContent}>
+            <div className={styles.aboutLeft}>
+              <h2 className={styles.aboutTitle}>
+                Revolução na Simulação Automotiva
+              </h2>
+              <p className={styles.aboutText}>
+                O <strong>TurboX</strong> nasceu da paixão por carros e tecnologia. 
+                Nossa missão é democratizar o acesso ao conhecimento sobre 
+                preparações automotivas, permitindo que qualquer pessoa 
+                experimente e aprenda sobre modificações de performance.
+              </p>
+              <div className={styles.aboutFeatures}>
+                <div className={styles.aboutFeature}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span>Cálculos baseados em dados reais</span>
+                </div>
+                <div className={styles.aboutFeature}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span>Interface intuitiva e moderna</span>
+                </div>
+                <div className={styles.aboutFeature}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span>Resultados instantâneos</span>
+                </div>
+                <div className={styles.aboutFeature}>
+                  <span className={styles.checkIcon}>✓</span>
+                  <span>Comparação entre configurações</span>
+                </div>
+              </div>
+            </div>
+            <div className={styles.aboutRight}>
+              <div className={styles.techDisplay}>
+                <div className={styles.techCard}>
+                  <span className={styles.techIcon}>🔧</span>
+                  <span>Engine Simulator</span>
+                </div>
+                <div className={styles.techCard}>
+                  <span className={styles.techIcon}>📈</span>
+                  <span>Performance Analytics</span>
+                </div>
+                <div className={styles.techCard}>
+                  <span className={styles.techIcon}>⚡</span>
+                  <span>Real-time Processing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA SECTION */}
+      <section className={styles.cta}>
+        <div className={styles.ctaContent}>
+          <h2 className={styles.ctaTitle}>Pronto para Acelerar?</h2>
+          <p className={styles.ctaSubtitle}>
+            Comece agora e descubra o potencial máximo do seu carro dos sonhos
           </p>
           <div className={styles.ctaButtons}>
             <button 
-              className={styles.primaryButton}
-              onClick={() => navigateTo('cars')}
-            >
-              🚗 Explorar Carros
-            </button>
-            <button 
-              className={styles.secondaryButton}
               onClick={() => navigateTo('simulation')}
+              className={styles.ctaPrimary}
             >
-              ⚡ Simulação Turbo
+              <span>🚀</span>
+              Simular Agora
             </button>
-          </div>
-        </section>
-
-        <section className={styles.features}>
-          <div className={styles.feature} onClick={() => navigateTo('cars')}>
-            <div className={styles.featureIcon}>🏎️</div>
-            <h3>Catálogo de Carros</h3>
-            <p>Explore nossa coleção de carros esportivos com especificações detalhadas e histórico de performance.</p>
-            <div className={styles.featureAction}>Ver Catálogo →</div>
-          </div>
-          
-          <div className={styles.feature} onClick={() => navigateTo('simulation')}>
-            <div className={styles.featureIcon}>⚙️</div>
-            <h3>Simulação de Upgrades</h3>
-            <p>Teste modificações virtuais e veja como afetam potência, torque e tempo de 0-100 km/h em tempo real.</p>
-            <div className={styles.featureAction}>Iniciar Simulação →</div>
-          </div>
-          
-          <div className={styles.feature} onClick={() => navigateTo('about')}>
-            <div className={styles.featureIcon}>👨‍💻</div>
-            <h3>Sobre o Desenvolvedor</h3>
-            <p>Conheça mais sobre quem criou esta plataforma e a paixão por carros que motivou o projeto.</p>
-            <div className={styles.featureAction}>Conhecer →</div>
-          </div>
-        </section>
-
-        <section className={styles.quickAccess}>
-          <h2 className={styles.sectionTitle}>Acesso Rápido</h2>
-          <div className={styles.quickButtons}>
             <button 
-              className={styles.quickButton}
-              onClick={() => navigateTo('cars')}
+              onClick={() => navigateTo('carList')}
+              className={styles.ctaSecondary}
             >
-              <span className={styles.quickIcon}>📋</span>
-              <div>
-                <div className={styles.quickTitle}>Lista Completa</div>
-                <div className={styles.quickDesc}>Todos os carros disponíveis</div>
-              </div>
-            </button>
-            
-            <button 
-              className={styles.quickButton}
-              onClick={() => navigateTo('simulation')}
-            >
-              <span className={styles.quickIcon}>🔧</span>
-              <div>
-                <div className={styles.quickTitle}>Builds Populares</div>
-                <div className={styles.quickDesc}>Configurações mais usadas</div>
-              </div>
-            </button>
-            
-            <button 
-              className={styles.quickButton}
-              onClick={() => navigateTo('about')}
-            >
-              <span className={styles.quickIcon}>💼</span>
-              <div>
-                <div className={styles.quickTitle}>Portfólio</div>
-                <div className={styles.quickDesc}>Outros projetos e contato</div>
-              </div>
+              <span>🏎️</span>
+              Ver Carros
             </button>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
 
+      {/* FOOTER */}
       <footer className={styles.footer}>
-        <p>&copy; 2025 TurboX - Desenvolvido com paixão por carros esportivos</p>
+        <div className={styles.container}>
+          <div className={styles.footerContent}>
+            <div className={styles.footerLeft}>
+              <div className={styles.footerLogo}>
+                <span className={styles.logoTurbo}>TURBO</span>
+                <span className={styles.logoX}>X</span>
+              </div>
+              <p className={styles.footerDesc}>
+                Simulador de preparações automotivas
+              </p>
+            </div>
+            <div className={styles.footerRight}>
+              <div className={styles.footerLinks}>
+                <button onClick={() => navigateTo('about')} className={styles.footerLink}>
+                  Sobre
+                </button>
+                <button onClick={() => navigateTo('carList')} className={styles.footerLink}>
+                  Carros
+                </button>
+                <button onClick={() => navigateTo('simulation')} className={styles.footerLink}>
+                  Simulação
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className={styles.footerBottom}>
+            <p>&copy; 2025 TurboX. Desenvolvido com ❤️ para os amantes da velocidade.</p>
+          </div>
+        </div>
       </footer>
     </div>
   );
 }
+
