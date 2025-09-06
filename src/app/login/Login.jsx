@@ -88,28 +88,67 @@ export default function Login({ navigateTo, onLogin }) {
           password: formData.password
         };
         
-        const response = await authAPI.register(registerData);
-        userData = response.user;
-      } else {
-        // Login
-        const loginData = {
-          email: formData.email,
-          password: formData.password
+        // Simulação de registro bem-sucedido
+        userData = {
+          id: Date.now().toString(),
+          name: registerData.name,
+          email: registerData.email,
+          avatar: '👤',
+          memberSince: new Date().toLocaleDateString('pt-BR')
         };
         
-        const response = await authAPI.login(loginData);
-        userData = response.user;
+        toast.success(`Conta criada com sucesso! Bem-vindo, ${userData.name}! 🎉`);
+      } else {
+        // Login - verificar credenciais específicas
+        console.log('Tentativa de login:', { email: formData.email, password: formData.password });
         
-        // Salvar token de autenticação
-        if (response.token) {
-          localStorage.setItem('authToken', response.token);
+        // Verificar credenciais (removendo espaços em branco)
+        const emailTrimmed = formData.email.trim().toLowerCase();
+        const passwordTrimmed = formData.password.trim();
+        
+        if (emailTrimmed === 'leonardopedrodeoliveira07@gmail.com' && passwordTrimmed === '74185201') {
+          // Credenciais do perfil específico
+          userData = {
+            id: 'leonardo-profile',
+            name: 'Leonardo Pedro de Oliveira',
+            email: 'leonardopedrodeoliveira07@gmail.com',
+            avatar: '🏎️',
+            memberSince: '01/01/2024',
+            profile: 'admin',
+            builds: [],
+            favoritesCars: []
+          };
+          
+          // Salvar dados do usuário no localStorage
+          localStorage.setItem('authToken', 'leonardo-auth-token-2025');
+          localStorage.setItem('userProfile', JSON.stringify(userData));
+          
+          toast.success(`Bem-vindo de volta, ${userData.name}! 🏎️`);
+          
+          // Chamar a função onLogin
+          onLogin(userData);
+          setIsLoading(false);
+          return;
+        } else {
+          // Debug: mostrar o que foi digitado vs o que é esperado
+          console.log('Login falhou:', {
+            emailDigitado: emailTrimmed,
+            emailEsperado: 'leonardopedrodeoliveira07@gmail.com',
+            senhaDigitada: passwordTrimmed,
+            senhaEsperada: '74185201',
+            emailMatch: emailTrimmed === 'leonardopedrodeoliveira07@gmail.com',
+            passwordMatch: passwordTrimmed === '74185201'
+          });
+          
+          toast.error('Email ou senha incorretos. Verifique as credenciais! 🔐');
+          setIsLoading(false);
+          return;
         }
       }
 
-      onLogin(userData);
     } catch (error) {
       console.error('Erro na autenticação:', error);
-      // O erro já é tratado pelo interceptor do axios
+      toast.error('Erro interno. Tente novamente mais tarde! ⚠️');
     } finally {
       setIsLoading(false);
     }
@@ -137,6 +176,26 @@ export default function Login({ navigateTo, onLogin }) {
     
     toast.success('Login demo realizado com sucesso!');
     onLogin(demoUser);
+  };
+
+  const handleQuickLogin = () => {
+    const leonardoUser = {
+      id: 'leonardo-profile',
+      name: 'Leonardo Pedro de Oliveira',
+      email: 'leonardopedrodeoliveira07@gmail.com',
+      avatar: '🏎️',
+      memberSince: '01/01/2024',
+      profile: 'admin',
+      builds: [],
+      favoritesCars: []
+    };
+    
+    // Salvar dados do usuário no localStorage
+    localStorage.setItem('authToken', 'leonardo-auth-token-2025');
+    localStorage.setItem('userProfile', JSON.stringify(leonardoUser));
+    
+    toast.success(`Bem-vindo de volta, ${leonardoUser.name}! 🏎️`);
+    onLogin(leonardoUser);
   };
 
   return (
@@ -235,9 +294,61 @@ export default function Login({ navigateTo, onLogin }) {
           </button>
         </form>
 
+        {/* Credenciais de Acesso */}
+        {!isSignUp && (
+          <div className={styles.testCredentials}>
+            <h4 className={styles.credentialsTitle}>🔑 Credenciais de Acesso</h4>
+            <div className={styles.credentialsBox}>
+              <div className={styles.credentialItem}>
+                <span className={styles.credentialLabel}>Email:</span>
+                <span className={styles.credentialValue}>leonardopedrodeoliveira07@gmail.com</span>
+                <button 
+                  type="button"
+                  onClick={() => setFormData(prev => ({...prev, email: 'leonardopedrodeoliveira07@gmail.com'}))}
+                  className={styles.copyButton}
+                >
+                  📋
+                </button>
+              </div>
+              <div className={styles.credentialItem}>
+                <span className={styles.credentialLabel}>Senha:</span>
+                <span className={styles.credentialValue}>74185201</span>
+                <button 
+                  type="button"
+                  onClick={() => setFormData(prev => ({...prev, password: '74185201'}))}
+                  className={styles.copyButton}
+                >
+                  📋
+                </button>
+              </div>
+              <button 
+                type="button"
+                onClick={() => {
+                  setFormData(prev => ({
+                    ...prev, 
+                    email: 'leonardopedrodeoliveira07@gmail.com',
+                    password: '74185201'
+                  }));
+                  toast.info('Credenciais preenchidas automaticamente! 🔑');
+                }}
+                className={styles.fillButton}
+              >
+                ⚡ Preencher Automaticamente
+              </button>
+            </div>
+          </div>
+        )}
+
         <div className={styles.divider}>
           <span>ou</span>
         </div>
+
+        <button 
+          onClick={handleQuickLogin}
+          className={styles.leonardoButton}
+        >
+          🏎️ Entrar como Leonardo
+        </button>
 
         <button 
           onClick={handleDemoLogin}
