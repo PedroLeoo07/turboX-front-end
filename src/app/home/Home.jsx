@@ -193,6 +193,119 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
         </div>
       </section>
 
+      {/* BRANDS SECTION */}
+      <section className={styles.brands}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              <span className={styles.titleIcon}>🏭</span>
+              Explore por Marca
+            </h2>
+            <p className={styles.sectionSubtitle}>
+              Encontre o carro perfeito da sua marca favorita
+            </p>
+          </div>
+          
+          <div className={styles.brandsGrid}>
+            <div 
+              className={styles.brandCard} 
+              onClick={() => navigateTo('carList', null, { brand: 'Volkswagen' })}
+            >
+              <div className={styles.brandIcon}>
+                <img src="/logos/volkswagen.svg" alt="Volkswagen Logo" className={styles.brandLogo} />
+              </div>
+              <h3 className={styles.brandName}>Volkswagen</h3>
+              <p className={styles.brandDesc}>Tradição alemã em engenharia</p>
+              <div className={styles.brandArrow}>→</div>
+            </div>
+
+            <div 
+              className={styles.brandCard} 
+              onClick={() => navigateTo('carList', null, { brand: 'BMW' })}
+            >
+              <div className={styles.brandIcon}>
+                <img src="/logos/bmw.svg" alt="BMW Logo" className={styles.brandLogo} />
+              </div>
+              <h3 className={styles.brandName}>BMW</h3>
+              <p className={styles.brandDesc}>Performance e luxo premium</p>
+              <div className={styles.brandArrow}>→</div>
+            </div>
+
+            <div 
+              className={styles.brandCard} 
+              onClick={() => navigateTo('carList', null, { brand: 'Ford' })}
+            >
+              <div className={styles.brandIcon}>
+                <img src="/logos/ford.svg" alt="Ford Logo" className={styles.brandLogo} />
+              </div>
+              <h3 className={styles.brandName}>Ford</h3>
+              <p className={styles.brandDesc}>Inovação americana clássica</p>
+              <div className={styles.brandArrow}>→</div>
+            </div>
+
+            <div 
+              className={styles.brandCard} 
+              onClick={() => navigateTo('carList', null, { brand: 'Hyundai' })}
+            >
+              <div className={styles.brandIcon}>
+                <img src="/logos/hyundai.svg" alt="Hyundai Logo" className={styles.brandLogo} />
+              </div>
+              <h3 className={styles.brandName}>Hyundai</h3>
+              <p className={styles.brandDesc}>Tecnologia coreana avançada</p>
+              <div className={styles.brandArrow}>→</div>
+            </div>
+
+            <div 
+              className={styles.brandCard} 
+              onClick={() => navigateTo('carList', null, { brand: 'Toyota' })}
+            >
+              <div className={styles.brandIcon}>
+                <img src="/logos/toyota.svg" alt="Toyota Logo" className={styles.brandLogo} />
+              </div>
+              <h3 className={styles.brandName}>Toyota</h3>
+              <p className={styles.brandDesc}>Confiabilidade japonesa</p>
+              <div className={styles.brandArrow}>→</div>
+            </div>
+
+            <div 
+              className={styles.brandCard} 
+              onClick={() => navigateTo('carList', null, { brand: 'Nissan' })}
+            >
+              <div className={styles.brandIcon}>
+                <img src="/logos/nissan.svg" alt="Nissan Logo" className={styles.brandLogo} />
+              </div>
+              <h3 className={styles.brandName}>Nissan</h3>
+              <p className={styles.brandDesc}>Esportividade e inovação</p>
+              <div className={styles.brandArrow}>→</div>
+            </div>
+
+            <div 
+              className={styles.brandCard} 
+              onClick={() => navigateTo('carList', null, { brand: 'Chevrolet' })}
+            >
+              <div className={styles.brandIcon}>
+                <img src="/logos/chevrolet.svg" alt="Chevrolet Logo" className={styles.brandLogo} />
+              </div>
+              <h3 className={styles.brandName}>Chevrolet</h3>
+              <p className={styles.brandDesc}>Potência americana pura</p>
+              <div className={styles.brandArrow}>→</div>
+            </div>
+
+            <div 
+              className={styles.brandCard} 
+              onClick={() => navigateTo('carList', null, { brand: 'Mitsubishi' })}
+            >
+              <div className={styles.brandIcon}>
+                <img src="/logos/mitsubishi.svg" alt="Mitsubishi Logo" className={styles.brandLogo} />
+              </div>
+              <h3 className={styles.brandName}>Mitsubishi</h3>
+              <p className={styles.brandDesc}>Legado do rally e evolução</p>
+              <div className={styles.brandArrow}>→</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ABOUT SECTION */}
       <section className={styles.about}>
         <div className={styles.container}>

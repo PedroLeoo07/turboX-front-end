@@ -15,6 +15,7 @@ export default function Main() {
   const [showLogin, setShowLogin] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedCar, setSelectedCar] = useState(null);
+  const [filterOptions, setFilterOptions] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
 
@@ -22,9 +23,16 @@ export default function Main() {
     setShowLogin(true);
   };
 
-  const navigateTo = (page, car = null) => {
+  const navigateTo = (page, car = null, options = {}) => {
     setCurrentPage(page);
     if (car) setSelectedCar(car);
+    
+    // Limpar filtros se não for navegação para carList/cars
+    if (page !== 'carList' && page !== 'cars') {
+      setFilterOptions({});
+    } else {
+      setFilterOptions(options);
+    }
   };
 
   const handleLogin = (userData) => {
@@ -47,7 +55,8 @@ export default function Main() {
       case 'home':
         return <Home navigateTo={navigateTo} isLoggedIn={isLoggedIn} user={user} onLogout={handleLogout} />;
       case 'cars':
-        return <CarList navigateTo={navigateTo} isLoggedIn={isLoggedIn} user={user} onLogout={handleLogout} />;
+      case 'carList':
+        return <CarList navigateTo={navigateTo} filterOptions={filterOptions} isLoggedIn={isLoggedIn} user={user} onLogout={handleLogout} />;
       case 'details':
         return <CarDetails car={selectedCar} navigateTo={navigateTo} isLoggedIn={isLoggedIn} user={user} onLogout={handleLogout} />;
       case 'about':

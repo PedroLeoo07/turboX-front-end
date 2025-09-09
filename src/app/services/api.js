@@ -82,9 +82,49 @@ export const authAPI = {
 };
 
 export const carsAPI = {
-  getAll: async () => {
+  getAll: async (filters = {}) => {
     try {
-      const response = await api.get('/cars');
+      const params = new URLSearchParams();
+      
+      // Adicionar filtros como query parameters
+      if (filters.brand) params.append('brand', filters.brand);
+      if (filters.category) params.append('category', filters.category);
+      if (filters.minPrice) params.append('minPrice', filters.minPrice);
+      if (filters.maxPrice) params.append('maxPrice', filters.maxPrice);
+      if (filters.search) params.append('search', filters.search);
+      if (filters.sortBy) params.append('sortBy', filters.sortBy);
+      
+      const queryString = params.toString();
+      const endpoint = queryString ? `/cars?${queryString}` : '/cars';
+      
+      const response = await api.get(endpoint);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getByBrand: async (brand) => {
+    try {
+      const response = await api.get(`/cars/brand/${encodeURIComponent(brand)}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getBrands: async () => {
+    try {
+      const response = await api.get('/cars/brands');
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getCategories: async () => {
+    try {
+      const response = await api.get('/cars/categories');
       return response.data;
     } catch (error) {
       throw error;

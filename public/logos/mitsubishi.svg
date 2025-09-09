@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="40" height="40">
+  <polygon points="25,30 75,30 80,40 70,70 30,70 20,40" fill="#dc143c" stroke="#fff" stroke-width="2"/>
+  <text x="50" y="35" font-family="Arial, sans-serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#fff">MITSUBISHI</text>
+  <polygon points="40,45 50,55 60,45" fill="#fff"/>
+  <polygon points="35,55 50,65 65,55" fill="#fff"/>
+</svg>

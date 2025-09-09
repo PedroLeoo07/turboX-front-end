@@ -513,6 +513,145 @@
   transform: translateX(5px);
 }
 
+/* ===== BRANDS SECTION ===== */
+.brands {
+  padding: 8rem 2rem;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.brandsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1200px) {
+  .brandsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .brandsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .brandsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+.brandCard {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.brandCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.08), transparent);
+  transition: left 0.6s ease;
+}
+
+.brandCard:hover::before {
+  left: 100%;
+}
+
+.brandCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(255, 0, 0, 0.3);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.4),
+    0 0 25px rgba(255, 0, 0, 0.15);
+}
+
+.brandIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(255, 0, 0, 0.1);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+}
+
+.brandLogo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  filter: brightness(1.2) contrast(1.1);
+  transition: all 0.3s ease;
+}
+
+.brandCard:hover .brandIcon {
+  background: rgba(255, 0, 0, 0.2);
+  border-color: rgba(255, 0, 0, 0.4);
+  transform: scale(1.1);
+}
+
+.brandCard:hover .brandLogo {
+  filter: brightness(1.5) contrast(1.3) drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  transform: scale(1.1);
+}
+
+.brandName {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.brandCard:hover .brandName {
+  color: #ff3333;
+}
+
+.brandDesc {
+  color: #888;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.brandArrow {
+  font-size: 1.5rem;
+  color: #ff0000;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.brandCard:hover .brandArrow {
+  transform: translateX(5px);
+  opacity: 1;
+}
+
 /* ===== ABOUT SECTION ===== */
 .about {
   padding: 8rem 2rem;

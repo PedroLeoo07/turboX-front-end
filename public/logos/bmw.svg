@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="40" height="40">
+  <circle cx="50" cy="50" r="45" fill="#000000" stroke="#ffffff" stroke-width="3"/>
+  <circle cx="50" cy="50" r="35" fill="#ffffff"/>
+  <path d="M 15 50 A 35 35 0 0 1 50 15 A 35 35 0 0 1 85 50 Z" fill="#0066cc"/>
+  <path d="M 15 50 A 35 35 0 0 0 50 85 A 35 35 0 0 0 85 50 Z" fill="#ffffff"/>
+  <text x="50" y="30" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#ffffff">BMW</text>
+</svg>

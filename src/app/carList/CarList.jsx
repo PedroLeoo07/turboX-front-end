@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
+import { carsAPI } from '../services/api';
 import styles from './CarList.module.css';
 
 // Base de dados dos carros expandida
@@ -247,6 +248,40 @@ const carsDatabase = [
   },
   {
     id: 15,
+    brand: 'Hyundai',
+    model: 'i30N',
+    year: 2023,
+    image: '🏁',
+    power: 280,
+    torque: 392,
+    acceleration: 6.0,
+    price: 180000,
+    category: 'esportivo',
+    engine: '2.0L I4 Turbo',
+    drivetrain: 'FWD',
+    transmission: 'Manual',
+    topSpeed: 250,
+    description: 'Hot hatch coreano com foco em performance e diversão.'
+  },
+  {
+    id: 16,
+    brand: 'Hyundai',
+    model: 'Veloster N',
+    year: 2022,
+    image: '🚗',
+    power: 275,
+    torque: 378,
+    acceleration: 5.6,
+    price: 160000,
+    category: 'esportivo',
+    engine: '2.0L I4 Turbo',
+    drivetrain: 'FWD',
+    transmission: 'Manual',
+    topSpeed: 240,
+    description: 'Coupé esportivo assimétrico com tecnologia de pista.'
+  },
+  {
+    id: 17,
     brand: 'Lamborghini',
     model: 'Huracán EVO',
     year: 2023,
@@ -264,70 +299,128 @@ const carsDatabase = [
   }
 ];
 
-export default function CarList({ navigateTo }) {
-  const [cars, setCars] = useState(carsDatabase);
-  const [loading, setLoading] = useState(false);
+export default function CarList({ navigateTo, filterOptions = {} }) {
+  const [cars, setCars] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedBrand, setSelectedBrand] = useState('');
+  const [selectedBrand, setSelectedBrand] = useState(filterOptions.brand || '');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [sortBy, setSortBy] = useState('power');
   const [viewMode, setViewMode] = useState('grid'); // 'grid' ou 'list'
   const [priceRange, setPriceRange] = useState([0, 3000000]);
+  const [brands, setBrands] = useState([]);
+  const [categories, setCategories] = useState([]);
 
+  // Carregar dados iniciais
   useEffect(() => {
-    toast.success(`${carsDatabase.length} carros carregados com sucesso! 🏎️`);
+    loadInitialData();
   }, []);
 
-  // Extrair marcas e categorias únicas
-  const brands = [...new Set(cars.map(car => car.brand))].sort();
-  const categories = [...new Set(cars.map(car => car.category))].sort();
+  // Aplicar filtros quando filterOptions mudar
+  useEffect(() => {
+    if (filterOptions.brand) {
+      setSelectedBrand(filterOptions.brand);
+      toast.info(`Filtrando por marca: ${filterOptions.brand} 🏷️`);
+    }
+  }, [filterOptions]);
 
-  // Filtrar e ordenar carros
-  const filteredCars = cars
-    .filter(car => {
-      const matchesSearch = 
-        car.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        car.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        car.engine.toLowerCase().includes(searchTerm.toLowerCase());
+  // Recarregar carros quando filtros mudarem (com debounce para busca)
+  useEffect(() => {
+    if (!loading) {
+      const timeoutId = setTimeout(() => {
+        loadCars();
+      }, searchTerm ? 500 : 0); // Debounce de 500ms para busca, imediato para outros filtros
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [selectedBrand, selectedCategory, sortBy, searchTerm, loading]);
+
+  const loadInitialData = async () => {
+    try {
+      setLoading(true);
       
-      const matchesBrand = !selectedBrand || car.brand === selectedBrand;
-      const matchesCategory = !selectedCategory || car.category === selectedCategory;
-      const matchesPrice = car.price >= priceRange[0] && car.price <= priceRange[1];
+      // Carregar todos os dados em paralelo
+      const [carsData, brandsData, categoriesData] = await Promise.all([
+        carsAPI.getAll(),
+        carsAPI.getBrands(),
+        carsAPI.getCategories()
+      ]);
       
-      return matchesSearch && matchesBrand && matchesCategory && matchesPrice;
-    })
-    .sort((a, b) => {
-      switch (sortBy) {
-        case 'power':
-          return b.power - a.power;
-        case 'acceleration':
-          return a.acceleration - b.acceleration;
-        case 'year':
-          return b.year - a.year;
-        case 'price':
-          return b.price - a.price;
-        case 'topSpeed':
-          return b.topSpeed - a.topSpeed;
-        case 'brand':
-          return a.brand.localeCompare(b.brand);
-        default:
-          return 0;
-      }
-    });
+      setCars(carsData);
+      setBrands(brandsData);
+      setCategories(categoriesData);
+      
+      toast.success(`${carsData.length} carros carregados com sucesso! 🏎️`);
+    } catch (error) {
+      console.error('Erro ao carregar dados iniciais:', error);
+      toast.error('Erro ao carregar dados. Usando dados offline.');
+      
+      // Fallback para dados estáticos se a API falhar
+      setCars(carsDatabase);
+      setBrands([...new Set(carsDatabase.map(car => car.brand))].sort());
+      setCategories([...new Set(carsDatabase.map(car => car.category))].sort());
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadCars = async () => {
+    try {
+      const filters = {
+        brand: selectedBrand,
+        category: selectedCategory,
+        search: searchTerm,
+        sortBy: sortBy,
+        minPrice: priceRange[0],
+        maxPrice: priceRange[1]
+      };
+
+      // Remover filtros vazios
+      Object.keys(filters).forEach(key => {
+        if (!filters[key] && filters[key] !== 0) {
+          delete filters[key];
+        }
+      });
+
+      const carsData = await carsAPI.getAll(filters);
+      setCars(carsData);
+    } catch (error) {
+      console.error('Erro ao carregar carros:', error);
+      toast.error('Erro ao aplicar filtros');
+    }
+  };
+
+  // Os carros já vêm filtrados e ordenados da API
+  const filteredCars = cars;
 
   const handleCarSelect = (car) => {
     toast.success(`${car.brand} ${car.model} selecionado! 🎯`);
     navigateTo('car', car);
   };
 
-  const clearFilters = () => {
+  const clearFilters = async () => {
     setSearchTerm('');
     setSelectedBrand('');
     setSelectedCategory('');
     setPriceRange([0, 3000000]);
     setSortBy('power');
     toast.info('Filtros limpos! 🧹');
+    
+    // Recarregar todos os carros
+    try {
+      const carsData = await carsAPI.getAll();
+      setCars(carsData);
+    } catch (error) {
+      console.error('Erro ao limpar filtros:', error);
+    }
   };
+
+  // Resetar filtros quando sair da página
+  useEffect(() => {
+    return () => {
+      // Cleanup - pode ser usado se necessário
+    };
+  }, []);
 
   const formatPrice = (price) => {
     return `R$ ${(price / 1000).toFixed(0)}k`;
@@ -338,8 +431,14 @@ export default function CarList({ navigateTo }) {
       <div className={styles.container}>
         <Navigation currentPage="carList" navigateTo={navigateTo} />
         <div className={styles.loadingContainer}>
-          <div className={styles.spinner}>🏎️</div>
-          <p>Carregando garagem...</p>
+          <div className={styles.loadingContent}>
+            <div className={styles.spinner}>🏎️</div>
+            <h2>Carregando Garagem TurboX...</h2>
+            <p>Conectando ao servidor e carregando dados dos carros</p>
+            <div className={styles.loadingBar}>
+              <div className={styles.loadingProgress}></div>
+            </div>
+          </div>
         </div>
       </div>
     );
