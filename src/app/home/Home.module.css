@@ -521,27 +521,41 @@
 
 .brandsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  max-width: 1600px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  max-width: 1800px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
+  .brandsGrid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
   .brandsGrid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-@media (min-width: 768px) and (max-width: 1199px) {
+@media (min-width: 900px) and (max-width: 1199px) {
   .brandsGrid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 600px) and (max-width: 899px) {
   .brandsGrid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 599px) {
+  .brandsGrid {
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
 }
@@ -550,14 +564,14 @@
   background: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
-  padding: 2rem;
+  padding: 1.2rem;
   backdrop-filter: blur(20px);
   transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   text-align: center;
-  min-height: 200px;
+  min-height: 170px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -588,9 +602,9 @@
 }
 
 .brandIcon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  padding: 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+  padding: 0.8rem;
   background: rgba(255, 0, 0, 0.1);
   border-radius: 50%;
   border: 2px solid rgba(255, 0, 0, 0.2);
@@ -598,13 +612,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
 }
 
 .brandLogo {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   object-fit: contain;
   filter: brightness(1.2) contrast(1.1);
   transition: all 0.3s ease;
@@ -622,9 +636,9 @@
 }
 
 .brandName {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   color: #ffffff;
   transition: color 0.3s ease;
 }
@@ -635,9 +649,9 @@
 
 .brandDesc {
   color: #888;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  margin-bottom: 0.6rem;
 }
 
 .brandArrow {

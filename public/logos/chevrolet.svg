@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="40" height="40">
-  <path d="M15 25 L85 25 L80 75 L20 75 Z" fill="#ffcc00" stroke="#000" stroke-width="2"/>
-  <text x="50" y="40" font-family="Arial, sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#000">CHEVROLET</text>
-  <path d="M25 50 L35 60 L65 60 L75 50" fill="#000"/>
-</svg>

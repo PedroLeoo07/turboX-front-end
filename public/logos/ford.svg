@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="40" height="40">
-  <ellipse cx="50" cy="50" rx="45" ry="35" fill="#003366" stroke="#fff" stroke-width="2"/>
-  <text x="50" y="35" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#fff">FORD</text>
-  <path d="M20 55 Q50 65 80 55" stroke="#fff" stroke-width="2" fill="none"/>
-</svg>
