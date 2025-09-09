@@ -191,4 +191,87 @@ export const simulationAPI = {
   }
 };
 
+export const usersAPI = {
+  // Buscar todos os usuários com seus carros
+  getAllWithCars: async (filters = {}) => {
+    try {
+      const params = new URLSearchParams();
+      
+      // Adicionar filtros como query parameters
+      if (filters.search) params.append('search', filters.search);
+      if (filters.sortBy) params.append('sortBy', filters.sortBy);
+      if (filters.hasCars) params.append('hasCars', filters.hasCars);
+      if (filters.brand) params.append('brand', filters.brand);
+      
+      const queryString = params.toString();
+      const endpoint = queryString ? `/users/with-cars?${queryString}` : '/users/with-cars';
+      
+      const response = await api.get(endpoint);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Buscar um usuário específico com seus carros
+  getByIdWithCars: async (userId) => {
+    try {
+      const response = await api.get(`/users/${userId}/with-cars`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Buscar carros de um usuário específico
+  getUserCars: async (userId, filters = {}) => {
+    try {
+      const params = new URLSearchParams();
+      
+      if (filters.brand) params.append('brand', filters.brand);
+      if (filters.category) params.append('category', filters.category);
+      if (filters.sortBy) params.append('sortBy', filters.sortBy);
+      
+      const queryString = params.toString();
+      const endpoint = queryString ? `/users/${userId}/cars?${queryString}` : `/users/${userId}/cars`;
+      
+      const response = await api.get(endpoint);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Adicionar carro a um usuário
+  addCarToUser: async (userId, carData) => {
+    try {
+      const response = await api.post(`/users/${userId}/cars`, carData);
+      toast.success('Carro adicionado ao usuário com sucesso!');
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Remover carro de um usuário
+  removeCarFromUser: async (userId, carId) => {
+    try {
+      await api.delete(`/users/${userId}/cars/${carId}`);
+      toast.success('Carro removido do usuário com sucesso!');
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Buscar estatísticas dos usuários e carros
+  getStats: async () => {
+    try {
+      const response = await api.get('/users/stats');
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+};
+
 export default api;

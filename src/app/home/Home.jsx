@@ -395,6 +395,89 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
         </div>
       </section>
 
+      {/* USERS SECTION */}
+      <section className={styles.users}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              <span className={styles.titleIcon}>👥</span>
+              Comunidade TurboX
+            </h2>
+            <p className={styles.sectionSubtitle}>
+              Gerencie usuários e acompanhe suas coleções de carros personalizados
+            </p>
+          </div>
+
+          <div className={styles.usersContent}>
+            <div className={styles.usersStats}>
+              <div className={styles.statItem}>
+                <div className={styles.statIcon}>👨‍💻</div>
+                <div className={styles.statInfo}>
+                  <div className={styles.statNumber}>1.2k+</div>
+                  <div className={styles.statLabel}>Usuários Ativos</div>
+                </div>
+              </div>
+
+              <div className={styles.statItem}>
+                <div className={styles.statIcon}>🚗</div>
+                <div className={styles.statInfo}>
+                  <div className={styles.statNumber}>5.8k+</div>
+                  <div className={styles.statLabel}>Carros Cadastrados</div>
+                </div>
+              </div>
+
+              <div className={styles.statItem}>
+                <div className={styles.statIcon}>⚙️</div>
+                <div className={styles.statInfo}>
+                  <div className={styles.statNumber}>15k+</div>
+                  <div className={styles.statLabel}>Modificações Feitas</div>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.usersFeatures}>
+              <div className={styles.userFeature}>
+                <div className={styles.userFeatureIcon}>📊</div>
+                <h3 className={styles.userFeatureTitle}>Dashboard Completo</h3>
+                <p className={styles.userFeatureDesc}>
+                  Visualize estatísticas detalhadas de todos os usuários, 
+                  carros cadastrados e modificações realizadas.
+                </p>
+              </div>
+
+              <div className={styles.userFeature}>
+                <div className={styles.userFeatureIcon}>🔍</div>
+                <h3 className={styles.userFeatureTitle}>Busca Avançada</h3>
+                <p className={styles.userFeatureDesc}>
+                  Encontre usuários por nome, email, marca de carro preferida 
+                  ou número de veículos cadastrados.
+                </p>
+              </div>
+
+              <div className={styles.userFeature}>
+                <div className={styles.userFeatureIcon}>🎯</div>
+                <h3 className={styles.userFeatureTitle}>Gestão Inteligente</h3>
+                <p className={styles.userFeatureDesc}>
+                  Adicione, remova e gerencie carros dos usuários com 
+                  interface intuitiva e ações em tempo real.
+                </p>
+              </div>
+            </div>
+
+            <div className={styles.usersAction}>
+              <button 
+                onClick={() => navigateTo('users')}
+                className={styles.usersBtn}
+              >
+                <span className={styles.btnIcon}>👥</span>
+                Gerenciar Usuários
+                <span className={styles.btnArrow}>→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ABOUT SECTION */}
       <section className={styles.about}>
         <div className={styles.container}>

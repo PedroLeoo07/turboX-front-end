@@ -1,36 +1,156 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TurboX - Simulador de Preparações Automotivas
 
-## Getting Started
+O simulador de preparações automotivas mais avançado do Brasil. Transforme qualquer carro em uma máquina de alta performance com simulações realísticas e upgrades detalhados.
 
-First, run the development server:
+## 🚀 Tecnologias
+
+- **Next.js 15.5.2** com Turbopack
+- **React 19** com Hooks
+- **CSS Modules** para estilização
+- **Axios** para requisições HTTP
+- **React Toastify** para notificações
+
+## 🏁 Getting Started
 
 ```bash
+# Instalar dependências
+npm install
+
+# Executar servidor de desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Executar em produção
+npm run build
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3001](http://localhost:3001) no seu navegador.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 📱 Funcionalidades
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🏠 **Home**
+- Hero section com call-to-actions
+- Seção de marcas com 16 fabricantes
+- Seção de usuários e comunidade
+- Informações sobre o projeto
 
-## Learn More
+### 🚗 **Carros**
+- Lista de carros por marca
+- Filtros avançados
+- Detalhes completos de cada veículo
+- Sistema de busca
 
-To learn more about Next.js, take a look at the following resources:
+### 👥 **Usuários & Carros**
+- Dashboard de usuários cadastrados
+- Gerenciamento de carros por usuário
+- Estatísticas em tempo real
+- Filtros e busca avançada
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### ⚙️ **Simulação**
+- Sistema completo de upgrades
+- Cálculos de performance em tempo real
+- Mais de 200 peças disponíveis
+- Resultados precisos de potência e torque
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠 API Endpoints
 
-## Deploy on Vercel
+### **Autenticação**
+```
+POST /api/auth/login
+POST /api/auth/register  
+POST /api/auth/logout
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### **Carros**
+```
+GET    /api/cars                    # Listar carros com filtros
+GET    /api/cars/brands             # Listar marcas disponíveis
+GET    /api/cars/categories         # Listar categorias
+GET    /api/cars/brand/:brand       # Carros por marca
+GET    /api/cars/:id               # Detalhes de um carro
+POST   /api/cars                   # Criar novo carro
+PUT    /api/cars/:id               # Atualizar carro
+DELETE /api/cars/:id               # Remover carro
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### **Usuários & Carros**
+```
+GET    /api/users/with-cars        # Usuários com seus carros
+GET    /api/users/:id/with-cars    # Usuário específico com carros
+GET    /api/users/:id/cars         # Carros de um usuário
+POST   /api/users/:id/cars         # Adicionar carro ao usuário
+DELETE /api/users/:id/cars/:carId  # Remover carro do usuário
+GET    /api/users/stats            # Estatísticas gerais
+```
+
+### **Simulações**
+```
+POST /api/simulations              # Criar simulação
+GET  /api/simulations/history      # Histórico de simulações
+```
+
+## 🎨 Marcas Suportadas
+
+- Volkswagen, BMW, Ford, Hyundai
+- Toyota, Nissan, Chevrolet, Mitsubishi
+- Honda, Mercedes, Audi, Dodge
+- Renault, Subaru, Mazda, Porsche
+
+## 🌟 Características Técnicas
+
+### **Performance**
+- Turbopack para builds ultra-rápidos
+- CSS Modules para isolamento de estilos
+- Lazy loading de componentes
+- Otimização automática de imagens
+
+### **UX/UI**
+- Design responsivo para mobile e desktop
+- Animações suaves com CSS transitions
+- Tema dark com gradients vermelhos
+- Componentes reutilizáveis
+
+### **Arquitetura**
+- Componentes funcionais com Hooks
+- Gerenciamento de estado local
+- API service layer isolada
+- Error boundaries e tratamento de erros
+
+## 🔧 Configuração do Ambiente
+
+Crie um arquivo `.env.local`:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3001/api
+```
+
+## 📦 Estrutura do Projeto
+
+```
+src/
+├── app/
+│   ├── components/          # Componentes reutilizáveis
+│   ├── home/               # Página inicial
+│   ├── users/              # Gestão de usuários
+│   ├── car/                # Detalhes de carros
+│   ├── carList/            # Lista de carros
+│   ├── services/           # Camada de API
+│   └── ...
+├── public/
+│   ├── images/             # Imagens do projeto
+│   └── logos/              # Logos das marcas
+└── ...
+```
+
+## 🚀 Deploy
+
+O projeto está otimizado para deploy no Vercel:
+
+```bash
+npm run build
+```
+
+## 📄 Licença
+
+Desenvolvido com ❤️ para os amantes da velocidade.
+© 2025 TurboX - Todos os direitos reservados.

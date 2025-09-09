@@ -6,6 +6,7 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
   const navItems = [
     { id: 'home', label: 'Home', icon: '🏠' },
     { id: 'cars', label: 'Carros', icon: '🚗' },
+    { id: 'users', label: 'Usuários', icon: '👥' },
     { id: 'about', label: 'Sobre Mim', icon: '👤' },
   ];
 
