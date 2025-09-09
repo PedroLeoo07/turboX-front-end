@@ -110,6 +110,19 @@
   pointer-events: none;
 }
 
+.logoImage {
+  height: 80px;
+  width: auto;
+  filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.6));
+  animation: logoGlow 3s ease-in-out infinite alternate;
+  transition: all 0.3s ease;
+}
+
+.logoImage:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.8));
+}
+
 .heroTitle {
   font-size: 4.5rem;
   font-weight: 900;
@@ -846,6 +859,18 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.footerLogoImage {
+  height: 40px;
+  width: auto;
+  filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.4));
+  transition: all 0.3s ease;
+}
+
+.footerLogoImage:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.6));
 }
 
 .footerLogo .logoTurbo {

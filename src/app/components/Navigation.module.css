@@ -23,6 +23,18 @@
   transform: scale(1.05);
 }
 
+.logoImage {
+  height: 70px;
+  width: auto;
+  filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.6));
+  transition: all 0.3s ease;
+}
+
+.logoImage:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.8));
+}
+
 .turbo {
   color: #ff0000;
   text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);

@@ -20,8 +20,11 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
   return (
     <nav className={styles.navigation}>
       <div className={styles.logo} onClick={() => navigateTo('home')}>
-        <span className={styles.turbo}>TURBO</span>
-        <span className={styles.x}>X</span>
+        <img 
+          src="/images/TurboX.png" 
+          alt="TurboX" 
+          className={styles.logoImage}
+        />
       </div>
       
       <div className={styles.navItems}>

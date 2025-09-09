@@ -28,16 +28,6 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
         <div className={styles.heroBackground}></div>
         <div className={styles.heroContent}>
           <div className={styles.heroLeft}>
-            {/* LOGO PRINCIPAL */}
-            <div className={styles.logo}>
-              <img 
-                src="/images/TurboX.png" 
-                alt="TurboX" 
-                className={styles.logoImage}
-              />
-              <div className={styles.logoGlow}></div>
-            </div>
-            
             {/* TÍTULO PRINCIPAL */}
             <h1 className={styles.heroTitle}>
               <span className={styles.titleWord1}>Simule.</span>
@@ -383,7 +373,7 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
               onClick={() => navigateTo('carList', null, { brand: 'Mazda' })}
             >
               <div className={styles.brandIcon}>
-                <img src="/logos/mazda.png" alt="Mazda Logo" className={styles.brandLogo} />
+                <img src="/logos/mazda.png  " alt="Mazda Logo" className={styles.brandLogo} />
               </div>
               <h3 className={styles.brandName}>Mazda</h3>
               <p className={styles.brandDesc}>Rotary e design Kodo</p>
@@ -490,8 +480,11 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
           <div className={styles.footerContent}>
             <div className={styles.footerLeft}>
               <div className={styles.footerLogo}>
-                <span className={styles.logoTurbo}>TURBO</span>
-                <span className={styles.logoX}>X</span>
+                <img 
+                  src="/images/TurboX.png" 
+                  alt="TurboX" 
+                  className={styles.footerLogoImage}
+                />
               </div>
               <p className={styles.footerDesc}>
                 Simulador de preparações automotivas
