@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from 'react';
 import styles from './Navigation.module.css';
 
 export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, onLogout }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navItems = [
     { id: 'home', label: 'Home', icon: '🏠' },
     { id: 'cars', label: 'Carros', icon: '🚗' },
@@ -18,6 +20,10 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
     }
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <nav className={styles.navigation}>
       <div className={styles.logo} onClick={() => navigateTo('home')}>
@@ -27,8 +33,21 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
           className={styles.logoImage}
         />
       </div>
+
+      {/* Botão hamburger para mobile */}
+      <button 
+        className={styles.mobileMenuButton} 
+        onClick={toggleMobileMenu}
+        aria-label="Toggle navigation menu"
+      >
+        <span className={`${styles.hamburger} ${isMobileMenuOpen ? styles.hamburgerOpen : ''}`}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
       
-      <div className={styles.navItems}>
+      <div className={`${styles.navItems} ${isMobileMenuOpen ? styles.navItemsMobileOpen : ''}`}>
         {navItems.map(item => (
           <button
             key={item.id}

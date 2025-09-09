@@ -1,19 +1,32 @@
 import "./globals.css";
+import "./responsive.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
 export const metadata = {
-    title: "TurboX",
-    description: "Projeto TurboX - Plataforma de carros turbo",
+    title: "TurboX - Simulador de Preparações Automotivas",
+    description: "O simulador de preparações automotivas mais avançado do Brasil. Transforme qualquer carro em uma máquina de alta performance com simulações realísticas.",
+    keywords: "carros, tuning, preparação, turbo, performance, simulador, automotivo",
+    author: "TurboX Team",
+    viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
     icons: {
         icon: "/icons/icon.png",
+        apple: "/icons/icon.png",
+    },
+    openGraph: {
+        title: "TurboX - Simulador de Preparações Automotivas",
+        description: "O simulador de preparações automotivas mais avançado do Brasil.",
+        type: "website",
+        locale: "pt_BR",
     },
 };
 
 export default function RootLayout({ children }) {
     return (
-        <html>
+        <html lang="pt-BR">
             <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+                <meta name="theme-color" content="#ff0000" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
                 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />

@@ -443,9 +443,57 @@
 }
 
 /* RESPONSIVIDADE */
+
+/* Tablets grandes */
+@media (max-width: 1200px) {
+  .usersGrid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+  
+  .statsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+  .header {
+    padding: 3rem 1.5rem;
+  }
+  
+  .title {
+    font-size: 3rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .usersGrid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+  
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .filtersContent {
+    gap: 1.5rem;
+  }
+}
+
+/* Tablets pequenos */
 @media (max-width: 768px) {
+  .header {
+    padding: 2.5rem 1rem;
+  }
+  
   .title {
     font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
   }
   
   .statsGrid {
@@ -455,47 +503,195 @@
   .filtersContent {
     flex-direction: column;
     align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .searchBox {
+    min-width: auto;
   }
   
   .usersGrid {
     grid-template-columns: 1fr;
   }
   
-  .userActions {
-    flex-direction: column;
+  .userCard {
+    margin: 0 auto;
+    max-width: 500px;
   }
   
   .carCard {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: row;
+    align-items: center;
   }
   
   .carImage {
-    width: 100%;
-    height: 120px;
+    width: 100px;
+    height: 75px;
+  }
+  
+  .userActions {
+    flex-direction: row;
+    gap: 1rem;
   }
 }
 
-@media (max-width: 480px) {
+/* Smartphones */
+@media (max-width: 576px) {
   .header {
     padding: 2rem 1rem;
-  }
-  
-  .filters,
-  .usersList {
-    padding: 1rem;
   }
   
   .title {
     font-size: 2rem;
     flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .titleIcon {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
   }
   
   .statsGrid {
     grid-template-columns: 1fr;
   }
   
+  .statCard {
+    padding: 1rem;
+  }
+  
+  .statNumber {
+    font-size: 2rem;
+  }
+  
+  .filters {
+    padding: 1.5rem 1rem;
+  }
+  
+  .usersList {
+    padding: 1.5rem 1rem;
+  }
+  
   .userCard {
     padding: 1rem;
+  }
+  
+  .userHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .userAvatar {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .userName {
+    font-size: 1.1rem;
+  }
+  
+  .carCard {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .carImage {
+    width: 100%;
+    height: 120px;
+  }
+  
+  .userActions {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
+
+/* Smartphones pequenos */
+@media (max-width: 480px) {
+  .header {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .filters,
+  .usersList {
+    padding: 1rem 0.5rem;
+  }
+  
+  .searchInput {
+    padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .filterSelect {
+    padding: 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .userCard {
+    padding: 0.8rem;
+  }
+  
+  .carCard {
+    padding: 0.8rem;
+  }
+  
+  .viewUserBtn,
+  .addCarBtn {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Dispositivos muito pequenos */
+@media (max-width: 360px) {
+  .title {
+    font-size: 1.6rem;
+  }
+  
+  .subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .statCard {
+    padding: 0.8rem;
+  }
+  
+  .statNumber {
+    font-size: 1.5rem;
+  }
+  
+  .statLabel {
+    font-size: 0.8rem;
+  }
+  
+  .userCard {
+    padding: 0.6rem;
+  }
+  
+  .userName {
+    font-size: 1rem;
+  }
+  
+  .userEmail {
+    font-size: 0.8rem;
+  }
+  
+  .carBrand,
+  .carModel {
+    font-size: 0.9rem;
+  }
+  
+  .carYear {
+    font-size: 0.7rem;
   }
 }

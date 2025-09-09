@@ -28,21 +28,39 @@ h1, h2, h3, h4, h5, h6, .title {
 }
 
 /* Responsividade Global */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 992px) {
   html {
     font-size: 14px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   html {
     font-size: 13px;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 576px) {
   html {
     font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 360px) {
+  html {
+    font-size: 10px;
   }
 }
 

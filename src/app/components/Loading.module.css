@@ -323,17 +323,78 @@
     font-size: 3rem;
   }
   
+  .tagline {
+    font-size: 1rem;
+  }
+  
   .progressContainer {
     width: 250px;
   }
   
   .carAnimation {
-    width: 300px;
+    width: 280px;
+    height: 60px;
   }
   
   .loadingText {
     font-size: 1rem;
     text-align: center;
     padding: 0 20px;
+  }
+  
+  .logoContainer {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 2.5rem;
+  }
+  
+  .tagline {
+    font-size: 0.9rem;
+    padding: 0 20px;
+  }
+  
+  .progressContainer {
+    width: 200px;
+  }
+  
+  .carAnimation {
+    width: 220px;
+    height: 50px;
+  }
+  
+  .loadingText {
+    font-size: 0.9rem;
+    padding: 0 15px;
+  }
+  
+  .logoContainer {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo {
+    font-size: 2rem;
+  }
+  
+  .tagline {
+    font-size: 0.8rem;
+  }
+  
+  .progressContainer {
+    width: 180px;
+  }
+  
+  .carAnimation {
+    width: 200px;
+    height: 45px;
+  }
+  
+  .loadingText {
+    font-size: 0.8rem;
   }
 }

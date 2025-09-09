@@ -1,16 +1,34 @@
-/* TurboX - Utilidades de Responsividade */
+/* TurboX - Utilidades de Responsividade Aprimoradas */
 
-/* Breakpoints */
+/* Breakpoints Otimizados */
 /* 
-  xs: 0-319px
-  sm: 320-479px  
-  md: 480-639px
-  lg: 640-767px
-  xl: 768-1023px
-  2xl: 1024-1199px
-  3xl: 1200-1399px
-  4xl: 1400px+
+  xs: 0-359px    (Smartphones muito pequenos)
+  sm: 360-575px  (Smartphones)  
+  md: 576-767px  (Smartphones grandes)
+  lg: 768-991px  (Tablets)
+  xl: 992-1199px (Tablets grandes/Desktops pequenos)
+  2xl: 1200px+   (Desktops)
 */
+
+/* Container responsivo */
+.container-responsive {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 576px) {
+  .container-responsive {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .container-responsive {
+    padding: 0 2rem;
+  }
+}
 
 /* Visibilidade por dispositivo */
 .mobile-only {

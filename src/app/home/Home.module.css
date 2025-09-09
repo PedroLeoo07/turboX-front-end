@@ -1168,76 +1168,125 @@
 }
 
 /* ===== RESPONSIVIDADE ===== */
-@media (max-width: 1024px) {
+
+/* Tablets grandes */
+@media (max-width: 1200px) {
+  .heroContent {
+    gap: 2rem;
+  }
+  
+  .heroTitle {
+    font-size: 4rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+  
+  .brandsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .usersStats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .usersFeatures {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
   .heroContent {
     grid-template-columns: 1fr;
-    gap: 3rem;
     text-align: center;
+    gap: 3rem;
+  }
+  
+  .heroTitle {
+    font-size: 3.5rem;
+  }
+  
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .brandsGrid {
+    grid-template-columns: repeat(3, 1fr);
   }
   
   .aboutContent {
     grid-template-columns: 1fr;
     gap: 3rem;
+    text-align: center;
   }
   
-  .featuresGrid {
+  .usersStats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .usersFeatures {
     grid-template-columns: 1fr;
   }
 }
 
+/* Tablets pequenos */
 @media (max-width: 768px) {
   .hero {
-    padding: 0 1rem;
+    padding: 2rem 1rem 4rem;
     min-height: auto;
-    padding-top: 2rem;
-    padding-bottom: 4rem;
-  }
-  
-  .logoTurbo, .logoX {
-    font-size: 2.5rem;
   }
   
   .heroTitle {
     font-size: 3rem;
+    gap: 0.5rem;
   }
   
   .heroSubtitle {
     font-size: 1rem;
+    margin-bottom: 2rem;
   }
   
   .heroButtons {
     flex-direction: column;
-    align-items: center;
     gap: 1rem;
   }
   
   .primaryBtn, .secondaryBtn {
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
   }
   
-  .stats {
-    justify-content: center;
+  .features, .brands, .users, .about, .cta {
+    padding: 4rem 1rem;
+  }
+  
+  .featuresGrid {
+    grid-template-columns: 1fr;
     gap: 2rem;
   }
   
-  .carIcon {
-    font-size: 8rem;
+  .brandsGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .sectionTitle {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   
-  .ctaButtons {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+  .sectionSubtitle {
+    font-size: 1rem;
   }
   
-  .ctaPrimary, .ctaSecondary {
-    width: 100%;
-    max-width: 300px;
+  .usersStats {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .usersBtn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
   }
   
   .footerContent {
@@ -1245,26 +1294,174 @@
     gap: 2rem;
     text-align: center;
   }
+  
+  .footerLinks {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
-@media (max-width: 480px) {
-  .features, .about, .cta {
-    padding: 4rem 1rem;
+/* Smartphones */
+@media (max-width: 576px) {
+  .hero {
+    padding: 1.5rem 1rem 3rem;
   }
   
   .heroTitle {
     font-size: 2.5rem;
   }
   
-  .logoTurbo, .logoX {
+  .features, .brands, .users, .about, .cta {
+    padding: 3rem 1rem;
+  }
+  
+  .brandsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .brandCard {
+    min-height: 150px;
+    padding: 1rem;
+  }
+  
+  .brandName {
+    font-size: 0.9rem;
+  }
+  
+  .brandDesc {
+    font-size: 0.7rem;
+  }
+  
+  .sectionTitle {
     font-size: 2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .titleIcon {
+    font-size: 2rem;
+  }
+  
+  .statItem {
+    padding: 1.5rem;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .statIcon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+  
+  .statNumber {
+    font-size: 2rem;
+  }
+  
+  .usersBtn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .footer {
+    padding: 2rem 1rem;
+  }
+}
+
+/* Smartphones pequenos */
+@media (max-width: 480px) {
+  .hero {
+    padding: 1rem 0.5rem 2rem;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .heroTitle {
+    font-size: 2rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .primaryBtn, .secondaryBtn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .features, .brands, .users, .about, .cta {
+    padding: 2rem 0.5rem;
   }
   
   .featureCard {
     padding: 1.5rem;
   }
   
-  .carIcon {
-    font-size: 6rem;
+  .brandCard {
+    min-height: 130px;
+    padding: 0.8rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  
+  .aboutTitle {
+    font-size: 2rem;
+  }
+  
+  .aboutText {
+    font-size: 0.9rem;
+  }
+}
+
+/* Dispositivos muito pequenos */
+@media (max-width: 360px) {
+  .heroTitle {
+    font-size: 1.8rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 0.8rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.6rem;
+  }
+  
+  .brandCard {
+    min-height: 120px;
+  }
+  
+  .brandName {
+    font-size: 0.8rem;
+  }
+  
+  .brandDesc {
+    font-size: 0.65rem;
+  }
+  
+  .statItem {
+    padding: 1rem;
+  }
+  
+  .statIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+  
+  .statNumber {
+    font-size: 1.5rem;
+  }
+  
+  .usersBtn {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
   }
 }
