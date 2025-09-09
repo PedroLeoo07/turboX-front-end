@@ -30,8 +30,11 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
           <div className={styles.heroLeft}>
             {/* LOGO PRINCIPAL */}
             <div className={styles.logo}>
-              <span className={styles.logoTurbo}>TURBO</span>
-              <span className={styles.logoX}>X</span>
+              <img 
+                src="/images/TurboX.png" 
+                alt="TurboX" 
+                className={styles.logoImage}
+              />
               <div className={styles.logoGlow}></div>
             </div>
             
