@@ -1278,12 +1278,11 @@
 .storageCta .ctaTitle {
   font-size: 2.5rem;
   font-weight: 900;
-  color: #ffffff;
+  color: #ff0000;
   margin-bottom: 1rem;
-  background: linear-gradient(45deg, #00ffff, #ff00ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  text-shadow: 
+    0 0 30px rgba(255, 0, 0, 0.8),
+    0 0 60px rgba(255, 0, 0, 0.4);
 }
 
 .storageCta .ctaDesc {
@@ -1304,10 +1303,10 @@
 
 .storageCta .ctaPrimary {
   padding: 1.2rem 2.5rem;
-  background: linear-gradient(45deg, #00ffff, #0099cc);
+  background: linear-gradient(45deg, #ff0000, #cc0000);
   border: none;
   border-radius: 15px;
-  color: #000;
+  color: #ffffff;
   font-size: 1.1rem;
   font-weight: 700;
   cursor: pointer;
@@ -1315,19 +1314,24 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  box-shadow: 
+    0 8px 25px rgba(255, 0, 0, 0.3),
+    0 0 40px rgba(255, 0, 0, 0.2);
 }
 
 .storageCta .ctaPrimary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(0, 255, 255, 0.4);
+  box-shadow: 
+    0 12px 35px rgba(255, 0, 0, 0.4),
+    0 0 50px rgba(255, 0, 0, 0.3);
 }
 
 .storageCta .ctaSecondary {
   padding: 1.2rem 2.5rem;
   background: transparent;
-  border: 2px solid #ff00ff;
+  border: 2px solid #ff0000;
   border-radius: 15px;
-  color: #ff00ff;
+  color: #ff0000;
   font-size: 1.1rem;
   font-weight: 700;
   cursor: pointer;
@@ -1338,10 +1342,10 @@
 }
 
 .storageCta .ctaSecondary:hover {
-  background: #ff00ff;
-  color: #000;
+  background: #ff0000;
+  color: #ffffff;
   transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(255, 0, 255, 0.4);
+  box-shadow: 0 15px 40px rgba(255, 0, 0, 0.4);
 }
 
 /* ===== FOOTER ===== */
