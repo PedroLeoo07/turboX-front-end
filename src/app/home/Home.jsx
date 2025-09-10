@@ -557,6 +557,155 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
         </div>
       </section>
 
+      {/* STORAGE SECTION */}
+      <section className={styles.storage}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              <span className={styles.titleIcon}>🏢</span>
+              Garagem Virtual
+            </h2>
+            <p className={styles.sectionSubtitle}>
+              Salve suas configurações, compare builds e gerencie sua coleção de carros
+            </p>
+          </div>
+          
+          <div className={styles.storageGrid}>
+            {/* Garagem Pessoal */}
+            <div className={styles.storageCard}>
+              <div className={styles.storageHeader}>
+                <div className={styles.storageIcon}>🏠</div>
+                <div className={styles.storageBadge}>Ilimitado</div>
+              </div>
+              <h3 className={styles.storageTitle}>Minha Garagem</h3>
+              <p className={styles.storageDesc}>
+                Salve quantos carros quiser com todas as suas configurações. 
+                Acesse seus projetos a qualquer momento.
+              </p>
+              <div className={styles.storageStats}>
+                <div className={styles.stat}>
+                  <span className={styles.statNumber}>0</span>
+                  <span className={styles.statLabel}>Carros Salvos</span>
+                </div>
+                <div className={styles.stat}>
+                  <span className={styles.statNumber}>0</span>
+                  <span className={styles.statLabel}>Builds</span>
+                </div>
+              </div>
+              <button 
+                onClick={() => navigateTo('storage')}
+                className={styles.storageBtn}
+              >
+                Ver Garagem →
+              </button>
+            </div>
+
+            {/* Builds Favoritas */}
+            <div className={styles.storageCard}>
+              <div className={styles.storageHeader}>
+                <div className={styles.storageIcon}>⭐</div>
+                <div className={styles.storageBadge}>Premium</div>
+              </div>
+              <h3 className={styles.storageTitle}>Builds Favoritas</h3>
+              <p className={styles.storageDesc}>
+                Salve suas configurações mais épicas e compartilhe 
+                com a comunidade TurboX.
+              </p>
+              <div className={styles.storageFeatures}>
+                <div className={styles.feature}>✓ Backup na nuvem</div>
+                <div className={styles.feature}>✓ Compartilhamento social</div>
+                <div className={styles.feature}>✓ Histórico completo</div>
+              </div>
+              <button 
+                onClick={() => navigateTo('favorites')}
+                className={styles.storageBtn}
+              >
+                Ver Favoritas →
+              </button>
+            </div>
+
+            {/* Comparador */}
+            <div className={styles.storageCard}>
+              <div className={styles.storageHeader}>
+                <div className={styles.storageIcon}>⚖️</div>
+                <div className={styles.storageBadge}>Novo</div>
+              </div>
+              <h3 className={styles.storageTitle}>Comparador</h3>
+              <p className={styles.storageDesc}>
+                Compare até 4 carros lado a lado com todas as 
+                especificações e modificações.
+              </p>
+              <div className={styles.storagePreview}>
+                <div className={styles.previewCar}>🏎️</div>
+                <div className={styles.previewVs}>VS</div>
+                <div className={styles.previewCar}>🚗</div>
+              </div>
+              <button 
+                onClick={() => navigateTo('compare')}
+                className={styles.storageBtn}
+              >
+                Comparar →
+              </button>
+            </div>
+
+            {/* Comunidade */}
+            <div className={styles.storageCard}>
+              <div className={styles.storageHeader}>
+                <div className={styles.storageIcon}>👥</div>
+                <div className={styles.storageBadge}>Social</div>
+              </div>
+              <h3 className={styles.storageTitle}>Builds da Comunidade</h3>
+              <p className={styles.storageDesc}>
+                Explore builds criadas por outros usuários, 
+                curta e salve suas favoritas.
+              </p>
+              <div className={styles.communityStats}>
+                <div className={styles.communityStat}>
+                  <span>1.2K+</span>
+                  <span>Builds</span>
+                </div>
+                <div className={styles.communityStat}>
+                  <span>350+</span>
+                  <span>Usuários</span>
+                </div>
+              </div>
+              <button 
+                onClick={() => navigateTo('community')}
+                className={styles.storageBtn}
+              >
+                Explorar →
+              </button>
+            </div>
+          </div>
+
+          {/* Call to Action da Storage */}
+          <div className={styles.storageCta}>
+            <h3 className={styles.ctaTitle}>
+              Comece sua coleção hoje mesmo!
+            </h3>
+            <p className={styles.ctaDesc}>
+              Crie sua conta gratuita e tenha acesso completo ao sistema de armazenamento
+            </p>
+            <div className={styles.ctaButtons}>
+              <button 
+                onClick={() => navigateTo('login')}
+                className={styles.ctaPrimary}
+              >
+                <span>🚀</span>
+                Criar Conta
+              </button>
+              <button 
+                onClick={() => navigateTo('simulation')}
+                className={styles.ctaSecondary}
+              >
+                <span>🔧</span>
+                Começar Build
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FOOTER */}
       <footer className={styles.footer}>
         <div className={styles.container}>
