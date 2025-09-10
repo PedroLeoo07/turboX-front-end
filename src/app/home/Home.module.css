@@ -1014,7 +1014,7 @@
 /* ===== STORAGE SECTION ===== */
 .storage {
   padding: 8rem 2rem;
-  background: linear-gradient(135deg, rgba(0, 255, 255, 0.03) 0%, rgba(255, 0, 255, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.05) 0%, transparent 100%);
   position: relative;
   overflow: hidden;
 }
@@ -1027,8 +1027,8 @@
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 30% 20%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(255, 0, 255, 0.05) 0%, transparent 50%);
+    radial-gradient(circle at 30% 20%, rgba(255, 0, 0, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(255, 50, 50, 0.05) 0%, transparent 50%);
   pointer-events: none;
   animation: storageAnim 15s ease-in-out infinite;
 }
@@ -1080,10 +1080,10 @@
 
 .storageCard:hover {
   transform: translateY(-10px) scale(1.02);
-  border-color: rgba(0, 255, 255, 0.4);
+  border-color: rgba(255, 0, 0, 0.4);
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.3),
-    0 0 50px rgba(0, 255, 255, 0.2);
+    0 0 50px rgba(255, 0, 0, 0.3);
 }
 
 .storageHeader {
@@ -1100,13 +1100,14 @@
 
 .storageBadge {
   padding: 0.5rem 1rem;
-  background: linear-gradient(45deg, #00ffff, #ff00ff);
+  background: linear-gradient(45deg, #ff0000, #cc0000);
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: #000;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
 }
 
 .storageTitle {
@@ -1114,7 +1115,7 @@
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 1rem;
-  text-shadow: 0 2px 10px rgba(0, 255, 255, 0.3);
+  text-shadow: 0 2px 10px rgba(255, 0, 0, 0.4);
 }
 
 .storageDesc {
@@ -1143,8 +1144,9 @@
   display: block;
   font-size: 2rem;
   font-weight: 900;
-  color: #00ffff;
+  color: #ff0000;
   margin-bottom: 0.5rem;
+  text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
 }
 
 .statLabel {
@@ -1171,9 +1173,9 @@
   content: '';
   width: 6px;
   height: 6px;
-  background: #00ffff;
+  background: #ff0000;
   border-radius: 50%;
-  box-shadow: 0 0 10px #00ffff;
+  box-shadow: 0 0 10px #ff0000;
 }
 
 .storagePreview {
@@ -1202,8 +1204,8 @@
 .previewVs {
   font-size: 1.2rem;
   font-weight: 800;
-  color: #ff00ff;
-  text-shadow: 0 0 10px #ff00ff;
+  color: #ff0000;
+  text-shadow: 0 0 10px #ff0000;
 }
 
 .communityStats {
@@ -1216,17 +1218,18 @@
 .communityStat {
   text-align: center;
   padding: 1rem;
-  background: rgba(255, 0, 255, 0.1);
+  background: rgba(255, 0, 0, 0.1);
   border-radius: 12px;
-  border: 1px solid rgba(255, 0, 255, 0.3);
+  border: 1px solid rgba(255, 0, 0, 0.3);
 }
 
 .communityStat span:first-child {
   display: block;
   font-size: 1.5rem;
   font-weight: 800;
-  color: #ff00ff;
+  color: #ff0000;
   margin-bottom: 0.3rem;
+  text-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
 }
 
 .communityStat span:last-child {
@@ -1237,10 +1240,10 @@
 .storageBtn {
   width: 100%;
   padding: 1rem 2rem;
-  background: linear-gradient(45deg, #00ffff, #ff00ff);
+  background: linear-gradient(45deg, #ff0000, #cc0000);
   border: none;
   border-radius: 15px;
-  color: #000;
+  color: #ffffff;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
@@ -1249,11 +1252,16 @@
   letter-spacing: 0.5px;
   position: relative;
   overflow: hidden;
+  box-shadow: 
+    0 4px 15px rgba(255, 0, 0, 0.3),
+    0 0 30px rgba(255, 0, 0, 0.2);
 }
 
 .storageBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+  box-shadow: 
+    0 8px 25px rgba(255, 0, 0, 0.4),
+    0 0 40px rgba(255, 0, 0, 0.3);
 }
 
 .storageCta {
