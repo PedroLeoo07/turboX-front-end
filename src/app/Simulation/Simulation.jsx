@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
-import { useSimulations } from '../hooks/useBackend';
+import { useBuilds, useUpgrades, useBuildUpgrades } from '../hooks/useBackend';
 import styles from './Simulation.module.css';
 
 export default function Simulation({ car, navigateTo }) {
-  const { simulations, loading, createSimulation, fetchUserSimulations } = useSimulations();
+  const { builds, loading, createBuild, fetchBuilds } = useBuilds();
+  const { upgrades: availableUpgrades, fetchUpgrades } = useUpgrades();
+  const { buildUpgrades, getBuildUpgrades, addUpgradeToBuild } = useBuildUpgrades();
   const [selectedStage, setSelectedStage] = useState(0);
-  const [upgrades, setUpgrades] = useState({
+  const [selectedUpgrades, setSelectedUpgrades] = useState({
     intake: false,
     exhaust: false,
     turbo: false,
@@ -18,10 +20,11 @@ export default function Simulation({ car, navigateTo }) {
   });
   const [buildName, setBuildName] = useState('');
 
-  // Carregar simulações do usuário
+  // Carregar builds e upgrades do usuário
   useEffect(() => {
-    fetchUserSimulations();
-  }, [fetchUserSimulations]);
+    fetchBuilds();
+    fetchUpgrades();
+  }, [fetchBuilds, fetchUpgrades]);
 
   // Configurações base do carro (usando dados mock se não houver carro selecionado)
   const baseCar = car || {
@@ -53,12 +56,12 @@ export default function Simulation({ car, navigateTo }) {
     accelImprovement += stageBonus.accel;
 
     // Individual upgrade bonuses
-    if (upgrades.intake) { powerBonus += 15; torqueBonus += 20; accelImprovement += 0.1; }
-    if (upgrades.exhaust) { powerBonus += 25; torqueBonus += 30; accelImprovement += 0.2; }
-    if (upgrades.turbo) { powerBonus += 80; torqueBonus += 100; accelImprovement += 0.4; }
-    if (upgrades.intercooler) { powerBonus += 20; torqueBonus += 25; accelImprovement += 0.15; }
-    if (upgrades.ecu) { powerBonus += 40; torqueBonus += 50; accelImprovement += 0.25; }
-    if (upgrades.fuel) { powerBonus += 10; torqueBonus += 15; accelImprovement += 0.05; }
+    if (selectedUpgrades.intake) { powerBonus += 15; torqueBonus += 20; accelImprovement += 0.1; }
+    if (selectedUpgrades.exhaust) { powerBonus += 25; torqueBonus += 30; accelImprovement += 0.2; }
+    if (selectedUpgrades.turbo) { powerBonus += 80; torqueBonus += 100; accelImprovement += 0.4; }
+    if (selectedUpgrades.intercooler) { powerBonus += 20; torqueBonus += 25; accelImprovement += 0.15; }
+    if (selectedUpgrades.ecu) { powerBonus += 40; torqueBonus += 50; accelImprovement += 0.25; }
+    if (selectedUpgrades.fuel) { powerBonus += 10; torqueBonus += 15; accelImprovement += 0.05; }
 
     return {
       power: Math.round(baseCar.power + powerBonus),
@@ -73,7 +76,7 @@ export default function Simulation({ car, navigateTo }) {
   const accelGain = (baseCar.acceleration - parseFloat(currentPerformance.acceleration)).toFixed(1);
 
   const handleUpgradeToggle = (upgrade) => {
-    setUpgrades(prev => ({
+    setSelectedUpgrades(prev => ({
       ...prev,
       [upgrade]: !prev[upgrade]
     }));
@@ -85,32 +88,48 @@ export default function Simulation({ car, navigateTo }) {
       return;
     }
 
-    const simulationData = {
+    const buildData = {
+      name: buildName,
       carId: baseCar.id || 1,
       carModel: `${baseCar.brand} ${baseCar.model}`,
-      buildName: buildName,
       stage: selectedStage,
-      upgrades: upgrades,
       performance: currentPerformance
     };
 
-    const success = await createSimulation(simulationData);
-    if (success) {
+    try {
+      const newBuild = await createBuild(buildData);
+      
+      // Adicionar upgrades selecionados à build
+      for (const [upgradeKey, isSelected] of Object.entries(selectedUpgrades)) {
+        if (isSelected) {
+          // Procurar o upgrade correspondente na lista de upgrades disponíveis
+          const upgrade = availableUpgrades.find(u => u.type === upgradeKey);
+          if (upgrade) {
+            await addUpgradeToBuild(newBuild.id, upgrade.id);
+          }
+        }
+      }
+      
       setBuildName('');
       alert('Build salva com sucesso!');
+    } catch (error) {
+      console.error('Erro ao salvar build:', error);
+      alert('Erro ao salvar build. Tente novamente.');
     }
   };
 
-  const loadBuild = (build) => {
+  const loadBuild = async (build) => {
     setSelectedStage(build.stage);
-    setUpgrades({ ...build.upgrades });
+    // Carregar upgrades da build
+    const buildUpgradesData = await getBuildUpgrades(build.id);
+    const upgradesObj = {};
+    buildUpgradesData.forEach(item => {
+      upgradesObj[item.upgrade.type] = true;
+    });
+    setSelectedUpgrades(upgradesObj);
   };
 
-  const deleteBuild = (id) => {
-    setSavedBuilds(prev => prev.filter(build => build.id !== id));
-  };
-
-  const shareableLink = `turbox.dev/build/${btoa(JSON.stringify({ stage: selectedStage, upgrades, car: baseCar.model }))}`;
+  const shareableLink = `turbox.dev/build/${btoa(JSON.stringify({ stage: selectedStage, upgrades: selectedUpgrades, car: baseCar.model }))}`;
 
   const upgradeOptions = [
     { id: 'intake', name: 'Filtro de Ar Esportivo', cost: 'R$ 500', icon: '🌪️' },
@@ -175,7 +194,7 @@ export default function Simulation({ car, navigateTo }) {
                 {upgradeOptions.map(upgrade => (
                   <div
                     key={upgrade.id}
-                    className={`${styles.upgradeCard} ${upgrades[upgrade.id] ? styles.selected : ''}`}
+                    className={`${styles.upgradeCard} ${selectedUpgrades[upgrade.id] ? styles.selected : ''}`}
                     onClick={() => handleUpgradeToggle(upgrade.id)}
                   >
                     <div className={styles.upgradeIcon}>{upgrade.icon}</div>
@@ -184,7 +203,7 @@ export default function Simulation({ car, navigateTo }) {
                       <p>{upgrade.cost}</p>
                     </div>
                     <div className={styles.upgradeCheckbox}>
-                      {upgrades[upgrade.id] ? '✅' : '⬜'}
+                      {selectedUpgrades[upgrade.id] ? '✅' : '⬜'}
                     </div>
                   </div>
                 ))}
@@ -306,11 +325,11 @@ export default function Simulation({ car, navigateTo }) {
           </div>
         </div>
 
-        {simulations.length > 0 && (
+        {builds.length > 0 && (
           <section className={styles.savedBuilds}>
             <h3 className={styles.sectionTitle}>Builds Salvos</h3>
             <div className={styles.buildsGrid}>
-              {simulations.map(build => (
+              {builds.map(build => (
                 <div key={build.id} className={styles.buildCard}>
                   <div className={styles.buildHeader}>
                     <h4>{build.name}</h4>

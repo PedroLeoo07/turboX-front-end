@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { useAuth } from '../hooks/useBackend';
 import styles from './Login.module.css';
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { carsAPI, usersAPI, simulationAPI, authAPI } from '../services/api';
+import { carsAPI, usersAPI, buildsAPI, upgradesAPI, buildsUpgradesAPI, authAPI } from '../services/api';
 import { toast } from 'react-toastify';
 
 // Hook para gerenciar carros
@@ -178,47 +178,81 @@ export const useUsers = () => {
   };
 };
 
-// Hook para gerenciar simulações
-export const useSimulations = () => {
-  const [simulations, setSimulations] = useState([]);
+// Hook para gerenciar builds (simulações)
+export const useBuilds = () => {
+  const [builds, setBuilds] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const createSimulation = useCallback(async (simulationData) => {
+  const createBuild = useCallback(async (buildData) => {
     setLoading(true);
     setError(null);
     try {
-      const data = await simulationAPI.create(simulationData);
+      const data = await buildsAPI.create(buildData);
+      setBuilds(prev => [...prev, data]);
       return data;
     } catch (err) {
       setError(err.message);
-      console.error('Erro ao criar simulação:', err);
+      console.error('Erro ao criar build:', err);
       throw err;
     } finally {
       setLoading(false);
     }
   }, []);
 
-  const fetchHistory = useCallback(async () => {
+  const fetchBuilds = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const data = await simulationAPI.getHistory();
-      setSimulations(data);
+      const data = await buildsAPI.getAll();
+      setBuilds(data);
     } catch (err) {
       setError(err.message);
-      console.error('Erro ao buscar histórico:', err);
+      console.error('Erro ao buscar builds:', err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  const updateBuild = useCallback(async (id, buildData) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await buildsAPI.update(id, buildData);
+      setBuilds(prev => prev.map(build => build.id === id ? data : build));
+      return data;
+    } catch (err) {
+      setError(err.message);
+      console.error('Erro ao atualizar build:', err);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  const deleteBuild = useCallback(async (id) => {
+    setLoading(true);
+    setError(null);
+    try {
+      await buildsAPI.delete(id);
+      setBuilds(prev => prev.filter(build => build.id !== id));
+    } catch (err) {
+      setError(err.message);
+      console.error('Erro ao deletar build:', err);
+      throw err;
     } finally {
       setLoading(false);
     }
   }, []);
 
   return {
-    simulations,
+    builds,
     loading,
     error,
-    createSimulation,
-    fetchHistory
+    createBuild,
+    fetchBuilds,
+    updateBuild,
+    deleteBuild
   };
 };
 
@@ -350,5 +384,112 @@ export const useBackendStatus = () => {
     loading,
     lastCheck,
     checkStatus: checkBackendStatus
+  };
+};
+
+// Hook para gerenciar upgrades
+export const useUpgrades = () => {
+  const [upgrades, setUpgrades] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const fetchUpgrades = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await upgradesAPI.getAll();
+      setUpgrades(data);
+    } catch (err) {
+      setError(err.message);
+      console.error('Erro ao buscar upgrades:', err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  const createUpgrade = useCallback(async (upgradeData) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await upgradesAPI.create(upgradeData);
+      setUpgrades(prev => [...prev, data]);
+      return data;
+    } catch (err) {
+      setError(err.message);
+      console.error('Erro ao criar upgrade:', err);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  return {
+    upgrades,
+    loading,
+    error,
+    fetchUpgrades,
+    createUpgrade
+  };
+};
+
+// Hook para gerenciar relacionamento builds-upgrades
+export const useBuildUpgrades = () => {
+  const [buildUpgrades, setBuildUpgrades] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const getBuildUpgrades = useCallback(async (buildId) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await buildsUpgradesAPI.getByBuildId(buildId);
+      setBuildUpgrades(data);
+      return data;
+    } catch (err) {
+      setError(err.message);
+      console.error('Erro ao buscar upgrades da build:', err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  const addUpgradeToBuild = useCallback(async (buildId, upgradeId, quantity = 1) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await buildsUpgradesAPI.addUpgradeToBuild(buildId, upgradeId, quantity);
+      setBuildUpgrades(prev => [...prev, data]);
+      return data;
+    } catch (err) {
+      setError(err.message);
+      console.error('Erro ao adicionar upgrade à build:', err);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  const removeUpgradeFromBuild = useCallback(async (buildId, upgradeId) => {
+    setLoading(true);
+    setError(null);
+    try {
+      await buildsUpgradesAPI.removeUpgradeFromBuild(buildId, upgradeId);
+      setBuildUpgrades(prev => prev.filter(item => !(item.buildId === buildId && item.upgradeId === upgradeId)));
+    } catch (err) {
+      setError(err.message);
+      console.error('Erro ao remover upgrade da build:', err);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  return {
+    buildUpgrades,
+    loading,
+    error,
+    getBuildUpgrades,
+    addUpgradeToBuild,
+    removeUpgradeFromBuild
   };
 };

@@ -170,20 +170,146 @@ export const carsAPI = {
   }
 };
 
-export const simulationAPI = {
-  create: async (simulationData) => {
+// Builds API
+export const buildsAPI = {
+  create: async (buildData) => {
     try {
-      const response = await api.post('/simulations', simulationData);
-      toast.success('Simulação criada com sucesso!');
+      const response = await api.post('/builds', buildData);
+      toast.success('Build criada com sucesso!');
       return response.data;
     } catch (error) {
       throw error;
     }
   },
 
-  getHistory: async () => {
+  getAll: async () => {
     try {
-      const response = await api.get('/simulations/history');
+      const response = await api.get('/builds');
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getById: async (id) => {
+    try {
+      const response = await api.get(`/builds/${id}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  update: async (id, buildData) => {
+    try {
+      const response = await api.put(`/builds/${id}`, buildData);
+      toast.success('Build atualizada com sucesso!');
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  delete: async (id) => {
+    try {
+      await api.delete(`/builds/${id}`);
+      toast.success('Build removida com sucesso!');
+    } catch (error) {
+      throw error;
+    }
+  }
+};
+
+// Upgrades API
+export const upgradesAPI = {
+  getAll: async () => {
+    try {
+      const response = await api.get('/upgrades');
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getById: async (id) => {
+    try {
+      const response = await api.get(`/upgrades/${id}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  create: async (upgradeData) => {
+    try {
+      const response = await api.post('/upgrades', upgradeData);
+      toast.success('Upgrade criado com sucesso!');
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  update: async (id, upgradeData) => {
+    try {
+      const response = await api.put(`/upgrades/${id}`, upgradeData);
+      toast.success('Upgrade atualizado com sucesso!');
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  delete: async (id) => {
+    try {
+      await api.delete(`/upgrades/${id}`);
+      toast.success('Upgrade removido com sucesso!');
+    } catch (error) {
+      throw error;
+    }
+  }
+};
+
+// Builds Upgrades API (relacionamento entre builds e upgrades)
+export const buildsUpgradesAPI = {
+  getByBuildId: async (buildId) => {
+    try {
+      const response = await api.get(`/buildsUpgrades/build/${buildId}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  addUpgradeToBuild: async (buildId, upgradeId, quantity = 1) => {
+    try {
+      const response = await api.post('/buildsUpgrades', {
+        buildId,
+        upgradeId,
+        quantity
+      });
+      toast.success('Upgrade adicionado à build!');
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  removeUpgradeFromBuild: async (buildId, upgradeId) => {
+    try {
+      await api.delete(`/buildsUpgrades/build/${buildId}/upgrade/${upgradeId}`);
+      toast.success('Upgrade removido da build!');
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  updateUpgradeQuantity: async (buildId, upgradeId, quantity) => {
+    try {
+      const response = await api.put(`/buildsUpgrades/build/${buildId}/upgrade/${upgradeId}`, {
+        quantity
+      });
+      toast.success('Quantidade atualizada!');
       return response.data;
     } catch (error) {
       throw error;
