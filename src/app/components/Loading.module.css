@@ -19,15 +19,15 @@
 }
 
 .logoImage {
-  height: 120px;
+  height: 150px;
   width: auto;
-  max-width: 300px;
+  max-width: 350px;
   object-fit: contain;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   filter: 
-    drop-shadow(0 0 20px rgba(255, 0, 0, 0.5))
-    drop-shadow(0 0 40px rgba(255, 0, 0, 0.3))
-    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    drop-shadow(0 0 25px rgba(255, 0, 0, 0.6))
+    drop-shadow(0 0 50px rgba(255, 0, 0, 0.4))
+    drop-shadow(0 5px 10px rgba(0, 0, 0, 0.4));
   animation: logoGlow 2s ease-in-out infinite alternate;
   transition: all 0.3s ease;
 }
@@ -359,8 +359,9 @@
 }
 
 @media (max-width: 480px) {
-  .logo {
-    font-size: 2.5rem;
+  .logoImage {
+    height: 120px;
+    max-width: 280px;
   }
   
   .tagline {

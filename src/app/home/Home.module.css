@@ -1377,14 +1377,14 @@
 }
 
 .footerLogoImage {
-  height: 45px;
+  height: 65px;
   width: auto;
-  max-width: 150px;
+  max-width: 200px;
   object-fit: contain;
   filter: 
-    drop-shadow(0 0 8px rgba(255, 0, 0, 0.3))
-    drop-shadow(0 0 15px rgba(255, 0, 0, 0.2))
-    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    drop-shadow(0 0 12px rgba(255, 0, 0, 0.4))
+    drop-shadow(0 0 25px rgba(255, 0, 0, 0.3))
+    drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center;
 }
@@ -1809,5 +1809,414 @@
   .usersBtn {
     padding: 0.6rem 1rem;
     font-size: 0.8rem;
+  }
+}
+
+/* =============================================
+   i30 SHOWCASE SECTION STYLES
+   ============================================= */
+
+.i30Showcase {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 50%, #1f1f1f 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.i30Showcase::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255, 69, 0, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 123, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 215, 0, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.i30Content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* IMAGEM DO i30 */
+.i30ImageContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.i30ImageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.i30Image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+/* INFORMAÇÕES DO i30 */
+.i30Info {
+  padding: 20px;
+}
+
+.i30Header {
+  margin-bottom: 40px;
+}
+
+.i30Badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff4500 0%, #ff6b35 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 15px rgba(255, 69, 0, 0.3);
+}
+
+.i30Title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0 0 20px 0;
+}
+
+.i30Brand {
+  font-size: 24px;
+  color: #888;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.i30Model {
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff 0%, #ff4500 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.i30Subtitle {
+  font-size: 18px;
+  color: #ccc;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* CARACTERÍSTICAS */
+.i30Features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 40px 0;
+}
+
+.i30Feature {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 69, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.i30Feature:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 69, 0, 0.1);
+  border-color: rgba(255, 69, 0, 0.4);
+  box-shadow: 0 10px 30px rgba(255, 69, 0, 0.2);
+}
+
+.featureIcon {
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ff4500 0%, #ff6b35 100%);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.featureContent h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 5px 0;
+}
+
+.featureContent p {
+  font-size: 14px;
+  color: #aaa;
+  margin: 0;
+}
+
+/* DESCRIÇÃO */
+.i30Description {
+  margin: 40px 0;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 69, 0, 0.1);
+}
+
+.i30Description p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #ddd;
+  margin: 0 0 20px 0;
+}
+
+.i30Description p:last-child {
+  margin-bottom: 0;
+}
+
+.highlight {
+  color: #ff4500;
+  font-weight: 600;
+}
+
+/* BOTÕES DE AÇÃO */
+.i30Actions {
+  display: flex;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.i30PrimaryBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #ff4500 0%, #ff6b35 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  flex: 1;
+  max-width: 250px;
+}
+
+.i30PrimaryBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(255, 69, 0, 0.4);
+}
+
+.btnShine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.i30PrimaryBtn:hover .btnShine {
+  left: 100%;
+}
+
+.i30SecondaryBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background: transparent;
+  color: #ff4500;
+  border: 2px solid #ff4500;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  max-width: 250px;
+}
+
+.i30SecondaryBtn:hover {
+  background: #ff4500;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(255, 69, 0, 0.3);
+}
+
+
+
+/* RESPONSIVIDADE DO i30 */
+@media (max-width: 1200px) {
+  .i30Content {
+    gap: 40px;
+  }
+  
+  .i30Model {
+    font-size: 40px;
+  }
+  
+  .i30Features {
+    gap: 15px;
+  }
+  
+  .i30Feature {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 968px) {
+  .i30Showcase {
+    padding: 60px 20px;
+  }
+  
+  .i30Content {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    text-align: center;
+  }
+  
+  .i30ImageWrapper {
+    max-width: 400px;
+    height: 250px;
+  }
+  
+  .i30Model {
+    font-size: 36px;
+  }
+  
+  .i30Features {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .i30Actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .i30PrimaryBtn,
+  .i30SecondaryBtn {
+    max-width: 300px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .i30Showcase {
+    padding: 40px 15px;
+  }
+  
+  .i30Info {
+    padding: 10px;
+  }
+  
+  .i30ImageWrapper {
+    max-width: 300px;
+    height: 200px;
+  }
+  
+  .i30Brand {
+    font-size: 18px;
+  }
+  
+  .i30Model {
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+  
+  .i30Subtitle {
+    font-size: 16px;
+  }
+  
+  .i30Description {
+    padding: 20px;
+  }
+  
+  .i30Description p {
+    font-size: 14px;
+  }
+  
+  .i30Feature {
+    padding: 15px;
+  }
+  
+  .featureIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  .featureContent h4 {
+    font-size: 14px;
+  }
+  
+  .featureContent p {
+    font-size: 12px;
+  }
+  
+  .i30PrimaryBtn,
+  .i30SecondaryBtn {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .i30Badge {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+  
+  .i30Model {
+    font-size: 24px;
+  }
+  
+  .i30Actions {
+    gap: 15px;
+  }
+  
+  .i30PrimaryBtn,
+  .i30SecondaryBtn {
+    padding: 10px 20px;
+    font-size: 12px;
+    gap: 8px;
   }
 }
