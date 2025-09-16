@@ -306,11 +306,11 @@ export default function Simulation({ car, navigateTo }) {
           </div>
         </div>
 
-        {savedBuilds.length > 0 && (
+        {simulations.length > 0 && (
           <section className={styles.savedBuilds}>
             <h3 className={styles.sectionTitle}>Builds Salvos</h3>
             <div className={styles.buildsGrid}>
-              {savedBuilds.map(build => (
+              {simulations.map(build => (
                 <div key={build.id} className={styles.buildCard}>
                   <div className={styles.buildHeader}>
                     <h4>{build.name}</h4>

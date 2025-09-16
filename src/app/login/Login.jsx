@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from 'react';
-import { toast } from 'react-toastify';
-import { authAPI } from '../services/api';
+import { useAuth } from '../hooks/useBackend';
 import styles from './Login.module.css';
 
 export default function Login({ navigateTo, onLogin }) {
+  const { login, register } = useAuth();
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -78,7 +78,7 @@ export default function Login({ navigateTo, onLogin }) {
     setIsLoading(true);
 
     try {
-      let userData;
+      let success;
       
       if (isSignUp) {
         // Registro
@@ -88,61 +88,25 @@ export default function Login({ navigateTo, onLogin }) {
           password: formData.password
         };
         
-        // Simulação de registro bem-sucedido
-        userData = {
-          id: Date.now().toString(),
-          name: registerData.name,
-          email: registerData.email,
-          avatar: '👤',
-          memberSince: new Date().toLocaleDateString('pt-BR')
+        success = await register(registerData);
+      } else {
+        // Login
+        const loginData = {
+          email: formData.email,
+          password: formData.password
         };
         
-        toast.success(`Conta criada com sucesso! Bem-vindo, ${userData.name}! 🎉`);
-      } else {
-        // Login - verificar credenciais específicas
-        console.log('Tentativa de login:', { email: formData.email, password: formData.password });
-        
-        // Verificar credenciais (removendo espaços em branco)
-        const emailTrimmed = formData.email.trim().toLowerCase();
-        const passwordTrimmed = formData.password.trim();
-        
-        if (emailTrimmed === 'leonardopedrodeoliveira07@gmail.com' && passwordTrimmed === '74185201') {
-          // Credenciais do perfil específico
-          userData = {
-            id: 'leonardo-profile',
-            name: 'Leonardo Pedro de Oliveira',
-            email: 'leonardopedrodeoliveira07@gmail.com',
-            avatar: '🏎️',
-            memberSince: '01/01/2024',
-            profile: 'admin',
-            builds: [],
-            favoritesCars: []
-          };
-          
-          // Salvar dados do usuário no localStorage
-          localStorage.setItem('authToken', 'leonardo-auth-token-2025');
-          localStorage.setItem('userProfile', JSON.stringify(userData));
-          
-          toast.success(`Bem-vindo de volta, ${userData.name}! 🏎️`);
-          
-          // Chamar a função onLogin
-          onLogin(userData);
-          setIsLoading(false);
-          return;
-        } else {
-          // Debug: mostrar o que foi digitado vs o que é esperado
-          console.log('Login falhou:', {
-            emailDigitado: emailTrimmed,
-            emailEsperado: 'leonardopedrodeoliveira07@gmail.com',
-            senhaDigitada: passwordTrimmed,
-            senhaEsperada: '74185201',
-            emailMatch: emailTrimmed === 'leonardopedrodeoliveira07@gmail.com',
-            passwordMatch: passwordTrimmed === '74185201'
-          });
-          
-          toast.error('Email ou senha incorretos. Verifique as credenciais! 🔐');
-          setIsLoading(false);
-          return;
+        success = await login(loginData);
+      }
+      
+      if (success) {
+        // Login ou registro bem-sucedido
+        if (onLogin) {
+          onLogin();
+        }
+        // Navegar para home ou dashboard
+        if (navigateTo) {
+          navigateTo('home');
         }
       }
 
