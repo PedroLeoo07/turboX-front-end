@@ -27,29 +27,34 @@
   margin-bottom: 40px;
 }
 
-.logo {
-  font-size: 3rem;
-  font-weight: bold;
+.logoContainer {
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 25px;
   display: inline-block;
 }
 
-.logo:hover {
-  transform: scale(1.05);
+.logoContainer:hover {
+  transform: scale(1.05) translateY(-2px);
 }
 
-.turbo {
-  color: #ff0000;
-  text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+.logoImage {
+  height: 90px;
+  width: auto;
+  max-width: 280px;
+  object-fit: contain;
+  filter: 
+    drop-shadow(0 0 20px rgba(255, 0, 0, 0.6))
+    drop-shadow(0 0 40px rgba(255, 0, 0, 0.4))
+    drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.x {
-  color: #ffffff;
-  text-shadow: 0 0 20px rgba(255, 51, 51, 0.5);
-  animation: rotate 3s infinite linear;
-  display: inline-block;
+.logoContainer:hover .logoImage {
+  filter: 
+    drop-shadow(0 0 25px rgba(255, 0, 0, 0.8))
+    drop-shadow(0 0 50px rgba(255, 0, 0, 0.5))
+    drop-shadow(0 8px 20px rgba(0, 0, 0, 0.6));
 }
 
 .title {
@@ -377,6 +382,7 @@
   background: rgba(255, 0, 0, 0.1);
   border: 1px solid rgba(255, 0, 0, 0.3);
   border-radius: 15px;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
@@ -474,6 +480,11 @@
   
   .loginBox {
     padding: 25px 20px;
+  }
+
+  .logoImage {
+    height: 70px;
+    max-width: 220px;
   }
   
   .title {

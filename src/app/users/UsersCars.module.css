@@ -40,14 +40,14 @@
 }
 
 .headerLogo {
-  height: 80px;
+  height: 100px;
   width: auto;
-  max-width: 250px;
+  max-width: 300px;
   object-fit: contain;
   filter: 
-    drop-shadow(0 0 15px rgba(255, 0, 0, 0.4))
-    drop-shadow(0 0 30px rgba(255, 0, 0, 0.2))
-    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    drop-shadow(0 0 20px rgba(255, 0, 0, 0.5))
+    drop-shadow(0 0 40px rgba(255, 0, 0, 0.3))
+    drop-shadow(0 5px 10px rgba(0, 0, 0, 0.4));
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -519,8 +519,8 @@
   }
   
   .headerLogo {
-    height: 60px;
-    max-width: 200px;
+    height: 80px;
+    max-width: 250px;
   }
   
   .title {

@@ -202,9 +202,12 @@ export default function Login({ navigateTo, onLogin }) {
     <div className={styles.loginContainer}>
       <div className={styles.loginBox}>
         <div className={styles.header}>
-          <div className={styles.logo} onClick={() => navigateTo('home')}>
-            <span className={styles.turbo}>TURBO</span>
-            <span className={styles.x}>X</span>
+          <div className={styles.logoContainer} onClick={() => navigateTo('home')}>
+            <img 
+              src="/images/logo.png" 
+              alt="TurboX - Simulador de Preparações Automotivas" 
+              className={styles.logoImage}
+            />
           </div>
           <h1 className={styles.title}>
             {isSignUp ? 'Criar Conta' : 'Entrar'}

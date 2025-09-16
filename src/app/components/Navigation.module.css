@@ -24,15 +24,15 @@
 }
 
 .logoImage {
-  height: 60px;
+  height: 80px;
   width: auto;
   filter: 
-    drop-shadow(0 0 10px rgba(255, 0, 0, 0.4))
-    drop-shadow(0 0 20px rgba(255, 0, 0, 0.2))
-    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    drop-shadow(0 0 15px rgba(255, 0, 0, 0.5))
+    drop-shadow(0 0 30px rgba(255, 0, 0, 0.3))
+    drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center;
-  max-width: 180px;
+  max-width: 220px;
   object-fit: contain;
 }
 
@@ -277,8 +277,8 @@
   }
   
   .logoImage {
-    height: 45px;
-    max-width: 140px;
+    height: 60px;
+    max-width: 180px;
   }
   
   .mobileMenuButton {

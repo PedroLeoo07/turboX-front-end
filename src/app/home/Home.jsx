@@ -56,7 +56,7 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
                 onClick={() => navigateTo('carList')}
                 className={styles.secondaryBtn}
               >
-                <span>🏎️</span>
+                <span>🚗</span>
                 Explorar Carros
               </button>
             </div>
@@ -81,15 +81,7 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
           {/* LADO DIREITO - VISUAL */}
           <div className={styles.heroRight}>
             <div className={styles.carDisplay}>
-              <div className={styles.carIcon}>🏎️</div>
-              <div className={styles.speedLines}></div>
-              <div className={styles.particles}>
-                <span className={styles.particle1}>✨</span>
-                <span className={styles.particle2}>⭐</span>
-                <span className={styles.particle3}>💫</span>
-                <span className={styles.particle4}>✨</span>
-                <span className={styles.particle5}>🔥</span>
-              </div>
+              <img src="/carro/golf.png" alt="Golf" className={styles.carIcon} />
             </div>
             
             {/* PAINEL DE PERFORMANCE */}
@@ -137,7 +129,7 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
           <div className={styles.featuresGrid}>
             <div className={styles.featureCard} onClick={() => navigateTo('carList')}>
               <div className={styles.cardTop}>
-                <div className={styles.featureIcon}>🏎️</div>
+                <div className={styles.featureIcon}>🚗</div>
                 <div className={styles.featureBadge}>50+ Modelos</div>
               </div>
               <h3 className={styles.featureTitle}>Catálogo Completo</h3>
@@ -395,6 +387,109 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
         </div>
       </section>
 
+      {/* i30 SHOWCASE SECTION */}
+      <section className={styles.i30Showcase}>
+        <div className={styles.container}>
+          <div className={styles.i30Content}>
+            {/* LADO ESQUERDO - IMAGEM */}
+            <div className={styles.i30ImageContainer}>
+              <div className={styles.i30ImageWrapper}>
+                <img 
+                  src="/carro/i30.png" 
+                  alt="Hyundai i30 - Carro em Destaque"
+                  className={styles.i30Image}
+                />
+              </div>
+            </div>
+
+            {/* LADO DIREITO - INFORMAÇÕES */}
+            <div className={styles.i30Info}>
+              <div className={styles.i30Header}>
+                <h2 className={styles.i30Title}>
+                  <span className={styles.i30Brand}>Hyundai</span>
+                  <span className={styles.i30Model}>i30</span>
+                </h2>
+                <p className={styles.i30Subtitle}>
+                  O hatchback esportivo que combina design europeu, 
+                  tecnologia avançada e performance excepcional.
+                </p>
+              </div>
+
+              <div className={styles.i30Features}>
+                <div className={styles.i30Feature}>
+                  <div className={styles.featureIcon}>🚀</div>
+                  <div className={styles.featureContent}>
+                    <h4>Motor Turbo</h4>
+                    <p>1.0 T-GDI com até 120 cv de potência</p>
+                  </div>
+                </div>
+
+                <div className={styles.i30Feature}>
+                  <div className={styles.featureIcon}>⚡</div>
+                  <div className={styles.featureContent}>
+                    <h4>Performance</h4>
+                    <p>0-100 km/h em 11.2 segundos</p>
+                  </div>
+                </div>
+
+                <div className={styles.i30Feature}>
+                  <div className={styles.featureIcon}>💨</div>
+                  <div className={styles.featureContent}>
+                    <h4>Velocidade Máxima</h4>
+                    <p>185 km/h de velocidade final</p>
+                  </div>
+                </div>
+
+                <div className={styles.i30Feature}>
+                  <div className={styles.featureIcon}>🎯</div>
+                  <div className={styles.featureContent}>
+                    <h4>Eficiência</h4>
+                    <p>13.7 km/l na cidade, 15.2 km/l na estrada</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.i30Description}>
+                <p>
+                  O <strong>Hyundai i30</strong> representa a perfeita harmonia entre 
+                  <span className={styles.highlight}> design sofisticado</span> e 
+                  <span className={styles.highlight}> tecnologia de ponta</span>. 
+                  Com seu motor turbo T-GDI, oferece uma experiência de condução 
+                  dinâmica e econômica, ideal para quem busca performance sem 
+                  abrir mão do conforto e da praticidade no dia a dia.
+                </p>
+                
+                <p>
+                  Equipado com sistema de infoentretenimento avançado, 
+                  controles de estabilidade e assistência ao condutor, 
+                  o i30 está pronto para ser seu próximo projeto de preparação 
+                  no <strong>TurboX</strong>.
+                </p>
+              </div>
+
+              <div className={styles.i30Actions}>
+                <button 
+                  onClick={() => navigateTo('simulation', null, { car: 'Hyundai i30' })}
+                  className={styles.i30PrimaryBtn}
+                >
+                  <span>🔧</span>
+                  Simular Preparação
+                  <div className={styles.btnShine}></div>
+                </button>
+                
+                <button 
+                  onClick={() => navigateTo('car', { brand: 'Hyundai', model: 'i30' })}
+                  className={styles.i30SecondaryBtn}
+                >
+                  <span>📋</span>
+                  Ver Detalhes Completos
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* USERS SECTION */}
       <section className={styles.users}>
         <div className={styles.container}>
@@ -550,7 +645,7 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
               onClick={() => navigateTo('carList')}
               className={styles.ctaSecondary}
             >
-              <span>🏎️</span>
+              <span>🚗</span>
               Ver Carros
             </button>
           </div>
@@ -636,7 +731,7 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
                 especificações e modificações.
               </p>
               <div className={styles.storagePreview}>
-                <div className={styles.previewCar}>🏎️</div>
+                <div className={styles.previewCar}>🚗</div>
                 <div className={styles.previewVs}>VS</div>
                 <div className={styles.previewCar}>🚗</div>
               </div>
