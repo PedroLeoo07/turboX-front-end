@@ -403,7 +403,10 @@ export const useBackendStatus = () => {
       }
     } catch (err) {
       setIsOnline(false);
-      console.warn('Backend não está disponível:', err.message);
+      // Log mais silencioso para evitar spam no console
+      if (process.env.NODE_ENV === 'development') {
+        console.debug('Backend health check: offline');
+      }
     } finally {
       setLoading(false);
     }
@@ -412,8 +415,8 @@ export const useBackendStatus = () => {
   useEffect(() => {
     checkBackendStatus();
     
-    // Verificar status a cada 30 segundos
-    const interval = setInterval(checkBackendStatus, 30000);
+    // Verificar status a cada 2 minutos (reduzido de 30 segundos)
+    const interval = setInterval(checkBackendStatus, 120000);
     
     return () => clearInterval(interval);
   }, [checkBackendStatus]);

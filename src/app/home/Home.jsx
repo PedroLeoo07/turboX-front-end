@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
-import BrandGrid from '../components/BrandGrid';
 import { useCars, useUsers } from '../hooks/useBackend';
 import styles from './Home.module.css';
 
@@ -120,22 +119,6 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* BRANDS SECTION */}
-      <section className={styles.brands}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>
-              <span className={styles.titleIcon}>🏢</span>
-              Nossas Marcas
-            </h2>
-            <p className={styles.sectionSubtitle}>
-              Escolha sua marca favorita e explore nossa coleção completa
-            </p>
-          </div>
-          <BrandGrid />
         </div>
       </section>
 
