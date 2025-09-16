@@ -18,6 +18,11 @@ export default function Simulation({ car, navigateTo }) {
   });
   const [buildName, setBuildName] = useState('');
 
+  // Carregar simulações do usuário
+  useEffect(() => {
+    fetchUserSimulations();
+  }, [fetchUserSimulations]);
+
   // Configurações base do carro (usando dados mock se não houver carro selecionado)
   const baseCar = car || {
     brand: 'Nissan',
