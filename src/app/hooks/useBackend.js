@@ -18,9 +18,21 @@ export const useCars = () => {
     try {
       const data = await carsAPI.getAll(filters);
       setCars(data);
+      console.log('✅ Carros carregados com sucesso:', data.length);
     } catch (err) {
-      setError(err.message);
-      console.error('Erro ao buscar carros:', err);
+      console.error('❌ Erro ao buscar carros:', err);
+      // Em caso de erro de rede, definir carros padrão
+      if (err.code === 'NETWORK_ERROR' || err.message === 'Network Error' || !err.response) {
+        const defaultCars = [
+          { id: 1, brand: 'Volkswagen', model: 'Golf GTI', year: 2023, price: 180000, category: 'Hatch' },
+          { id: 2, brand: 'BMW', model: 'M3', year: 2023, price: 450000, category: 'Sedan' },
+          { id: 3, brand: 'Ford', model: 'Mustang GT', year: 2023, price: 350000, category: 'Coupe' }
+        ];
+        setCars(defaultCars);
+        console.log('🔄 Usando carros padrão como fallback');
+      } else {
+        setError(err.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -30,8 +42,19 @@ export const useCars = () => {
     try {
       const data = await carsAPI.getBrands();
       setBrands(data);
+      console.log('✅ Marcas carregadas com sucesso:', data.length);
     } catch (err) {
-      console.error('Erro ao buscar marcas:', err);
+      console.error('❌ Erro ao buscar marcas:', err);
+      // Definir marcas padrão em caso de erro
+      const defaultBrands = [
+        { name: 'Volkswagen', logo: '/logos/volks.png', description: 'Tradição alemã em engenharia' },
+        { name: 'BMW', logo: '/logos/BMW.png', description: 'Prazer em dirigir' },
+        { name: 'Ford', logo: '/logos/Ford.png', description: 'Inovação americana' },
+        { name: 'Toyota', logo: '/logos/toyot.png', description: 'Confiabilidade japonesa' },
+        { name: 'Honda', logo: '/logos/honda.svg', description: 'Engenharia japonesa premium' }
+      ];
+      setBrands(defaultBrands);
+      console.log('🔄 Usando marcas padrão como fallback');
     }
   }, []);
 
@@ -268,8 +291,10 @@ export const useAuth = () => {
       const response = await authAPI.login(credentials);
       const { user, token } = response;
       
-      localStorage.setItem('authToken', token);
-      localStorage.setItem('user', JSON.stringify(user));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('authToken', token);
+        localStorage.setItem('user', JSON.stringify(user));
+      }
       
       setUser(user);
       setIsAuthenticated(true);
@@ -289,8 +314,10 @@ export const useAuth = () => {
       const response = await authAPI.register(userData);
       const { user, token } = response;
       
-      localStorage.setItem('authToken', token);
-      localStorage.setItem('user', JSON.stringify(user));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('authToken', token);
+        localStorage.setItem('user', JSON.stringify(user));
+      }
       
       setUser(user);
       setIsAuthenticated(true);
@@ -308,8 +335,10 @@ export const useAuth = () => {
     setLoading(true);
     try {
       await authAPI.logout();
-      localStorage.removeItem('authToken');
-      localStorage.removeItem('user');
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('user');
+      }
       setUser(null);
       setIsAuthenticated(false);
     } catch (err) {
@@ -320,17 +349,19 @@ export const useAuth = () => {
   }, []);
 
   const checkAuth = useCallback(() => {
-    const token = localStorage.getItem('authToken');
-    const userData = localStorage.getItem('user');
-    
-    if (token && userData) {
-      try {
-        const parsedUser = JSON.parse(userData);
-        setUser(parsedUser);
-        setIsAuthenticated(true);
-      } catch (err) {
-        console.error('Erro ao parsear dados do usuário:', err);
-        logout();
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('authToken');
+      const userData = localStorage.getItem('user');
+      
+      if (token && userData) {
+        try {
+          const parsedUser = JSON.parse(userData);
+          setUser(parsedUser);
+          setIsAuthenticated(true);
+        } catch (err) {
+          console.error('Erro ao parsear dados do usuário:', err);
+          logout();
+        }
       }
     }
   }, [logout]);

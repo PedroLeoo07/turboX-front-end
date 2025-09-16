@@ -16,10 +16,12 @@ console.log('🚀 API Base URL:', process.env.NEXT_PUBLIC_API_URL || 'http://loc
 // Interceptor para requisições
 api.interceptors.request.use(
   (config) => {
-    // Adicionar token de autenticação se existir
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    // Verificar se está no client-side antes de acessar localStorage
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('authToken');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
     }
     return config;
   },
@@ -39,8 +41,10 @@ api.interceptors.response.use(
     
     if (error.response?.status === 401) {
       toast.error('Sessão expirada. Faça login novamente.');
-      localStorage.removeItem('authToken');
-      window.location.href = '/login';
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('authToken');
+        window.location.href = '/login';
+      }
     } else if (error.response?.status >= 500) {
       toast.error('Erro interno do servidor. Tente novamente mais tarde.');
     } else {
@@ -154,6 +158,27 @@ export const carsAPI = {
       return response.data;
     } catch (error) {
       console.error('❌ Cars API Error:', error);
+      
+      // Fallback para dados estáticos quando há Network Error
+      if (error.code === 'NETWORK_ERROR' || error.message === 'Network Error' || !error.response) {
+        console.log('🔄 Backend indisponível, usando carros fallback...');
+        const fallbackCars = [
+          { id: 1, brand: 'Volkswagen', model: 'Golf GTI', year: 2023, price: 180000, category: 'Hatch' },
+          { id: 2, brand: 'BMW', model: 'M3', year: 2023, price: 450000, category: 'Sedan' },
+          { id: 3, brand: 'Ford', model: 'Mustang GT', year: 2023, price: 350000, category: 'Coupe' },
+          { id: 4, brand: 'Toyota', model: 'Supra', year: 2023, price: 400000, category: 'Coupe' },
+          { id: 5, brand: 'Honda', model: 'Civic Type R', year: 2023, price: 320000, category: 'Hatch' }
+        ];
+        
+        // Aplicar filtros nos dados fallback se necessário
+        let filteredCars = fallbackCars;
+        if (filters.brand) {
+          filteredCars = filteredCars.filter(car => car.brand.toLowerCase() === filters.brand.toLowerCase());
+        }
+        
+        return filteredCars;
+      }
+      
       throw error;
     }
   },
@@ -175,6 +200,30 @@ export const carsAPI = {
       return response.data;
     } catch (error) {
       console.error('❌ Marcas API Error:', error);
+      
+      // Fallback para dados estáticos quando há Network Error
+      if (error.code === 'NETWORK_ERROR' || error.message === 'Network Error' || !error.response) {
+        console.log('🔄 Backend indisponível, usando marcas fallback...');
+        const fallbackBrands = [
+          { name: 'Volkswagen', logo: '/logos/volks.png', description: 'Tradição alemã em engenharia' },
+          { name: 'BMW', logo: '/logos/BMW.png', description: 'Prazer em dirigir' },
+          { name: 'Ford', logo: '/logos/Ford.png', description: 'Inovação americana' },
+          { name: 'Hyundai', logo: '/logos/hyundai.png', description: 'Tecnologia sul-coreana' },
+          { name: 'Toyota', logo: '/logos/toyot.png', description: 'Confiabilidade japonesa' },
+          { name: 'Mitsubishi', logo: '/logos/mitsubishi.svg', description: 'Performance e durabilidade' },
+          { name: 'Chevrolet', logo: '/logos/chevrolet.png', description: 'Força americana' },
+          { name: 'Honda', logo: '/logos/honda.svg', description: 'Engenharia japonesa premium' },
+          { name: 'Mercedes', logo: '/logos/mercedes.png', description: 'Luxo alemão incomparável' },
+          { name: 'Audi', logo: '/logos/audi.png', description: 'Vorsprung durch Technik' },
+          { name: 'Dodge', logo: '/logos/dodge.png', description: 'Muscle cars americanos' },
+          { name: 'Renault', logo: '/logos/renault.png', description: 'Elegância francesa' },
+          { name: 'Subaru', logo: '/logos/subaru.png', description: 'Confiança e aventura' },
+          { name: 'Mazda', logo: '/logos/mazda.png', description: 'Zoom-Zoom japonês' },
+          { name: 'Porsche', logo: '/logos/porsche.svg', description: 'Ícone alemão de performance' }
+        ];
+        return fallbackBrands;
+      }
+      
       throw error;
     }
   },

@@ -8,6 +8,7 @@ import CarDetails from './car/CarDetails';
 import About from './about/About';
 import Simulation from './Simulation/Simulation';
 import Login from './login/Login';
+import Test from './test/Test';
 import styles from './page.module.css';
 
 export default function Main() {
