@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
+import { useSimulations } from '../hooks/useBackend';
 import styles from './Simulation.module.css';
 
 export default function Simulation({ car, navigateTo }) {
+  const { simulations, loading, createSimulation, fetchUserSimulations } = useSimulations();
   const [selectedStage, setSelectedStage] = useState(0);
   const [upgrades, setUpgrades] = useState({
     intake: false,
@@ -14,7 +16,6 @@ export default function Simulation({ car, navigateTo }) {
     ecu: false,
     fuel: false
   });
-  const [savedBuilds, setSavedBuilds] = useState([]);
   const [buildName, setBuildName] = useState('');
 
   // Configurações base do carro (usando dados mock se não houver carro selecionado)
@@ -73,25 +74,26 @@ export default function Simulation({ car, navigateTo }) {
     }));
   };
 
-  const handleSaveBuild = () => {
+  const handleSaveBuild = async () => {
     if (!buildName.trim()) {
       alert('Por favor, digite um nome para a build!');
       return;
     }
 
-    const newBuild = {
-      id: Date.now(),
-      name: buildName,
-      car: `${baseCar.brand} ${baseCar.model}`,
+    const simulationData = {
+      carId: baseCar.id || 1,
+      carModel: `${baseCar.brand} ${baseCar.model}`,
+      buildName: buildName,
       stage: selectedStage,
-      upgrades: { ...upgrades },
-      performance: { ...currentPerformance },
-      date: new Date().toLocaleDateString()
+      upgrades: upgrades,
+      performance: currentPerformance
     };
 
-    setSavedBuilds(prev => [...prev, newBuild]);
-    setBuildName('');
-    alert('Build salva com sucesso!');
+    const success = await createSimulation(simulationData);
+    if (success) {
+      setBuildName('');
+      alert('Build salva com sucesso!');
+    }
   };
 
   const loadBuild = (build) => {

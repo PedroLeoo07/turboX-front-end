@@ -10,7 +10,7 @@ export const metadata = {
     author: "TurboX Team",
     viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
     icons: {
-        icon: "/icons/icon.png",
+        icon: "/icons/turboX.png",
         apple: "/icons/icon.png",
     },
     openGraph: {

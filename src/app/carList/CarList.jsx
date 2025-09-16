@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
-import { carsAPI } from '../services/api';
+import { useCars } from '../hooks/useBackend';
 import styles from './CarList.module.css';
 
 // Base de dados dos carros expandida
@@ -300,119 +299,58 @@ const carsDatabase = [
 ];
 
 export default function CarList({ navigateTo, filterOptions = {} }) {
-  const [cars, setCars] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { cars, brands, loading, fetchCars, fetchBrands } = useCars();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBrand, setSelectedBrand] = useState(filterOptions.brand || '');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [sortBy, setSortBy] = useState('power');
   const [viewMode, setViewMode] = useState('grid'); // 'grid' ou 'list'
   const [priceRange, setPriceRange] = useState([0, 3000000]);
-  const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
 
   // Carregar dados iniciais
   useEffect(() => {
-    loadInitialData();
-  }, []);
+    fetchCars();
+    fetchBrands();
+  }, [fetchCars, fetchBrands]);
 
   // Aplicar filtros quando filterOptions mudar
   useEffect(() => {
     if (filterOptions.brand) {
       setSelectedBrand(filterOptions.brand);
-      toast.info(`Filtrando por marca: ${filterOptions.brand} 🏷️`);
     }
   }, [filterOptions]);
 
-  // Recarregar carros quando filtros mudarem (com debounce para busca)
-  useEffect(() => {
-    if (!loading) {
-      const timeoutId = setTimeout(() => {
-        loadCars();
-      }, searchTerm ? 500 : 0); // Debounce de 500ms para busca, imediato para outros filtros
-
-      return () => clearTimeout(timeoutId);
+  // Filtrar carros localmente
+  const filteredCars = cars.filter(car => {
+    return (
+      (!searchTerm || car.model.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                     car.brand.toLowerCase().includes(searchTerm.toLowerCase())) &&
+      (!selectedBrand || car.brand === selectedBrand) &&
+      (!selectedCategory || car.category === selectedCategory) &&
+      (car.price >= priceRange[0] && car.price <= priceRange[1])
+    );
+  }).sort((a, b) => {
+    switch (sortBy) {
+      case 'price': return a.price - b.price;
+      case 'year': return b.year - a.year;
+      case 'power': return b.power - a.power;
+      case 'name': return a.model.localeCompare(b.model);
+      default: return b.power - a.power;
     }
-  }, [selectedBrand, selectedCategory, sortBy, searchTerm, loading]);
-
-  const loadInitialData = async () => {
-    try {
-      setLoading(true);
-      
-      // Carregar todos os dados em paralelo
-      const [carsData, brandsData, categoriesData] = await Promise.all([
-        carsAPI.getAll(),
-        carsAPI.getBrands(),
-        carsAPI.getCategories()
-      ]);
-      
-      setCars(carsData);
-      setBrands(brandsData);
-      setCategories(categoriesData);
-      
-      toast.success(`${carsData.length} carros carregados com sucesso! 🏎️`);
-    } catch (error) {
-      console.error('Erro ao carregar dados iniciais:', error);
-      toast.error('Erro ao carregar dados. Usando dados offline.');
-      
-      // Fallback para dados estáticos se a API falhar
-      setCars(carsDatabase);
-      setBrands([...new Set(carsDatabase.map(car => car.brand))].sort());
-      setCategories([...new Set(carsDatabase.map(car => car.category))].sort());
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const loadCars = async () => {
-    try {
-      const filters = {
-        brand: selectedBrand,
-        category: selectedCategory,
-        search: searchTerm,
-        sortBy: sortBy,
-        minPrice: priceRange[0],
-        maxPrice: priceRange[1]
-      };
-
-      // Remover filtros vazios
-      Object.keys(filters).forEach(key => {
-        if (!filters[key] && filters[key] !== 0) {
-          delete filters[key];
-        }
-      });
-
-      const carsData = await carsAPI.getAll(filters);
-      setCars(carsData);
-    } catch (error) {
-      console.error('Erro ao carregar carros:', error);
-      toast.error('Erro ao aplicar filtros');
-    }
-  };
-
-  // Os carros já vêm filtrados e ordenados da API
-  const filteredCars = cars;
+  });
 
   const handleCarSelect = (car) => {
     toast.success(`${car.brand} ${car.model} selecionado! 🎯`);
     navigateTo('car', car);
   };
 
-  const clearFilters = async () => {
+  const clearFilters = () => {
     setSearchTerm('');
     setSelectedBrand('');
     setSelectedCategory('');
     setPriceRange([0, 3000000]);
     setSortBy('power');
-    toast.info('Filtros limpos! 🧹');
-    
-    // Recarregar todos os carros
-    try {
-      const carsData = await carsAPI.getAll();
-      setCars(carsData);
-    } catch (error) {
-      console.error('Erro ao limpar filtros:', error);
-    }
   };
 
   // Resetar filtros quando sair da página

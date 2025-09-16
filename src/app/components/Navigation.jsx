@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import BackendStatus from './BackendStatus';
 import styles from './Navigation.module.css';
 
 export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, onLogout }) {
@@ -61,6 +62,8 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
       </div>
 
       <div className={styles.userSection}>
+        <BackendStatus />
+        
         {isLoggedIn && user ? (
           <div className={styles.userInfo}>
             <span className={styles.userIcon}>👨‍💻</span>

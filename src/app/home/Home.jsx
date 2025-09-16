@@ -3,9 +3,14 @@
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
+import BrandGrid from '../components/BrandGrid';
+import { useCars, useUsers } from '../hooks/useBackend';
 import styles from './Home.module.css';
 
 export default function Home({ navigateTo, isLoggedIn, user }) {
+  const { brands, fetchCars } = useCars();
+  const { stats, fetchUsers } = useUsers();
+
   useEffect(() => {
     if (isLoggedIn && user) {
       toast.success(`Bem-vindo de volta, ${user.name}! 🏎️`, {
@@ -18,6 +23,11 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
       });
     }
   }, [isLoggedIn, user]);
+
+  useEffect(() => {
+    // Carregar dados iniciais do backend
+    fetchUsers();
+  }, [fetchUsers]);
 
   return (
     <div className={styles.container}>
@@ -110,6 +120,22 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* BRANDS SECTION */}
+      <section className={styles.brands}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              <span className={styles.titleIcon}>🏢</span>
+              Nossas Marcas
+            </h2>
+            <p className={styles.sectionSubtitle}>
+              Escolha sua marca favorita e explore nossa coleção completa
+            </p>
+          </div>
+          <BrandGrid />
         </div>
       </section>
 
@@ -390,6 +416,21 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
       {/* i30 SHOWCASE SECTION */}
       <section className={styles.i30Showcase}>
         <div className={styles.container}>
+          
+          {/* HEADER DA SEÇÃO */}
+          <div className={styles.i30SectionHeader}>
+            <div className={styles.i30Badge}>
+              <span className={styles.badgeIcon}>⭐</span>
+              <span>CARRO EM DESTAQUE</span>
+              <span className={styles.badgeIcon}>⭐</span>
+            </div>
+            <h2 className={styles.i30SectionTitle}>Conheça o Futuro da Performance</h2>
+            <p className={styles.i30SectionSubtitle}>
+              Descubra por que o Hyundai i30 é a escolha perfeita para entusiastas que buscam 
+              a combinação ideal entre tecnologia, design e performance.
+            </p>
+          </div>
+
           <div className={styles.i30Content}>
             {/* LADO ESQUERDO - IMAGEM */}
             <div className={styles.i30ImageContainer}>
@@ -399,6 +440,9 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
                   alt="Hyundai i30 - Carro em Destaque"
                   className={styles.i30Image}
                 />
+                <div className={styles.i30Spotlight}></div>
+                <div className={styles.i30Glow}></div>
+                <div className={styles.i30Reflection}></div>
               </div>
             </div>
 
@@ -508,7 +552,9 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
               <div className={styles.statItem}>
                 <div className={styles.statIcon}>👨‍💻</div>
                 <div className={styles.statInfo}>
-                  <div className={styles.statNumber}>1.2k+</div>
+                  <div className={styles.statNumber}>
+                    {stats.totalUsers ? `${stats.totalUsers}` : '0'}
+                  </div>
                   <div className={styles.statLabel}>Usuários Ativos</div>
                 </div>
               </div>
@@ -516,7 +562,9 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
               <div className={styles.statItem}>
                 <div className={styles.statIcon}>🚗</div>
                 <div className={styles.statInfo}>
-                  <div className={styles.statNumber}>5.8k+</div>
+                  <div className={styles.statNumber}>
+                    {stats.totalCars ? `${stats.totalCars}` : '0'}
+                  </div>
                   <div className={styles.statLabel}>Carros Cadastrados</div>
                 </div>
               </div>
@@ -524,7 +572,9 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
               <div className={styles.statItem}>
                 <div className={styles.statIcon}>⚙️</div>
                 <div className={styles.statInfo}>
-                  <div className={styles.statNumber}>15k+</div>
+                  <div className={styles.statNumber}>
+                    {stats.totalModifications ? `${stats.totalModifications}` : '0'}
+                  </div>
                   <div className={styles.statLabel}>Modificações Feitas</div>
                 </div>
               </div>

@@ -1815,10 +1815,12 @@
    ============================================= */
 
 .i30Showcase {
-  padding: 100px 20px;
-  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 50%, #1f1f1f 100%);
+  padding: 120px 20px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0d0d0d 100%);
   position: relative;
   overflow: hidden;
+  border-top: 3px solid #ff4500;
+  border-bottom: 3px solid #ff4500;
 }
 
 .i30Showcase::before {
@@ -1836,10 +1838,63 @@
   z-index: 1;
 }
 
+/* HEADER DA SEÇÃO i30 */
+.i30SectionHeader {
+  text-align: center;
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 3;
+}
+
+.i30Badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #ff4500 0%, #ff6b35 50%, #ff0000 100%);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  box-shadow: 
+    0 8px 25px rgba(255, 69, 0, 0.4),
+    0 0 50px rgba(255, 69, 0, 0.2);
+  animation: badgePulse 3s ease-in-out infinite;
+}
+
+.badgeIcon {
+  font-size: 16px;
+  animation: iconSpin 4s linear infinite;
+}
+
+.i30SectionTitle {
+  font-size: 56px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ffffff 0%, #ff4500 50%, #ff0000 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 20px 0;
+  text-shadow: 0 5px 20px rgba(255, 69, 0, 0.3);
+  line-height: 1.1;
+}
+
+.i30SectionSubtitle {
+  font-size: 20px;
+  color: #ddd;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
 .i30Content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 80px;
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
@@ -1869,7 +1924,69 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transition: all 0.3s ease;
+  filter: brightness(1.1) drop-shadow(0 15px 35px rgba(255, 69, 0, 0.4));
+  transition: all 0.4s ease;
+  z-index: 4;
+  position: relative;
+}
+
+.i30Image:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2) drop-shadow(0 20px 50px rgba(255, 69, 0, 0.6));
+}
+
+.i30Spotlight {
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    rgba(255, 69, 0, 0.1) 45deg,
+    rgba(255, 215, 0, 0.15) 90deg,
+    rgba(255, 69, 0, 0.1) 135deg,
+    transparent 180deg,
+    transparent 360deg
+  );
+  border-radius: 50%;
+  animation: spotlightRotate 8s linear infinite;
+  z-index: 1;
+}
+
+.i30Glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 130%;
+  height: 130%;
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 69, 0, 0.3) 0%,
+    rgba(255, 69, 0, 0.1) 40%,
+    transparent 70%
+  );
+  animation: glowPulse 4s ease-in-out infinite;
+  z-index: 2;
+}
+
+.i30Reflection {
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 20%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 69, 0, 0.2) 0%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  filter: blur(10px);
+  z-index: 1;
 }
 
 /* INFORMAÇÕES DO i30 */
@@ -2081,10 +2198,55 @@
 
 
 
+/* ANIMAÇÕES DO i30 */
+@keyframes badgePulse {
+  0%, 100% { 
+    box-shadow: 
+      0 8px 25px rgba(255, 69, 0, 0.4),
+      0 0 50px rgba(255, 69, 0, 0.2);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 
+      0 12px 35px rgba(255, 69, 0, 0.6),
+      0 0 70px rgba(255, 69, 0, 0.4);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes iconSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spotlightRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { 
+    opacity: 0.6; 
+    transform: translate(-50%, -50%) scale(1); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1.1); 
+  }
+}
+
 /* RESPONSIVIDADE DO i30 */
 @media (max-width: 1200px) {
+  .i30SectionTitle {
+    font-size: 48px;
+  }
+  
+  .i30SectionSubtitle {
+    font-size: 18px;
+  }
+  
   .i30Content {
-    gap: 40px;
+    gap: 60px;
   }
   
   .i30Model {
@@ -2102,7 +2264,19 @@
 
 @media (max-width: 968px) {
   .i30Showcase {
-    padding: 60px 20px;
+    padding: 80px 20px;
+  }
+  
+  .i30SectionHeader {
+    margin-bottom: 60px;
+  }
+  
+  .i30SectionTitle {
+    font-size: 42px;
+  }
+  
+  .i30SectionSubtitle {
+    font-size: 16px;
   }
   
   .i30Content {
@@ -2139,7 +2313,24 @@
 
 @media (max-width: 600px) {
   .i30Showcase {
-    padding: 40px 15px;
+    padding: 60px 15px;
+  }
+  
+  .i30SectionHeader {
+    margin-bottom: 40px;
+  }
+  
+  .i30SectionTitle {
+    font-size: 32px;
+  }
+  
+  .i30SectionSubtitle {
+    font-size: 14px;
+  }
+  
+  .i30Badge {
+    padding: 10px 20px;
+    font-size: 12px;
   }
   
   .i30Info {

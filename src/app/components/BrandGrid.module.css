@@ -1,0 +1,243 @@
+/* =============================================
+   BRAND GRID COMPONENT STYLES
+   ============================================= */
+
+.brandsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.brandCard {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.brandCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 69, 0, 0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.brandCard:hover::before {
+  opacity: 1;
+}
+
+.brandCard:hover {
+  transform: translateY(-10px);
+  border-color: rgba(255, 69, 0, 0.3);
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.3),
+    0 5px 20px rgba(255, 69, 0, 0.2);
+}
+
+.brandIcon {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1.5rem;
+}
+
+.brandLogo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  filter: brightness(1.1);
+  transition: all 0.3s ease;
+}
+
+.brandCard:hover .brandLogo {
+  transform: scale(1.1);
+  filter: brightness(1.3);
+}
+
+.brandName {
+  position: relative;
+  z-index: 2;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+.brandCard:hover .brandName {
+  color: #ff4500;
+}
+
+.brandDesc {
+  position: relative;
+  z-index: 2;
+  font-size: 0.9rem;
+  color: #aaa;
+  margin: 0 0 1rem 0;
+  line-height: 1.4;
+}
+
+.brandArrow {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
+  font-size: 1.2rem;
+  color: #ff4500;
+  transform: translateX(-10px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.brandCard:hover .brandArrow {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.carCount {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 69, 0, 0.2);
+  color: #ff4500;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 69, 0, 0.3);
+  z-index: 2;
+}
+
+/* LOADING SKELETON */
+.loadingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.brandCardSkeleton {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+}
+
+.skeletonIcon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+}
+
+.skeletonText {
+  width: 60%;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  margin: 0 auto 0.5rem;
+}
+
+.skeletonDesc {
+  width: 80%;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 7px;
+  margin: 0 auto;
+}
+
+@keyframes skeletonPulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 1200px) {
+  .brandsGrid,
+  .loadingGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .brandLogo {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .brandsGrid,
+  .loadingGrid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .brandCard,
+  .brandCardSkeleton {
+    padding: 1.5rem 1rem;
+  }
+  
+  .brandLogo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .brandName {
+    font-size: 1.3rem;
+  }
+  
+  .brandDesc {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brandsGrid,
+  .loadingGrid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+  
+  .brandCard,
+  .brandCardSkeleton {
+    padding: 1rem;
+  }
+  
+  .brandLogo {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .brandName {
+    font-size: 1.1rem;
+  }
+  
+  .carCount {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+}
