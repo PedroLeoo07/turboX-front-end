@@ -277,11 +277,9 @@
 }
 
 .carIcon {
-  font-size: 12rem;
-  animation: carFloat 6s ease-in-out infinite;
-  filter: 
-    drop-shadow(0 0 40px rgba(255, 0, 0, 0.6))
-    drop-shadow(0 20px 60px rgba(0, 0, 0, 0.8));
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
 }
 
 .speedLines {

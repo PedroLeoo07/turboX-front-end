@@ -56,7 +56,7 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
                 onClick={() => navigateTo('carList')}
                 className={styles.secondaryBtn}
               >
-                <img src="/carro/golf.png" alt="Golf" className={styles.btnCarIcon} />
+                <span>🚗</span>
                 Explorar Carros
               </button>
             </div>
@@ -81,15 +81,7 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
           {/* LADO DIREITO - VISUAL */}
           <div className={styles.heroRight}>
             <div className={styles.carDisplay}>
-              <div className={styles.carIcon}>🚗</div>
-              <div className={styles.speedLines}></div>
-              <div className={styles.particles}>
-                <span className={styles.particle1}>✨</span>
-                <span className={styles.particle2}>⭐</span>
-                <span className={styles.particle3}>💫</span>
-                <span className={styles.particle4}>✨</span>
-                <span className={styles.particle5}>🔥</span>
-              </div>
+              <img src="/carro/golf.png" alt="Golf" className={styles.carIcon} />
             </div>
             
             {/* PAINEL DE PERFORMANCE */}
