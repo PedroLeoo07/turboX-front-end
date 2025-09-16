@@ -390,10 +390,20 @@ export const useBackendStatus = () => {
   const checkBackendStatus = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/health`, {
-        method: 'GET',
-        timeout: 5000
-      });
+      // Tentamos primeiro o endpoint /health, se falhar tentamos /api/health
+      let response;
+      try {
+        response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/health`, {
+          method: 'GET',
+          timeout: 5000
+        });
+      } catch (firstError) {
+        // Se o primeiro falhar, tenta o endpoint alternativo
+        response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/status`, {
+          method: 'GET',
+          timeout: 5000
+        });
+      }
       
       if (response.ok) {
         setIsOnline(true);
@@ -403,7 +413,7 @@ export const useBackendStatus = () => {
       }
     } catch (err) {
       setIsOnline(false);
-      // Log mais silencioso para evitar spam no console
+      // Log apenas quando necessário e silencioso
       if (process.env.NODE_ENV === 'development') {
         console.debug('Backend health check: offline');
       }
@@ -415,8 +425,8 @@ export const useBackendStatus = () => {
   useEffect(() => {
     checkBackendStatus();
     
-    // Verificar status a cada 2 minutos (reduzido de 30 segundos)
-    const interval = setInterval(checkBackendStatus, 120000);
+    // Verificar status a cada 5 minutos (mais otimizado)
+    const interval = setInterval(checkBackendStatus, 300000);
     
     return () => clearInterval(interval);
   }, [checkBackendStatus]);

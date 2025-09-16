@@ -233,11 +233,13 @@ export const carsAPI = {
       const response = await api.get('/cars/categories');
       return response.data;
     } catch (error) {
-      console.error('❌ Categories API Error:', error);
+      // Log silencioso para desenvolvimento, fallback direto para produção
+      if (process.env.NODE_ENV === 'development') {
+        console.debug('Categories API offline, using fallback');
+      }
       
       // Fallback para dados estáticos quando há erro
       if (error.response?.status >= 500 || error.code === 'NETWORK_ERROR' || error.message === 'Network Error' || !error.response) {
-        console.log('🔄 Backend indisponível, usando categorias fallback...');
         const fallbackCategories = [
           { name: 'Hatch', description: 'Carros compactos e versáteis' },
           { name: 'Sedan', description: 'Elegância e conforto' },
@@ -539,11 +541,13 @@ export const usersAPI = {
       const response = await api.get('/users/stats');
       return response.data;
     } catch (error) {
-      console.error('❌ Stats API Error:', error);
+      // Log silencioso para desenvolvimento, fallback direto para produção
+      if (process.env.NODE_ENV === 'development') {
+        console.debug('Stats API offline, using fallback');
+      }
       
       // Fallback para dados estáticos quando há erro
       if (error.response?.status === 404 || error.code === 'NETWORK_ERROR' || error.message === 'Network Error' || !error.response) {
-        console.log('🔄 Backend indisponível, usando estatísticas fallback...');
         const fallbackStats = {
           totalUsers: 1250,
           totalCars: 450,

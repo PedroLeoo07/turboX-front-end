@@ -497,24 +497,43 @@
 
 @media (max-width: 768px) {
   .main {
-    padding: 0 20px 20px;
+    padding: 0 1rem 1rem;
   }
   
   .hero {
-    padding: 30px 0;
+    padding: 2rem 0;
   }
   
   .profileSection {
-    gap: 20px;
+    gap: 1.5rem;
+  }
+  
+  .avatar {
+    width: 150px;
+    height: 150px;
+    font-size: 6rem;
   }
   
   .name {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 8vw, 2.8rem);
     line-height: 1.1;
   }
   
   .title {
-    font-size: 1.2rem;
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
+  }
+  
+  .subtitle {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+  }
+  
+  .aboutContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: clamp(2rem, 7vw, 2.5rem);
   }
   
   .bio {

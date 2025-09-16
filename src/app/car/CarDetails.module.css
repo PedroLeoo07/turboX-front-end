@@ -477,26 +477,37 @@
 
 @media (max-width: 768px) {
   .main {
-    padding: 20px;
+    padding: 1rem;
   }
   
   .header {
-    margin-bottom: 25px;
+    margin-bottom: 1.5rem;
   }
   
   .backButton {
-    padding: 10px 18px;
+    padding: 0.8rem 1.2rem;
     font-size: 0.9rem;
   }
   
   .carHero {
-    gap: 25px;
-    margin-bottom: 35px;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
   }
   
   .carImageLarge {
-    font-size: 8rem;
-    padding: 25px;
+    font-size: clamp(6rem, 20vw, 8rem);
+    padding: 1.5rem;
+    order: -1;
+  }
+  
+  .carTitle {
+    font-size: clamp(2.5rem, 8vw, 3rem);
+  }
+  
+  .carPrice {
+    font-size: clamp(2rem, 6vw, 2.5rem);
   }
   
   .carTitle {
