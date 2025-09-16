@@ -56,7 +56,7 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
                 onClick={() => navigateTo('carList')}
                 className={styles.secondaryBtn}
               >
-                <span>🏎️</span>
+                <img src="/carro/golf.png" alt="Golf" className={styles.btnCarIcon} />
                 Explorar Carros
               </button>
             </div>
@@ -81,7 +81,7 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
           {/* LADO DIREITO - VISUAL */}
           <div className={styles.heroRight}>
             <div className={styles.carDisplay}>
-              <div className={styles.carIcon}>🏎️</div>
+              <div className={styles.carIcon}>🚗</div>
               <div className={styles.speedLines}></div>
               <div className={styles.particles}>
                 <span className={styles.particle1}>✨</span>
@@ -137,7 +137,7 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
           <div className={styles.featuresGrid}>
             <div className={styles.featureCard} onClick={() => navigateTo('carList')}>
               <div className={styles.cardTop}>
-                <div className={styles.featureIcon}>🏎️</div>
+                <div className={styles.featureIcon}>🚗</div>
                 <div className={styles.featureBadge}>50+ Modelos</div>
               </div>
               <h3 className={styles.featureTitle}>Catálogo Completo</h3>
@@ -653,7 +653,7 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
               onClick={() => navigateTo('carList')}
               className={styles.ctaSecondary}
             >
-              <span>🏎️</span>
+              <span>🚗</span>
               Ver Carros
             </button>
           </div>
@@ -739,7 +739,7 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
                 especificações e modificações.
               </p>
               <div className={styles.storagePreview}>
-                <div className={styles.previewCar}>🏎️</div>
+                <div className={styles.previewCar}>🚗</div>
                 <div className={styles.previewVs}>VS</div>
                 <div className={styles.previewCar}>🚗</div>
               </div>
