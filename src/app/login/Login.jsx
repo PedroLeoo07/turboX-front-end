@@ -73,6 +73,7 @@ export default function Login({ navigateTo, onLogin }) {
     e.preventDefault();
     
     if (!validateForm()) {
+      toast.error('Por favor, preencha todos os campos corretamente!');
       return;
     }
 
@@ -89,6 +90,7 @@ export default function Login({ navigateTo, onLogin }) {
           password: formData.password
         };
         
+        console.log('Tentando registrar:', registerData);
         success = await register(registerData);
       } else {
         // Login
@@ -97,8 +99,11 @@ export default function Login({ navigateTo, onLogin }) {
           password: formData.password
         };
         
+        console.log('Tentando login:', { email: loginData.email, password: '***' });
         success = await login(loginData);
       }
+      
+      console.log('Resultado da autenticação:', success);
       
       if (success) {
         // Login ou registro bem-sucedido
@@ -109,6 +114,8 @@ export default function Login({ navigateTo, onLogin }) {
         if (navigateTo) {
           navigateTo('home');
         }
+      } else {
+        toast.error('Falha na autenticação. Verifique suas credenciais.');
       }
 
     } catch (error) {
@@ -161,6 +168,16 @@ export default function Login({ navigateTo, onLogin }) {
     
     toast.success(`Bem-vindo de volta, ${leonardoUser.name}! 🏎️`);
     onLogin(leonardoUser);
+  };
+
+  const handleFillDemoCredentials = () => {
+    setFormData({
+      email: 'leonardopedrodeoliveira07@gmail.com',
+      password: '74185201',
+      name: '',
+      confirmPassword: ''
+    });
+    toast.info('Credenciais de demo preenchidas! Clique em "Entrar" para fazer login.');
   };
 
   return (
@@ -310,6 +327,14 @@ export default function Login({ navigateTo, onLogin }) {
         <div className={styles.divider}>
           <span>ou</span>
         </div>
+
+        <button 
+          type="button"
+          onClick={handleFillDemoCredentials}
+          className={styles.fillDemoButton}
+        >
+          🔑 Preencher Credenciais Demo
+        </button>
 
         <button 
           onClick={handleQuickLogin}

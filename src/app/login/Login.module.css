@@ -183,6 +183,26 @@
   z-index: 2;
 }
 
+.fillDemoButton {
+  width: 100%;
+  background: rgba(0, 150, 255, 0.2);
+  color: #87ceeb;
+  border: 2px solid rgba(0, 150, 255, 0.5);
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.fillDemoButton:hover {
+  background: rgba(0, 150, 255, 0.3);
+  border-color: rgba(0, 150, 255, 0.7);
+  transform: translateY(-1px);
+}
+
 .leonardoButton {
   width: 100%;
   background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);

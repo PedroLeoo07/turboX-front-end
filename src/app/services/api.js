@@ -10,6 +10,9 @@ const api = axios.create({
   },
 });
 
+// Log para debug das rotas
+console.log('🚀 API Base URL:', process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api');
+
 // Interceptor para requisições
 api.interceptors.request.use(
   (config) => {
@@ -52,21 +55,65 @@ api.interceptors.response.use(
 export const authAPI = {
   login: async (credentials) => {
     try {
+      // Tentar login no backend primeiro
       const response = await api.post('/auth/login', credentials);
       toast.success('Login realizado com sucesso!');
       return response.data;
     } catch (error) {
-      throw error;
+      // Fallback para sistema de demo se o backend não estiver disponível
+      console.log('Backend indisponível, usando sistema de demo...');
+      
+      // Credenciais de demo
+      const demoCredentials = {
+        email: 'leonardopedrodeoliveira07@gmail.com',
+        password: '74185201'
+      };
+      
+      if (credentials.email.toLowerCase() === demoCredentials.email.toLowerCase() && 
+          credentials.password === demoCredentials.password) {
+        const demoUser = {
+          id: 'leonardo-profile',
+          name: 'Leonardo Pedro de Oliveira',
+          email: 'leonardopedrodeoliveira07@gmail.com',
+          avatar: '🏎️',
+          memberSince: '01/01/2024',
+          profile: 'admin'
+        };
+        
+        const demoToken = 'leonardo-auth-token-2025';
+        
+        toast.success('Login realizado com sucesso! (Demo)');
+        return { user: demoUser, token: demoToken };
+      } else {
+        toast.error('Email ou senha incorretos!');
+        throw new Error('Credenciais inválidas');
+      }
     }
   },
 
   register: async (userData) => {
     try {
+      // Tentar registro no backend primeiro
       const response = await api.post('/auth/register', userData);
       toast.success('Cadastro realizado com sucesso!');
       return response.data;
     } catch (error) {
-      throw error;
+      // Fallback para sistema de demo
+      console.log('Backend indisponível, usando sistema de demo...');
+      
+      const demoUser = {
+        id: Date.now().toString(),
+        name: userData.name,
+        email: userData.email,
+        avatar: '👤',
+        memberSince: new Date().toLocaleDateString('pt-BR'),
+        profile: 'user'
+      };
+      
+      const demoToken = `demo-token-${Date.now()}`;
+      
+      toast.success('Cadastro realizado com sucesso! (Demo)');
+      return { user: demoUser, token: demoToken };
     }
   },
 
@@ -76,7 +123,11 @@ export const authAPI = {
       localStorage.removeItem('authToken');
       toast.success('Logout realizado com sucesso!');
     } catch (error) {
-      console.error('Erro no logout:', error);
+      // Fallback para logout local
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('user');
+      toast.success('Logout realizado com sucesso!');
+      console.log('Logout local realizado');
     }
   }
 };
@@ -97,9 +148,12 @@ export const carsAPI = {
       const queryString = params.toString();
       const endpoint = queryString ? `/cars?${queryString}` : '/cars';
       
+      console.log('🚗 Chamando API Cars:', `${api.defaults.baseURL}${endpoint}`);
       const response = await api.get(endpoint);
+      console.log('✅ Cars API Response:', response.data);
       return response.data;
     } catch (error) {
+      console.error('❌ Cars API Error:', error);
       throw error;
     }
   },
@@ -115,9 +169,12 @@ export const carsAPI = {
 
   getBrands: async () => {
     try {
-      const response = await api.get('/cars/brands');
+      console.log('🏷️ Chamando API Marcas:', `${api.defaults.baseURL}/cars/marcas`);
+      const response = await api.get('/cars/marcas');
+      console.log('✅ Marcas API Response:', response.data);
       return response.data;
     } catch (error) {
+      console.error('❌ Marcas API Error:', error);
       throw error;
     }
   },
@@ -318,7 +375,29 @@ export const buildsUpgradesAPI = {
 };
 
 export const usersAPI = {
-  // Buscar todos os usuários com seus carros
+  // Buscar todos os usuários
+  getAll: async (filters = {}) => {
+    try {
+      const params = new URLSearchParams();
+      
+      // Adicionar filtros como query parameters
+      if (filters.search) params.append('search', filters.search);
+      if (filters.sortBy) params.append('sortBy', filters.sortBy);
+      
+      const queryString = params.toString();
+      const endpoint = queryString ? `/users?${queryString}` : '/users';
+      
+      console.log('👥 Chamando API Users:', `${api.defaults.baseURL}${endpoint}`);
+      const response = await api.get(endpoint);
+      console.log('✅ Users API Response:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('❌ Users API Error:', error);
+      throw error;
+    }
+  },
+
+  // Buscar todos os usuários com seus carros (mantendo compatibilidade)
   getAllWithCars: async (filters = {}) => {
     try {
       const params = new URLSearchParams();
@@ -330,7 +409,7 @@ export const usersAPI = {
       if (filters.brand) params.append('brand', filters.brand);
       
       const queryString = params.toString();
-      const endpoint = queryString ? `/users/with-cars?${queryString}` : '/users/with-cars';
+      const endpoint = queryString ? `/users?${queryString}` : '/users';
       
       const response = await api.get(endpoint);
       return response.data;

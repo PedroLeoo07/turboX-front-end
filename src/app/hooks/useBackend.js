@@ -274,10 +274,10 @@ export const useAuth = () => {
       setUser(user);
       setIsAuthenticated(true);
       
-      return response;
+      return true; // Retorna true para indicar sucesso
     } catch (err) {
       console.error('Erro no login:', err);
-      throw err;
+      return false; // Retorna false para indicar falha
     } finally {
       setLoading(false);
     }
@@ -287,10 +287,18 @@ export const useAuth = () => {
     setLoading(true);
     try {
       const response = await authAPI.register(userData);
-      return response;
+      const { user, token } = response;
+      
+      localStorage.setItem('authToken', token);
+      localStorage.setItem('user', JSON.stringify(user));
+      
+      setUser(user);
+      setIsAuthenticated(true);
+      
+      return true; // Retorna true para indicar sucesso
     } catch (err) {
       console.error('Erro no registro:', err);
-      throw err;
+      return false; // Retorna false para indicar falha
     } finally {
       setLoading(false);
     }
