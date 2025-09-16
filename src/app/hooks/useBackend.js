@@ -108,6 +108,7 @@ export const useCars = () => {
     loading,
     error,
     fetchCars,
+    fetchBrands,
     getCarsByBrand,
     getCarById,
     refreshBrands: fetchBrands,
