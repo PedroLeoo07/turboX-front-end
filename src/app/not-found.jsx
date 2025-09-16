@@ -1,17 +1,19 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import styles from './not-found.module.css';
 
-const NotFound = () => {
-  const router = useRouter();
+const NotFound = ({ navigateTo }) => {
 
   const navigateHome = () => {
-    router.push('/');
+    if (navigateTo) {
+      navigateTo('home');
+    } else {
+      window.location.href = '/'; 
+    }
   };
 
   const navigateBack = () => {
-    router.back();
+    window.history.back();
   };
 
   return (
@@ -28,7 +30,7 @@ const NotFound = () => {
         {/* HEADER */}
         <div className={styles.header}>
           <img 
-            src="/images/logo.png" 
+            src="/images/TurboX.png" 
             alt="TurboX Logo" 
             className={styles.logo}
           />
@@ -98,31 +100,24 @@ const NotFound = () => {
             <h3>Links Rápidos:</h3>
             <div className={styles.linkGrid}>
               <button 
-                onClick={() => router.push('/carList')}
+                onClick={() => navigateTo && navigateTo('carList')}
                 className={styles.quickLink}
               >
                 🚗 Catálogo de Carros
               </button>
               
               <button 
-                onClick={() => router.push('/simulation')}
+                onClick={() => navigateTo && navigateTo('simulation')}
                 className={styles.quickLink}
               >
                 🔧 Simulação
               </button>
               
               <button 
-                onClick={() => router.push('/about')}
+                onClick={() => navigateTo && navigateTo('about')}
                 className={styles.quickLink}
               >
                 ℹ️ Sobre o TurboX
-              </button>
-              
-              <button 
-                onClick={() => router.push('/users')}
-                className={styles.quickLink}
-              >
-                👥 Usuários
               </button>
             </div>
           </div>
