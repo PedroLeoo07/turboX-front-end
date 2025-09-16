@@ -28,10 +28,11 @@ export default function Loading({ onComplete }) {
   return (
     <div className={styles.loadingContainer}>
       <div className={styles.logoContainer}>
-        <div className={styles.logo}>
-          <span className={styles.turbo}>TURBO</span>
-          <span className={styles.x}>X</span>
-        </div>
+        <img 
+          src="/images/logo.png" 
+          alt="TurboX - Simulador de Preparações Automotivas" 
+          className={styles.logoImage}
+        />
         <div className={styles.tagline}>Acelere sua paixão</div>
       </div>
       

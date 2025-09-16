@@ -31,6 +31,34 @@
   margin: 0 auto;
 }
 
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.headerLogo {
+  height: 80px;
+  width: auto;
+  max-width: 250px;
+  object-fit: contain;
+  filter: 
+    drop-shadow(0 0 15px rgba(255, 0, 0, 0.4))
+    drop-shadow(0 0 30px rgba(255, 0, 0, 0.2))
+    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.headerLogo:hover {
+  transform: scale(1.05) translateY(-3px);
+  filter: 
+    drop-shadow(0 0 20px rgba(255, 0, 0, 0.6))
+    drop-shadow(0 0 40px rgba(255, 0, 0, 0.3))
+    drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
 .title {
   font-size: 3.5rem;
   font-weight: 900;
@@ -72,6 +100,7 @@
   border-radius: 15px;
   padding: 1.5rem;
   text-align: center;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 }
@@ -228,6 +257,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   padding: 1.5rem;
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   transition: all 0.3s ease;
 }
@@ -486,6 +516,11 @@
 @media (max-width: 768px) {
   .header {
     padding: 2.5rem 1rem;
+  }
+  
+  .headerLogo {
+    height: 60px;
+    max-width: 200px;
   }
   
   .title {

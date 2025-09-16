@@ -80,10 +80,17 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
       {/* HEADER */}
       <section className={styles.header}>
         <div className={styles.headerContent}>
-          <h1 className={styles.title}>
-            <span className={styles.titleIcon}>👥</span>
-            Usuários & Carros
-          </h1>
+          <div className={styles.titleContainer}>
+            <img 
+              src="/images/logo.png" 
+              alt="TurboX" 
+              className={styles.headerLogo}
+            />
+            <h1 className={styles.title}>
+              <span className={styles.titleIcon}>👥</span>
+              Usuários & Carros
+            </h1>
+          </div>
           <p className={styles.subtitle}>
             Gerencie usuários e seus respectivos carros cadastrados
           </p>

@@ -564,8 +564,8 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
             <div className={styles.footerLeft}>
               <div className={styles.footerLogo}>
                 <img 
-                  src="/images/TurboX.png" 
-                  alt="TurboX" 
+                  src="/images/logo.png" 
+                  alt="TurboX - Simulador de Preparações Automotivas" 
                   className={styles.footerLogoImage}
                 />
               </div>

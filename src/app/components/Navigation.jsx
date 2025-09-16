@@ -28,8 +28,8 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
     <nav className={styles.navigation}>
       <div className={styles.logo} onClick={() => navigateTo('home')}>
         <img 
-          src="/images/TurboX.png" 
-          alt="TurboX" 
+          src="/images/logo.png" 
+          alt="TurboX - Simulador de Preparações Automotivas" 
           className={styles.logoImage}
         />
       </div>

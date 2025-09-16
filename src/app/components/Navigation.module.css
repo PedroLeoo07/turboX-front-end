@@ -24,15 +24,24 @@
 }
 
 .logoImage {
-  height: 70px;
+  height: 60px;
   width: auto;
-  filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.6));
-  transition: all 0.3s ease;
+  filter: 
+    drop-shadow(0 0 10px rgba(255, 0, 0, 0.4))
+    drop-shadow(0 0 20px rgba(255, 0, 0, 0.2))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  max-width: 180px;
+  object-fit: contain;
 }
 
 .logoImage:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.8));
+  transform: scale(1.05) translateY(-1px);
+  filter: 
+    drop-shadow(0 0 15px rgba(255, 0, 0, 0.6))
+    drop-shadow(0 0 30px rgba(255, 0, 0, 0.3))
+    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
 }
 
 /* Menu Hamburger */
@@ -268,7 +277,8 @@
   }
   
   .logoImage {
-    height: 50px;
+    height: 45px;
+    max-width: 140px;
   }
   
   .mobileMenuButton {
@@ -282,6 +292,7 @@
     width: 100%;
     height: calc(100vh - 80px);
     background: rgba(0, 0, 0, 0.95);
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     flex-direction: column;
     justify-content: flex-start;
