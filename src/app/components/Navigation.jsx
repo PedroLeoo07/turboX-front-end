@@ -1,18 +1,31 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import BackendStatus from './BackendStatus';
 import styles from './Navigation.module.css';
 
-export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, onLogout }) {
+export default function Navigation({ isLoggedIn, user, onLogout }) {
+  const router = useRouter();
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const navItems = [
-    { id: 'home', label: 'Home', icon: '🏠' },
-    { id: 'cars', label: 'Carros', icon: '🚗' },
-    { id: 'users', label: 'Usuários', icon: '👥' },
-    { id: 'about', label: 'Sobre Mim', icon: '👤' },
+    { id: 'home', label: 'Home', icon: '🏠', href: '/home' },
+    { id: 'cars', label: 'Carros', icon: '🚗', href: '/cars' },
+    { id: 'users', label: 'Usuários', icon: '👥', href: '/users' },
+    { id: 'about', label: 'Sobre Mim', icon: '👤', href: '/about' },
   ];
+
+  const getCurrentPage = () => {
+    if (pathname === '/home') return 'home';
+    if (pathname === '/cars' || pathname.startsWith('/cars/')) return 'cars';
+    if (pathname === '/about') return 'about';
+    if (pathname === '/login') return 'login';
+    if (pathname === '/users') return 'users';
+    return 'home';
+  };
 
   // Fechar menu ao redimensionar tela
   useEffect(() => {
@@ -43,7 +56,7 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
     if (isLoggedIn) {
       onLogout();
     } else {
-      navigateTo('login');
+      router.push('/login');
     }
     setIsMobileMenuOpen(false);
   };
@@ -52,8 +65,8 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const handleNavigate = (page) => {
-    navigateTo(page);
+  const handleNavigate = (href) => {
+    router.push(href);
     setIsMobileMenuOpen(false);
   };
 
@@ -65,22 +78,22 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
     <nav className={styles.navigation}>
       {/* Header Principal */}
       <div className={styles.navHeader}>
-        <div className={styles.logo} onClick={() => navigateTo('home')}>
+        <Link href="/home" className={styles.logo}>
           <span className={styles.logoIcon}>🏎️</span>
           <span className={styles.logoText}>TurboX</span>
-        </div>
+        </Link>
 
         {/* Menu Desktop */}
         <div className={styles.desktopMenu}>
           {navItems.map(item => (
-            <button
+            <Link
               key={item.id}
-              className={`${styles.desktopNavItem} ${currentPage === item.id ? styles.active : ''}`}
-              onClick={() => handleNavigate(item.id)}
+              href={item.href}
+              className={`${styles.desktopNavItem} ${getCurrentPage() === item.id ? styles.active : ''}`}
             >
               <span className={styles.navIcon}>{item.icon}</span>
               <span className={styles.navLabel}>{item.label}</span>
-            </button>
+            </Link>
           ))}
         </div>
 
@@ -150,16 +163,17 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
           <h3 className={styles.mobileSectionTitle}>Navegação</h3>
           <div className={styles.mobileNavGrid}>
             {navItems.map((item, index) => (
-              <button
+              <Link
                 key={item.id}
-                className={`${styles.mobileNavCard} ${currentPage === item.id ? styles.activeCard : ''}`}
-                onClick={() => handleNavigate(item.id)}
+                href={item.href}
+                className={`${styles.mobileNavCard} ${getCurrentPage() === item.id ? styles.activeCard : ''}`}
+                onClick={() => setIsMobileMenuOpen(false)}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className={styles.cardIcon}>{item.icon}</div>
                 <span className={styles.cardLabel}>{item.label}</span>
                 <div className={styles.cardIndicator}></div>
-              </button>
+              </Link>
             ))}
           </div>
         </div>
