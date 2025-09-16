@@ -3,7 +3,7 @@
 import Navigation from '../components/Navigation';
 import styles from './About.module.css';
 
-export default function About({ navigateTo }) {
+export default function About({ navigateTo, isLoggedIn, user, onLogout }) {
   const skills = [
     { name: 'React.js', level: 90, icon: '⚛️' },
     { name: 'Next.js', level: 85, icon: '🚀' },
@@ -36,7 +36,13 @@ export default function About({ navigateTo }) {
 
   return (
     <div className={styles.aboutContainer}>
-      <Navigation currentPage="about" navigateTo={navigateTo} />
+      <Navigation 
+        currentPage="about" 
+        navigateTo={navigateTo} 
+        isLoggedIn={isLoggedIn} 
+        user={user} 
+        onLogout={onLogout} 
+      />
       
       <main className={styles.main}>
         <section className={styles.hero}>

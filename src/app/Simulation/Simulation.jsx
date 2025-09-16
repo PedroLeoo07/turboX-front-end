@@ -5,7 +5,7 @@ import Navigation from '../components/Navigation';
 import { useBuilds, useUpgrades, useBuildUpgrades } from '../hooks/useBackend';
 import styles from './Simulation.module.css';
 
-export default function Simulation({ car, navigateTo }) {
+export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout }) {
   const { builds, loading, createBuild, fetchBuilds } = useBuilds();
   const { upgrades: availableUpgrades, fetchUpgrades } = useUpgrades();
   const { buildUpgrades, getBuildUpgrades, addUpgradeToBuild } = useBuildUpgrades();
@@ -142,7 +142,13 @@ export default function Simulation({ car, navigateTo }) {
 
   return (
     <div className={styles.simulationContainer}>
-      <Navigation currentPage="simulation" navigateTo={navigateTo} />
+      <Navigation 
+        currentPage="simulation" 
+        navigateTo={navigateTo} 
+        isLoggedIn={isLoggedIn} 
+        user={user} 
+        onLogout={onLogout} 
+      />
       
       <main className={styles.main}>
         <div className={styles.header}>

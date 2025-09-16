@@ -3,11 +3,17 @@
 import Navigation from '../components/Navigation';
 import styles from './CarDetails.module.css';
 
-export default function CarDetails({ car, navigateTo }) {
+export default function CarDetails({ car, navigateTo, isLoggedIn, user, onLogout }) {
   if (!car) {
     return (
       <div className={styles.carDetailsContainer}>
-        <Navigation currentPage="cars" navigateTo={navigateTo} />
+        <Navigation 
+          currentPage="cars" 
+          navigateTo={navigateTo} 
+          isLoggedIn={isLoggedIn} 
+          user={user} 
+          onLogout={onLogout} 
+        />
         <div className={styles.errorMessage}>
           <h2>Carro não encontrado</h2>
           <button onClick={() => navigateTo('cars')} className={styles.backButton}>
@@ -38,7 +44,13 @@ export default function CarDetails({ car, navigateTo }) {
 
   return (
     <div className={styles.carDetailsContainer}>
-      <Navigation currentPage="cars" navigateTo={navigateTo} />
+      <Navigation 
+        currentPage="cars" 
+        navigateTo={navigateTo} 
+        isLoggedIn={isLoggedIn} 
+        user={user} 
+        onLogout={onLogout} 
+      />
       
       <main className={styles.main}>
         <div className={styles.header}>

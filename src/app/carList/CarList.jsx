@@ -299,7 +299,7 @@ const carsDatabase = [
   }
 ];
 
-export default function CarList({ navigateTo, filterOptions = {} }) {
+export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, user, onLogout }) {
   const { cars, brands, loading, fetchCars, fetchBrands } = useCars();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBrand, setSelectedBrand] = useState(filterOptions.brand || '');
@@ -368,7 +368,13 @@ export default function CarList({ navigateTo, filterOptions = {} }) {
   if (loading) {
     return (
       <div className={styles.container}>
-        <Navigation currentPage="carList" navigateTo={navigateTo} />
+        <Navigation 
+          currentPage="carList" 
+          navigateTo={navigateTo} 
+          isLoggedIn={isLoggedIn} 
+          user={user} 
+          onLogout={onLogout} 
+        />
         <div className={styles.loadingContainer}>
           <div className={styles.loadingContent}>
             <div className={styles.spinner}>🏎️</div>
@@ -385,7 +391,13 @@ export default function CarList({ navigateTo, filterOptions = {} }) {
 
   return (
     <div className={styles.container}>
-      <Navigation currentPage="carList" navigateTo={navigateTo} />
+      <Navigation 
+        currentPage="carList" 
+        navigateTo={navigateTo} 
+        isLoggedIn={isLoggedIn} 
+        user={user} 
+        onLogout={onLogout} 
+      />
       
       <main className={styles.main}>
         {/* HEADER */}

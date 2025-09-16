@@ -6,7 +6,7 @@ import Navigation from '../components/Navigation';
 import { useCars, useUsers } from '../hooks/useBackend';
 import styles from './Home.module.css';
 
-export default function Home({ navigateTo, isLoggedIn, user }) {
+export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
   const { brands, fetchCars } = useCars();
   const { stats, fetchUsers } = useUsers();
 
@@ -30,7 +30,13 @@ export default function Home({ navigateTo, isLoggedIn, user }) {
 
   return (
     <div className={styles.container}>
-      <Navigation currentPage="home" navigateTo={navigateTo} />
+      <Navigation 
+        currentPage="home" 
+        navigateTo={navigateTo} 
+        isLoggedIn={isLoggedIn} 
+        user={user} 
+        onLogout={onLogout} 
+      />
       
       {/* HERO SECTION */}
       <section className={styles.hero}>
