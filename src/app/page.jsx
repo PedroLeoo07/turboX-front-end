@@ -23,15 +23,21 @@ export default function App() {
   // Verificar se há usuário logado ao carregar
   useEffect(() => {
     const savedUser = localStorage.getItem('turboX_user');
-    if (savedUser) {
+    if (savedUser && savedUser !== 'undefined') {
       try {
         const userData = JSON.parse(savedUser);
-        setUser(userData);
-        setIsLoggedIn(true);
+        if (userData && typeof userData === 'object') {
+          setUser(userData);
+          setIsLoggedIn(true);
+        } else {
+          localStorage.removeItem('turboX_user');
+        }
       } catch (error) {
         console.error('Erro ao carregar dados do usuário:', error);
         localStorage.removeItem('turboX_user');
       }
+    } else if (savedUser === 'undefined') {
+      localStorage.removeItem('turboX_user');
     }
   }, []);
 
