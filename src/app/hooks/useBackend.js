@@ -391,20 +391,11 @@ export const useBackendStatus = () => {
   const checkBackendStatus = useCallback(async () => {
     setLoading(true);
     try {
-      // Tentamos primeiro o endpoint /health, se falhar tentamos /api/health
-      let response;
-      try {
-        response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/health`, {
-          method: 'GET',
-          timeout: 5000
-        });
-      } catch (firstError) {
-        // Se o primeiro falhar, tenta o endpoint alternativo
-        response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/status`, {
-          method: 'GET',
-          timeout: 5000
-        });
-      }
+      // Usar endpoint que sabemos que funciona: /api/cars/marcas
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api'}/cars/marcas`, {
+        method: 'GET',
+        timeout: 5000
+      });
       
       if (response.ok) {
         setIsOnline(true);
