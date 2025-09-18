@@ -19,7 +19,7 @@ const BrandGrid = ({ navigateTo }) => {
     { name: 'Toyota', logo: '/logos/toyot.png', description: 'Confiabilidade japonesa' },
     { name: 'Mitsubishi', logo: '/logos/mitsubishi.svg', description: 'Performance e durabilidade' },
     { name: 'Chevrolet', logo: '/logos/chevrolet.png', description: 'Força americana' },
-    { name: 'Honda', logo: '/logos/honda.svg', description: 'Engenharia japonesa premium' },
+    { name: 'Honda', logo: '/logos/honda.webp', description: 'Engenharia japonesa premium' },
     { name: 'Mercedes', logo: '/logos/mercedes.png', description: 'Luxo alemão incomparável' },
     { name: 'Audi', logo: '/logos/audi.png', description: 'Vorsprung durch Technik' },
     { name: 'Dodge', logo: '/logos/dodge.png', description: 'Muscle cars americanos' },

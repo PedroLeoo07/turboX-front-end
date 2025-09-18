@@ -142,7 +142,7 @@ export default function Login({ navigateTo, onLogin }) {
       id: 'demo-user',
       name: 'Pedro Demo',
       email: 'demo@turbox.dev',
-      avatar: '👨‍💻',
+      avatar: '',
       memberSince: '01/01/2025'
     };
     
@@ -155,7 +155,7 @@ export default function Login({ navigateTo, onLogin }) {
       id: 'leonardo-profile',
       name: 'Leonardo Pedro de Oliveira',
       email: 'leonardopedrodeoliveira07@gmail.com',
-      avatar: '🏎️',
+      avatar: '',
       memberSince: '01/01/2024',
       profile: 'admin',
       builds: [],
@@ -166,7 +166,7 @@ export default function Login({ navigateTo, onLogin }) {
     localStorage.setItem('authToken', 'leonardo-auth-token-2025');
     localStorage.setItem('userProfile', JSON.stringify(leonardoUser));
     
-    toast.success(`Bem-vindo de volta, ${leonardoUser.name}! 🏎️`);
+    toast.success(`Bem-vindo de volta, ${leonardoUser.name}!`);
     onLogin(leonardoUser);
   };
 
@@ -274,7 +274,7 @@ export default function Login({ navigateTo, onLogin }) {
                 {isSignUp ? 'Criando conta...' : 'Entrando...'}
               </div>
             ) : (
-              <>🚀 {isSignUp ? 'Criar Conta' : 'Entrar'}</>
+              isSignUp ? 'Criar Conta' : 'Entrar'
             )}
           </button>
         </form>
@@ -282,7 +282,7 @@ export default function Login({ navigateTo, onLogin }) {
         {/* Credenciais de Acesso */}
         {!isSignUp && (
           <div className={styles.testCredentials}>
-            <h4 className={styles.credentialsTitle}>🔑 Credenciais de Acesso</h4>
+            <h4 className={styles.credentialsTitle}>Credenciais de Acesso</h4>
             <div className={styles.credentialsBox}>
               <div className={styles.credentialItem}>
                 <span className={styles.credentialLabel}>Email:</span>
@@ -292,7 +292,6 @@ export default function Login({ navigateTo, onLogin }) {
                   onClick={() => setFormData(prev => ({...prev, email: 'leonardopedrodeoliveira07@gmail.com'}))}
                   className={styles.copyButton}
                 >
-                  📋
                 </button>
               </div>
               <div className={styles.credentialItem}>
@@ -303,7 +302,6 @@ export default function Login({ navigateTo, onLogin }) {
                   onClick={() => setFormData(prev => ({...prev, password: '74185201'}))}
                   className={styles.copyButton}
                 >
-                  📋
                 </button>
               </div>
               <button 
@@ -314,7 +312,7 @@ export default function Login({ navigateTo, onLogin }) {
                     email: 'leonardopedrodeoliveira07@gmail.com',
                     password: '74185201'
                   }));
-                  toast.info('Credenciais preenchidas automaticamente! 🔑');
+                  toast.info('Credenciais preenchidas automaticamente!');
                 }}
                 className={styles.fillButton}
               >

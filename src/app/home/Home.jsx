@@ -13,7 +13,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
 
   useEffect(() => {
     if (isLoggedIn && user) {
-      toast.success(`Bem-vindo de volta, ${user.name}! 🏎️`, {
+      toast.success(`Bem-vindo de volta, ${user.name}!`, {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -64,7 +64,6 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
                 onClick={() => navigateTo('simulation')}
                 className={styles.primaryBtn}
               >
-                <span>🚀</span>
                 Começar Simulação
                 <div className={styles.btnRipple}></div>
               </button>
@@ -72,7 +71,6 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
                 onClick={() => navigateTo('carList')}
                 className={styles.secondaryBtn}
               >
-                <span>🚗</span>
                 Explorar Carros
               </button>
             </div>
@@ -103,7 +101,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
             {/* PAINEL DE PERFORMANCE */}
             <div className={styles.performanceCard}>
               <div className={styles.cardHeader}>
-                <span className={styles.cardIcon}>⚡</span>
+
                 <span>Performance Monitor</span>
               </div>
               <div className={styles.powerDisplay}>
@@ -134,7 +132,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
-              <span className={styles.titleIcon}>🚀</span>
+
               Por que escolher o TurboX?
             </h2>
             <p className={styles.sectionSubtitle}>
@@ -145,7 +143,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
           <div className={styles.featuresGrid}>
             <div className={styles.featureCard} onClick={() => navigateTo('carList')}>
               <div className={styles.cardTop}>
-                <div className={styles.featureIcon}>🚗</div>
+                <div className={styles.featureIcon}></div>
                 <div className={styles.featureBadge}>50+ Modelos</div>
               </div>
               <h3 className={styles.featureTitle}>Catálogo Completo</h3>
@@ -161,7 +159,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
 
             <div className={styles.featureCard} onClick={() => navigateTo('simulation')}>
               <div className={styles.cardTop}>
-                <div className={styles.featureIcon}>⚙️</div>
+                <div className={styles.featureIcon}></div>
                 <div className={styles.featureBadge}>200+ Peças</div>
               </div>
               <h3 className={styles.featureTitle}>Sistema de Upgrades</h3>
@@ -177,7 +175,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
 
             <div className={styles.featureCard} onClick={() => navigateTo('simulation')}>
               <div className={styles.cardTop}>
-                <div className={styles.featureIcon}>📊</div>
+                <div className={styles.featureIcon}></div>
                 <div className={styles.featureBadge}>Tempo Real</div>
               </div>
               <h3 className={styles.featureTitle}>Simulação Avançada</h3>
@@ -199,7 +197,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
-              <span className={styles.titleIcon}>🏭</span>
+
               Explore por Marca
             </h2>
             <p className={styles.sectionSubtitle}>
@@ -218,9 +216,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
           {/* HEADER DA SEÇÃO */}
           <div className={styles.i30SectionHeader}>
             <div className={styles.i30Badge}>
-              <span className={styles.badgeIcon}>⭐</span>
               <span>CARRO EM DESTAQUE</span>
-              <span className={styles.badgeIcon}>⭐</span>
             </div>
             <h2 className={styles.i30SectionTitle}>Conheça o Futuro da Performance</h2>
             <p className={styles.i30SectionSubtitle}>
@@ -259,7 +255,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
 
               <div className={styles.i30Features}>
                 <div className={styles.i30Feature}>
-                  <div className={styles.featureIcon}>🚀</div>
+                  <div className={styles.featureIcon}></div>
                   <div className={styles.featureContent}>
                     <h4>Motor Turbo</h4>
                     <p>1.0 T-GDI com até 120 cv de potência</p>
@@ -267,7 +263,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
                 </div>
 
                 <div className={styles.i30Feature}>
-                  <div className={styles.featureIcon}>⚡</div>
+                  <div className={styles.featureIcon}></div>
                   <div className={styles.featureContent}>
                     <h4>Performance</h4>
                     <p>0-100 km/h em 11.2 segundos</p>
@@ -275,7 +271,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
                 </div>
 
                 <div className={styles.i30Feature}>
-                  <div className={styles.featureIcon}>💨</div>
+                  <div className={styles.featureIcon}></div>
                   <div className={styles.featureContent}>
                     <h4>Velocidade Máxima</h4>
                     <p>185 km/h de velocidade final</p>
@@ -283,7 +279,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
                 </div>
 
                 <div className={styles.i30Feature}>
-                  <div className={styles.featureIcon}>🎯</div>
+                  <div className={styles.featureIcon}></div>
                   <div className={styles.featureContent}>
                     <h4>Eficiência</h4>
                     <p>13.7 km/l na cidade, 15.2 km/l na estrada</p>
@@ -314,7 +310,6 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
                   onClick={() => navigateTo('simulation', null, { car: 'Hyundai i30' })}
                   className={styles.i30PrimaryBtn}
                 >
-                  <span>🔧</span>
                   Simular Preparação
                   <div className={styles.btnShine}></div>
                 </button>
@@ -323,7 +318,6 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
                   onClick={() => navigateTo('car', { brand: 'Hyundai', model: 'i30' })}
                   className={styles.i30SecondaryBtn}
                 >
-                  <span>📋</span>
                   Ver Detalhes Completos
                 </button>
               </div>
@@ -337,7 +331,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
-              <span className={styles.titleIcon}>👥</span>
+
               Comunidade TurboX
             </h2>
             <p className={styles.sectionSubtitle}>
@@ -348,7 +342,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
           <div className={styles.usersContent}>
             <div className={styles.usersStats}>
               <div className={styles.statItem}>
-                <div className={styles.statIcon}>👨‍💻</div>
+                <div className={styles.statIcon}></div>
                 <div className={styles.statInfo}>
                   <div className={styles.statNumber}>
                     {stats.totalUsers ? `${stats.totalUsers}` : '0'}
@@ -358,7 +352,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
               </div>
 
               <div className={styles.statItem}>
-                <div className={styles.statIcon}>🚗</div>
+                <div className={styles.statIcon}></div>
                 <div className={styles.statInfo}>
                   <div className={styles.statNumber}>
                     {stats.totalCars ? `${stats.totalCars}` : '0'}
@@ -368,7 +362,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
               </div>
 
               <div className={styles.statItem}>
-                <div className={styles.statIcon}>⚙️</div>
+                <div className={styles.statIcon}></div>
                 <div className={styles.statInfo}>
                   <div className={styles.statNumber}>
                     {stats.totalModifications ? `${stats.totalModifications}` : '0'}
@@ -380,7 +374,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
 
             <div className={styles.usersFeatures}>
               <div className={styles.userFeature}>
-                <div className={styles.userFeatureIcon}>📊</div>
+                <div className={styles.userFeatureIcon}></div>
                 <h3 className={styles.userFeatureTitle}>Dashboard Completo</h3>
                 <p className={styles.userFeatureDesc}>
                   Visualize estatísticas detalhadas de todos os usuários, 
@@ -389,7 +383,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
               </div>
 
               <div className={styles.userFeature}>
-                <div className={styles.userFeatureIcon}>🔍</div>
+                <div className={styles.userFeatureIcon}></div>
                 <h3 className={styles.userFeatureTitle}>Busca Avançada</h3>
                 <p className={styles.userFeatureDesc}>
                   Encontre usuários por nome, email, marca de carro preferida 
@@ -398,7 +392,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
               </div>
 
               <div className={styles.userFeature}>
-                <div className={styles.userFeatureIcon}>🎯</div>
+                <div className={styles.userFeatureIcon}></div>
                 <h3 className={styles.userFeatureTitle}>Gestão Inteligente</h3>
                 <p className={styles.userFeatureDesc}>
                   Adicione, remova e gerencie carros dos usuários com 
@@ -412,7 +406,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
                 onClick={() => navigateTo('users')}
                 className={styles.usersBtn}
               >
-                <span className={styles.btnIcon}>👥</span>
+
                 Gerenciar Usuários
                 <span className={styles.btnArrow}>→</span>
               </button>
@@ -457,15 +451,15 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
             <div className={styles.aboutRight}>
               <div className={styles.techDisplay}>
                 <div className={styles.techCard}>
-                  <span className={styles.techIcon}>🔧</span>
+                  <span className={styles.techIcon}></span>
                   <span>Engine Simulator</span>
                 </div>
                 <div className={styles.techCard}>
-                  <span className={styles.techIcon}>📈</span>
+                  <span className={styles.techIcon}></span>
                   <span>Performance Analytics</span>
                 </div>
                 <div className={styles.techCard}>
-                  <span className={styles.techIcon}>⚡</span>
+                  <span className={styles.techIcon}></span>
                   <span>Real-time Processing</span>
                 </div>
               </div>
@@ -486,14 +480,12 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
               onClick={() => navigateTo('simulation')}
               className={styles.ctaPrimary}
             >
-              <span>🚀</span>
               Simular Agora
             </button>
             <button 
               onClick={() => navigateTo('carList')}
               className={styles.ctaSecondary}
             >
-              <span>🚗</span>
               Ver Carros
             </button>
           </div>
@@ -505,7 +497,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
-              <span className={styles.titleIcon}>🏢</span>
+
               Garagem Virtual
             </h2>
             <p className={styles.sectionSubtitle}>
@@ -517,7 +509,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
             {/* Garagem Pessoal */}
             <div className={styles.storageCard}>
               <div className={styles.storageHeader}>
-                <div className={styles.storageIcon}>🏠</div>
+                <div className={styles.storageIcon}></div>
                 <div className={styles.storageBadge}>Ilimitado</div>
               </div>
               <h3 className={styles.storageTitle}>Minha Garagem</h3>
@@ -579,9 +571,9 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
                 especificações e modificações.
               </p>
               <div className={styles.storagePreview}>
-                <div className={styles.previewCar}>🚗</div>
+                <div className={styles.previewCar}></div>
                 <div className={styles.previewVs}>VS</div>
-                <div className={styles.previewCar}>🚗</div>
+                <div className={styles.previewCar}></div>
               </div>
               <button 
                 onClick={() => navigateTo('compare')}
@@ -594,7 +586,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
             {/* Comunidade */}
             <div className={styles.storageCard}>
               <div className={styles.storageHeader}>
-                <div className={styles.storageIcon}>👥</div>
+                <div className={styles.storageIcon}></div>
                 <div className={styles.storageBadge}>Social</div>
               </div>
               <h3 className={styles.storageTitle}>Builds da Comunidade</h3>
@@ -634,14 +626,12 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
                 onClick={() => navigateTo('login')}
                 className={styles.ctaPrimary}
               >
-                <span>🚀</span>
                 Criar Conta
               </button>
               <button 
                 onClick={() => navigateTo('simulation')}
                 className={styles.ctaSecondary}
               >
-                <span>🔧</span>
                 Começar Build
               </button>
             </div>
