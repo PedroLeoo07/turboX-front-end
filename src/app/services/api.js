@@ -11,7 +11,7 @@ const api = axios.create({
 });
 
 // Log para debug das rotas
-console.log('🚀 API Base URL:', process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api');
+console.log('API Base URL:', process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api');
 
 // Interceptor para requisições
 api.interceptors.request.use(
@@ -79,7 +79,7 @@ export const authAPI = {
           id: 'leonardo-profile',
           name: 'Leonardo Pedro de Oliveira',
           email: 'leonardopedrodeoliveira07@gmail.com',
-          avatar: '🏎️',
+          avatar: '',
           memberSince: '01/01/2024',
           profile: 'admin'
         };
@@ -109,7 +109,7 @@ export const authAPI = {
         id: Date.now().toString(),
         name: userData.name,
         email: userData.email,
-        avatar: '👤',
+  avatar: '',
         memberSince: new Date().toLocaleDateString('pt-BR'),
         profile: 'user'
       };
@@ -152,16 +152,16 @@ export const carsAPI = {
       const queryString = params.toString();
       const endpoint = queryString ? `/cars?${queryString}` : '/cars';
       
-      console.log('🚗 Chamando API Cars:', `${api.defaults.baseURL}${endpoint}`);
+  console.log('Chamando API Cars:', `${api.defaults.baseURL}${endpoint}`);
       const response = await api.get(endpoint);
-      console.log('✅ Cars API Response:', response.data);
+  console.log('Cars API Response:', response.data);
       return response.data;
     } catch (error) {
-      console.error('❌ Cars API Error:', error);
+  console.error('Cars API Error:', error);
       
       // Fallback para dados estáticos quando há Network Error
       if (error.code === 'NETWORK_ERROR' || error.message === 'Network Error' || !error.response) {
-        console.log('🔄 Backend indisponível, usando carros fallback...');
+  console.log('Backend indisponível, usando carros fallback...');
         const fallbackCars = [
           { id: 1, brand: 'Volkswagen', model: 'Golf GTI', year: 2023, price: 180000, category: 'Hatch' },
           { id: 2, brand: 'BMW', model: 'M3', year: 2023, price: 450000, category: 'Sedan' },
@@ -194,16 +194,16 @@ export const carsAPI = {
 
   getBrands: async () => {
     try {
-      console.log('🏷️ Chamando API Marcas:', `${api.defaults.baseURL}/cars/marcas`);
+  console.log('Chamando API Marcas:', `${api.defaults.baseURL}/cars/marcas`);
       const response = await api.get('/cars/marcas');
-      console.log('✅ Marcas API Response:', response.data);
+  console.log('Marcas API Response:', response.data);
       return response.data;
     } catch (error) {
-      console.error('❌ Marcas API Error:', error);
+  console.error('Marcas API Error:', error);
       
       // Fallback para dados estáticos quando há Network Error
       if (error.code === 'NETWORK_ERROR' || error.message === 'Network Error' || !error.response) {
-        console.log('🔄 Backend indisponível, usando marcas fallback...');
+  console.log('Backend indisponível, usando marcas fallback...');
         const fallbackBrands = [
           { name: 'Volkswagen', logo: '/logos/volks.png', description: 'Tradição alemã em engenharia' },
           { name: 'BMW', logo: '/logos/BMW.png', description: 'Prazer em dirigir' },

@@ -25,12 +25,12 @@ export default function CarDetails({ car, navigateTo, isLoggedIn, user, onLogout
   }
 
   const specifications = [
-    { label: 'Potência', value: `${car.power} cv`, icon: '⚡' },
-    { label: 'Torque', value: `${car.torque} Nm`, icon: '🔧' },
-    { label: 'Aceleração 0-100', value: `${car.acceleration}s`, icon: '🏁' },
-    { label: 'Ano', value: car.year, icon: '📅' },
-    { label: 'Marca', value: car.brand, icon: '🏷️' },
-    { label: 'Categoria', value: car.category, icon: '📊' }
+    { label: 'Potência', value: `${car.power} cv`, icon: 'P' },
+    { label: 'Torque', value: `${car.torque} Nm`, icon: 'T' },
+    { label: 'Aceleração 0-100', value: `${car.acceleration}s`, icon: 'A' },
+    { label: 'Ano', value: car.year, icon: 'Ano' },
+    { label: 'Marca', value: car.brand, icon: 'Marca' },
+    { label: 'Categoria', value: car.category, icon: 'Cat' }
   ];
 
   const features = [
@@ -91,10 +91,10 @@ export default function CarDetails({ car, navigateTo, isLoggedIn, user, onLogout
                 onClick={() => navigateTo('simulation', car)}
                 className={styles.simulateButton}
               >
-                🔧 Iniciar Simulação
+                Iniciar Simulação
               </button>
               <button className={styles.favoriteButton}>
-                ❤️ Adicionar aos Favoritos
+                Adicionar aos Favoritos
               </button>
             </div>
           </div>
@@ -120,21 +120,21 @@ export default function CarDetails({ car, navigateTo, isLoggedIn, user, onLogout
             <h2 className={styles.sectionTitle}>Performance Base</h2>
             <div className={styles.performanceGrid}>
               <div className={styles.performanceCard}>
-                <div className={styles.performanceIcon}>🏎️</div>
+                <div className={styles.performanceIcon}>Pot</div>
                 <h3>Potência Original</h3>
                 <div className={styles.performanceValue}>{car.power} CV</div>
                 <p>Configuração de fábrica otimizada</p>
               </div>
               
               <div className={styles.performanceCard}>
-                <div className={styles.performanceIcon}>⚡</div>
+                <div className={styles.performanceIcon}>Tq</div>
                 <h3>Torque Máximo</h3>
                 <div className={styles.performanceValue}>{car.torque} Nm</div>
                 <p>Força disponível em todas as RPM</p>
               </div>
               
               <div className={styles.performanceCard}>
-                <div className={styles.performanceIcon}>🏁</div>
+                <div className={styles.performanceIcon}>Acel</div>
                 <h3>Aceleração</h3>
                 <div className={styles.performanceValue}>{car.acceleration}s</div>
                 <p>Tempo de 0 a 100 km/h</p>
@@ -147,7 +147,7 @@ export default function CarDetails({ car, navigateTo, isLoggedIn, user, onLogout
             <div className={styles.featuresList}>
               {features.map((feature, index) => (
                 <div key={index} className={styles.featureItem}>
-                  <span className={styles.featureCheck}>✓</span>
+                  <span className={styles.featureCheck}>-</span>
                   <span className={styles.featureText}>{feature}</span>
                 </div>
               ))}
@@ -164,19 +164,19 @@ export default function CarDetails({ car, navigateTo, isLoggedIn, user, onLogout
                   e ver como elas afetam a performance do seu carro em tempo real.
                 </p>
                 <ul className={styles.upgradeFeatures}>
-                  <li>✨ Simulação de Stage 1, 2 e 3</li>
-                  <li>🔧 Upgrades de motor, turbo e escape</li>
-                  <li>📊 Gráficos de performance antes/depois</li>
-                  <li>💾 Salvar e compartilhar suas builds</li>
+                  <li>Simulação de Stage 1, 2 e 3</li>
+                  <li>Upgrades de motor, turbo e escape</li>
+                  <li>Gráficos de performance antes/depois</li>
+                  <li>Salvar e compartilhar suas builds</li>
                 </ul>
               </div>
               <div className={styles.upgradeActions}>
-                <button 
-                  onClick={() => navigateTo('simulation', car)}
-                  className={styles.startSimulationButton}
-                >
-                  🚀 Começar Simulação
-                </button>
+                  <button 
+                    onClick={() => navigateTo('simulation', car)}
+                    className={styles.startSimulationButton}
+                  >
+                    Começar Simulação
+                  </button>
                 <div className={styles.upgradeStats}>
                   <div className={styles.upgradeStat}>
                     <span>Potencial: +200 CV</span>

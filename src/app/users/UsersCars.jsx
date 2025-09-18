@@ -87,7 +87,7 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
               className={styles.headerLogo}
             />
             <h1 className={styles.title}>
-              <span className={styles.titleIcon}>👥</span>
+              <span className={styles.titleIcon}></span>
               Usuários & Carros
             </h1>
           </div>
@@ -130,7 +130,7 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
               onChange={(e) => setSearchTerm(e.target.value)}
               className={styles.searchInput}
             />
-            <span className={styles.searchIcon}>🔍</span>
+            <span className={styles.searchIcon}>Buscar</span>
           </div>
 
           <select
@@ -172,7 +172,7 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
         <div className={styles.usersContent}>
           {users.length === 0 ? (
             <div className={styles.noResults}>
-              <div className={styles.noResultsIcon}>😔</div>
+              <div className={styles.noResultsIcon}>:(</div>
               <h3>Nenhum usuário encontrado</h3>
               <p>Tente ajustar os filtros ou remover algumas restrições.</p>
             </div>
@@ -221,14 +221,14 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
                                 onClick={() => navigateTo('car', { id: car.id })}
                                 title="Ver detalhes do carro"
                               >
-                                👁️
+                                Ver
                               </button>
                               <button
                                 className={styles.removeCarBtn}
                                 onClick={() => handleRemoveCarFromUser(user.id, car.id)}
                                 title="Remover carro do usuário"
                               >
-                                🗑️
+                                Remover
                               </button>
                             </div>
                           </div>
@@ -236,7 +236,7 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
                       </div>
                     ) : (
                       <div className={styles.noCars}>
-                        <span className={styles.noCarsIcon}>🚗</span>
+                        <span className={styles.noCarsIcon}>Carro</span>
                         <p>Nenhum carro cadastrado</p>
                       </div>
                     )}

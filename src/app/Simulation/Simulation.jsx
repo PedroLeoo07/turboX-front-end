@@ -352,13 +352,13 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
                       onClick={() => loadBuild(build)}
                       className={styles.loadButton}
                     >
-                      📂 Carregar
+                      Carregar
                     </button>
                     <button 
                       onClick={() => deleteBuild(build.id)}
                       className={styles.deleteButton}
                     >
-                      🗑️
+                      Excluir
                     </button>
                   </div>
                 </div>
@@ -372,14 +372,14 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
             onClick={() => navigateTo('cars')}
             className={styles.navActionButton}
           >
-            🚗 Escolher Outro Carro
+            Escolher Outro Carro
           </button>
           
           <button 
             onClick={() => navigateTo('home')}
             className={styles.navActionButton}
           >
-            🏠 Voltar ao Início
+            Voltar ao Início
           </button>
           
           {car && (
@@ -387,7 +387,7 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
               onClick={() => navigateTo('details', car)}
               className={styles.navActionButton}
             >
-              📊 Ver Detalhes do Carro
+              Ver Detalhes do Carro
             </button>
           )}
         </div>
