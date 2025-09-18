@@ -1,10 +1,14 @@
 'use client';
 
+import { useState } from 'react';
 import { useCars } from '../hooks/useBackend';
+import BrandCarsModal from './BrandCarsModal';
 import styles from './BrandGrid.module.css';
 
 const BrandGrid = ({ navigateTo }) => {
   const { brands, loading } = useCars();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedBrand, setSelectedBrand] = useState(null);
 
   // Marcas padrão caso o backend não esteja disponível
   const defaultBrands = [
@@ -28,7 +32,13 @@ const BrandGrid = ({ navigateTo }) => {
   const brandsToShow = brands && brands.length > 0 ? brands : defaultBrands;
 
   const handleBrandClick = (brandName) => {
-    navigateTo('carList', null, { brand: brandName });
+    setSelectedBrand(brandName);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedBrand(null);
   };
 
   if (loading) {
@@ -46,37 +56,46 @@ const BrandGrid = ({ navigateTo }) => {
   }
 
   return (
-    <div className={styles.brandsGrid}>
-      {brandsToShow.map((brand, index) => (
-        <div 
-          key={brand.name || index}
-          className={styles.brandCard} 
-          onClick={() => handleBrandClick(brand.name)}
-        >
-          <div className={styles.brandIcon}>
-            <img 
-              src={brand.logo} 
-              alt={`${brand.name} Logo`} 
-              className={styles.brandLogo}
-              onError={(e) => {
-                e.target.src = '/images/car-placeholder.svg';
-              }}
-            />
-          </div>
-          <h3 className={styles.brandName}>{brand.name}</h3>
-          <p className={styles.brandDesc}>
-            {brand.description || 'Performance e qualidade'}
-          </p>
-          <div className={styles.brandArrow}>→</div>
-          
-          {brand.carCount && (
-            <div className={styles.carCount}>
-              {brand.carCount} modelo{brand.carCount !== 1 ? 's' : ''}
+    <>
+      <div className={styles.brandsGrid}>
+        {brandsToShow.map((brand, index) => (
+          <div 
+            key={brand.name || index}
+            className={styles.brandCard} 
+            onClick={() => handleBrandClick(brand.name)}
+          >
+            <div className={styles.brandIcon}>
+              <img 
+                src={brand.logo} 
+                alt={`${brand.name} Logo`} 
+                className={styles.brandLogo}
+                onError={(e) => {
+                  e.target.src = '/images/car-placeholder.svg';
+                }}
+              />
             </div>
-          )}
-        </div>
-      ))}
-    </div>
+            <h3 className={styles.brandName}>{brand.name}</h3>
+            <p className={styles.brandDesc}>
+              {brand.description || 'Performance e qualidade'}
+            </p>
+            <div className={styles.brandArrow}>→</div>
+            
+            {brand.carCount && (
+              <div className={styles.carCount}>
+                {brand.carCount} modelo{brand.carCount !== 1 ? 's' : ''}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Modal para exibir carros da marca */}
+      <BrandCarsModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        selectedBrand={selectedBrand}
+      />
+    </>
   );
 };
 

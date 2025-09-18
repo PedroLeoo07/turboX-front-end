@@ -1,0 +1,291 @@
+/* Brand Cars Modal Styles */
+
+.modalContent {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Controles de filtro e ordenação */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+  padding: 16px 20px;
+  background: #2a2a2a;
+  border-radius: 12px;
+  border: 1px solid #333;
+  flex-wrap: wrap;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 180px;
+}
+
+.filterGroup label {
+  font-size: 0.875rem;
+  color: #ccc;
+  font-weight: 500;
+}
+
+.select {
+  padding: 8px 12px;
+  background: #1a1a1a;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.select:hover {
+  border-color: #666;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #0070f3;
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1);
+}
+
+.resultsCount {
+  margin-left: auto;
+  color: #999;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+/* Loading */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: #999;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #333;
+  border-top: 3px solid #0070f3;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Sem carros */
+.noCars {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  color: #999;
+}
+
+.noCarIcon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.noCars h3 {
+  margin: 0 0 8px 0;
+  color: #ffffff;
+  font-size: 1.25rem;
+}
+
+.noCars p {
+  margin: 0;
+  font-size: 0.975rem;
+}
+
+/* Grid de carros */
+.carsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Card do carro */
+.carCard {
+  background: #2a2a2a;
+  border-radius: 16px;
+  border: 1px solid #333;
+  padding: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.carCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  border-color: #0070f3;
+}
+
+.carImage {
+  position: relative;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.carEmoji {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.carCategory {
+  display: inline-block;
+  background: #0070f3;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.carInfo {
+  text-align: left;
+}
+
+.carName {
+  margin: 0 0 4px 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.carYear {
+  margin: 0 0 12px 0;
+  color: #999;
+  font-size: 0.875rem;
+}
+
+.carDescription {
+  margin: 0 0 16px 0;
+  color: #ccc;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* Especificações */
+.carSpecs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.spec {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #333;
+}
+
+.specLabel {
+  color: #999;
+  font-size: 0.75rem;
+}
+
+.specValue {
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Motor */
+.carEngine {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  border: 1px solid #333;
+  font-size: 0.875rem;
+  color: #ccc;
+}
+
+.carEngine strong {
+  color: #ffffff;
+}
+
+/* Preço */
+.carPrice {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00d4aa;
+  text-align: center;
+  padding: 12px;
+  background: rgba(0, 212, 170, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 212, 170, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  
+  .filterGroup {
+    min-width: auto;
+  }
+  
+  .resultsCount {
+    margin-left: 0;
+    text-align: center;
+  }
+  
+  .carsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .carCard {
+    padding: 16px;
+  }
+  
+  .carSpecs {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .carCard {
+    padding: 12px;
+  }
+  
+  .carEmoji {
+    font-size: 2.5rem;
+  }
+  
+  .carName {
+    font-size: 1.125rem;
+  }
+  
+  .carPrice {
+    font-size: 1.25rem;
+  }
+}
