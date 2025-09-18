@@ -128,7 +128,7 @@ export default function App() {
             isLoggedIn={isLoggedIn}
             user={user}
             onLogout={handleLogout}
-            selectedCar={selectedCar}
+            car={selectedCar}
           />
         );
       default:
