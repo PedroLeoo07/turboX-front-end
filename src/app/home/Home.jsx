@@ -431,19 +431,19 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
               </p>
               <div className={styles.aboutFeatures}>
                 <div className={styles.aboutFeature}>
-                  <span className={styles.checkIcon}>✓</span>
+                  <span className={styles.checkIcon}></span>
                   <span>Cálculos baseados em dados reais</span>
                 </div>
                 <div className={styles.aboutFeature}>
-                  <span className={styles.checkIcon}>✓</span>
+                  <span className={styles.checkIcon}></span>
                   <span>Interface intuitiva e moderna</span>
                 </div>
                 <div className={styles.aboutFeature}>
-                  <span className={styles.checkIcon}>✓</span>
+                  <span className={styles.checkIcon}></span>
                   <span>Resultados instantâneos</span>
                 </div>
                 <div className={styles.aboutFeature}>
-                  <span className={styles.checkIcon}>✓</span>
+                  <span className={styles.checkIcon}></span>
                   <span>Comparação entre configurações</span>
                 </div>
               </div>
@@ -547,9 +547,9 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
                 com a comunidade TurboX.
               </p>
               <div className={styles.storageFeatures}>
-                <div className={styles.feature}>✓ Backup na nuvem</div>
-                <div className={styles.feature}>✓ Compartilhamento social</div>
-                <div className={styles.feature}>✓ Histórico completo</div>
+                <div className={styles.feature}>Backup na nuvem</div>
+                <div className={styles.feature}>Compartilhamento social</div>
+                <div className={styles.feature}>Histórico completo</div>
               </div>
               <button 
                 onClick={() => navigateTo('favorites')}
@@ -562,7 +562,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
             {/* Comparador */}
             <div className={styles.storageCard}>
               <div className={styles.storageHeader}>
-                <div className={styles.storageIcon}>⚖️</div>
+                <div className={styles.storageIcon}></div>
                 <div className={styles.storageBadge}>Novo</div>
               </div>
               <h3 className={styles.storageTitle}>Comparador</h3>
@@ -670,7 +670,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
             </div>
           </div>
           <div className={styles.footerBottom}>
-            <p>&copy; 2025 TurboX. Desenvolvido com ❤️ para os amantes da velocidade.</p>
+            <p>&copy; 2025 TurboX. Desenvolvido para os amantes da velocidade.</p>
           </div>
         </div>
       </footer>

@@ -120,7 +120,7 @@ export default function Login({ navigateTo, onLogin }) {
 
     } catch (error) {
       console.error('Erro na autenticação:', error);
-      toast.error('Erro interno. Tente novamente mais tarde! ⚠️');
+      toast.error('Erro interno. Tente novamente mais tarde!');
     } finally {
       setIsLoading(false);
     }
@@ -270,7 +270,7 @@ export default function Login({ navigateTo, onLogin }) {
           >
             {isLoading ? (
               <div className={styles.loading}>
-                <span className={styles.spinner}>⚡</span>
+                <span className={styles.spinner}></span>
                 {isSignUp ? 'Criando conta...' : 'Entrando...'}
               </div>
             ) : (
@@ -316,7 +316,7 @@ export default function Login({ navigateTo, onLogin }) {
                 }}
                 className={styles.fillButton}
               >
-                ⚡ Preencher Automaticamente
+                Preencher Automaticamente
               </button>
             </div>
           </div>
@@ -331,14 +331,14 @@ export default function Login({ navigateTo, onLogin }) {
           onClick={handleFillDemoCredentials}
           className={styles.fillDemoButton}
         >
-          🔑 Preencher Credenciais Demo
+          Preencher Credenciais Demo
         </button>
 
         <button 
           onClick={handleQuickLogin}
           className={styles.leonardoButton}
         >
-          🏎️ Entrar como Leonardo
+          Entrar como Leonardo
         </button>
 
         <button 

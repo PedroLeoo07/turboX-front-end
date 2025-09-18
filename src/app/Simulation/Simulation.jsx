@@ -33,7 +33,7 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
     power: 565,
     torque: 637,
     acceleration: 2.7,
-    image: '🚗'
+    image: 'GT-R'
   };
 
   // Cálculos de performance baseados nos upgrades
@@ -132,12 +132,12 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
   const shareableLink = `turbox.dev/build/${btoa(JSON.stringify({ stage: selectedStage, upgrades: selectedUpgrades, car: baseCar.model }))}`;
 
   const upgradeOptions = [
-    { id: 'intake', name: 'Filtro de Ar Esportivo', cost: 'R$ 500', icon: '🌪️' },
-    { id: 'exhaust', name: 'Escape Esportivo', cost: 'R$ 2.500', icon: '💨' },
-    { id: 'turbo', name: 'Turbo Upgrade', cost: 'R$ 8.000', icon: '🌀' },
-    { id: 'intercooler', name: 'Intercooler HD', cost: 'R$ 3.000', icon: '❄️' },
-    { id: 'ecu', name: 'Reprogramação ECU', cost: 'R$ 1.500', icon: '🧠' },
-    { id: 'fuel', name: 'Sistema Combustível', cost: 'R$ 4.000', icon: '⛽' }
+    { id: 'intake', name: 'Filtro de Ar Esportivo', cost: 'R$ 500', icon: 'Filtro' },
+    { id: 'exhaust', name: 'Escape Esportivo', cost: 'R$ 2.500', icon: 'Escape' },
+    { id: 'turbo', name: 'Turbo Upgrade', cost: 'R$ 8.000', icon: 'Turbo' },
+    { id: 'intercooler', name: 'Intercooler HD', cost: 'R$ 3.000', icon: 'Intercooler' },
+    { id: 'ecu', name: 'Reprogramação ECU', cost: 'R$ 1.500', icon: 'ECU' },
+    { id: 'fuel', name: 'Sistema Combustível', cost: 'R$ 4.000', icon: 'Combustível' }
   ];
 
   return (
@@ -172,7 +172,7 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
               onClick={() => navigateTo('cars')} 
               className={styles.selectCarButton}
             >
-              🚗 Escolher Outro Carro
+              Escolher Outro Carro
             </button>
           )}
         </div>
@@ -209,7 +209,7 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
                       <p>{upgrade.cost}</p>
                     </div>
                     <div className={styles.upgradeCheckbox}>
-                      {selectedUpgrades[upgrade.id] ? '✅' : '⬜'}
+                      {selectedUpgrades[upgrade.id] ? '✓' : '☐'}
                     </div>
                   </div>
                 ))}
@@ -238,7 +238,7 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
                   </div>
                 </div>
 
-                <div className={styles.arrow}>➡️</div>
+                <div className={styles.arrow}>→</div>
 
                 <div className={styles.performanceColumn}>
                   <h4>Modificado</h4>
