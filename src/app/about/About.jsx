@@ -7,12 +7,15 @@ import Image from 'next/image';
 
 export default function About({ navigateTo, isLoggedIn, user, onLogout }) {
   const skills = [
-    { name: 'React.js', level: 90, icon: '' },
+    { name: 'Next.js', level: 90, icon: '' },
+    { name: 'HTML', level: 80, icon: '' },
     { name: 'Next.js', level: 85, icon: '' },
     { name: 'JavaScript', level: 95, icon: '' },
-    { name: 'CSS/Sass', level: 90, icon: '' },
+    { name: 'CSS', level: 90, icon: '' },
     { name: 'Node.js', level: 80, icon: '' },
-    { name: 'TypeScript', level: 75, icon: '' }
+    { name: 'PostgreSQL', level:  80, icon: '' },
+    { name: 'TypeScript', level: 75, icon: '' },
+    { name: 'React-Native', level: 65, icon: '' }
   ];
 
   const projects = [
