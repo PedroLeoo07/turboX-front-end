@@ -149,9 +149,9 @@
 
 .upgradeCard {
   display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 15px;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 20px 18px 20px 18px;
   background: rgba(0, 0, 0, 0.3);
   border: 2px solid rgba(255, 0, 0, 0.2);
   border-radius: 10px;
@@ -182,14 +182,19 @@
 
 .upgradeInfo h4 {
   color: #fff;
-  margin-bottom: 3px;
-  font-size: 1rem;
+  margin-bottom: 18px;
+  font-size: 1.08rem;
+  display: block;
 }
 
 .upgradeInfo p {
-  color: #888;
+  color: #ffb3b3;
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 1.04rem;
+  line-height: 1.9;
+  padding-left: 2px;
+  font-weight: 500;
+  display: block;
 }
 
 .upgradeCheckbox {

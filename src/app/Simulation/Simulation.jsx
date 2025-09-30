@@ -16,7 +16,13 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
     turbo: false,
     intercooler: false,
     ecu: false,
-    fuel: false
+    fuel: false,
+    suspension: false,
+    tires: false,
+    brakes: false,
+    clutch: false,
+    lightweight: false,
+    aerodynamics: false
   });
   const [buildName, setBuildName] = useState('');
 
@@ -56,12 +62,18 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
     accelImprovement += stageBonus.accel;
 
     // Individual upgrade bonuses
-    if (selectedUpgrades.intake) { powerBonus += 15; torqueBonus += 20; accelImprovement += 0.1; }
-    if (selectedUpgrades.exhaust) { powerBonus += 25; torqueBonus += 30; accelImprovement += 0.2; }
-    if (selectedUpgrades.turbo) { powerBonus += 80; torqueBonus += 100; accelImprovement += 0.4; }
-    if (selectedUpgrades.intercooler) { powerBonus += 20; torqueBonus += 25; accelImprovement += 0.15; }
-    if (selectedUpgrades.ecu) { powerBonus += 40; torqueBonus += 50; accelImprovement += 0.25; }
-    if (selectedUpgrades.fuel) { powerBonus += 10; torqueBonus += 15; accelImprovement += 0.05; }
+  if (selectedUpgrades.intake) { powerBonus += 30; torqueBonus += 40; accelImprovement += 0.18; }
+  if (selectedUpgrades.exhaust) { powerBonus += 50; torqueBonus += 60; accelImprovement += 0.28; }
+  if (selectedUpgrades.turbo) { powerBonus += 180; torqueBonus += 200; accelImprovement += 0.7; }
+  if (selectedUpgrades.intercooler) { powerBonus += 40; torqueBonus += 50; accelImprovement += 0.22; }
+  if (selectedUpgrades.ecu) { powerBonus += 80; torqueBonus += 100; accelImprovement += 0.38; }
+  if (selectedUpgrades.fuel) { powerBonus += 25; torqueBonus += 30; accelImprovement += 0.12; }
+  if (selectedUpgrades.suspension) { accelImprovement += 0.18; }
+  if (selectedUpgrades.tires) { accelImprovement += 0.28; }
+  if (selectedUpgrades.brakes) { accelImprovement += 0.15; }
+  if (selectedUpgrades.clutch) { accelImprovement += 0.13; }
+  if (selectedUpgrades.lightweight) { powerBonus += 30; accelImprovement += 0.32; }
+  if (selectedUpgrades.aerodynamics) { powerBonus += 18; accelImprovement += 0.19; }
 
     return {
       power: Math.round(baseCar.power + powerBonus),
@@ -137,7 +149,13 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
     { id: 'turbo', name: 'Turbo Upgrade', cost: 'R$ 8.000', icon: 'Turbo' },
     { id: 'intercooler', name: 'Intercooler HD', cost: 'R$ 3.000', icon: 'Intercooler' },
     { id: 'ecu', name: 'Reprogramação ECU', cost: 'R$ 1.500', icon: 'ECU' },
-    { id: 'fuel', name: 'Sistema Combustível', cost: 'R$ 4.000', icon: 'Combustível' }
+    { id: 'fuel', name: 'Sistema Combustível', cost: 'R$ 4.000', icon: 'Combustível' },
+    { id: 'suspension', name: 'Suspensão Esportiva', cost: 'R$ 2.200', icon: 'Suspensão' },
+    { id: 'tires', name: 'Pneus Semi-Slick', cost: 'R$ 3.500', icon: 'Pneus' },
+    { id: 'brakes', name: 'Freios de Alta Performance', cost: 'R$ 2.800', icon: 'Freios' },
+    { id: 'clutch', name: 'Embreagem Reforçada', cost: 'R$ 1.800', icon: 'Embreagem' },
+    { id: 'lightweight', name: 'Alívio de Peso', cost: 'R$ 4.500', icon: 'Peso' },
+    { id: 'aerodynamics', name: 'Kit Aerodinâmico', cost: 'R$ 3.200', icon: 'Aero' }
   ];
 
   return (
