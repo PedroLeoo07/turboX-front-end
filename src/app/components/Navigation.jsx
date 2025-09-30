@@ -3,15 +3,16 @@
 import { useState, useEffect } from 'react';
 import BackendStatus from './BackendStatus';
 import styles from './Navigation.module.css';
+import Image from 'next/image';
 
 export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, onLogout }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const navItems = [
-    { id: 'home', label: 'Home', icon: '🏠' },
-    { id: 'carList', label: 'Carros', icon: '🚗' },
-    { id: 'simulation', label: 'Simulação', icon: '⚙️' },
-    { id: 'about', label: 'Sobre', icon: '👤' },
+    { id: 'home', label: 'Home', icon: '' },
+    { id: 'carList', label: 'Carros', icon: '' },
+    { id: 'simulation', label: 'Simulação', icon: '' },
+    { id: 'about', label: 'Sobre', icon: '' },
   ];
 
   // Fechar menu ao redimensionar tela
@@ -66,8 +67,14 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
       {/* Header Principal */}
       <div className={styles.navHeader}>
         <button onClick={() => navigateTo('home')} className={styles.logo}>
-          <span className={styles.logoIcon}>🏎️</span>
-          <span className={styles.logoText}>TurboX</span>
+          <Image
+            src="/images/TurboX.png"
+            alt="Logo TurboX"
+            width={110}
+            height={110}
+            className={styles.logoImg}
+            priority
+          />
         </button>
 
         {/* Menu Desktop */}
@@ -122,12 +129,14 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
       <div className={`${styles.mobileMenuSlide} ${isMobileMenuOpen ? styles.open : ''}`}>
         {/* Header do Menu Mobile */}
         <div className={styles.mobileHeader}>
-          <div className={styles.mobileBrand}>
-            <span className={styles.mobileBrandIcon}>🏎️</span>
-            <div className={styles.mobileBrandText}>
-              <h2>TurboX</h2>
-              <p>Performance & Style</p>
-            </div>
+          <div className={styles.mobileBrand} style={{ gap: 0 }}>
+            <Image
+              src="/images/TurboX.png"
+              alt="Logo TurboX"
+              width={40}
+              height={40}
+              priority
+            />
           </div>
           
           {isLoggedIn && user && (
