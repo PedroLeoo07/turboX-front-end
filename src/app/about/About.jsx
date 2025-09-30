@@ -1,16 +1,18 @@
 "use client";
 
+
 import Navigation from '../components/Navigation';
 import styles from './About.module.css';
+import Image from 'next/image';
 
 export default function About({ navigateTo, isLoggedIn, user, onLogout }) {
   const skills = [
-    { name: 'React.js', level: 90, icon: '⚛️' },
-    { name: 'Next.js', level: 85, icon: '🚀' },
-    { name: 'JavaScript', level: 95, icon: '💛' },
-    { name: 'CSS/Sass', level: 90, icon: '🎨' },
-    { name: 'Node.js', level: 80, icon: '💚' },
-    { name: 'TypeScript', level: 75, icon: '💙' }
+    { name: 'React.js', level: 90, icon: '' },
+    { name: 'Next.js', level: 85, icon: '' },
+    { name: 'JavaScript', level: 95, icon: '' },
+    { name: 'CSS/Sass', level: 90, icon: '' },
+    { name: 'Node.js', level: 80, icon: '' },
+    { name: 'TypeScript', level: 75, icon: '' }
   ];
 
   const projects = [
@@ -21,15 +23,27 @@ export default function About({ navigateTo, isLoggedIn, user, onLogout }) {
       status: 'Em desenvolvimento'
     },
     {
-      name: 'E-commerce Moderno',
-      description: 'Loja virtual completa com carrinho e pagamentos',
-      tech: ['React', 'Node.js', 'MongoDB'],
+      name: 'Portfolio Website',
+      description: 'Portfólio pessoal para exibir projetos e habilidades',
+      tech: ['HTML', 'CSS', 'JavaScript'],
       status: 'Concluído'
     },
     {
-      name: 'Dashboard Analytics',
-      description: 'Painel administrativo com gráficos e métricas',
-      tech: ['Vue.js', 'Chart.js', 'API REST'],
+      name: 'Digital Card',
+      description: 'Card digital interativo para contatos profissionais',
+      tech: ['Next.js', 'Tailwind CSS', 'CSS'],
+      status: 'Concluído'
+    },
+    {
+      name: 'FunDev',
+      description: 'Plataforma de aprendizado de programação com quizzes e desafios',
+      tech: ['HTML', 'CSS', 'JavaScript'],
+      status: 'Concluído'
+    },
+    {
+      name: 'Playstation API',
+      description: 'API para integração com o console Playstation',
+      tech: ['Next.js', 'Tailwind CSS'],
       status: 'Concluído'
     }
   ];
@@ -47,7 +61,16 @@ export default function About({ navigateTo, isLoggedIn, user, onLogout }) {
       <main className={styles.main}>
         <section className={styles.hero}>
           <div className={styles.profileSection}>
-            <div className={styles.avatar}>👨‍💻</div>
+            <div className={styles.avatar}>
+              <Image
+                src="/images/foto.jpg"
+                alt="Avatar Leonardo Oliveira"
+                width={200}
+                height={200}
+                style={{ borderRadius: '50%' }}
+                priority
+              />
+            </div>
             <div className={styles.introText}>
               <h1 className={styles.name}>Leonardo Oliveira</h1>
               <h2 className={styles.title}>Desenvolvedor Full Stack</h2>
@@ -79,7 +102,7 @@ Acredito que cada aplicação pode simplificar a vida das pessoas e abrir portas
               <div className={styles.highlight}>
                 <div className={styles.highlightIcon}>💼</div>
                 <div className={styles.highlightText}>
-                  <h3>5+ Anos</h3>
+                  <h3>1+ Ano</h3>
                   <p>Experiência em desenvolvimento</p>
                 </div>
               </div>
@@ -87,7 +110,7 @@ Acredito que cada aplicação pode simplificar a vida das pessoas e abrir portas
               <div className={styles.highlight}>
                 <div className={styles.highlightIcon}>🚀</div>
                 <div className={styles.highlightText}>
-                  <h3>20+ Projetos</h3>
+                  <h3>5 projetos Desenvolvidos</h3>
                   <p>Aplicações web desenvolvidas</p>
                 </div>
               </div>
