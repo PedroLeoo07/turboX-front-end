@@ -49,10 +49,10 @@ export default function About({ navigateTo, isLoggedIn, user, onLogout }) {
           <div className={styles.profileSection}>
             <div className={styles.avatar}>👨‍💻</div>
             <div className={styles.introText}>
-              <h1 className={styles.name}>Pedro Leo</h1>
+              <h1 className={styles.name}>Leonardo Oliveira</h1>
               <h2 className={styles.title}>Desenvolvedor Full Stack</h2>
               <p className={styles.subtitle}>
-                Apaixonado por tecnologia e carros esportivos
+                Apaixonado por tecnologia e carros esportivos. Criador da TurboX.
               </p>
             </div>
           </div>
@@ -63,18 +63,15 @@ export default function About({ navigateTo, isLoggedIn, user, onLogout }) {
           <div className={styles.aboutContent}>
             <div className={styles.aboutText}>
               <p>
-                Olá! Sou um desenvolvedor apaixonado por criar experiências digitais incríveis. 
-                Minha jornada na programação começou há mais de 5 anos, e desde então venho 
-                me especializando em tecnologias modernas para desenvolvimento web.
+                Sou Desenvolvedor Full Stack com experiência em criação de aplicações web completas, trabalhando com JavaScript, React, Node.js e PostgreSQL. Apaixonado por tecnologia, busco constantemente aprender novas ferramentas e aplicar soluções criativas que agreguem valor a projetos. Meu foco é contribuir para empresas e times que incentivem inovação e crescimento.
               </p>
               <p>
-                Além da programação, sou um grande entusiasta de carros esportivos e modificações 
-                automotivas. Essa paixão me inspirou a criar a TurboX, uma plataforma que une 
-                meus dois mundos: tecnologia e automobilismo.
+             Minha jornada na TI é guiada pelo aprendizado constante.
+Cada projeto é uma oportunidade de crescer, dominar novas ferramentas e contribuir com soluções que façam a diferença.
               </p>
               <p>
-                Acredito que a tecnologia pode tornar qualquer experiência mais interessante e 
-                acessível, e é isso que busco em todos os meus projetos.
+              Mais do que escrever código, busco criar impacto através da tecnologia.
+Acredito que cada aplicação pode simplificar a vida das pessoas e abrir portas para novas possibilidades.
               </p>
             </div>
             
