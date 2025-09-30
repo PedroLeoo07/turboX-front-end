@@ -212,21 +212,21 @@ Acredito que cada aplicação pode simplificar a vida das pessoas e abrir portas
               onClick={() => navigateTo('home')}
               className={styles.navButton}
             >
-              🏠 Voltar ao Início
+               Voltar ao Início
             </button>
             
             <button 
               onClick={() => navigateTo('cars')}
               className={styles.navButton}
             >
-              🚗 Ver Carros
+               Ver Carros
             </button>
             
             <button 
               onClick={() => navigateTo('simulation')}
               className={styles.navButton}
             >
-              ⚡ Simulação
+               Simulação
             </button>
           </div>
         </section>
