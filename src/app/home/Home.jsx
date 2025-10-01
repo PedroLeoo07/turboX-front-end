@@ -671,7 +671,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
           </div>
           <div className={styles.footerBottom}>
             <p>&copy; 2025 TurboX. Desenvolvido para os amantes da velocidade.</p>
-          </div>
+           </div>
         </div>
       </footer>
     </div>
