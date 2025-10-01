@@ -49,7 +49,7 @@ const Modal = ({
             onClick={onClose}
             aria-label="Fechar modal"
           >
-            ✕
+            ×
           </button>
         </div>
         <div className={styles.modalBody}>

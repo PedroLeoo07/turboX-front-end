@@ -13,7 +13,7 @@ const carsDatabase = [
     brand: 'Nissan',
     model: 'GT-R',
     year: 2023,
-    image: '🚗',
+    image: 'car-icon',
     power: 565,
     torque: 637,
     acceleration: 2.7,
@@ -30,7 +30,7 @@ const carsDatabase = [
     brand: 'Toyota',
     model: 'Supra',
     year: 2023,
-    image: '🏎️',
+    image: 'car-icon',
     power: 382,
     torque: 500,
     acceleration: 4.1,
@@ -47,7 +47,7 @@ const carsDatabase = [
     brand: 'Subaru',
     model: 'WRX STI',
     year: 2022,
-    image: '🚙',
+    image: 'car-icon',
     power: 310,
     torque: 393,
     acceleration: 5.2,
@@ -64,7 +64,7 @@ const carsDatabase = [
     brand: 'Mitsubishi',
     model: 'Lancer Evolution X',
     year: 2015,
-    image: '🚗',
+    image: 'car-icon',
     power: 291,
     torque: 407,
     acceleration: 5.4,
@@ -81,7 +81,7 @@ const carsDatabase = [
     brand: 'Honda',
     model: 'Civic Type R',
     year: 2023,
-    image: '🏁',
+    image: 'car-icon',
     power: 315,
     torque: 420,
     acceleration: 5.0,
@@ -98,7 +98,7 @@ const carsDatabase = [
     brand: 'BMW',
     model: 'M3 Competition',
     year: 2023,
-    image: '🚗',
+    image: 'car-icon',
     power: 510,
     torque: 650,
     acceleration: 3.8,
@@ -115,7 +115,7 @@ const carsDatabase = [
     brand: 'Audi',
     model: 'RS6 Avant',
     year: 2023,
-    image: '🚙',
+    image: 'car-icon',
     power: 600,
     torque: 800,
     acceleration: 3.6,
@@ -132,7 +132,7 @@ const carsDatabase = [
     brand: 'Mercedes-AMG',
     model: 'A45 S',
     year: 2023,
-    image: '🏁',
+    image: 'car-icon',
     power: 421,
     torque: 500,
     acceleration: 3.9,
@@ -149,7 +149,7 @@ const carsDatabase = [
     brand: 'Porsche',
     model: '911 Turbo S',
     year: 2023,
-    image: '🏎️',
+    image: 'car-icon',
     power: 650,
     torque: 800,
     acceleration: 2.6,
@@ -166,7 +166,7 @@ const carsDatabase = [
     brand: 'Volkswagen',
     model: 'Golf R',
     year: 2023,
-    image: '🚗',
+    image: 'car-icon',
     power: 320,
     torque: 420,
     acceleration: 4.7,
@@ -183,7 +183,7 @@ const carsDatabase = [
     brand: 'Ford',
     model: 'Mustang Shelby GT500',
     year: 2023,
-    image: '🐎',
+    image: 'car-icon',
     power: 760,
     torque: 847,
     acceleration: 3.3,
@@ -200,7 +200,7 @@ const carsDatabase = [
     brand: 'Chevrolet',
     model: 'Camaro ZL1',
     year: 2023,
-    image: '🏁',
+    image: 'car-icon',
     power: 650,
     torque: 881,
     acceleration: 3.5,
@@ -217,7 +217,7 @@ const carsDatabase = [
     brand: 'McLaren',
     model: '720S',
     year: 2023,
-    image: '🏎️',
+    image: 'car-icon',
     power: 720,
     torque: 770,
     acceleration: 2.8,
@@ -234,7 +234,7 @@ const carsDatabase = [
     brand: 'Ferrari',
     model: 'F8 Tributo',
     year: 2023,
-    image: '🐎',
+    image: 'car-icon',
     power: 720,
     torque: 770,
     acceleration: 2.9,
@@ -251,7 +251,7 @@ const carsDatabase = [
     brand: 'Hyundai',
     model: 'i30N',
     year: 2023,
-    image: '🏁',
+    image: 'car-icon',
     power: 280,
     torque: 392,
     acceleration: 6.0,
@@ -268,7 +268,7 @@ const carsDatabase = [
     brand: 'Hyundai',
     model: 'Veloster N',
     year: 2022,
-    image: '🚗',
+    image: 'car-icon',
     power: 275,
     torque: 378,
     acceleration: 5.6,
@@ -285,7 +285,7 @@ const carsDatabase = [
     brand: 'Lamborghini',
     model: 'Huracán EVO',
     year: 2023,
-    image: '🐂',
+    image: 'car-icon',
     power: 640,
     torque: 600,
     acceleration: 2.9,
@@ -342,7 +342,7 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
   });
 
   const handleCarSelect = (car) => {
-    toast.success(`${car.brand} ${car.model} selecionado! 🎯`);
+    toast.success(`${car.brand} ${car.model} selecionado!`);
     navigateTo('car', car);
   };
 
@@ -377,7 +377,7 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
         />
         <div className={styles.loadingContainer}>
           <div className={styles.loadingContent}>
-            <div className={styles.spinner}>🏎️</div>
+            <div className={styles.spinner}></div>
             <h2>Carregando Garagem TurboX...</h2>
             <p>Conectando ao servidor e carregando dados dos carros</p>
             <div className={styles.loadingBar}>
@@ -404,7 +404,6 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
         <section className={styles.header}>
           <div className={styles.headerContent}>
             <h1 className={styles.title}>
-              <span className={styles.titleIcon}>🏁</span>
               Garagem TurboX
             </h1>
             <p className={styles.subtitle}>
@@ -434,7 +433,7 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
             <div className={styles.searchContainer}>
               <input
                 type="text"
-                placeholder="🔍 Buscar por modelo, marca ou motor..."
+                placeholder="Buscar por modelo, marca ou motor..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className={styles.searchInput}
@@ -448,7 +447,7 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
                 onChange={(e) => setSelectedBrand(e.target.value)}
                 className={styles.filterSelect}
               >
-                <option value="">🏷️ Todas as Marcas</option>
+                <option value="">Todas as Marcas</option>
                 {brands.map(brand => (
                   <option key={brand} value={brand}>{brand}</option>
                 ))}
@@ -459,7 +458,7 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
                 onChange={(e) => setSelectedCategory(e.target.value)}
                 className={styles.filterSelect}
               >
-                <option value="">🎯 Todas as Categorias</option>
+                <option value="">Todas as Categorias</option>
                 {categories.map(category => (
                   <option key={category} value={category}>
                     {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -472,12 +471,12 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
                 onChange={(e) => setSortBy(e.target.value)}
                 className={styles.filterSelect}
               >
-                <option value="power">⚡ Maior Potência</option>
-                <option value="acceleration">🚀 Menor 0-100</option>
-                <option value="topSpeed">💨 Maior V.Max</option>
-                <option value="price">💰 Maior Preço</option>
-                <option value="year">📅 Mais Novo</option>
-                <option value="brand">🏷️ Marca A-Z</option>
+                <option value="power">Maior Potência</option>
+                <option value="acceleration">Menor 0-100</option>
+                <option value="topSpeed">Maior V.Max</option>
+                <option value="price">Maior Preço</option>
+                <option value="year">Mais Novo</option>
+                <option value="brand">Marca A-Z</option>
               </select>
 
               <div className={styles.viewControls}>
@@ -491,12 +490,12 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
                   onClick={() => setViewMode('list')}
                   className={`${styles.viewBtn} ${viewMode === 'list' ? styles.active : ''}`}
                 >
-                  ☰
+                  ≡
                 </button>
               </div>
 
               <button onClick={clearFilters} className={styles.clearBtn}>
-                🧹 Limpar
+                Limpar
               </button>
             </div>
           </div>
@@ -507,11 +506,11 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
           <div className={styles.resultsContainer}>
             {filteredCars.length === 0 ? (
               <div className={styles.noResults}>
-                <span className={styles.noResultsIcon}>🔍</span>
+                <span className={styles.noResultsIcon}></span>
                 <h3>Nenhum carro encontrado</h3>
                 <p>Tente ajustar os filtros ou fazer uma nova busca</p>
                 <button onClick={clearFilters} className={styles.tryAgainBtn}>
-                  🔄 Limpar Filtros
+                  Limpar Filtros
                 </button>
               </div>
             ) : (
@@ -537,15 +536,15 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
                     
                     <div className={styles.carSpecs}>
                       <div className={styles.spec}>
-                        <span className={styles.specIcon}>⚡</span>
+                        <span className={styles.specIcon}></span>
                         <span className={styles.specValue}>{car.power}hp</span>
                       </div>
                       <div className={styles.spec}>
-                        <span className={styles.specIcon}>🚀</span>
+                        <span className={styles.specIcon}></span>
                         <span className={styles.specValue}>{car.acceleration}s</span>
                       </div>
                       <div className={styles.spec}>
-                        <span className={styles.specIcon}>💨</span>
+                        <span className={styles.specIcon}></span>
                         <span className={styles.specValue}>{car.topSpeed}km/h</span>
                       </div>
                     </div>

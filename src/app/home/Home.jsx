@@ -538,7 +538,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
             {/* Builds Favoritas */}
             <div className={styles.storageCard}>
               <div className={styles.storageHeader}>
-                <div className={styles.storageIcon}>⭐</div>
+                <div className={styles.storageIcon}></div>
                 <div className={styles.storageBadge}>Premium</div>
               </div>
               <h3 className={styles.storageTitle}>Builds Favoritas</h3>

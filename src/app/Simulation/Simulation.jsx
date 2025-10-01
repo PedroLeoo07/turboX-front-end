@@ -227,7 +227,7 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
                       <p>{upgrade.cost}</p>
                     </div>
                     <div className={styles.upgradeCheckbox}>
-                      {selectedUpgrades[upgrade.id] ? '✓' : '☐'}
+                      {selectedUpgrades[upgrade.id] ? '✓' : '□'}
                     </div>
                   </div>
                 ))}
@@ -324,7 +324,7 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
                   className={styles.buildNameInput}
                 />
                 <button onClick={handleSaveBuild} className={styles.saveButton}>
-                  💾 Salvar Build
+                  Salvar Build
                 </button>
               </div>
 
@@ -341,7 +341,7 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
                     onClick={() => navigator.clipboard.writeText(shareableLink)}
                     className={styles.copyButton}
                   >
-                    📋
+                    ⎘
                   </button>
                 </div>
               </div>

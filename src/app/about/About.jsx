@@ -103,7 +103,7 @@ Acredito que cada aplicação pode simplificar a vida das pessoas e abrir portas
             
             <div className={styles.highlights}>
               <div className={styles.highlight}>
-                <div className={styles.highlightIcon}>💼</div>
+                <div className={styles.highlightIcon}></div>
                 <div className={styles.highlightText}>
                   <h3>1+ Ano</h3>
                   <p>Experiência em desenvolvimento</p>
@@ -111,7 +111,7 @@ Acredito que cada aplicação pode simplificar a vida das pessoas e abrir portas
               </div>
               
               <div className={styles.highlight}>
-                <div className={styles.highlightIcon}>🚀</div>
+                <div className={styles.highlightIcon}></div>
                 <div className={styles.highlightText}>
                   <h3>5 projetos Desenvolvidos</h3>
                   <p>Aplicações web desenvolvidas</p>
@@ -119,7 +119,7 @@ Acredito que cada aplicação pode simplificar a vida das pessoas e abrir portas
               </div>
               
               <div className={styles.highlight}>
-                <div className={styles.highlightIcon}>🏎️</div>
+                <div className={styles.highlightIcon}></div>
                 <div className={styles.highlightText}>
                   <h3>Paixão</h3>
                   <p>Por carros e tecnologia</p>
@@ -186,22 +186,22 @@ Acredito que cada aplicação pode simplificar a vida das pessoas e abrir portas
             
             <div className={styles.contactLinks}>
               <a href="https://github.com/PedroLeoo07" className={styles.contactLink} target="_blank" rel="noopener noreferrer">
-                <span className={styles.contactIcon}>🐙</span>
+                <span className={styles.contactIcon}></span>
                 <span>GitHub</span>
               </a>
               
               <a href="https://linkedin.com/in/pedroleoo07" className={styles.contactLink} target="_blank" rel="noopener noreferrer">
-                <span className={styles.contactIcon}>💼</span>
+                <span className={styles.contactIcon}></span>
                 <span>LinkedIn</span>
               </a>
               
               <a href="mailto:pedro@turbox.dev" className={styles.contactLink}>
-                <span className={styles.contactIcon}>✉️</span>
+                <span className={styles.contactIcon}></span>
                 <span>Email</span>
               </a>
               
               <a href="https://pedroleoo07.dev" className={styles.contactLink} target="_blank" rel="noopener noreferrer">
-                <span className={styles.contactIcon}>🌐</span>
+                <span className={styles.contactIcon}></span>
                 <span>Portfólio</span>
               </a>
             </div>

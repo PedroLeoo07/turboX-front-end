@@ -454,12 +454,12 @@ export const usersAPI = {
       const queryString = params.toString();
       const endpoint = queryString ? `/users?${queryString}` : '/users';
       
-      console.log('👥 Chamando API Users:', `${api.defaults.baseURL}${endpoint}`);
+      console.log('[API] Chamando API Users:', `${api.defaults.baseURL}${endpoint}`);
       const response = await api.get(endpoint);
-      console.log('✅ Users API Response:', response.data);
+      console.log('[SUCCESS] Users API Response:', response.data);
       return response.data;
     } catch (error) {
-      console.error('❌ Users API Error:', error);
+      console.error('[ERROR] Users API Error:', error);
       throw error;
     }
   },

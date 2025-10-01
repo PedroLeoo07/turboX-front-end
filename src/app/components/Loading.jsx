@@ -49,7 +49,7 @@ export default function Loading({ onComplete }) {
       </div>
 
       <div className={styles.carAnimation}>
-        <div className={styles.car}>🏎️</div>
+        <div className={styles.car}></div>
         <div className={styles.road}>
           <div className={styles.roadLine}></div>
           <div className={styles.roadLine}></div>

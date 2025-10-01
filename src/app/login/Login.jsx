@@ -345,7 +345,7 @@ export default function Login({ navigateTo, onLogin }) {
           onClick={handleDemoLogin}
           className={styles.demoButton}
         >
-          🎮 Entrar como Demo
+          Entrar como Demo
         </button>
 
         <div className={styles.footer}>
@@ -374,7 +374,7 @@ export default function Login({ navigateTo, onLogin }) {
         <h3>Por que criar uma conta?</h3>
         <div className={styles.featuresList}>
           <div className={styles.feature}>
-            <span className={styles.featureIcon}>💾</span>
+            <span className={styles.featureIcon}></span>
             <div>
               <h4>Salvar Builds</h4>
               <p>Guarde suas configurações favoritas de carros</p>
@@ -382,7 +382,7 @@ export default function Login({ navigateTo, onLogin }) {
           </div>
           
           <div className={styles.feature}>
-            <span className={styles.featureIcon}>📊</span>
+            <span className={styles.featureIcon}></span>
             <div>
               <h4>Histórico de Simulações</h4>
               <p>Acompanhe todas as suas modificações</p>
@@ -390,7 +390,7 @@ export default function Login({ navigateTo, onLogin }) {
           </div>
           
           <div className={styles.feature}>
-            <span className={styles.featureIcon}>🤝</span>
+            <span className={styles.featureIcon}></span>
             <div>
               <h4>Compartilhar</h4>
               <p>Divida suas builds com outros entusiastas</p>
@@ -398,7 +398,7 @@ export default function Login({ navigateTo, onLogin }) {
           </div>
           
           <div className={styles.feature}>
-            <span className={styles.featureIcon}>⭐</span>
+            <span className={styles.featureIcon}></span>
             <div>
               <h4>Carros Favoritos</h4>
               <p>Marque seus carros preferidos</p>

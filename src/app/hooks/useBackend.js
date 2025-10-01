@@ -18,9 +18,9 @@ export const useCars = () => {
     try {
       const data = await carsAPI.getAll(filters);
       setCars(data);
-      console.log('✅ Carros carregados com sucesso:', data.length);
+      console.log('[SUCCESS] Carros carregados com sucesso:', data.length);
     } catch (err) {
-      console.error('❌ Erro ao buscar carros:', err);
+      console.error('[ERROR] Erro ao buscar carros:', err);
       // Em caso de erro de rede, definir carros padrão
       if (err.code === 'NETWORK_ERROR' || err.message === 'Network Error' || !err.response) {
         const defaultCars = [
@@ -29,7 +29,7 @@ export const useCars = () => {
           { id: 3, brand: 'Ford', model: 'Mustang GT', year: 2023, price: 350000, category: 'Coupe' }
         ];
         setCars(defaultCars);
-        console.log('🔄 Usando carros padrão como fallback');
+        console.log('[FALLBACK] Usando carros padrão como fallback');
       } else {
         setError(err.message);
       }
@@ -42,9 +42,9 @@ export const useCars = () => {
     try {
       const data = await carsAPI.getBrands();
       setBrands(data);
-      console.log('✅ Marcas carregadas com sucesso:', data.length);
+      console.log('[SUCCESS] Marcas carregadas com sucesso:', data.length);
     } catch (err) {
-      console.error('❌ Erro ao buscar marcas:', err);
+      console.error('[ERROR] Erro ao buscar marcas:', err);
       // Definir marcas padrão em caso de erro
       const defaultBrands = [
         { name: 'Volkswagen', logo: '/logos/volks.png', description: 'Tradição alemã em engenharia' },
@@ -54,7 +54,7 @@ export const useCars = () => {
         { name: 'Honda', logo: '/logos/honda.svg', description: 'Engenharia japonesa premium' }
       ];
       setBrands(defaultBrands);
-      console.log('🔄 Usando marcas padrão como fallback');
+      console.log('[FALLBACK] Usando marcas padrão como fallback');
     }
   }, []);
 

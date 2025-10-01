@@ -108,7 +108,7 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
             className={`${styles.authButton} ${isLoggedIn ? styles.logout : styles.login}`}
             onClick={handleAuthAction}
           >
-            <span className={styles.authIcon}>{isLoggedIn ? '🚪' : '🔑'}</span>
+            <span className={styles.authIcon}></span>
             <span className={styles.authLabel}>{isLoggedIn ? 'Sair' : 'Entrar'}</span>
           </button>
         </div>
@@ -180,7 +180,7 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
             onClick={handleAuthAction}
           >
             <span className={styles.actionIcon}>
-              {isLoggedIn ? '🚪' : '🔐'}
+              {isLoggedIn ? 'Sair' : 'Login'}
             </span>
             <span className={styles.actionText}>
               {isLoggedIn ? 'Sair da Conta' : 'Fazer Login'}

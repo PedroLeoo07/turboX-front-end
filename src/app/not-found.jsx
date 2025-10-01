@@ -82,7 +82,7 @@ const NotFound = ({ navigateTo }) => {
               onClick={navigateHome}
               className={styles.primaryBtn}
             >
-              <span>🏠</span>
+              <span>⌂</span>
               Voltar ao Início
             </button>
             
@@ -103,14 +103,14 @@ const NotFound = ({ navigateTo }) => {
                 onClick={() => navigateTo && navigateTo('carList')}
                 className={styles.quickLink}
               >
-                🚗 Catálogo de Carros
+                Catálogo de Carros
               </button>
               
               <button 
                 onClick={() => navigateTo && navigateTo('simulation')}
                 className={styles.quickLink}
               >
-                🔧 Simulação
+                Simulação
               </button>
               
               <button 

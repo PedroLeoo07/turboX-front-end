@@ -42,7 +42,7 @@ const BackendStatus = () => {
 
       {!isOnline && (
         <div className={styles.warning}>
-          <span>⚠️</span>
+          <span>!</span>
           <span>Algumas funcionalidades podem não estar disponíveis</span>
         </div>
       )}

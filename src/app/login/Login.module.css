@@ -325,8 +325,27 @@
 }
 
 .featureIcon {
-  font-size: 2.5rem;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+  border-radius: 10px;
   flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 4px 15px rgba(255, 0, 0, 0.3),
+    inset 0 1px 3px rgba(255, 255, 255, 0.2);
+}
+
+.featureIcon::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .feature h4 {
