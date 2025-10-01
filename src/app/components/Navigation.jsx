@@ -15,6 +15,14 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
     { id: 'about', label: 'Sobre', icon: '' },
   ];
 
+  // Itens administrativos (só para admins)
+  const adminItems = [
+    { id: 'user-management', label: 'Usuários', icon: '👥' },
+    { id: 'brand-management', label: 'Marcas', icon: '🏢' },
+  ];
+
+  const isAdmin = user && user.role === 'admin';
+
   // Fechar menu ao redimensionar tela
   useEffect(() => {
     const handleResize = () => {
@@ -89,6 +97,23 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
               <span className={styles.navLabel}>{item.label}</span>
             </button>
           ))}
+          
+          {/* Menu Administrativo - só para admins */}
+          {isAdmin && (
+            <>
+              <div className={styles.divider}></div>
+              {adminItems.map(item => (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavigate(item.id)}
+                  className={`${styles.desktopNavItem} ${styles.adminItem} ${currentPage === item.id ? styles.active : ''}`}
+                >
+                  <span className={styles.navIcon}>{item.icon}</span>
+                  <span className={styles.navLabel}>{item.label}</span>
+                </button>
+              ))}
+            </>
+          )}
         </div>
 
         {/* Seção do Usuário Desktop */}
@@ -172,6 +197,27 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
             ))}
           </div>
         </div>
+
+        {/* Administração Mobile - só para admins */}
+        {isAdmin && (
+          <div className={styles.mobileNavSection}>
+            <h3 className={styles.mobileSectionTitle}>Administração</h3>
+            <div className={styles.mobileNavGrid}>
+              {adminItems.map((item, index) => (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavigate(item.id)}
+                  className={`${styles.mobileNavCard} ${styles.adminCard} ${currentPage === item.id ? styles.activeCard : ''}`}
+                  style={{ animationDelay: `${(navItems.length + index) * 0.1}s` }}
+                >
+                  <div className={styles.cardIcon}>{item.icon}</div>
+                  <span className={styles.cardLabel}>{item.label}</span>
+                  <div className={styles.cardIndicator}></div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Ações Mobile */}
         <div className={styles.mobileActions}>

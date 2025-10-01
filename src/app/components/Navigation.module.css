@@ -92,11 +92,19 @@
 /* ==================== MENU DESKTOP PREMIUM ==================== */
 .desktopMenu {
   display: flex;
+  align-items: center;
   gap: 0.8rem;
   background: rgba(255, 255, 255, 0.03);
   padding: 0.6rem;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 0, 0, 0.3), transparent);
+  margin: 0 0.5rem;
 }
 
 .desktopNavItem {
@@ -149,6 +157,23 @@
   color: #fff;
   box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
   transform: translateY(-1px);
+}
+
+.desktopNavItem.adminItem {
+  border: 1px solid rgba(255, 165, 0, 0.2);
+  background: rgba(255, 165, 0, 0.05);
+}
+
+.desktopNavItem.adminItem:hover {
+  background: rgba(255, 165, 0, 0.1);
+  border-color: rgba(255, 165, 0, 0.3);
+}
+
+.desktopNavItem.adminItem.active {
+  background: linear-gradient(135deg, 
+    rgba(255, 165, 0, 0.8), 
+    rgba(255, 140, 0, 0.6));
+  box-shadow: 0 8px 25px rgba(255, 165, 0, 0.4);
 }
 
 .navIcon {
@@ -573,12 +598,27 @@
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: hidden;
-  animation: slideInUp 0.8s ease forwards;
-  opacity: 0;
-  transform: translateY(30px);
-  -webkit-backdrop-filter: blur(15px);
-  backdrop-filter: blur(15px);
+}
+
+.mobileNavCard.adminCard {
+  border-color: rgba(255, 165, 0, 0.2);
+  background: linear-gradient(135deg, 
+    rgba(255, 165, 0, 0.08), 
+    rgba(255, 165, 0, 0.03));
+}
+
+.mobileNavCard.adminCard:hover {
+  border-color: rgba(255, 165, 0, 0.4);
+  background: linear-gradient(135deg, 
+    rgba(255, 165, 0, 0.12), 
+    rgba(255, 165, 0, 0.05));
+}
+
+.mobileNavCard.adminCard.activeCard {
+  background: linear-gradient(135deg, 
+    rgba(255, 165, 0, 0.3), 
+    rgba(255, 140, 0, 0.2));
+  border-color: rgba(255, 165, 0, 0.6);
 }
 
 .mobileNavCard::before {

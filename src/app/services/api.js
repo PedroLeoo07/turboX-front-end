@@ -291,6 +291,36 @@ export const carsAPI = {
     } catch (error) {
       throw error;
     }
+  },
+
+  // Métodos CRUD para Marcas
+  createBrand: async (brandData) => {
+    try {
+      const response = await api.post('/cars/brands', brandData);
+      toast.success('Marca criada com sucesso!');
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  updateBrand: async (id, brandData) => {
+    try {
+      const response = await api.put(`/cars/brands/${id}`, brandData);
+      toast.success('Marca atualizada com sucesso!');
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  deleteBrand: async (id) => {
+    try {
+      await api.delete(`/cars/brands/${id}`);
+      toast.success('Marca removida com sucesso!');
+    } catch (error) {
+      throw error;
+    }
   }
 };
 
@@ -559,6 +589,45 @@ export const usersAPI = {
         return fallbackStats;
       }
       
+      throw error;
+    }
+  },
+
+  // Métodos CRUD para Usuários
+  create: async (userData) => {
+    try {
+      const response = await api.post('/users', userData);
+      toast.success('Usuário criado com sucesso!');
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  update: async (id, userData) => {
+    try {
+      const response = await api.put(`/users/${id}`, userData);
+      toast.success('Usuário atualizado com sucesso!');
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  delete: async (id) => {
+    try {
+      await api.delete(`/users/${id}`);
+      toast.success('Usuário removido com sucesso!');
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getById: async (id) => {
+    try {
+      const response = await api.get(`/users/${id}`);
+      return response.data;
+    } catch (error) {
       throw error;
     }
   }

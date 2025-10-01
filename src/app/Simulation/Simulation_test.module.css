@@ -1,0 +1,76 @@
+/* Versão minimalista para testes */
+.simulationContainer {
+  min-height: 100vh;
+  background: #000000;
+  color: #ffffff;
+  padding: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  color: #ff0000;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #cccccc;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.carSelection {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.selectCarButton {
+  background: #ff0000;
+  color: #ffffff;
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.selectCarButton:hover {
+  background: #cc0000;
+}
+
+.simulationContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.stageButton {
+  background: rgba(255, 255, 255, 0.05);
+  color: #cccccc;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.stageButton:hover {
+  border-color: #ff0000;
+  background: rgba(255, 0, 0, 0.1);
+}
+
+.stageButton.active {
+  background: #ff0000;
+  border-color: #ff0000;
+  color: #ffffff;
+}
+
+/* Responsividade básica */
+@media (min-width: 768px) {
+  .simulationContent {
+    grid-template-columns: 1fr 1fr;
+  }
+}

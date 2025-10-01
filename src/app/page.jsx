@@ -12,6 +12,8 @@ import About from './about/About';
 import Login from './login/Login';
 import Simulation from './Simulation/Simulation';
 import Loading from './components/Loading';
+import BrandManagement from './brand-management/BrandManagement';
+import UserManagement from './user-management/UserManagement';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('loading');
@@ -129,6 +131,24 @@ export default function App() {
             user={user}
             onLogout={handleLogout}
             car={selectedCar}
+          />
+        );
+      case 'brand-management':
+        return (
+          <BrandManagement 
+            navigateTo={navigateTo}
+            isLoggedIn={isLoggedIn}
+            user={user}
+            onLogout={handleLogout}
+          />
+        );
+      case 'user-management':
+        return (
+          <UserManagement 
+            navigateTo={navigateTo}
+            isLoggedIn={isLoggedIn}
+            user={user}
+            onLogout={handleLogout}
           />
         );
       default:
