@@ -1,16 +1,16 @@
 ﻿/* ==================== NAVIGATION TURBOX THEME ==================== */
 .navigation {
   background: linear-gradient(135deg, 
-    rgba(10, 10, 10, 0.98), 
-    rgba(26, 5, 5, 0.95),
-    rgba(10, 10, 10, 0.98));
-  -webkit-backdrop-filter: blur(25px);
-  backdrop-filter: blur(25px);
-  border-bottom: 2px solid rgba(255, 0, 0, 0.3);
+    rgba(5, 5, 5, 0.99), 
+    rgba(15, 2, 2, 0.98),
+    rgba(8, 8, 8, 0.99));
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  border-bottom: 2px solid rgba(255, 0, 0, 0.4);
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 30px rgba(255, 0, 0, 0.1);
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -340,19 +340,23 @@
 /* ==================== MOBILE MENU BUTTON ANIMADO ==================== */
 .mobileMenuButton {
   display: none;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(5, 5, 5, 0.9);
+  border: 1px solid rgba(255, 0, 0, 0.3);
   cursor: pointer;
   padding: 0.8rem;
   border-radius: 12px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1001;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 .mobileMenuButton:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 15, 15, 0.9);
+  border-color: rgba(255, 0, 0, 0.4);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.2);
 }
 
 .hamburgerBox {
@@ -392,9 +396,15 @@
   bottom: -9px;
 }
 
+.mobileMenuButton.active {
+  background: rgba(255, 0, 0, 0.15);
+  border-color: rgba(255, 0, 0, 0.4);
+  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.3);
+}
+
 .mobileMenuButton.active .hamburgerInner {
   transform: rotate(45deg);
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #ff4444, #ff6666);
 }
 
 .mobileMenuButton.active .hamburgerInner::before {
@@ -406,7 +416,7 @@
 .mobileMenuButton.active .hamburgerInner::after {
   bottom: 0;
   transform: rotate(-90deg);
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #ff4444, #ff6666);
 }
 
 /* ==================== MOBILE MENU SLIDE PREMIUM ==================== */
@@ -418,18 +428,20 @@
   max-width: 380px;
   height: 100vh;
   background: linear-gradient(135deg, 
-    rgba(15, 15, 25, 0.98), 
-    rgba(25, 25, 40, 0.96),
-    rgba(20, 20, 35, 0.97));
-  -webkit-backdrop-filter: blur(35px);
-  backdrop-filter: blur(35px);
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: -15px 0 60px rgba(0, 0, 0, 0.6);
-  transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    rgba(2, 2, 2, 0.99), 
+    rgba(5, 5, 5, 0.98),
+    rgba(3, 3, 3, 0.99));
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
+  border-left: 2px solid rgba(255, 0, 0, 0.2);
+  box-shadow: -25px 0 100px rgba(0, 0, 0, 0.9);
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 999;
   overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobileMenuSlide.open {
@@ -439,10 +451,10 @@
 /* ==================== MOBILE HEADER PREMIUM ==================== */
 .mobileHeader {
   padding: 2.5rem 2rem 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 0, 0, 0.15);
   background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.03), 
-    transparent);
+    rgba(5, 5, 5, 0.8), 
+    rgba(10, 10, 10, 0.6));
 }
 
 .mobileBrand {
@@ -591,13 +603,17 @@
   gap: 1rem;
   padding: 2rem 1.2rem;
   background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.08), 
-    rgba(255, 255, 255, 0.03));
-  border: 1px solid rgba(255, 255, 255, 0.1);
+    rgba(5, 5, 5, 0.95), 
+    rgba(15, 15, 15, 0.9));
+  border: 1px solid rgba(255, 0, 0, 0.2);
   border-radius: 20px;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 .mobileNavCard.adminCard {
@@ -639,25 +655,27 @@
   left: 100%;
 }
 
-.mobileNavCard:hover {
-  transform: translateY(-8px) scale(1.02);
+.mobileNavCard:hover,
+.mobileNavCard:active {
+  transform: translateY(-4px) scale(1.01);
   background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.12), 
-    rgba(255, 255, 255, 0.06));
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    rgba(20, 20, 20, 0.98), 
+    rgba(30, 30, 30, 0.95));
+  border-color: rgba(255, 0, 0, 0.5);
+  box-shadow: 0 12px 35px rgba(255, 0, 0, 0.15);
 }
 
 .mobileNavCard:active {
-  transform: scale(0.96);
+  transform: scale(0.98) translateY(-2px);
+  transition: all 0.1s ease;
 }
 
 .mobileNavCard.activeCard {
   background: linear-gradient(135deg, 
-    rgba(102, 126, 234, 0.25), 
-    rgba(118, 75, 162, 0.15));
-  border-color: rgba(102, 126, 234, 0.4);
-  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.2);
+    rgba(255, 0, 0, 0.25), 
+    rgba(200, 0, 0, 0.15));
+  border-color: rgba(255, 0, 0, 0.6);
+  box-shadow: 0 12px 35px rgba(255, 0, 0, 0.3);
 }
 
 .cardIcon {
@@ -695,10 +713,10 @@
 /* ==================== MOBILE ACTIONS PREMIUM ==================== */
 .mobileActions {
   padding: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 0, 0, 0.15);
   background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.02), 
-    transparent);
+    rgba(5, 5, 5, 0.8), 
+    rgba(10, 10, 10, 0.6));
 }
 
 .mobileAuthButton {
@@ -707,14 +725,20 @@
   gap: 1.2rem;
   width: 100%;
   padding: 1.3rem 2rem;
-  background: transparent;
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(135deg, 
+    rgba(15, 15, 15, 0.95), 
+    rgba(25, 25, 25, 0.9));
+  border: 1.5px solid rgba(255, 0, 0, 0.25);
   border-radius: 20px;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   animation: slideInUp 1s ease forwards;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 .mobileAuthButton::before {
@@ -737,8 +761,11 @@
 
 .mobileAuthButton:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 40px rgba(255, 0, 0, 0.2);
+  border-color: rgba(255, 0, 0, 0.4);
+  background: linear-gradient(135deg, 
+    rgba(30, 30, 30, 0.95), 
+    rgba(40, 40, 40, 0.9));
 }
 
 .mobileAuthButton.loginButton {
@@ -786,10 +813,10 @@
 .mobileFooter {
   padding: 2rem;
   text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 0, 0, 0.15);
   background: linear-gradient(135deg, 
-    rgba(0, 0, 0, 0.2), 
-    transparent);
+    rgba(5, 5, 5, 0.9), 
+    rgba(10, 10, 10, 0.7));
 }
 
 .mobileFooter p {
@@ -807,11 +834,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.85);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   z-index: 998;
   animation: fadeIn 0.4s ease forwards;
+  cursor: pointer;
 }
 
 /* ==================== ANIMAÇÕES AVANÇADAS ==================== */

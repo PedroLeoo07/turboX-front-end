@@ -17,8 +17,8 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
 
   // Itens administrativos (só para admins)
   const adminItems = [
-    { id: 'user-management', label: 'Usuários', icon: '👥' },
-    { id: 'brand-management', label: 'Marcas', icon: '🏢' },
+    { id: 'user-management', label: 'Usuários', icon: '' },
+    { id: 'brand-management', label: 'Marcas', icon: '' },
   ];
 
   const isAdmin = user && user.role === 'admin';
@@ -38,14 +38,42 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
   // Prevenir scroll quando menu está aberto
   useEffect(() => {
     if (isMobileMenuOpen) {
+      // Salvar posição atual do scroll
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      // Restaurar posição do scroll
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
     };
+  }, [isMobileMenuOpen]);
+
+  // Fechar menu com tecla ESC
+  useEffect(() => {
+    const handleEscKey = (e) => {
+      if (e.key === 'Escape' && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscKey);
+    return () => document.removeEventListener('keydown', handleEscKey);
   }, [isMobileMenuOpen]);
 
   const handleAuthAction = () => {
@@ -62,12 +90,26 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
   };
 
   const handleNavigate = (page) => {
-    navigateTo(page);
+    if (navigateTo && typeof navigateTo === 'function') {
+      navigateTo(page);
+    }
     setIsMobileMenuOpen(false);
   };
 
-  const closeMobileMenu = () => {
+  const closeMobileMenu = (e) => {
+    e?.preventDefault();
+    e?.stopPropagation();
     setIsMobileMenuOpen(false);
+  };
+
+  const handleOverlayClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleMenuClick = (e) => {
+    e.stopPropagation();
   };
 
   return (
@@ -151,7 +193,10 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
       </div>
 
       {/* Menu Mobile Slide */}
-      <div className={`${styles.mobileMenuSlide} ${isMobileMenuOpen ? styles.open : ''}`}>
+      <div 
+        className={`${styles.mobileMenuSlide} ${isMobileMenuOpen ? styles.open : ''}`}
+        onClick={handleMenuClick}
+      >
         {/* Header do Menu Mobile */}
         <div className={styles.mobileHeader}>
           <div className={styles.mobileBrand} style={{ gap: 0 }}>
@@ -187,8 +232,10 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
               <button
                 key={item.id}
                 onClick={() => handleNavigate(item.id)}
+                onTouchStart={() => handleNavigate(item.id)}
                 className={`${styles.mobileNavCard} ${currentPage === item.id ? styles.activeCard : ''}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
+                type="button"
               >
                 <div className={styles.cardIcon}>{item.icon}</div>
                 <span className={styles.cardLabel}>{item.label}</span>
@@ -207,8 +254,10 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
                 <button
                   key={item.id}
                   onClick={() => handleNavigate(item.id)}
+                  onTouchStart={() => handleNavigate(item.id)}
                   className={`${styles.mobileNavCard} ${styles.adminCard} ${currentPage === item.id ? styles.activeCard : ''}`}
                   style={{ animationDelay: `${(navItems.length + index) * 0.1}s` }}
+                  type="button"
                 >
                   <div className={styles.cardIcon}>{item.icon}</div>
                   <span className={styles.cardLabel}>{item.label}</span>
@@ -224,6 +273,8 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
           <button
             className={`${styles.mobileAuthButton} ${isLoggedIn ? styles.logoutButton : styles.loginButton}`}
             onClick={handleAuthAction}
+            onTouchStart={handleAuthAction}
+            type="button"
           >
             <span className={styles.actionIcon}>
               {isLoggedIn ? 'Sair' : 'Login'}
@@ -244,7 +295,8 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
       {isMobileMenuOpen && (
         <div 
           className={styles.overlay} 
-          onClick={closeMobileMenu}
+          onClick={handleOverlayClick}
+          onTouchStart={handleOverlayClick}
         />
       )}
     </nav>
