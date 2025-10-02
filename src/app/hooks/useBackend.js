@@ -50,8 +50,18 @@ export const useCars = () => {
         { name: 'Volkswagen', logo: '/logos/volks.png', description: 'Tradição alemã em engenharia' },
         { name: 'BMW', logo: '/logos/BMW.png', description: 'Prazer em dirigir' },
         { name: 'Ford', logo: '/logos/Ford.png', description: 'Inovação americana' },
+        { name: 'Hyundai', logo: '/logos/hyundai.png', description: 'Tecnologia sul-coreana' },
         { name: 'Toyota', logo: '/logos/toyot.png', description: 'Confiabilidade japonesa' },
-        { name: 'Honda', logo: '/logos/honda.svg', description: 'Engenharia japonesa premium' }
+        { name: 'Mitsubishi', logo: '/logos/mitsubishi.svg', description: 'Performance e durabilidade' },
+        { name: 'Chevrolet', logo: '/logos/chevrolet.png', description: 'Força americana' },
+        { name: 'Honda', logo: '/logos/honda.webp', description: 'Engenharia japonesa premium' },
+        { name: 'Mercedes', logo: '/logos/mercedes.png', description: 'Luxo alemão incomparável' },
+        { name: 'Audi', logo: '/logos/audi.png', description: 'Vorsprung durch Technik' },
+        { name: 'Dodge', logo: '/logos/dodge.png', description: 'Muscle cars americanos' },
+        { name: 'Renault', logo: '/logos/renault.png', description: 'Elegância francesa' },
+        { name: 'Subaru', logo: '/logos/subaru.png', description: 'Confiança e aventura' },
+        { name: 'Mazda', logo: '/logos/mazda.png', description: 'Zoom-Zoom japonês' },
+        { name: 'Porsche', logo: '/logos/porsche.svg', description: 'Ícone alemão de performance' }
       ];
       setBrands(defaultBrands);
       console.log('[FALLBACK] Usando marcas padrão como fallback');
