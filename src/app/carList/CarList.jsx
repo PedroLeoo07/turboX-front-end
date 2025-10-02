@@ -522,7 +522,21 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
                     onClick={() => handleCarSelect(car)}
                   >
                     <div className={styles.carHeader}>
-                      <div className={styles.carImage}>{car.image}</div>
+                      <div className={styles.carImage}>
+                        {car.image && typeof car.image === 'string' && car.image.startsWith('http') ? (
+                          <img 
+                            src={car.image} 
+                            alt={`${car.brand} ${car.model}`}
+                            onError={(e) => {
+                              e.target.src = '/images/car-placeholder.svg';
+                            }}
+                          />
+                        ) : (
+                          <div className={styles.carPlaceholder}>
+                            <span className={styles.carIcon}>{car.brand?.charAt(0) || 'C'}</span>
+                          </div>
+                        )}
+                      </div>
                       <div className={styles.carBadge}>{car.category}</div>
                     </div>
                     

@@ -397,14 +397,18 @@ const BrandCarsModal = ({ isOpen, onClose, selectedBrand }) => {
               <div key={car.id} className={styles.carCard}>
                 <div className={styles.carImage}>
                   {car.image ? (
-                    <img 
-                      src={car.image} 
-                      alt={`${car.brand} ${car.model}`}
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.nextElementSibling.style.display = 'flex';
-                      }}
-                    />
+                    <>
+                      <img 
+                        src={car.image} 
+                        alt={`${car.brand} ${car.model}`}
+                        onError={(e) => {
+                          e.target.src = '/images/car-placeholder.svg';
+                        }}
+                      />
+                      <div className={styles.carPlaceholder} style={{ display: 'none' }}>
+                        <span className={styles.carIcon}>{car.brand.charAt(0)}</span>
+                      </div>
+                    </>
                   ) : (
                     <div className={styles.carPlaceholder}>
                       <span className={styles.carIcon}>{car.brand.charAt(0)}</span>

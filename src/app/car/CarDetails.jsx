@@ -63,7 +63,21 @@ export default function CarDetails({ car, navigateTo, isLoggedIn, user, onLogout
         </div>
 
         <div className={styles.carHero}>
-          <div className={styles.carImageLarge}>{car.image}</div>
+          <div className={styles.carImageLarge}>
+            {car.image && typeof car.image === 'string' && car.image.startsWith('http') ? (
+              <img 
+                src={car.image} 
+                alt={`${car.brand} ${car.model}`}
+                onError={(e) => {
+                  e.target.src = '/images/car-placeholder.svg';
+                }}
+              />
+            ) : (
+              <div className={styles.carPlaceholder}>
+                <span className={styles.carIcon}>{car.brand?.charAt(0) || 'C'}</span>
+              </div>
+            )}
+          </div>
           <div className={styles.carMainInfo}>
             <h1 className={styles.carTitle}>
               {car.brand} <span className={styles.carModel}>{car.model}</span>
