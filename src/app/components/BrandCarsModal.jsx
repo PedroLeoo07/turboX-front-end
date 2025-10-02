@@ -289,9 +289,11 @@ const BrandCarsModal = ({ isOpen, onClose, selectedBrand }) => {
   // Filtrar carros da marca selecionada
   const getBrandCars = () => {
     const allCars = backendCars && backendCars.length > 0 ? backendCars : carsDatabase;
-    return allCars.filter(car => 
+    const filtered = allCars.filter(car => 
       car.brand?.toLowerCase() === selectedBrand?.toLowerCase()
     );
+    console.log('✓ Carros encontrados para', selectedBrand + ':', filtered.length);
+    return filtered;
   };
 
   const brandCars = getBrandCars();
@@ -394,7 +396,20 @@ const BrandCarsModal = ({ isOpen, onClose, selectedBrand }) => {
             {sortedCars.map((car) => (
               <div key={car.id} className={styles.carCard}>
                 <div className={styles.carImage}>
-                  <span className={styles.carEmoji}>{car.image}</span>
+                  {car.image ? (
+                    <img 
+                      src={car.image} 
+                      alt={`${car.brand} ${car.model}`}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextElementSibling.style.display = 'flex';
+                      }}
+                    />
+                  ) : (
+                    <div className={styles.carPlaceholder}>
+                      <span className={styles.carIcon}>{car.brand.charAt(0)}</span>
+                    </div>
+                  )}
                   <div className={styles.carCategory}>{car.category}</div>
                 </div>
                 

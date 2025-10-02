@@ -31,11 +31,8 @@ const BrandGrid = ({ navigateTo }) => {
 
   const brandsToShow = brands && brands.length > 0 ? brands : defaultBrands;
 
-  // Debug para verificar as marcas carregadas
-  console.log('BrandGrid - Brands from API:', brands);
-  console.log('BrandGrid - Brands to show:', brandsToShow);
-
   const handleBrandClick = (brandName) => {
+    console.log('✓ Marca clicada:', brandName);
     setSelectedBrand(brandName);
     setIsModalOpen(true);
   };
@@ -74,11 +71,7 @@ const BrandGrid = ({ navigateTo }) => {
                 alt={`${brand.name} Logo`} 
                 className={styles.brandLogo}
                 onError={(e) => {
-                  console.log(`Erro ao carregar logo: ${brand.logo} para marca: ${brand.name}`);
                   e.target.src = '/images/car-placeholder.svg';
-                }}
-                onLoad={() => {
-                  console.log(`Logo carregado com sucesso: ${brand.logo} para marca: ${brand.name}`);
                 }}
               />
             </div>
