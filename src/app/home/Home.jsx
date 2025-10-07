@@ -22,11 +22,6 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
     }
   }, [isLoggedIn, user]);
 
-  useEffect(() => {
-    // Carregar dados iniciais do backend
-    fetchUsers();
-  }, [fetchUsers]);
-
   return (
     <div className={styles.container}>
       <Navigation 

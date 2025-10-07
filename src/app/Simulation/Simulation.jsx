@@ -32,12 +32,6 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
   });
   const [buildName, setBuildName] = useState('');
 
-  // Carregar builds e upgrades do usuário
-  useEffect(() => {
-    fetchBuilds();
-    fetchUpgrades();
-  }, [fetchBuilds, fetchUpgrades]);
-
   // Configurações base do carro (usando dados mock se não houver carro selecionado)
   const baseCar = car || {
     brand: 'Nissan',

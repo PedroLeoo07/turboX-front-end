@@ -79,43 +79,24 @@ export default function Login({ navigateTo, onLogin }) {
     setIsLoading(true);
 
     try {
-      let success;
+      // Simular autenticação (hooks removidos)
+      console.log('Autenticação mock - usuário logado');
       
-      if (isSignUp) {
-        // Registro
-        const registerData = {
-          name: formData.name,
-          email: formData.email,
-          password: formData.password
-        };
-        
-        console.log('Tentando registrar:', registerData);
-        success = await register(registerData);
-      } else {
-        // Login
-        const loginData = {
-          email: formData.email,
-          password: formData.password
-        };
-        
-        console.log('Tentando login:', { email: loginData.email, password: '***' });
-        success = await login(loginData);
+      const mockUser = {
+        name: formData.name || formData.email.split('@')[0],
+        email: formData.email
+      };
+      
+      // Login ou registro bem-sucedido
+      if (onLogin) {
+        onLogin(mockUser);
+      }
+      // Navegar para home ou dashboard
+      if (navigateTo) {
+        navigateTo('home');
       }
       
-      console.log('Resultado da autenticação:', success);
-      
-      if (success) {
-        // Login ou registro bem-sucedido
-        if (onLogin) {
-          onLogin();
-        }
-        // Navegar para home ou dashboard
-        if (navigateTo) {
-          navigateTo('home');
-        }
-      } else {
-        toast.error('Falha na autenticação. Verifique suas credenciais.');
-      }
+      toast.success(isSignUp ? 'Registro realizado com sucesso!' : 'Login realizado com sucesso!');
 
     } catch (error) {
       console.error('Erro na autenticação:', error);
