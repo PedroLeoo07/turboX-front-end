@@ -1,4 +1,27 @@
-'use client';
+"use client";
+
+import { useState, useEffect } from 'react';
+import BrandCarsModal from './BrandCarsModal';
+import styles from './BrandGrid.module.css';
+
+const API_URL = 'http://localhost:3001/api';
+
+const BrandGrid = ({ navigateTo }) => {
+  const [brands, setBrands] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Carregar marcas da API
+    setLoading(true);
+    fetch(`${API_URL}/brands`)
+      .then(res => res.json())
+      .then(data => setBrands(data))
+      .catch(err => {
+        console.error('Erro ao carregar marcas:', err);
+        setBrands([]);
+      })
+      .finally(() => setLoading(false));
+  }, []);t';
 
 import { useState } from 'react';
 import BrandCarsModal from './BrandCarsModal';

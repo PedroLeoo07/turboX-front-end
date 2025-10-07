@@ -1,23 +1,32 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
 import BrandGrid from '../components/BrandGrid';
 import styles from './Home.module.css';
 
+const API_URL = 'http://localhost:3001/api';
+
 export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
-  // Hooks removidos - stats mock
-  const stats = {
+  const [stats, setStats] = useState({
     totalUsers: 0,
     totalCars: 0,
     totalModifications: 0
-  };
+  });
+
+  useEffect(() => {
+    // Carregar estatísticas da API
+    fetch(`${API_URL}/stats`)
+      .then(res => res.json())
+      .then(data => setStats(data))
+      .catch(err => console.error('Erro ao carregar stats:', err));
+  }, []);
 
   useEffect(() => {
     if (isLoggedIn && user) {
       toast.success(`Bem-vindo de volta, ${user.name}!`, {
-        position: "top-center",
+        position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,

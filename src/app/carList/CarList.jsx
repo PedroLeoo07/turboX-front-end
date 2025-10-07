@@ -5,7 +5,9 @@ import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
 import styles from './CarList.module.css';
 
-// Base de dados dos carros expandida
+const API_URL = 'http://localhost:3001/api';
+
+// Base de dados dos carros expandida (fallback)
 const carsDatabase = [
   {
     id: 1,
