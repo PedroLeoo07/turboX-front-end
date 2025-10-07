@@ -18,9 +18,15 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
   useEffect(() => {
     // Carregar estatísticas da API
     fetch(`${API_URL}/stats`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('API não disponível');
+        return res.json();
+      })
       .then(data => setStats(data))
-      .catch(err => console.error('Erro ao carregar stats:', err));
+      .catch(err => {
+        console.error('Erro ao carregar stats:', err);
+        // Mantém valores padrão se API não estiver disponível
+      });
   }, []);
 
   useEffect(() => {

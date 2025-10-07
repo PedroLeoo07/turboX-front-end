@@ -16,7 +16,10 @@ const BrandGrid = ({ navigateTo }) => {
     // Carregar marcas da API
     setLoading(true);
     fetch(`${API_URL}/brands`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('API não disponível');
+        return res.json();
+      })
       .then(data => setBrands(data))
       .catch(err => {
         console.error('Erro ao carregar marcas:', err);

@@ -34,11 +34,12 @@ const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout })
     setLoading(true);
     try {
       const response = await fetch(`${API_URL}/users`);
+      if (!response.ok) throw new Error('API não disponível');
       const data = await response.json();
       setUsers(data);
     } catch (error) {
       console.error('Erro ao carregar usuários:', error);
-      toast.error('Erro ao carregar usuários');
+      setUsers([]);
     } finally {
       setLoading(false);
     }
@@ -47,10 +48,12 @@ const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout })
   const fetchCars = async () => {
     try {
       const response = await fetch(`${API_URL}/cars`);
+      if (!response.ok) throw new Error('API não disponível');
       const data = await response.json();
       setCars(data);
     } catch (error) {
       console.error('Erro ao carregar carros:', error);
+      setCars([]);
     }
   };
 

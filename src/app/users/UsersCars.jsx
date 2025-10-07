@@ -38,11 +38,12 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
         hasCars: showOnlyWithCars
       });
       const response = await fetch(`${API_URL}/users?${params}`);
+      if (!response.ok) throw new Error('API não disponível');
       const data = await response.json();
       setUsers(data);
     } catch (error) {
-      toast.error('Erro ao carregar usuários');
       console.error('Erro ao buscar usuários:', error);
+      setUsers([]);
     } finally {
       setLoading(false);
     }
@@ -51,6 +52,7 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
   const fetchStats = async () => {
     try {
       const response = await fetch(`${API_URL}/stats`);
+      if (!response.ok) throw new Error('API não disponível');
       const data = await response.json();
       setStats(data);
     } catch (error) {

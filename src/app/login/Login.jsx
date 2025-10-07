@@ -91,6 +91,11 @@ export default function Login({ navigateTo, onLogin }) {
         body: JSON.stringify(payload)
       });
 
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ message: 'Erro na autenticação' }));
+        throw new Error(errorData.message || 'Erro na autenticação');
+      }
+
       const data = await response.json();
 
       if (response.ok) {

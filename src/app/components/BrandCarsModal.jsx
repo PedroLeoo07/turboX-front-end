@@ -6,13 +6,7 @@ import styles from './BrandCarsModal.module.css';
 
 const API_URL = 'http://localhost:3001/api';
 
-// Base de dados dos carros (fallback)ient';
-
-import { useState, useEffect } from 'react';
-import Modal from './Modal';
-import styles from './BrandCarsModal.module.css';
-
-// Base de dados dos carros (mesma do CarList)
+// Base de dados dos carros (fallback)
 const carsDatabase = [
   {
     id: 1,
@@ -298,7 +292,10 @@ const BrandCarsModal = ({ isOpen, onClose, selectedBrand }) => {
     if (isOpen && selectedBrand) {
       setLoading(true);
       fetch(`${API_URL}/cars?brand=${selectedBrand}`)
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) throw new Error('API não disponível');
+          return res.json();
+        })
         .then(data => setBackendCars(data))
         .catch(err => {
           console.error('Erro ao carregar carros da marca:', err);

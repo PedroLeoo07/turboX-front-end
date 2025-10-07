@@ -14,20 +14,24 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
   const fetchBuilds = async () => {
     try {
       const response = await fetch(`${API_URL}/builds`);
+      if (!response.ok) throw new Error('API não disponível');
       const data = await response.json();
       setBuilds(data);
     } catch (error) {
       console.error('Erro ao carregar builds:', error);
+      setBuilds([]);
     }
   };
 
   const fetchUpgrades = async () => {
     try {
       const response = await fetch(`${API_URL}/upgrades`);
+      if (!response.ok) throw new Error('API não disponível');
       const data = await response.json();
       setAvailableUpgrades(data);
     } catch (error) {
       console.error('Erro ao carregar upgrades:', error);
+      setAvailableUpgrades([]);
     }
   };
 

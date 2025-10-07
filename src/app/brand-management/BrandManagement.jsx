@@ -28,11 +28,12 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
     setLoading(true);
     try {
       const response = await fetch(`${API_URL}/brands`);
+      if (!response.ok) throw new Error('API não disponível');
       const data = await response.json();
       setBrands(data);
     } catch (error) {
       console.error('Erro ao carregar marcas:', error);
-      toast.error('Erro ao carregar marcas');
+      setBrands([]);
     } finally {
       setLoading(false);
     }

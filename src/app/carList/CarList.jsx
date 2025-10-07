@@ -316,7 +316,10 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
   useEffect(() => {
     setLoading(true);
     fetch(`${API_URL}/cars`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('API não disponível');
+        return res.json();
+      })
       .then(data => {
         setCars(data.length > 0 ? data : carsDatabase);
       })
@@ -327,7 +330,10 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
       .finally(() => setLoading(false));
 
     fetch(`${API_URL}/brands`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('API não disponível');
+        return res.json();
+      })
       .then(data => setBrands(data))
       .catch(err => console.error('Erro ao carregar marcas:', err));
   }, []);
