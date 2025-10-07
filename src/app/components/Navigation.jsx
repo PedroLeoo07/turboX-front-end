@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import BackendStatus from './BackendStatus';
 import styles from './Navigation.module.css';
 import Image from 'next/image';
 
@@ -160,8 +159,6 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
 
         {/* Seção do Usuário Desktop */}
         <div className={styles.desktopUserSection}>
-          <BackendStatus />
-          
           {isLoggedIn && user && (
             <div className={styles.userInfo}>
               <div className={styles.userAvatar}>

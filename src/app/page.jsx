@@ -13,7 +13,7 @@ import Login from './login/Login';
 import Simulation from './Simulation/page';
 import Loading from './components/Loading';
 import BrandManagement from './brand-management/page';
-import UserManagement from './user-management/UserManagement';
+import UsersCars from './users/page';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('loading');
@@ -144,7 +144,7 @@ export default function App() {
         );
       case 'user-management':
         return (
-          <UserManagement 
+          <UsersCars 
             navigateTo={navigateTo}
             isLoggedIn={isLoggedIn}
             user={user}
