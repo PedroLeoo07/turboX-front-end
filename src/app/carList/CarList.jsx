@@ -329,20 +329,18 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
       })
       .finally(() => setLoading(false));
 
-    fetch(`${API_URL}/brands`)
+    // Extrair marcas dos carros carregados
+    fetch(`${API_URL}/cars`)
       .then(res => {
         if (!res.ok) throw new Error('API não disponível');
         return res.json();
       })
-      .then(data => setBrands(data))
-      .catch(err => console.error('Erro ao carregar marcas:', err));
+      .then(data => {
+        const uniqueBrands = [...new Set(data.map(car => car.brand))];
+        setBrands(uniqueBrands);
+      })
+      .catch(err => console.error('Erro ao carregar carros para marcas:', err));
   }, []);
-
-  // Carregar dados iniciais (categorias locais)
-  useEffect(() => {
-    fetchCars();
-    fetchBrands();
-  }, [fetchCars, fetchBrands]);
 
   // Aplicar filtros quando filterOptions mudar
   useEffect(() => {

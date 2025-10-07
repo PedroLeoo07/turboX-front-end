@@ -13,16 +13,24 @@ const BrandGrid = ({ navigateTo }) => {
   const [selectedBrand, setSelectedBrand] = useState(null);
 
   useEffect(() => {
-    // Carregar marcas da API
+    // Carregar carros e extrair marcas únicas
     setLoading(true);
-    fetch(`${API_URL}/brands`)
+    fetch(`${API_URL}/cars`)
       .then(res => {
         if (!res.ok) throw new Error('API não disponível');
         return res.json();
       })
-      .then(data => setBrands(data))
+      .then(data => {
+        // Extrair marcas únicas dos carros
+        const uniqueBrands = [...new Set(data.map(car => car.brand))].map(brandName => ({
+          name: brandName,
+          logo: `/logos/${brandName.toLowerCase()}.png`,
+          description: 'Performance e qualidade'
+        }));
+        setBrands(uniqueBrands);
+      })
       .catch(err => {
-        console.error('Erro ao carregar marcas:', err);
+        console.error('Erro ao carregar carros:', err);
         setBrands([]);
       })
       .finally(() => setLoading(false));

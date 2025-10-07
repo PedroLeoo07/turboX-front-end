@@ -51,10 +51,17 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
 
   const fetchStats = async () => {
     try {
-      const response = await fetch(`${API_URL}/stats`);
-      if (!response.ok) throw new Error('API não disponível');
-      const data = await response.json();
-      setStats(data);
+      // Calcular estatísticas localmente
+      const usersResponse = await fetch(`${API_URL}/users`);
+      if (!usersResponse.ok) throw new Error('API não disponível');
+      const usersData = await usersResponse.json();
+      
+      const totalUsers = usersData.length;
+      const usersWithCars = usersData.filter(u => u.cars && u.cars.length > 0).length;
+      const totalCars = usersData.reduce((sum, u) => sum + (u.cars?.length || 0), 0);
+      const averageCarsPerUser = totalUsers > 0 ? (totalCars / totalUsers).toFixed(1) : 0;
+      
+      setStats({ totalUsers, usersWithCars, totalCars, averageCarsPerUser });
     } catch (error) {
       console.error('Erro ao buscar estatísticas:', error);
     }

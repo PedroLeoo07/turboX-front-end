@@ -11,18 +11,6 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
   const [loading, setLoading] = useState(false);
   const [availableUpgrades, setAvailableUpgrades] = useState([]);
 
-  const fetchBuilds = async () => {
-    try {
-      const response = await fetch(`${API_URL}/builds`);
-      if (!response.ok) throw new Error('API não disponível');
-      const data = await response.json();
-      setBuilds(data);
-    } catch (error) {
-      console.error('Erro ao carregar builds:', error);
-      setBuilds([]);
-    }
-  };
-
   const fetchUpgrades = async () => {
     try {
       const response = await fetch(`${API_URL}/upgrades`);
@@ -35,22 +23,7 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
     }
   };
 
-  const createBuild = async (buildData) => {
-    try {
-      const response = await fetch(`${API_URL}/builds`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(buildData)
-      });
-      return await response.json();
-    } catch (error) {
-      console.error('Erro ao criar build:', error);
-      return null;
-    }
-  };
-
   useEffect(() => {
-    fetchBuilds();
     fetchUpgrades();
   }, []);
   const [selectedStage, setSelectedStage] = useState(0);
