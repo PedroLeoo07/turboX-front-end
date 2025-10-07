@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
 import styles from './Simulation.module.css';
 
-const API_URL = 'http:
+const API_URL = 'http://localhost:3001/api';
 
 export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout }) {
   const [builds, setBuilds] = useState([]);

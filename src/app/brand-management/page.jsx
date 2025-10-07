@@ -6,7 +6,7 @@ import Navigation from '../components/Navigation';
 import Modal from '../components/Modal';
 import styles from './BrandManagement.module.css';
 
-const API_URL = 'http:
+const API_URL = 'http://localhost:3001/api';
 
 const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
   const [brands, setBrands] = useState([]);
@@ -273,7 +273,7 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
               value={formData.logo}
               onChange={(e) => handleInputChange('logo', e.target.value)}
               className={styles.input}
-              placeholder="https:
+              placeholder="https://exemplo.com/logo.png"
             />
           </div>
 
@@ -321,7 +321,7 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
               value={formData.website}
               onChange={(e) => handleInputChange('website', e.target.value)}
               className={styles.input}
-              placeholder="https:
+              placeholder="https://www.marca.com"
             />
           </div>
 

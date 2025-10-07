@@ -6,7 +6,7 @@ import Navigation from '../components/Navigation';
 import BrandGrid from '../components/BrandGrid';
 import styles from './Home.module.css';
 
-const API_URL = 'http:
+const API_URL = 'http://localhost:3001/api';
 
 export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
   const [stats, setStats] = useState({
@@ -16,6 +16,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
   });
 
   useEffect(() => {
+   
   }, []);
 
   useEffect(() => {
@@ -41,26 +42,26 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
         onLogout={onLogout} 
       />
       
-      {/* HERO SECTION */}
+      
       <section className={styles.hero}>
         <div className={styles.heroBackground}></div>
         <div className={styles.heroContent}>
           <div className={styles.heroLeft}>
-            {/* TÍTULO PRINCIPAL */}
+           
             <h1 className={styles.heroTitle}>
               <span className={styles.titleWord1}>Simule.</span>
               <span className={styles.titleWord2}>Prepare.</span>
               <span className={styles.titleWord3}>Acelere.</span>
             </h1>
             
-            {/* SUBTÍTULO */}
+           
             <p className={styles.heroSubtitle}>
               O simulador de preparações automotivas mais avançado do Brasil. 
               Transforme qualquer carro em uma máquina de alta performance 
               com simulações realísticas e upgrades detalhados.
             </p>
             
-            {/* BOTÕES DE AÇÃO */}
+            
             <div className={styles.heroButtons}>
               <button 
                 onClick={() => navigateTo('simulation')}
@@ -77,7 +78,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
               </button>
             </div>
             
-            {/* ESTATÍSTICAS */}
+           
             <div className={styles.stats}>
               <div className={styles.statItem}>
                 <div className={styles.statNumber}>50+</div>
@@ -94,13 +95,13 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
             </div>
           </div>
           
-          {/* LADO DIREITO - VISUAL */}
+       
           <div className={styles.heroRight}>
             <div className={styles.carDisplay}>
               <img src="/carro/golf.png" alt="Golf" className={styles.carIcon} />
             </div>
             
-            {/* PAINEL DE PERFORMANCE */}
+           
             <div className={styles.performanceCard}>
               <div className={styles.cardHeader}>
 
@@ -679,5 +680,4 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
     </div>
   );
 }
-
 

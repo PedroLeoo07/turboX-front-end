@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import BrandCarsModal from './BrandCarsModal';
 import styles from './BrandGrid.module.css';
 
-const API_URL = 'http:
+const API_URL = 'http://localhost:3001/api';
 
 const BrandGrid = ({ navigateTo }) => {
   const [brands, setBrands] = useState([]);

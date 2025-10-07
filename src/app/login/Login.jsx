@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import styles from './Login.module.css';
 
-const API_URL = 'http:
+const API_URL = 'http://localhost:3001/api';
 
 export default function Login({ navigateTo, onLogin }) {
   const [isSignUp, setIsSignUp] = useState(false);

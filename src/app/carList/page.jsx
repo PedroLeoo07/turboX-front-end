@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
 import styles from './CarList.module.css';
 
-const API_URL = 'http:
+const API_URL = 'http://localhost:3001/api';
 const carsDatabase = [
   {
     id: 1,

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Modal from './Modal';
 import styles from './BrandCarsModal.module.css';
 
-const API_URL = 'http:
+const API_URL = 'http://localhost:3001/api';
 const carsDatabase = [
   {
     id: 1,
