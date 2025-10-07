@@ -3,10 +3,11 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
-import { useCars } from '../hooks/useBackend';
 import styles from './CarList.module.css';
 
-// Base de dados dos carros expandida
+const API_URL = 'http://localhost:3001/api';
+
+// Base de dados dos carros expandida (fallback)
 const carsDatabase = [
   {
     id: 1,
@@ -300,7 +301,9 @@ const carsDatabase = [
 ];
 
 export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, user, onLogout }) {
-  const { cars, brands, loading, fetchCars, fetchBrands } = useCars();
+  const [cars, setCars] = useState(carsDatabase);
+  const [brands, setBrands] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBrand, setSelectedBrand] = useState(filterOptions.brand || '');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -309,11 +312,35 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
   const [priceRange, setPriceRange] = useState([0, 3000000]);
   const [categories, setCategories] = useState([]);
 
-  // Carregar dados iniciais
+  // Carregar dados da API
   useEffect(() => {
-    fetchCars();
-    fetchBrands();
-  }, [fetchCars, fetchBrands]);
+    setLoading(true);
+    fetch(`${API_URL}/cars`)
+      .then(res => {
+        if (!res.ok) throw new Error('API não disponível');
+        return res.json();
+      })
+      .then(data => {
+        setCars(data.length > 0 ? data : carsDatabase);
+      })
+      .catch(err => {
+        console.error('Erro ao carregar carros:', err);
+        setCars(carsDatabase);
+      })
+      .finally(() => setLoading(false));
+
+    // Extrair marcas dos carros carregados
+    fetch(`${API_URL}/cars`)
+      .then(res => {
+        if (!res.ok) throw new Error('API não disponível');
+        return res.json();
+      })
+      .then(data => {
+        const uniqueBrands = [...new Set(data.map(car => car.brand))];
+        setBrands(uniqueBrands);
+      })
+      .catch(err => console.error('Erro ao carregar carros para marcas:', err));
+  }, []);
 
   // Aplicar filtros quando filterOptions mudar
   useEffect(() => {

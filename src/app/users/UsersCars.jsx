@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { usersAPI } from '../services/api';
 import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
 import Loading from '../components/Loading';
 import styles from './UsersCars.module.css';
+
+const API_URL = 'http://localhost:3001/api';
 
 export default function UsersCars({ navigateTo, isLoggedIn, user }) {
   const [users, setUsers] = useState([]);
@@ -30,18 +31,19 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const filters = {
+      const params = new URLSearchParams({
         search: searchTerm,
         sortBy: sortBy,
         brand: brandFilter,
         hasCars: showOnlyWithCars
-      };
-      
-      const response = await usersAPI.getAllWithCars(filters);
-      setUsers(response.users || []);
+      });
+      const response = await fetch(`${API_URL}/users?${params}`);
+      if (!response.ok) throw new Error('API não disponível');
+      const data = await response.json();
+      setUsers(data);
     } catch (error) {
-      toast.error('Erro ao carregar usuários');
       console.error('Erro ao buscar usuários:', error);
+      setUsers([]);
     } finally {
       setLoading(false);
     }
@@ -49,8 +51,17 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
 
   const fetchStats = async () => {
     try {
-      const response = await usersAPI.getStats();
-      setStats(response);
+      // Calcular estatísticas localmente
+      const usersResponse = await fetch(`${API_URL}/users`);
+      if (!usersResponse.ok) throw new Error('API não disponível');
+      const usersData = await usersResponse.json();
+      
+      const totalUsers = usersData.length;
+      const usersWithCars = usersData.filter(u => u.cars && u.cars.length > 0).length;
+      const totalCars = usersData.reduce((sum, u) => sum + (u.cars?.length || 0), 0);
+      const averageCarsPerUser = totalUsers > 0 ? (totalCars / totalUsers).toFixed(1) : 0;
+      
+      setStats({ totalUsers, usersWithCars, totalCars, averageCarsPerUser });
     } catch (error) {
       console.error('Erro ao buscar estatísticas:', error);
     }
@@ -62,10 +73,14 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
     }
 
     try {
-      await usersAPI.removeCarFromUser(userId, carId);
-      fetchUsers(); // Recarregar a lista
+      await fetch(`${API_URL}/users/${userId}/cars/${carId}`, {
+        method: 'DELETE'
+      });
+      fetchUsers();
+      toast.success('Carro removido com sucesso');
     } catch (error) {
       console.error('Erro ao remover carro do usuário:', error);
+      toast.error('Erro ao remover carro');
     }
   };
 

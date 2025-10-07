@@ -1,14 +1,40 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useCars } from '../hooks/useBackend';
+import { useState, useEffect } from 'react';
 import BrandCarsModal from './BrandCarsModal';
 import styles from './BrandGrid.module.css';
 
+const API_URL = 'http://localhost:3001/api';
+
 const BrandGrid = ({ navigateTo }) => {
-  const { brands, loading } = useCars();
+  const [brands, setBrands] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBrand, setSelectedBrand] = useState(null);
+
+  useEffect(() => {
+    // Carregar carros e extrair marcas únicas
+    setLoading(true);
+    fetch(`${API_URL}/cars`)
+      .then(res => {
+        if (!res.ok) throw new Error('API não disponível');
+        return res.json();
+      })
+      .then(data => {
+        // Extrair marcas únicas dos carros
+        const uniqueBrands = [...new Set(data.map(car => car.brand))].map(brandName => ({
+          name: brandName,
+          logo: `/logos/${brandName.toLowerCase()}.png`,
+          description: 'Performance e qualidade'
+        }));
+        setBrands(uniqueBrands);
+      })
+      .catch(err => {
+        console.error('Erro ao carregar carros:', err);
+        setBrands([]);
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
   // Marcas padrão caso o backend não esteja disponível
   const defaultBrands = [

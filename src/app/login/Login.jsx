@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useAuth } from '../hooks/useBackend';
 import styles from './Login.module.css';
 
+const API_URL = 'http://localhost:3001/api';
+
 export default function Login({ navigateTo, onLogin }) {
-  const { login, register } = useAuth();
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -80,42 +80,47 @@ export default function Login({ navigateTo, onLogin }) {
     setIsLoading(true);
 
     try {
-      let success;
-      
-      if (isSignUp) {
-        // Registro
-        const registerData = {
-          name: formData.name,
-          email: formData.email,
-          password: formData.password
-        };
-        
-        console.log('Tentando registrar:', registerData);
-        success = await register(registerData);
-      } else {
-        // Login
-        const loginData = {
-          email: formData.email,
-          password: formData.password
-        };
-        
-        console.log('Tentando login:', { email: loginData.email, password: '***' });
-        success = await login(loginData);
+      const endpoint = isSignUp ? '/auth/register' : '/auth/login';
+      const payload = isSignUp 
+        ? { name: formData.name, email: formData.email, password: formData.password }
+        : { email: formData.email, password: formData.password };
+
+      const response = await fetch(`${API_URL}${endpoint}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ message: 'Erro na autenticação' }));
+        throw new Error(errorData.message || 'Erro na autenticação');
       }
-      
-      console.log('Resultado da autenticação:', success);
-      
-      if (success) {
-        // Login ou registro bem-sucedido
-        if (onLogin) {
-          onLogin();
+
+      const data = await response.json();
+
+      if (response.ok) {
+        const user = {
+          name: data.user?.name || formData.name || formData.email.split('@')[0],
+          email: data.user?.email || formData.email,
+          token: data.token
+        };
+
+        // Salvar token se necessário
+        if (data.token) {
+          localStorage.setItem('token', data.token);
         }
-        // Navegar para home ou dashboard
+
+        if (onLogin) {
+          onLogin(user);
+        }
+        
         if (navigateTo) {
           navigateTo('home');
         }
+        
+        toast.success(isSignUp ? 'Registro realizado com sucesso!' : 'Login realizado com sucesso!');
       } else {
-        toast.error('Falha na autenticação. Verifique suas credenciais.');
+        toast.error(data.message || 'Erro na autenticação');
       }
 
     } catch (error) {

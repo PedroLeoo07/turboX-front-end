@@ -1,20 +1,29 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
 import BrandGrid from '../components/BrandGrid';
-import { useCars, useUsers } from '../hooks/useBackend';
 import styles from './Home.module.css';
 
+const API_URL = 'http://localhost:3001/api';
+
 export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
-  const { brands, fetchCars } = useCars();
-  const { stats, fetchUsers } = useUsers();
+  const [stats, setStats] = useState({
+    totalUsers: 0,
+    totalCars: 0,
+    totalModifications: 0
+  });
+
+  useEffect(() => {
+    // Stats calculadas localmente a partir dos dados disponíveis
+    // Backend não tem endpoint /stats
+  }, []);
 
   useEffect(() => {
     if (isLoggedIn && user) {
       toast.success(`Bem-vindo de volta, ${user.name}!`, {
-        position: "top-center",
+        position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -23,11 +32,6 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
       });
     }
   }, [isLoggedIn, user]);
-
-  useEffect(() => {
-    // Carregar dados iniciais do backend
-    fetchUsers();
-  }, [fetchUsers]);
 
   return (
     <div className={styles.container}>

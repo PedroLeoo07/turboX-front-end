@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
 import Modal from '../components/Modal';
-import { carsAPI } from '../services/api';
 import styles from './BrandManagement.module.css';
+
+const API_URL = 'http://localhost:3001/api';
 
 const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
   const [brands, setBrands] = useState([]);
@@ -22,15 +23,35 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
     website: ''
   });
 
-  // Carregar marcas
+  // Carregar marcas extraindo dos carros
   const fetchBrands = async () => {
     setLoading(true);
     try {
-      const data = await carsAPI.getBrands();
-      setBrands(data);
+      const response = await fetch(`${API_URL}/cars`);
+      if (!response.ok) throw new Error('API não disponível');
+      const carsData = await response.json();
+      
+      // Extrair marcas únicas e contar carros
+      const brandMap = {};
+      carsData.forEach(car => {
+        if (car.brand) {
+          if (!brandMap[car.brand]) {
+            brandMap[car.brand] = {
+              id: car.brand,
+              name: car.brand,
+              logo: `/logos/${car.brand.toLowerCase()}.png`,
+              description: 'Performance e qualidade',
+              carCount: 0
+            };
+          }
+          brandMap[car.brand].carCount++;
+        }
+      });
+      
+      setBrands(Object.values(brandMap));
     } catch (error) {
       console.error('Erro ao carregar marcas:', error);
-      toast.error('Erro ao carregar marcas');
+      setBrands([]);
     } finally {
       setLoading(false);
     }
@@ -91,24 +112,9 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
       return;
     }
 
-    try {
-      setLoading(true);
-      if (editingBrand) {
-        await carsAPI.updateBrand(editingBrand.id, formData);
-        toast.success('Marca atualizada com sucesso!');
-      } else {
-        await carsAPI.createBrand(formData);
-        toast.success('Marca criada com sucesso!');
-      }
-      
-      fetchBrands();
-      closeModal();
-    } catch (error) {
-      console.error('Erro ao salvar marca:', error);
-      toast.error('Erro ao salvar marca');
-    } finally {
-      setLoading(false);
-    }
+    // Backend não tem endpoints de brands, operação apenas local
+    toast.info('Operação de marca não disponível - backend não tem endpoint /brands');
+    closeModal();
   };
 
   // Deletar marca
@@ -117,17 +123,8 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
       return;
     }
 
-    try {
-      setLoading(true);
-      await carsAPI.deleteBrand(brandId);
-      toast.success('Marca deletada com sucesso!');
-      fetchBrands();
-    } catch (error) {
-      console.error('Erro ao deletar marca:', error);
-      toast.error('Erro ao deletar marca');
-    } finally {
-      setLoading(false);
-    }
+    // Backend não tem endpoints de brands, operação apenas local
+    toast.info('Operação de marca não disponível - backend não tem endpoint /brands');
   };
 
   // Alterar campo do formulário

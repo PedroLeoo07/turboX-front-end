@@ -1,11 +1,12 @@
-'use client';
+"use client";
 
 import { useState, useEffect } from 'react';
 import Modal from './Modal';
-import { useCars } from '../hooks/useBackend';
 import styles from './BrandCarsModal.module.css';
 
-// Base de dados dos carros (mesma do CarList)
+const API_URL = 'http://localhost:3001/api';
+
+// Base de dados dos carros (fallback)
 const carsDatabase = [
   {
     id: 1,
@@ -282,9 +283,27 @@ const carsDatabase = [
 ];
 
 const BrandCarsModal = ({ isOpen, onClose, selectedBrand }) => {
-  const { cars: backendCars, loading } = useCars();
+  const [backendCars, setBackendCars] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [sortBy, setSortBy] = useState('name');
   const [filterBy, setFilterBy] = useState('todos');
+
+  useEffect(() => {
+    if (isOpen && selectedBrand) {
+      setLoading(true);
+      fetch(`${API_URL}/cars?brand=${selectedBrand}`)
+        .then(res => {
+          if (!res.ok) throw new Error('API não disponível');
+          return res.json();
+        })
+        .then(data => setBackendCars(data))
+        .catch(err => {
+          console.error('Erro ao carregar carros da marca:', err);
+          setBackendCars([]);
+        })
+        .finally(() => setLoading(false));
+    }
+  }, [isOpen, selectedBrand]);
 
   // Filtrar carros da marca selecionada
   const getBrandCars = () => {

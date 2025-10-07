@@ -8,7 +8,6 @@ export const metadata = {
     description: "O simulador de preparações automotivas mais avançado do Brasil. Transforme qualquer carro em uma máquina de alta performance com simulações realísticas.",
     keywords: "carros, tuning, preparação, turbo, performance, simulador, automotivo",
     author: "TurboX Team",
-    viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
     icons: {
         icon: "/icons/turboX.png",
         apple: "/icons/icon.png",
@@ -19,6 +18,13 @@ export const metadata = {
         type: "website",
         locale: "pt_BR",
     },
+};
+
+export const viewport = {
+    width: "device-width",
+    initialScale: 1.0,
+    maximumScale: 1.0,
+    userScalable: false,
 };
 
 export default function RootLayout({ children }) {

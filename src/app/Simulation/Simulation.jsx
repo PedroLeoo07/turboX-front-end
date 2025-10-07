@@ -2,13 +2,30 @@
 
 import { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
-import { useBuilds, useUpgrades, useBuildUpgrades } from '../hooks/useBackend';
 import styles from './Simulation.module.css';
 
+const API_URL = 'http://localhost:3001/api';
+
 export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout }) {
-  const { builds, loading, createBuild, fetchBuilds } = useBuilds();
-  const { upgrades: availableUpgrades, fetchUpgrades } = useUpgrades();
-  const { buildUpgrades, getBuildUpgrades, addUpgradeToBuild } = useBuildUpgrades();
+  const [builds, setBuilds] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [availableUpgrades, setAvailableUpgrades] = useState([]);
+
+  const fetchUpgrades = async () => {
+    try {
+      const response = await fetch(`${API_URL}/upgrades`);
+      if (!response.ok) throw new Error('API não disponível');
+      const data = await response.json();
+      setAvailableUpgrades(data);
+    } catch (error) {
+      console.error('Erro ao carregar upgrades:', error);
+      setAvailableUpgrades([]);
+    }
+  };
+
+  useEffect(() => {
+    fetchUpgrades();
+  }, []);
   const [selectedStage, setSelectedStage] = useState(0);
   const [selectedUpgrades, setSelectedUpgrades] = useState({
     intake: false,
@@ -25,12 +42,6 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
     aerodynamics: false
   });
   const [buildName, setBuildName] = useState('');
-
-  // Carregar builds e upgrades do usuário
-  useEffect(() => {
-    fetchBuilds();
-    fetchUpgrades();
-  }, [fetchBuilds, fetchUpgrades]);
 
   // Configurações base do carro (usando dados mock se não houver carro selecionado)
   const baseCar = car || {
