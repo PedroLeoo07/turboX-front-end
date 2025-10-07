@@ -474,7 +474,7 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
                 onChange={(e) => setSelectedBrand(e.target.value)}
                 className={styles.filterSelect}
               >
-                <option value="">Todas as Marcas</option>
+                <option key="all-brands" value="">Todas as Marcas</option>
                 {brands.map(brand => (
                   <option key={brand} value={brand}>{brand}</option>
                 ))}
@@ -485,7 +485,7 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
                 onChange={(e) => setSelectedCategory(e.target.value)}
                 className={styles.filterSelect}
               >
-                <option value="">Todas as Categorias</option>
+                <option key="all-categories" value="">Todas as Categorias</option>
                 {categories.map(category => (
                   <option key={category} value={category}>
                     {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -498,12 +498,12 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
                 onChange={(e) => setSortBy(e.target.value)}
                 className={styles.filterSelect}
               >
-                <option value="power">Maior Potência</option>
-                <option value="acceleration">Menor 0-100</option>
-                <option value="topSpeed">Maior V.Max</option>
-                <option value="price">Maior Preço</option>
-                <option value="year">Mais Novo</option>
-                <option value="brand">Marca A-Z</option>
+                <option key="power" value="power">Maior Potência</option>
+                <option key="acceleration" value="acceleration">Menor 0-100</option>
+                <option key="topSpeed" value="topSpeed">Maior V.Max</option>
+                <option key="price" value="price">Maior Preço</option>
+                <option key="year" value="year">Mais Novo</option>
+                <option key="brand" value="brand">Marca A-Z</option>
               </select>
 
               <div className={styles.viewControls}>

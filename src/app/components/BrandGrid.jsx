@@ -22,7 +22,7 @@ const BrandGrid = ({ navigateTo }) => {
       })
       .then(data => {
         // Extrair marcas únicas dos carros
-        const uniqueBrands = [...new Set(data.map(car => car.brand))].map(brandName => ({
+        const uniqueBrands = [...new Set(data.map(car => car.brand).filter(Boolean))].map(brandName => ({
           name: brandName,
           logo: `/logos/${brandName.toLowerCase()}.png`,
           description: 'Performance e qualidade'
