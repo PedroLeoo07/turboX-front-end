@@ -7,7 +7,7 @@ import Home from './home/Home';
 import CarList from './carList/page';
 import CarDetails from './car/page';
 import About from './about/page';
-import Login from './login/Login';
+import Login from './login/page';
 import Simulation from './Simulation/page';
 import Loading from './components/Loading';
 import BrandManagement from './brand-management/page';
@@ -16,6 +16,7 @@ import UsersCars from './users/page';
 export default function App() {
   const [currentPage, setCurrentPage] = useState('loading');
   const [selectedCar, setSelectedCar] = useState(null);
+  const [filterOptions, setFilterOptions] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -42,8 +43,11 @@ export default function App() {
   const navigateTo = (page, car = null, params = null) => {
     setSelectedCar(car);
     setCurrentPage(page);
-    if (params && params.brand) {
-      console.log('Filtrar por marca:', params.brand);
+    if (params) {
+      setFilterOptions(params);
+      console.log('🔍 Navegando com filtros:', params);
+    } else {
+      setFilterOptions({});
     }
   };
 
@@ -85,6 +89,7 @@ export default function App() {
         return (
           <CarList 
             navigateTo={navigateTo}
+            filterOptions={filterOptions}
             isLoggedIn={isLoggedIn}
             user={user}
             onLogout={handleLogout}

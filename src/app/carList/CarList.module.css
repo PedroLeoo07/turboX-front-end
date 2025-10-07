@@ -241,6 +241,52 @@
   line-height: 1.6;
 }
 
+.brandFilterBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem auto;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(255, 69, 0, 0.2));
+  border: 2px solid rgba(255, 0, 0, 0.4);
+  border-radius: 50px;
+  max-width: fit-content;
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+.brandFilterBadge span {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.clearFilterBtn {
+  background: rgba(255, 0, 0, 0.3);
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.clearFilterBtn:hover {
+  background: rgba(255, 0, 0, 0.5);
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+  }
+}
+
 .stats {
   display: flex;
   justify-content: center;

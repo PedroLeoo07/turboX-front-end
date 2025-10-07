@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import BrandCarsModal from './BrandCarsModal';
 import styles from './BrandGrid.module.css';
 
 const API_URL = 'http://localhost:3001/api';
@@ -9,8 +8,6 @@ const API_URL = 'http://localhost:3001/api';
 const BrandGrid = ({ navigateTo }) => {
   const [brands, setBrands] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedBrand, setSelectedBrand] = useState(null);
 
   useEffect(() => {
     setLoading(true);
@@ -20,12 +17,19 @@ const BrandGrid = ({ navigateTo }) => {
         return res.json();
       })
       .then(data => {
-        const uniqueBrands = [...new Set(data.map(car => car.brand).filter(Boolean))].map(brandName => ({
-          name: brandName,
-          logo: `/logos/${brandName.toLowerCase()}.png`,
-          description: 'Performance e qualidade'
-        }));
-        setBrands(uniqueBrands);
+        const brandMap = {};
+        data.forEach(car => {
+          if (car.brand && !brandMap[car.brand]) {
+            brandMap[car.brand] = {
+              name: car.brand,
+              logo: `/logos/${car.brand.toLowerCase()}.png`,
+              description: 'Performance e qualidade',
+              carImage: car.images && car.images.length > 0 ? car.images[0] : null,
+              carModel: car.model || car.name
+            };
+          }
+        });
+        setBrands(Object.values(brandMap));
       })
       .catch(err => {
         console.error('Erro ao carregar carros:', err);
@@ -59,14 +63,9 @@ const BrandGrid = ({ navigateTo }) => {
       console.error('❌ brandName está vazio ou undefined!');
       return;
     }
-    setSelectedBrand(brandName);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    console.log('🔒 Fechando modal');
-    setIsModalOpen(false);
-    setSelectedBrand(null);
+    if (navigateTo) {
+      navigateTo('carList', { brand: brandName });
+    }
   };
 
   if (loading) {
@@ -106,6 +105,20 @@ const BrandGrid = ({ navigateTo }) => {
             <p className={styles.brandDesc}>
               {brand.description || 'Performance e qualidade'}
             </p>
+            
+            {brand.carImage && (
+              <div className={styles.carImageContainer}>
+                <img 
+                  src={brand.carImage} 
+                  alt={`${brand.carModel}`}
+                  className={styles.carImage}
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                  }}
+                />
+              </div>
+            )}
+            
             <div className={styles.brandArrow}>→</div>
             
             {brand.carCount && (
@@ -116,13 +129,6 @@ const BrandGrid = ({ navigateTo }) => {
           </div>
         ))}
       </div>
-
-      {/* Modal para exibir carros da marca */}
-      <BrandCarsModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        selectedBrand={selectedBrand}
-      />
     </>
   );
 };

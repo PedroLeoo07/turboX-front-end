@@ -439,11 +439,25 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
         <section className={styles.header}>
           <div className={styles.headerContent}>
             <h1 className={styles.title}>
-              Garagem TurboX
+              {selectedBrand ? `Carros ${selectedBrand}` : 'Garagem TurboX'}
             </h1>
             <p className={styles.subtitle}>
-              Escolha seu carro e descubra seu potencial máximo de performance
+              {selectedBrand 
+                ? `Explore toda a linha ${selectedBrand} de alto desempenho` 
+                : 'Escolha seu carro e descubra seu potencial máximo de performance'
+              }
             </p>
+            {selectedBrand && (
+              <div className={styles.brandFilterBadge}>
+                <span>Filtrando por: {selectedBrand}</span>
+                <button 
+                  onClick={() => setSelectedBrand('')}
+                  className={styles.clearFilterBtn}
+                >
+                  ✕ Limpar filtro
+                </button>
+              </div>
+            )}
             <div className={styles.stats}>
               <div className={styles.stat}>
                 <span className={styles.statNumber}>{cars.length}</span>
