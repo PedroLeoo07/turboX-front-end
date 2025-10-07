@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { usersAPI } from '../services/api';
 import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
 import Loading from '../components/Loading';
@@ -30,15 +29,8 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const filters = {
-        search: searchTerm,
-        sortBy: sortBy,
-        brand: brandFilter,
-        hasCars: showOnlyWithCars
-      };
-      
-      const response = await usersAPI.getAllWithCars(filters);
-      setUsers(response.users || []);
+      // API removida - dados mock
+      setUsers([]);
     } catch (error) {
       toast.error('Erro ao carregar usuários');
       console.error('Erro ao buscar usuários:', error);
@@ -49,8 +41,8 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
 
   const fetchStats = async () => {
     try {
-      const response = await usersAPI.getStats();
-      setStats(response);
+      // API removida - stats mock
+      setStats({ totalUsers: 0, usersWithCars: 0, totalCars: 0 });
     } catch (error) {
       console.error('Erro ao buscar estatísticas:', error);
     }
@@ -62,8 +54,10 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
     }
 
     try {
-      await usersAPI.removeCarFromUser(userId, carId);
+      // API removida - operação mock
+      console.log('Removendo carro:', carId, 'do usuário:', userId);
       fetchUsers(); // Recarregar a lista
+      toast.success('Carro removido com sucesso');
     } catch (error) {
       console.error('Erro ao remover carro do usuário:', error);
     }

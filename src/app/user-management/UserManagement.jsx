@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
 import Modal from '../components/Modal';
-import { usersAPI, carsAPI } from '../services/api';
 import styles from './UserManagement.module.css';
 
 const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout }) => {
@@ -32,8 +31,8 @@ const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout })
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const usersData = await usersAPI.getAll();
-      setUsers(usersData);
+      // API removida - dados mock
+      setUsers([]);
     } catch (error) {
       console.error('Erro ao carregar usuários:', error);
       toast.error('Erro ao carregar usuários');
@@ -44,8 +43,8 @@ const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout })
 
   const fetchCars = async () => {
     try {
-      const carsData = await carsAPI.getAll();
-      setCars(carsData);
+      // API removida - dados mock
+      setCars([]);
     } catch (error) {
       console.error('Erro ao carregar carros:', error);
     }
@@ -147,18 +146,12 @@ const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout })
 
     try {
       setLoading(true);
-      const dataToSend = { ...formData };
+      // API removida - operação mock
+      console.log('Salvando usuário:', formData);
       
-      // Remove password se estiver vazio (para edição)
-      if (!dataToSend.password) {
-        delete dataToSend.password;
-      }
-
       if (editingUser) {
-        await usersAPI.update(editingUser.id, dataToSend);
         toast.success('Usuário atualizado com sucesso!');
       } else {
-        await usersAPI.create(dataToSend);
         toast.success('Usuário criado com sucesso!');
       }
       
@@ -166,7 +159,7 @@ const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout })
       closeModal();
     } catch (error) {
       console.error('Erro ao salvar usuário:', error);
-      toast.error(error.response?.data?.message || 'Erro ao salvar usuário');
+      toast.error('Erro ao salvar usuário');
     } finally {
       setLoading(false);
     }
@@ -185,7 +178,8 @@ const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout })
 
     try {
       setLoading(true);
-      await usersAPI.delete(userId);
+      // API removida - operação mock
+      console.log('Deletando usuário:', userId);
       toast.success('Usuário deletado com sucesso!');
       fetchUsers();
     } catch (error) {
@@ -206,7 +200,8 @@ const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout })
     if (!selectedUser) return;
 
     try {
-      await usersAPI.addCarToUser(selectedUser.id, { carId });
+      // API removida - operação mock
+      console.log('Adicionando carro:', carId, 'ao usuário:', selectedUser.id);
       toast.success('Carro adicionado ao usuário com sucesso!');
       fetchUsers();
     } catch (error) {
@@ -219,7 +214,8 @@ const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout })
     if (!selectedUser) return;
 
     try {
-      await usersAPI.removeCarFromUser(selectedUser.id, carId);
+      // API removida - operação mock
+      console.log('Removendo carro:', carId, 'do usuário:', selectedUser.id);
       toast.success('Carro removido do usuário com sucesso!');
       fetchUsers();
     } catch (error) {

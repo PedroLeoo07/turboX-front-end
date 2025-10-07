@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
 import Modal from '../components/Modal';
-import { carsAPI } from '../services/api';
 import styles from './BrandManagement.module.css';
 
 const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
@@ -26,8 +25,8 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
   const fetchBrands = async () => {
     setLoading(true);
     try {
-      const data = await carsAPI.getBrands();
-      setBrands(data);
+      // API removida - dados mock
+      setBrands([]);
     } catch (error) {
       console.error('Erro ao carregar marcas:', error);
       toast.error('Erro ao carregar marcas');
@@ -93,11 +92,12 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
 
     try {
       setLoading(true);
+      // API removida - operação mock
+      console.log('Salvando marca:', formData);
+      
       if (editingBrand) {
-        await carsAPI.updateBrand(editingBrand.id, formData);
         toast.success('Marca atualizada com sucesso!');
       } else {
-        await carsAPI.createBrand(formData);
         toast.success('Marca criada com sucesso!');
       }
       
@@ -119,7 +119,8 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
 
     try {
       setLoading(true);
-      await carsAPI.deleteBrand(brandId);
+      // API removida - operação mock
+      console.log('Deletando marca:', brandId);
       toast.success('Marca deletada com sucesso!');
       fetchBrands();
     } catch (error) {
