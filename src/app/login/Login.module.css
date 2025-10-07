@@ -360,7 +360,6 @@
   line-height: 1.4;
 }
 
-/* Animações */
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
@@ -379,7 +378,6 @@
   }
 }
 
-/* Responsividade */
 @media (max-width: 1024px) {
   .loginContainer {
     grid-template-columns: 1fr;
@@ -414,7 +412,6 @@
   }
 }
 
-/* Credenciais de Acesso */
 .testCredentials {
   margin: 20px 0;
   padding: 20px;

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import BrandCarsModal from './BrandCarsModal';
 import styles from './BrandGrid.module.css';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'http:
 
 const BrandGrid = ({ navigateTo }) => {
   const [brands, setBrands] = useState([]);
@@ -13,7 +13,6 @@ const BrandGrid = ({ navigateTo }) => {
   const [selectedBrand, setSelectedBrand] = useState(null);
 
   useEffect(() => {
-    // Carregar carros e extrair marcas únicas
     setLoading(true);
     fetch(`${API_URL}/cars`)
       .then(res => {
@@ -21,7 +20,6 @@ const BrandGrid = ({ navigateTo }) => {
         return res.json();
       })
       .then(data => {
-        // Extrair marcas únicas dos carros
         const uniqueBrands = [...new Set(data.map(car => car.brand).filter(Boolean))].map(brandName => ({
           name: brandName,
           logo: `/logos/${brandName.toLowerCase()}.png`,
@@ -35,8 +33,6 @@ const BrandGrid = ({ navigateTo }) => {
       })
       .finally(() => setLoading(false));
   }, []);
-
-  // Marcas padrão caso o backend não esteja disponível
   const defaultBrands = [
     { name: 'Volkswagen', logo: '/logos/volks.png', description: 'Tradição alemã em engenharia' },
     { name: 'BMW', logo: '/logos/BMW.png', description: 'Prazer em dirigir' },

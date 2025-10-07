@@ -3,8 +3,6 @@
 import { useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-// Import dos componentes principais
 import Home from './home/Home';
 import CarList from './carList/page';
 import CarDetails from './car/page';
@@ -21,8 +19,6 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  // Verificar se há usuário logado ao carregar
   useEffect(() => {
     const savedUser = localStorage.getItem('turboX_user');
     if (savedUser && savedUser !== 'undefined') {
@@ -46,10 +42,7 @@ export default function App() {
   const navigateTo = (page, car = null, params = null) => {
     setSelectedCar(car);
     setCurrentPage(page);
-    
-    // Se houver parâmetros adicionais, você pode processá-los aqui
     if (params && params.brand) {
-      // Por exemplo, filtrar por marca na lista de carros
       console.log('Filtrar por marca:', params.brand);
     }
   };
@@ -181,3 +174,4 @@ export default function App() {
     </>
   );
 }
+

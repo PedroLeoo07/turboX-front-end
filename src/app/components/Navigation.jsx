@@ -13,16 +13,12 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
     { id: 'simulation', label: 'Simulação', icon: '' },
     { id: 'about', label: 'Sobre', icon: '' },
   ];
-
-  // Itens administrativos (só para admins)
   const adminItems = [
     { id: 'user-management', label: 'Usuários', icon: '' },
     { id: 'brand-management', label: 'Marcas', icon: '' },
   ];
 
   const isAdmin = user && user.role === 'admin';
-
-  // Fechar menu ao redimensionar tela
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) {
@@ -33,18 +29,14 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  // Prevenir scroll quando menu está aberto
   useEffect(() => {
     if (isMobileMenuOpen) {
-      // Salvar posição atual do scroll
       const scrollY = window.scrollY;
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollY}px`;
       document.body.style.width = '100%';
       document.body.style.overflow = 'hidden';
     } else {
-      // Restaurar posição do scroll
       const scrollY = document.body.style.top;
       document.body.style.position = '';
       document.body.style.top = '';
@@ -62,8 +54,6 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
       document.body.style.overflow = '';
     };
   }, [isMobileMenuOpen]);
-
-  // Fechar menu com tecla ESC
   useEffect(() => {
     const handleEscKey = (e) => {
       if (e.key === 'Escape' && isMobileMenuOpen) {
@@ -299,3 +289,4 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
     </nav>
   );
 }
+

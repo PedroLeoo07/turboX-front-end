@@ -4,9 +4,7 @@ import { useState, useEffect } from 'react';
 import Modal from './Modal';
 import styles from './BrandCarsModal.module.css';
 
-const API_URL = 'http://localhost:3001/api';
-
-// Base de dados dos carros (fallback)
+const API_URL = 'http:
 const carsDatabase = [
   {
     id: 1,
@@ -308,8 +306,6 @@ const BrandCarsModal = ({ isOpen, onClose, selectedBrand }) => {
         .finally(() => setLoading(false));
     }
   }, [isOpen, selectedBrand]);
-
-  // Filtrar carros da marca selecionada
   const getBrandCars = () => {
     if (!selectedBrand) {
       console.log('⚠️ selectedBrand está vazio!');
@@ -324,14 +320,10 @@ const BrandCarsModal = ({ isOpen, onClose, selectedBrand }) => {
   };
 
   const brandCars = getBrandCars();
-
-  // Aplicar filtros
   const filteredCars = brandCars.filter(car => {
     if (filterBy === 'todos') return true;
     return car.category === filterBy;
   });
-
-  // Aplicar ordenação
   const sortedCars = [...filteredCars].sort((a, b) => {
     switch (sortBy) {
       case 'name':
@@ -346,8 +338,6 @@ const BrandCarsModal = ({ isOpen, onClose, selectedBrand }) => {
         return 0;
     }
   });
-
-  // Categorias disponíveis
   const categories = ['todos', ...new Set(brandCars.map(car => car.category))];
 
   const formatPrice = (price) => {
@@ -488,3 +478,4 @@ const BrandCarsModal = ({ isOpen, onClose, selectedBrand }) => {
 };
 
 export default BrandCarsModal;
+

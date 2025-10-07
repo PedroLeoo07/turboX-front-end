@@ -207,3 +207,4 @@ export default function CarDetails({ car, navigateTo, isLoggedIn, user, onLogout
     </div>
   );
 }
+

@@ -5,9 +5,7 @@ import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
 import styles from './CarList.module.css';
 
-const API_URL = 'http://localhost:3001/api';
-
-// Base de dados dos carros expandida (fallback)
+const API_URL = 'http:
 const carsDatabase = [
   {
     id: 1,
@@ -308,11 +306,9 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
   const [selectedBrand, setSelectedBrand] = useState(filterOptions.brand || '');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [sortBy, setSortBy] = useState('power');
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' ou 'list'
+  const [viewMode, setViewMode] = useState('grid');
   const [priceRange, setPriceRange] = useState([0, 3000000]);
   const [categories, setCategories] = useState([]);
-
-  // Carregar dados da API
   useEffect(() => {
     setLoading(true);
     fetch(`${API_URL}/cars`)
@@ -328,8 +324,6 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
         setCars(carsDatabase);
       })
       .finally(() => setLoading(false));
-
-    // Extrair marcas e categorias dos carros carregados
     fetch(`${API_URL}/cars`)
       .then(res => {
         if (!res.ok) throw new Error('API não disponível');
@@ -343,20 +337,15 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
       })
       .catch(err => {
         console.error('Erro ao carregar carros para marcas:', err);
-        // Fallback para categorias dos carros locais
         const uniqueCategories = [...new Set(carsDatabase.map(car => car.category).filter(Boolean))];
         setCategories(uniqueCategories);
       });
   }, []);
-
-  // Aplicar filtros quando filterOptions mudar
   useEffect(() => {
     if (filterOptions.brand) {
       setSelectedBrand(filterOptions.brand);
     }
   }, [filterOptions]);
-
-  // Filtrar carros localmente
   const filteredCars = cars.filter(car => {
     const brand = car.brand || car.marca;
     const model = car.model || car.modelo;
@@ -402,11 +391,8 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
     setPriceRange([0, 3000000]);
     setSortBy('power');
   };
-
-  // Resetar filtros quando sair da página
   useEffect(() => {
     return () => {
-      // Cleanup - pode ser usado se necessário
     };
   }, []);
 
@@ -629,3 +615,4 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
     </div>
   );
 }
+

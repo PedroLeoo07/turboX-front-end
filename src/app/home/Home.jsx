@@ -6,7 +6,7 @@ import Navigation from '../components/Navigation';
 import BrandGrid from '../components/BrandGrid';
 import styles from './Home.module.css';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'http:
 
 export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
   const [stats, setStats] = useState({
@@ -16,8 +16,6 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
   });
 
   useEffect(() => {
-    // Stats calculadas localmente a partir dos dados disponíveis
-    // Backend não tem endpoint /stats
   }, []);
 
   useEffect(() => {
@@ -681,4 +679,5 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
     </div>
   );
 }
+
 

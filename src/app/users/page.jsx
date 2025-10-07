@@ -6,7 +6,7 @@ import Navigation from '../components/Navigation';
 import Loading from '../components/Loading';
 import styles from './UsersCars.module.css';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'http:
 
 export default function UsersCars({ navigateTo, isLoggedIn, user }) {
   const [users, setUsers] = useState([]);
@@ -51,7 +51,6 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
 
   const fetchStats = async () => {
     try {
-      // Calcular estatísticas localmente
       const usersResponse = await fetch(`${API_URL}/users`);
       if (!usersResponse.ok) throw new Error('API não disponível');
       const usersData = await usersResponse.json();
@@ -281,3 +280,4 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
     </div>
   );
 }
+

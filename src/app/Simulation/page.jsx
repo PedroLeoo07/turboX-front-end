@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
 import styles from './Simulation.module.css';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'http:
 
 export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout }) {
   const [builds, setBuilds] = useState([]);
@@ -42,8 +42,6 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
     aerodynamics: false
   });
   const [buildName, setBuildName] = useState('');
-
-  // Configurações base do carro (usando dados mock se não houver carro selecionado)
   const baseCar = car || {
     brand: 'Nissan',
     model: 'GT-R',
@@ -52,27 +50,21 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
     acceleration: 2.7,
     image: 'GT-R'
   };
-
-  // Cálculos de performance baseados nos upgrades
   const calculatePerformance = () => {
     let powerBonus = 0;
     let torqueBonus = 0;
     let accelImprovement = 0;
-
-    // Stage bonuses
     const stageBonuses = [
-      { power: 0, torque: 0, accel: 0 },      // Stage 0 (stock)
-      { power: 50, torque: 80, accel: 0.3 },  // Stage 1
-      { power: 120, torque: 160, accel: 0.7 }, // Stage 2
-      { power: 200, torque: 250, accel: 1.2 }  // Stage 3
+      { power: 0, torque: 0, accel: 0 },
+      { power: 50, torque: 80, accel: 0.3 },
+      { power: 120, torque: 160, accel: 0.7 },
+      { power: 200, torque: 250, accel: 1.2 }
     ];
 
     const stageBonus = stageBonuses[selectedStage];
     powerBonus += stageBonus.power;
     torqueBonus += stageBonus.torque;
     accelImprovement += stageBonus.accel;
-
-    // Individual upgrade bonuses
   if (selectedUpgrades.intake) { powerBonus += 30; torqueBonus += 40; accelImprovement += 0.18; }
   if (selectedUpgrades.exhaust) { powerBonus += 50; torqueBonus += 60; accelImprovement += 0.28; }
   if (selectedUpgrades.turbo) { powerBonus += 180; torqueBonus += 200; accelImprovement += 0.7; }
@@ -121,11 +113,8 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
 
     try {
       const newBuild = await createBuild(buildData);
-      
-      // Adicionar upgrades selecionados à build
       for (const [upgradeKey, isSelected] of Object.entries(selectedUpgrades)) {
         if (isSelected) {
-          // Procurar o upgrade correspondente na lista de upgrades disponíveis
           const upgrade = availableUpgrades.find(u => u.type === upgradeKey);
           if (upgrade) {
             await addUpgradeToBuild(newBuild.id, upgrade.id);
@@ -143,7 +132,6 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
 
   const loadBuild = async (build) => {
     setSelectedStage(build.stage);
-    // Carregar upgrades da build
     const buildUpgradesData = await getBuildUpgrades(build.id);
     const upgradesObj = {};
     buildUpgradesData.forEach(item => {
@@ -424,3 +412,4 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
     </div>
   );
 }
+

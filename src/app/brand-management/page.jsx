@@ -6,7 +6,7 @@ import Navigation from '../components/Navigation';
 import Modal from '../components/Modal';
 import styles from './BrandManagement.module.css';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'http:
 
 const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
   const [brands, setBrands] = useState([]);
@@ -22,16 +22,12 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
     foundedYear: '',
     website: ''
   });
-
-  // Carregar marcas extraindo dos carros
   const fetchBrands = async () => {
     setLoading(true);
     try {
       const response = await fetch(`${API_URL}/cars`);
       if (!response.ok) throw new Error('API não disponível');
       const carsData = await response.json();
-      
-      // Extrair marcas únicas e contar carros
       const brandMap = {};
       carsData.forEach(car => {
         if (car.brand) {
@@ -60,15 +56,11 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
   useEffect(() => {
     fetchBrands();
   }, []);
-
-  // Filtrar marcas por busca
   const filteredBrands = brands.filter(brand =>
     brand.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     brand.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     brand.country?.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  // Abrir modal para criar/editar
   const openModal = (brand = null) => {
     setEditingBrand(brand);
     setFormData(brand ? {
@@ -88,8 +80,6 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
     });
     setIsModalOpen(true);
   };
-
-  // Fechar modal
   const closeModal = () => {
     setIsModalOpen(false);
     setEditingBrand(null);
@@ -102,8 +92,6 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
       website: ''
     });
   };
-
-  // Salvar marca (criar ou editar)
   const handleSave = async (e) => {
     e.preventDefault();
     
@@ -111,23 +99,15 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
       toast.error('Nome da marca é obrigatório');
       return;
     }
-
-    // Backend não tem endpoints de brands, operação apenas local
     toast.info('Operação de marca não disponível - backend não tem endpoint /brands');
     closeModal();
   };
-
-  // Deletar marca
   const handleDelete = async (brandId, brandName) => {
     if (!window.confirm(`Tem certeza que deseja deletar a marca "${brandName}"? Esta ação não pode ser desfeita.`)) {
       return;
     }
-
-    // Backend não tem endpoints de brands, operação apenas local
     toast.info('Operação de marca não disponível - backend não tem endpoint /brands');
   };
-
-  // Alterar campo do formulário
   const handleInputChange = (field, value) => {
     setFormData(prev => ({
       ...prev,
@@ -293,7 +273,7 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
               value={formData.logo}
               onChange={(e) => handleInputChange('logo', e.target.value)}
               className={styles.input}
-              placeholder="https://exemplo.com/logo.png"
+              placeholder="https:
             />
           </div>
 
@@ -341,7 +321,7 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
               value={formData.website}
               onChange={(e) => handleInputChange('website', e.target.value)}
               className={styles.input}
-              placeholder="https://www.marca.com"
+              placeholder="https:
             />
           </div>
 

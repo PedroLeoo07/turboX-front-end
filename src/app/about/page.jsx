@@ -185,12 +185,12 @@ Acredito que cada aplicação pode simplificar a vida das pessoas e abrir portas
             </p>
             
             <div className={styles.contactLinks}>
-              <a href="https://github.com/PedroLeoo07" className={styles.contactLink} target="_blank" rel="noopener noreferrer">
+              <a href="https:
                 <span className={styles.contactIcon}></span>
                 <span>GitHub</span>
               </a>
               
-              <a href="https://linkedin.com/in/pedroleoo07" className={styles.contactLink} target="_blank" rel="noopener noreferrer">
+              <a href="https:
                 <span className={styles.contactIcon}></span>
                 <span>LinkedIn</span>
               </a>
@@ -200,7 +200,7 @@ Acredito que cada aplicação pode simplificar a vida das pessoas e abrir portas
                 <span>Email</span>
               </a>
               
-              <a href="https://pedroleoo07.dev" className={styles.contactLink} target="_blank" rel="noopener noreferrer">
+              <a href="https:
                 <span className={styles.contactIcon}></span>
                 <span>Portfólio</span>
               </a>
@@ -235,3 +235,4 @@ Acredito que cada aplicação pode simplificar a vida das pessoas e abrir portas
     </div>
   );
 }
+

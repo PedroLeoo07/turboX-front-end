@@ -8,10 +8,9 @@ const Modal = ({
   onClose, 
   children, 
   title,
-  size = 'medium', // 'small', 'medium', 'large', 'fullscreen'
+  size = 'medium',
   className = '' 
 }) => {
-  // Fechar modal com ESC
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === 'Escape' && isOpen) {
@@ -21,7 +20,6 @@ const Modal = ({
     
     if (isOpen) {
       document.addEventListener('keydown', handleEsc);
-      // Prevenir scroll do body quando modal está aberto
       document.body.style.overflow = 'hidden';
     }
     

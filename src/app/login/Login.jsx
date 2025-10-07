@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import styles from './Login.module.css';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'http:
 
 export default function Login({ navigateTo, onLogin }) {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -23,7 +23,6 @@ export default function Login({ navigateTo, onLogin }) {
       ...prev,
       [name]: value
     }));
-    // Limpar erro do campo quando o usuário começar a digitar
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -34,23 +33,17 @@ export default function Login({ navigateTo, onLogin }) {
 
   const validateForm = () => {
     const newErrors = {};
-
-    // Validar email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email) {
       newErrors.email = 'Email é obrigatório';
     } else if (!emailRegex.test(formData.email)) {
       newErrors.email = 'Email inválido';
     }
-
-    // Validar senha
     if (!formData.password) {
       newErrors.password = 'Senha é obrigatória';
     } else if (formData.password.length < 6) {
       newErrors.password = 'Senha deve ter pelo menos 6 caracteres';
     }
-
-    // Validações específicas para cadastro
     if (isSignUp) {
       if (!formData.name) {
         newErrors.name = 'Nome é obrigatório';
@@ -104,8 +97,6 @@ export default function Login({ navigateTo, onLogin }) {
           email: data.user?.email || formData.email,
           token: data.token
         };
-
-        // Salvar token se necessário
         if (data.token) {
           localStorage.setItem('token', data.token);
         }
@@ -166,8 +157,6 @@ export default function Login({ navigateTo, onLogin }) {
       builds: [],
       favoritesCars: []
     };
-    
-    // Salvar dados do usuário no localStorage
     localStorage.setItem('authToken', 'leonardo-auth-token-2025');
     localStorage.setItem('userProfile', JSON.stringify(leonardoUser));
     
@@ -414,3 +403,4 @@ export default function Login({ navigateTo, onLogin }) {
     </div>
   );
 }
+

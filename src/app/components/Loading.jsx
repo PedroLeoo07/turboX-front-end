@@ -15,7 +15,7 @@ export default function Loading({ onComplete }) {
             if (onComplete) {
               onComplete();
             }
-          }, 1000); // Aguarda 1 segundo após completar para dar tempo de ver o 100%
+          }, 1000);
           return 100;
         }
         return prev + Math.random() * 15 + 5;
@@ -54,3 +54,4 @@ export default function Loading({ onComplete }) {
     </div>
   );
 }
+

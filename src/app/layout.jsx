@@ -33,9 +33,9 @@ export default function RootLayout({ children }) {
             <head>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                 <meta name="theme-color" content="#ff0000" />
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-                <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+                <link rel="preconnect" href="https:
+                <link rel="preconnect" href="https:
+                <link href="https:
                 <style>{`
                   @keyframes fadeIn {
                     from { opacity: 0; transform: translateY(30px); }
@@ -125,3 +125,4 @@ export default function RootLayout({ children }) {
         </html>
     );
 }
+

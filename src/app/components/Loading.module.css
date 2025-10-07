@@ -365,7 +365,6 @@
   z-index: 10;
 }
 
-/* Animações */
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
@@ -386,7 +385,6 @@
   }
 }
 
-/* Media Queries para Responsividade */
 @media (max-width: 1024px) {
   .logo {
     font-size: 3.5rem;
@@ -576,7 +574,6 @@
   }
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   .logo {
     font-size: 3rem;
