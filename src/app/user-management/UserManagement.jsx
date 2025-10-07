@@ -6,6 +6,8 @@ import Navigation from '../components/Navigation';
 import Modal from '../components/Modal';
 import styles from './UserManagement.module.css';
 
+const API_URL = 'http://localhost:3001/api';
+
 const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout }) => {
   const [users, setUsers] = useState([]);
   const [cars, setCars] = useState([]);
@@ -31,8 +33,9 @@ const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout })
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      // API removida - dados mock
-      setUsers([]);
+      const response = await fetch(`${API_URL}/users`);
+      const data = await response.json();
+      setUsers(data);
     } catch (error) {
       console.error('Erro ao carregar usuários:', error);
       toast.error('Erro ao carregar usuários');
@@ -43,8 +46,9 @@ const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout })
 
   const fetchCars = async () => {
     try {
-      // API removida - dados mock
-      setCars([]);
+      const response = await fetch(`${API_URL}/cars`);
+      const data = await response.json();
+      setCars(data);
     } catch (error) {
       console.error('Erro ao carregar carros:', error);
     }
@@ -146,12 +150,22 @@ const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout })
 
     try {
       setLoading(true);
-      // API removida - operação mock
-      console.log('Salvando usuário:', formData);
+      const dataToSend = { ...formData };
+      if (!dataToSend.password) delete dataToSend.password;
       
       if (editingUser) {
+        await fetch(`${API_URL}/users/${editingUser.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dataToSend)
+        });
         toast.success('Usuário atualizado com sucesso!');
       } else {
+        await fetch(`${API_URL}/users`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dataToSend)
+        });
         toast.success('Usuário criado com sucesso!');
       }
       
@@ -178,8 +192,7 @@ const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout })
 
     try {
       setLoading(true);
-      // API removida - operação mock
-      console.log('Deletando usuário:', userId);
+      await fetch(`${API_URL}/users/${userId}`, { method: 'DELETE' });
       toast.success('Usuário deletado com sucesso!');
       fetchUsers();
     } catch (error) {
@@ -200,8 +213,11 @@ const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout })
     if (!selectedUser) return;
 
     try {
-      // API removida - operação mock
-      console.log('Adicionando carro:', carId, 'ao usuário:', selectedUser.id);
+      await fetch(`${API_URL}/users/${selectedUser.id}/cars`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ carId })
+      });
       toast.success('Carro adicionado ao usuário com sucesso!');
       fetchUsers();
     } catch (error) {
@@ -214,8 +230,9 @@ const UserManagement = ({ navigateTo, isLoggedIn, user: currentUser, onLogout })
     if (!selectedUser) return;
 
     try {
-      // API removida - operação mock
-      console.log('Removendo carro:', carId, 'do usuário:', selectedUser.id);
+      await fetch(`${API_URL}/users/${selectedUser.id}/cars/${carId}`, {
+        method: 'DELETE'
+      });
       toast.success('Carro removido do usuário com sucesso!');
       fetchUsers();
     } catch (error) {

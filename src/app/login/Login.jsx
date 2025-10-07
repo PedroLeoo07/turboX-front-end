@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import styles from './Login.module.css';
 
+const API_URL = 'http://localhost:3001/api';
+
 export default function Login({ navigateTo, onLogin }) {
-  // Hook removido - funções mock
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -79,24 +80,43 @@ export default function Login({ navigateTo, onLogin }) {
     setIsLoading(true);
 
     try {
-      // Simular autenticação (hooks removidos)
-      console.log('Autenticação mock - usuário logado');
-      
-      const mockUser = {
-        name: formData.name || formData.email.split('@')[0],
-        email: formData.email
-      };
-      
-      // Login ou registro bem-sucedido
-      if (onLogin) {
-        onLogin(mockUser);
+      const endpoint = isSignUp ? '/auth/register' : '/auth/login';
+      const payload = isSignUp 
+        ? { name: formData.name, email: formData.email, password: formData.password }
+        : { email: formData.email, password: formData.password };
+
+      const response = await fetch(`${API_URL}${endpoint}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        const user = {
+          name: data.user?.name || formData.name || formData.email.split('@')[0],
+          email: data.user?.email || formData.email,
+          token: data.token
+        };
+
+        // Salvar token se necessário
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+        }
+
+        if (onLogin) {
+          onLogin(user);
+        }
+        
+        if (navigateTo) {
+          navigateTo('home');
+        }
+        
+        toast.success(isSignUp ? 'Registro realizado com sucesso!' : 'Login realizado com sucesso!');
+      } else {
+        toast.error(data.message || 'Erro na autenticação');
       }
-      // Navegar para home ou dashboard
-      if (navigateTo) {
-        navigateTo('home');
-      }
-      
-      toast.success(isSignUp ? 'Registro realizado com sucesso!' : 'Login realizado com sucesso!');
 
     } catch (error) {
       console.error('Erro na autenticação:', error);

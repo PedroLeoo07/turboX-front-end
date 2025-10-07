@@ -301,13 +301,9 @@ const carsDatabase = [
 ];
 
 export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, user, onLogout }) {
-  // Hook removido - usando dados locais
-  const cars = carsDatabase;
-  const brands = [];
-  const loading = false;
-  const fetchCars = () => {};
-  const fetchBrands = () => {};
-  
+  const [cars, setCars] = useState(carsDatabase);
+  const [brands, setBrands] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBrand, setSelectedBrand] = useState(filterOptions.brand || '');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -316,7 +312,27 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
   const [priceRange, setPriceRange] = useState([0, 3000000]);
   const [categories, setCategories] = useState([]);
 
-  // Carregar dados iniciais
+  // Carregar dados da API
+  useEffect(() => {
+    setLoading(true);
+    fetch(`${API_URL}/cars`)
+      .then(res => res.json())
+      .then(data => {
+        setCars(data.length > 0 ? data : carsDatabase);
+      })
+      .catch(err => {
+        console.error('Erro ao carregar carros:', err);
+        setCars(carsDatabase);
+      })
+      .finally(() => setLoading(false));
+
+    fetch(`${API_URL}/brands`)
+      .then(res => res.json())
+      .then(data => setBrands(data))
+      .catch(err => console.error('Erro ao carregar marcas:', err));
+  }, []);
+
+  // Carregar dados iniciais (categorias locais)
   useEffect(() => {
     fetchCars();
     fetchBrands();

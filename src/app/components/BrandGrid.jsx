@@ -9,6 +9,8 @@ const API_URL = 'http://localhost:3001/api';
 const BrandGrid = ({ navigateTo }) => {
   const [brands, setBrands] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedBrand, setSelectedBrand] = useState(null);
 
   useEffect(() => {
     // Carregar marcas da API
@@ -21,18 +23,7 @@ const BrandGrid = ({ navigateTo }) => {
         setBrands([]);
       })
       .finally(() => setLoading(false));
-  }, []);t';
-
-import { useState } from 'react';
-import BrandCarsModal from './BrandCarsModal';
-import styles from './BrandGrid.module.css';
-
-const BrandGrid = ({ navigateTo }) => {
-  // Hook removido - usando dados padrão
-  const brands = [];
-  const loading = false;
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedBrand, setSelectedBrand] = useState(null);
+  }, []);
 
   // Marcas padrão caso o backend não esteja disponível
   const defaultBrands = [

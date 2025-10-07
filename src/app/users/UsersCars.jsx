@@ -6,6 +6,8 @@ import Navigation from '../components/Navigation';
 import Loading from '../components/Loading';
 import styles from './UsersCars.module.css';
 
+const API_URL = 'http://localhost:3001/api';
+
 export default function UsersCars({ navigateTo, isLoggedIn, user }) {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -29,8 +31,15 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      // API removida - dados mock
-      setUsers([]);
+      const params = new URLSearchParams({
+        search: searchTerm,
+        sortBy: sortBy,
+        brand: brandFilter,
+        hasCars: showOnlyWithCars
+      });
+      const response = await fetch(`${API_URL}/users?${params}`);
+      const data = await response.json();
+      setUsers(data);
     } catch (error) {
       toast.error('Erro ao carregar usuários');
       console.error('Erro ao buscar usuários:', error);
@@ -41,8 +50,9 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
 
   const fetchStats = async () => {
     try {
-      // API removida - stats mock
-      setStats({ totalUsers: 0, usersWithCars: 0, totalCars: 0 });
+      const response = await fetch(`${API_URL}/stats`);
+      const data = await response.json();
+      setStats(data);
     } catch (error) {
       console.error('Erro ao buscar estatísticas:', error);
     }
@@ -54,12 +64,14 @@ export default function UsersCars({ navigateTo, isLoggedIn, user }) {
     }
 
     try {
-      // API removida - operação mock
-      console.log('Removendo carro:', carId, 'do usuário:', userId);
-      fetchUsers(); // Recarregar a lista
+      await fetch(`${API_URL}/users/${userId}/cars/${carId}`, {
+        method: 'DELETE'
+      });
+      fetchUsers();
       toast.success('Carro removido com sucesso');
     } catch (error) {
       console.error('Erro ao remover carro do usuário:', error);
+      toast.error('Erro ao remover carro');
     }
   };
 

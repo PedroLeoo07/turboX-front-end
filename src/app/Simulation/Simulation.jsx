@@ -4,17 +4,51 @@ import { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
 import styles from './Simulation.module.css';
 
+const API_URL = 'http://localhost:3001/api';
+
 export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout }) {
-  // Hooks removidos - funcionalidades mock
-  const builds = [];
-  const loading = false;
-  const createBuild = () => {};
-  const fetchBuilds = () => {};
-  const availableUpgrades = [];
-  const fetchUpgrades = () => {};
-  const buildUpgrades = [];
-  const getBuildUpgrades = () => {};
-  const addUpgradeToBuild = () => {};
+  const [builds, setBuilds] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [availableUpgrades, setAvailableUpgrades] = useState([]);
+
+  const fetchBuilds = async () => {
+    try {
+      const response = await fetch(`${API_URL}/builds`);
+      const data = await response.json();
+      setBuilds(data);
+    } catch (error) {
+      console.error('Erro ao carregar builds:', error);
+    }
+  };
+
+  const fetchUpgrades = async () => {
+    try {
+      const response = await fetch(`${API_URL}/upgrades`);
+      const data = await response.json();
+      setAvailableUpgrades(data);
+    } catch (error) {
+      console.error('Erro ao carregar upgrades:', error);
+    }
+  };
+
+  const createBuild = async (buildData) => {
+    try {
+      const response = await fetch(`${API_URL}/builds`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(buildData)
+      });
+      return await response.json();
+    } catch (error) {
+      console.error('Erro ao criar build:', error);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    fetchBuilds();
+    fetchUpgrades();
+  }, []);
   const [selectedStage, setSelectedStage] = useState(0);
   const [selectedUpgrades, setSelectedUpgrades] = useState({
     intake: false,

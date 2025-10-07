@@ -6,6 +6,8 @@ import Navigation from '../components/Navigation';
 import Modal from '../components/Modal';
 import styles from './BrandManagement.module.css';
 
+const API_URL = 'http://localhost:3001/api';
+
 const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
   const [brands, setBrands] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -25,8 +27,9 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
   const fetchBrands = async () => {
     setLoading(true);
     try {
-      // API removida - dados mock
-      setBrands([]);
+      const response = await fetch(`${API_URL}/brands`);
+      const data = await response.json();
+      setBrands(data);
     } catch (error) {
       console.error('Erro ao carregar marcas:', error);
       toast.error('Erro ao carregar marcas');
@@ -92,12 +95,20 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
 
     try {
       setLoading(true);
-      // API removida - operação mock
-      console.log('Salvando marca:', formData);
       
       if (editingBrand) {
+        await fetch(`${API_URL}/brands/${editingBrand.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
         toast.success('Marca atualizada com sucesso!');
       } else {
+        await fetch(`${API_URL}/brands`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
         toast.success('Marca criada com sucesso!');
       }
       
@@ -119,8 +130,7 @@ const BrandManagement = ({ navigateTo, isLoggedIn, user, onLogout }) => {
 
     try {
       setLoading(true);
-      // API removida - operação mock
-      console.log('Deletando marca:', brandId);
+      await fetch(`${API_URL}/brands/${brandId}`, { method: 'DELETE' });
       toast.success('Marca deletada com sucesso!');
       fetchBrands();
     } catch (error) {
