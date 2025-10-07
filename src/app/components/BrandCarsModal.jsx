@@ -281,7 +281,10 @@ const carsDatabase = [
 ];
 
 const BrandCarsModal = ({ isOpen, onClose, selectedBrand }) => {
-  const { cars: backendCars, loading } = useCars();
+  // Hook removido - usando dados locais
+  const backendCars = [];
+  const loading = false;
+  
   const [sortBy, setSortBy] = useState('name');
   const [filterBy, setFilterBy] = useState('todos');
 

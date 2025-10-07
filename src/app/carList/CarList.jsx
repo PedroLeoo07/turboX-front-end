@@ -299,7 +299,13 @@ const carsDatabase = [
 ];
 
 export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, user, onLogout }) {
-  const { cars, brands, loading, fetchCars, fetchBrands } = useCars();
+  // Hook removido - usando dados locais
+  const cars = carsDatabase;
+  const brands = [];
+  const loading = false;
+  const fetchCars = () => {};
+  const fetchBrands = () => {};
+  
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBrand, setSelectedBrand] = useState(filterOptions.brand || '');
   const [selectedCategory, setSelectedCategory] = useState('');

@@ -7,7 +7,12 @@ import BrandGrid from '../components/BrandGrid';
 import styles from './Home.module.css';
 
 export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
-  // Hooks removidos
+  // Hooks removidos - stats mock
+  const stats = {
+    totalUsers: 0,
+    totalCars: 0,
+    totalModifications: 0
+  };
 
   useEffect(() => {
     if (isLoggedIn && user) {
