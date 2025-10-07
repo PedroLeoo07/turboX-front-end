@@ -4,12 +4,10 @@ import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
 import BrandGrid from '../components/BrandGrid';
-import { useCars, useUsers } from '../hooks/useBackend';
 import styles from './Home.module.css';
 
 export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
-  const { brands, fetchCars } = useCars();
-  const { stats, fetchUsers } = useUsers();
+  // Hooks removidos
 
   useEffect(() => {
     if (isLoggedIn && user) {

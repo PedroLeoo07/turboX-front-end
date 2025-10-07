@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { useCars } from '../hooks/useBackend';
 import BrandCarsModal from './BrandCarsModal';
 import styles from './BrandGrid.module.css';
 
 const BrandGrid = ({ navigateTo }) => {
-  const { brands, loading } = useCars();
+  // Hook removido - usando dados padrão
+  const brands = [];
+  const loading = false;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBrand, setSelectedBrand] = useState(null);
 

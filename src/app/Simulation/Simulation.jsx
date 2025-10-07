@@ -2,13 +2,19 @@
 
 import { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
-import { useBuilds, useUpgrades, useBuildUpgrades } from '../hooks/useBackend';
 import styles from './Simulation.module.css';
 
 export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout }) {
-  const { builds, loading, createBuild, fetchBuilds } = useBuilds();
-  const { upgrades: availableUpgrades, fetchUpgrades } = useUpgrades();
-  const { buildUpgrades, getBuildUpgrades, addUpgradeToBuild } = useBuildUpgrades();
+  // Hooks removidos - funcionalidades mock
+  const builds = [];
+  const loading = false;
+  const createBuild = () => {};
+  const fetchBuilds = () => {};
+  const availableUpgrades = [];
+  const fetchUpgrades = () => {};
+  const buildUpgrades = [];
+  const getBuildUpgrades = () => {};
+  const addUpgradeToBuild = () => {};
   const [selectedStage, setSelectedStage] = useState(0);
   const [selectedUpgrades, setSelectedUpgrades] = useState({
     intake: false,

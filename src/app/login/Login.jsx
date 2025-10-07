@@ -2,11 +2,10 @@
 
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useAuth } from '../hooks/useBackend';
 import styles from './Login.module.css';
 
 export default function Login({ navigateTo, onLogin }) {
-  const { login, register } = useAuth();
+  // Hook removido - funções mock
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
     email: '',

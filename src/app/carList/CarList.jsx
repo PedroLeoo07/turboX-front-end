@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import Navigation from '../components/Navigation';
-import { useCars } from '../hooks/useBackend';
 import styles from './CarList.module.css';
 
 // Base de dados dos carros expandida

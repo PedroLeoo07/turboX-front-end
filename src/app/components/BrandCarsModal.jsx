@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Modal from './Modal';
-import { useCars } from '../hooks/useBackend';
 import styles from './BrandCarsModal.module.css';
 
 // Base de dados dos carros (mesma do CarList)

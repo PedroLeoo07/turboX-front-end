@@ -1,10 +1,13 @@
 'use client';
 
-import { useBackendStatus } from '../hooks/useBackend';
 import styles from './BackendStatus.module.css';
 
 const BackendStatus = () => {
-  const { isOnline, loading, lastCheck, checkStatus } = useBackendStatus();
+  // Hook removido - componente desabilitado
+  const isOnline = true;
+  const loading = false;
+  const lastCheck = null;
+  const checkStatus = () => {};
 
   if (loading && !lastCheck) {
     return (
