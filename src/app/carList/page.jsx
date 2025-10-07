@@ -336,7 +336,7 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
         return res.json();
       })
       .then(data => {
-        const uniqueBrands = [...new Set(data.map(car => car.brand).filter(Boolean))];
+        const uniqueBrands = [...new Set(data.map(car => car.brand || car.marca).filter(Boolean))];
         const uniqueCategories = [...new Set(data.map(car => car.category).filter(Boolean))];
         setBrands(uniqueBrands);
         setCategories(uniqueCategories);
@@ -358,25 +358,40 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
 
   // Filtrar carros localmente
   const filteredCars = cars.filter(car => {
+    const brand = car.brand || car.marca;
+    const model = car.model || car.modelo;
+    const price = car.price || parseFloat(car.preco);
+    
     return (
-      (!searchTerm || car.model.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                     car.brand.toLowerCase().includes(searchTerm.toLowerCase())) &&
-      (!selectedBrand || car.brand === selectedBrand) &&
+      (!searchTerm || model.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                     brand.toLowerCase().includes(searchTerm.toLowerCase())) &&
+      (!selectedBrand || brand === selectedBrand) &&
       (!selectedCategory || car.category === selectedCategory) &&
-      (car.price >= priceRange[0] && car.price <= priceRange[1])
+      (price >= priceRange[0] && price <= priceRange[1])
     );
   }).sort((a, b) => {
+    const priceA = a.price || parseFloat(a.preco);
+    const priceB = b.price || parseFloat(b.preco);
+    const yearA = a.year || a.ano;
+    const yearB = b.year || b.ano;
+    const powerA = a.power || a.potencia;
+    const powerB = b.power || b.potencia;
+    const modelA = a.model || a.modelo;
+    const modelB = b.model || b.modelo;
+    
     switch (sortBy) {
-      case 'price': return a.price - b.price;
-      case 'year': return b.year - a.year;
-      case 'power': return b.power - a.power;
-      case 'name': return a.model.localeCompare(b.model);
-      default: return b.power - a.power;
+      case 'price': return priceA - priceB;
+      case 'year': return yearB - yearA;
+      case 'power': return powerB - powerA;
+      case 'name': return modelA.localeCompare(modelB);
+      default: return powerB - powerA;
     }
   });
 
   const handleCarSelect = (car) => {
-    toast.success(`${car.brand} ${car.model} selecionado!`);
+    const brand = car.brand || car.marca;
+    const model = car.model || car.modelo;
+    toast.success(`${brand} ${model} selecionado!`);
     navigateTo('car', car);
   };
 
@@ -557,17 +572,17 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
                   >
                     <div className={styles.carHeader}>
                       <div className={styles.carImage}>
-                        {car.image && typeof car.image === 'string' && car.image.startsWith('http') ? (
+                        {(car.imagem || car.image) && typeof (car.imagem || car.image) === 'string' && (car.imagem || car.image).startsWith('http') ? (
                           <img 
-                            src={car.image} 
-                            alt={`${car.brand} ${car.model}`}
+                            src={car.imagem || car.image} 
+                            alt={`${car.brand || car.marca} ${car.model || car.modelo}`}
                             onError={(e) => {
                               e.target.src = '/images/car-placeholder.svg';
                             }}
                           />
                         ) : (
                           <div className={styles.carPlaceholder}>
-                            <span className={styles.carIcon}>{car.brand?.charAt(0) || 'C'}</span>
+                            <span className={styles.carIcon}>{(car.brand || car.marca)?.charAt(0) || 'C'}</span>
                           </div>
                         )}
                       </div>
@@ -576,7 +591,7 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
                     
                     <div className={styles.carInfo}>
                       <h3 className={styles.carTitle}>
-                        {car.brand} {car.model}
+                        {car.brand || car.marca} {car.model || car.modelo}
                       </h3>
                       <p className={styles.carYear}>{car.year}</p>
                       <p className={styles.carEngine}>{car.engine}</p>

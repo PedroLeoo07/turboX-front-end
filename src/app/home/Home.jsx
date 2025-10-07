@@ -252,17 +252,17 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
                   <span className={styles.i30Model}>i30</span>
                 </h2>
                 <p className={styles.i30Subtitle}>
-                  O hatchback esportivo que combina design europeu, 
+                  O hatchback esportivo que combina design coreano, 
                   tecnologia avançada e performance excepcional.
                 </p>
               </div>
 
-              <div className={styles.i30Features}>
+              <div className={styles.i30Features}>  
                 <div className={styles.i30Feature}>
                   <div className={styles.featureIcon}></div>
                   <div className={styles.featureContent}>
-                    <h4>Motor Turbo</h4>
-                    <p>1.0 T-GDI com até 120 cv de potência</p>
+                    <h4>Motor Aspirado</h4>
+                    <p>2.0 MPFI com 145 cv de potência</p>
                   </div>
                 </div>
 
@@ -270,7 +270,7 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
                   <div className={styles.featureIcon}></div>
                   <div className={styles.featureContent}>
                     <h4>Performance</h4>
-                    <p>0-100 km/h em 11.2 segundos</p>
+                    <p>0-100 km/h em 9.5 segundos</p>
                   </div>
                 </div>
 
@@ -278,16 +278,16 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
                   <div className={styles.featureIcon}></div>
                   <div className={styles.featureContent}>
                     <h4>Velocidade Máxima</h4>
-                    <p>185 km/h de velocidade final</p>
+                    <p>205 km/h de velocidade final</p>
                   </div>
                 </div>
 
                 <div className={styles.i30Feature}>
                   <div className={styles.featureIcon}></div>
                   <div className={styles.featureContent}>
-                    <h4>Eficiência</h4>
-                    <p>13.7 km/l na cidade, 15.2 km/l na estrada</p>
-                  </div>
+                    <h4>Beberrão</h4>
+                    <p>7 km/l na cidade, 10 km/l na estrada</p>
+                  </div>  
                 </div>
               </div>
 
@@ -296,8 +296,8 @@ export default function Home({ navigateTo, isLoggedIn, user, onLogout }) {
                   O <strong>Hyundai i30</strong> representa a perfeita harmonia entre 
                   <span className={styles.highlight}> design sofisticado</span> e 
                   <span className={styles.highlight}> tecnologia de ponta</span>. 
-                  Com seu motor turbo T-GDI, oferece uma experiência de condução 
-                  dinâmica e econômica, ideal para quem busca performance sem 
+                  Com seu motor aspirado, oferece uma experiência de condução 
+                  dinâmica e conforto, ideal para quem busca performance sem 
                   abrir mão do conforto e da praticidade no dia a dia.
                 </p>
                 

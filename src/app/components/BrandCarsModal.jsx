@@ -423,22 +423,22 @@ const BrandCarsModal = ({ isOpen, onClose, selectedBrand }) => {
             {sortedCars.map((car) => (
               <div key={car.id} className={styles.carCard}>
                 <div className={styles.carImage}>
-                  {car.image ? (
+                  {(car.imagem || car.image) ? (
                     <>
                       <img 
-                        src={car.image} 
-                        alt={`${car.brand} ${car.model}`}
+                        src={car.imagem || car.image} 
+                        alt={`${car.brand || car.marca} ${car.model || car.modelo}`}
                         onError={(e) => {
                           e.target.src = '/images/car-placeholder.svg';
                         }}
                       />
                       <div className={styles.carPlaceholder} style={{ display: 'none' }}>
-                        <span className={styles.carIcon}>{car.brand.charAt(0)}</span>
+                        <span className={styles.carIcon}>{(car.brand || car.marca).charAt(0)}</span>
                       </div>
                     </>
                   ) : (
                     <div className={styles.carPlaceholder}>
-                      <span className={styles.carIcon}>{car.brand.charAt(0)}</span>
+                      <span className={styles.carIcon}>{(car.brand || car.marca).charAt(0)}</span>
                     </div>
                   )}
                   <div className={styles.carCategory}>{car.category}</div>

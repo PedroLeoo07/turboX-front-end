@@ -64,17 +64,17 @@ export default function CarDetails({ car, navigateTo, isLoggedIn, user, onLogout
 
         <div className={styles.carHero}>
           <div className={styles.carImageLarge}>
-            {car.image && typeof car.image === 'string' && car.image.startsWith('http') ? (
+            {(car.imagem || car.image) && typeof (car.imagem || car.image) === 'string' && (car.imagem || car.image).startsWith('http') ? (
               <img 
-                src={car.image} 
-                alt={`${car.brand} ${car.model}`}
+                src={car.imagem || car.image} 
+                alt={`${car.brand || car.marca} ${car.model || car.modelo}`}
                 onError={(e) => {
                   e.target.src = '/images/car-placeholder.svg';
                 }}
               />
             ) : (
               <div className={styles.carPlaceholder}>
-                <span className={styles.carIcon}>{car.brand?.charAt(0) || 'C'}</span>
+                <span className={styles.carIcon}>{(car.brand || car.marca)?.charAt(0) || 'C'}</span>
               </div>
             )}
           </div>
