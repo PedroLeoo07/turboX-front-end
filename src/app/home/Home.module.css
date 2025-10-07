@@ -277,9 +277,20 @@
 }
 
 .carIcon {
-  width: 200px;
-  height: 200px;
+  width: 350px;
+  height: 300px;
   object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(255, 0, 0, 0.5));
+  animation: carFloat 4s ease-in-out infinite, carGlow 3s ease-in-out infinite;
+}
+
+@keyframes carGlow {
+  0%, 100% {
+    filter: drop-shadow(0 10px 30px rgba(255, 0, 0, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 12px 45px rgba(255, 0, 0, 0.8));
+  }
 }
 
 .speedLines {
