@@ -386,10 +386,10 @@ const BrandCarsModal = ({ isOpen, onClose, selectedBrand }) => {
               onChange={(e) => setSortBy(e.target.value)}
               className={styles.select}
             >
-              <option value="name">Nome</option>
-              <option value="year">Ano</option>
-              <option value="power">Potência</option>
-              <option value="price">Preço</option>
+              <option key="name" value="name">Nome</option>
+              <option key="year" value="year">Ano</option>
+              <option key="power" value="power">Potência</option>
+              <option key="price" value="price">Preço</option>
             </select>
           </div>
 
