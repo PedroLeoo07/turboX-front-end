@@ -329,17 +329,24 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
       })
       .finally(() => setLoading(false));
 
-    // Extrair marcas dos carros carregados
+    // Extrair marcas e categorias dos carros carregados
     fetch(`${API_URL}/cars`)
       .then(res => {
         if (!res.ok) throw new Error('API não disponível');
         return res.json();
       })
       .then(data => {
-        const uniqueBrands = [...new Set(data.map(car => car.brand))];
+        const uniqueBrands = [...new Set(data.map(car => car.brand).filter(Boolean))];
+        const uniqueCategories = [...new Set(data.map(car => car.category).filter(Boolean))];
         setBrands(uniqueBrands);
+        setCategories(uniqueCategories);
       })
-      .catch(err => console.error('Erro ao carregar carros para marcas:', err));
+      .catch(err => {
+        console.error('Erro ao carregar carros para marcas:', err);
+        // Fallback para categorias dos carros locais
+        const uniqueCategories = [...new Set(carsDatabase.map(car => car.category).filter(Boolean))];
+        setCategories(uniqueCategories);
+      });
   }, []);
 
   // Aplicar filtros quando filterOptions mudar

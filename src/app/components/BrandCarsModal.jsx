@@ -289,6 +289,7 @@ const BrandCarsModal = ({ isOpen, onClose, selectedBrand }) => {
   const [filterBy, setFilterBy] = useState('todos');
 
   useEffect(() => {
+    console.log('🔍 Modal aberto:', isOpen, '| Marca:', selectedBrand);
     if (isOpen && selectedBrand) {
       setLoading(true);
       fetch(`${API_URL}/cars?brand=${selectedBrand}`)
@@ -296,9 +297,12 @@ const BrandCarsModal = ({ isOpen, onClose, selectedBrand }) => {
           if (!res.ok) throw new Error('API não disponível');
           return res.json();
         })
-        .then(data => setBackendCars(data))
+        .then(data => {
+          console.log('✓ Backend retornou', data.length, 'carros');
+          setBackendCars(data);
+        })
         .catch(err => {
-          console.error('Erro ao carregar carros da marca:', err);
+          console.error('❌ Erro ao carregar carros da marca:', err);
           setBackendCars([]);
         })
         .finally(() => setLoading(false));
@@ -307,11 +311,15 @@ const BrandCarsModal = ({ isOpen, onClose, selectedBrand }) => {
 
   // Filtrar carros da marca selecionada
   const getBrandCars = () => {
+    if (!selectedBrand) {
+      console.log('⚠️ selectedBrand está vazio!');
+      return [];
+    }
     const allCars = backendCars && backendCars.length > 0 ? backendCars : carsDatabase;
     const filtered = allCars.filter(car => 
       car.brand?.toLowerCase() === selectedBrand?.toLowerCase()
     );
-    console.log('✓ Carros encontrados para', selectedBrand + ':', filtered.length);
+    console.log('✓ Carros encontrados para', selectedBrand + ':', filtered.length, '| Total disponível:', allCars.length);
     return filtered;
   };
 

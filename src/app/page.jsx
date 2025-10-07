@@ -6,13 +6,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // Import dos componentes principais
 import Home from './home/Home';
-import CarList from './carList/CarList';
-import CarDetails from './car/CarDetails';
-import About from './about/About';
+import CarList from './carList/page';
+import CarDetails from './car/page';
+import About from './about/page';
 import Login from './login/Login';
-import Simulation from './Simulation/Simulation';
+import Simulation from './Simulation/page';
 import Loading from './components/Loading';
-import BrandManagement from './brand-management/BrandManagement';
+import BrandManagement from './brand-management/page';
 import UserManagement from './user-management/UserManagement';
 
 export default function App() {

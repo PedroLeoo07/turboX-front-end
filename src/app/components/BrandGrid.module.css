@@ -54,6 +54,11 @@
   position: relative;
   z-index: 2;
   margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 80px;
 }
 
 .brandLogo {
@@ -67,6 +72,7 @@
   opacity: 1 !important;
   max-width: 80px;
   max-height: 80px;
+  margin: 0 auto;
 }
 
 .brandCard:hover .brandLogo {

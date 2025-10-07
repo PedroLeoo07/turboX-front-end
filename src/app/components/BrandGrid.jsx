@@ -58,12 +58,17 @@ const BrandGrid = ({ navigateTo }) => {
   const brandsToShow = brands && brands.length > 0 ? brands : defaultBrands;
 
   const handleBrandClick = (brandName) => {
-    console.log('✓ Marca clicada:', brandName);
+    console.log('🎯 Marca clicada:', brandName, '| Tipo:', typeof brandName);
+    if (!brandName) {
+      console.error('❌ brandName está vazio ou undefined!');
+      return;
+    }
     setSelectedBrand(brandName);
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
+    console.log('🔒 Fechando modal');
     setIsModalOpen(false);
     setSelectedBrand(null);
   };
