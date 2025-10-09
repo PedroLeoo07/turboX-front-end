@@ -287,6 +287,47 @@
   }
 }
 
+.brandFilterBadge {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+  margin: 20px auto;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(255, 69, 0, 0.2));
+  border: 2px solid rgba(255, 0, 0, 0.5);
+  border-radius: 30px;
+  animation: badgePulse 2s ease-in-out infinite;
+  max-width: fit-content;
+  backdrop-filter: blur(10px);
+}
+
+.brandFilterBadge span {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ff3333;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.clearFilterBtn {
+  padding: 8px 16px;
+  background: rgba(255, 0, 0, 0.3);
+  border: 1px solid rgba(255, 0, 0, 0.6);
+  border-radius: 20px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clearFilterBtn:hover {
+  background: rgba(255, 0, 0, 0.5);
+  border-color: #ff0000;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+}
+
 .stats {
   display: flex;
   justify-content: center;
@@ -940,8 +981,8 @@
 
 .carSpecs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
   margin-bottom: 25px;
 }
 
@@ -949,8 +990,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  padding: 12px;
+  gap: 6px;
+  padding: 12px 10px;
   background: linear-gradient(135deg, 
     rgba(255, 0, 0, 0.1) 0%, 
     rgba(255, 255, 255, 0.05) 100%);
@@ -1000,6 +1041,15 @@
   }
 }
 
+.specLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
 .specIcon {
   width: 20px;
   height: 20px;
@@ -1024,9 +1074,10 @@
 }
 
 .specValue {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ff3333;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .carFooter {
@@ -1155,6 +1206,24 @@
   .carSpecs {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
+  }
+  
+  .brandFilterBadge {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .carSpecs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1440px) {
+  .carSpecs {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 

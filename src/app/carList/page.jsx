@@ -593,27 +593,30 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
                       <h3 className={styles.carTitle}>
                         {car.brand || car.marca} {car.model || car.modelo}
                       </h3>
-                      <p className={styles.carYear}>{car.year}</p>
-                      <p className={styles.carEngine}>{car.engine}</p>
+                      <p className={styles.carYear}>{car.year || car.ano}</p>
                     </div>
                     
                     <div className={styles.carSpecs}>
                       <div className={styles.spec}>
-                        <span className={styles.specIcon}></span>
-                        <span className={styles.specValue}>{car.power}hp</span>
+                        <span className={styles.specLabel}>Potência</span>
+                        <span className={styles.specValue}>{car.power || car.potencia}hp</span>
                       </div>
                       <div className={styles.spec}>
-                        <span className={styles.specIcon}></span>
-                        <span className={styles.specValue}>{car.acceleration}s</span>
+                        <span className={styles.specLabel}>Torque</span>
+                        <span className={styles.specValue}>{car.torque}Nm</span>
                       </div>
                       <div className={styles.spec}>
-                        <span className={styles.specIcon}></span>
-                        <span className={styles.specValue}>{car.topSpeed}km/h</span>
+                        <span className={styles.specLabel}>Peso</span>
+                        <span className={styles.specValue}>{car.weight || car.peso}kg</span>
+                      </div>
+                      <div className={styles.spec}>
+                        <span className={styles.specLabel}>0-100km/h</span>
+                        <span className={styles.specValue}>{car.acceleration || car.zeroACem}s</span>
                       </div>
                     </div>
                     
                     <div className={styles.carFooter}>
-                      <div className={styles.carPrice}>{formatPrice(car.price)}</div>
+                      <div className={styles.carPrice}>{formatPrice(car.price || car.preco)}</div>
                       <div className={styles.carAction}>
                         <span>Ver Detalhes</span>
                         <span className={styles.arrow}>→</span>
