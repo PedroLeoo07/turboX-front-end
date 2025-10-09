@@ -14,6 +14,7 @@ import BrandManagement from './brand-management/page';
 import UsersCars from './users/page';
 import ComparadorCarros from './comparador/page';
 import Blog from './blog/page';
+import AdminPanel from './admin-panel/page';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('loading');
@@ -163,6 +164,15 @@ export default function App() {
       case 'blog':
         return (
           <Blog 
+            navigateTo={navigateTo}
+            isLoggedIn={isLoggedIn}
+            user={user}
+            onLogout={handleLogout}
+          />
+        );
+      case 'admin-panel':
+        return (
+          <AdminPanel 
             navigateTo={navigateTo}
             isLoggedIn={isLoggedIn}
             user={user}

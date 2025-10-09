@@ -16,6 +16,7 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
     { id: 'about', label: 'Sobre', icon: '' },
   ];
   const adminItems = [
+    { id: 'admin-panel', label: 'Painel Admin', icon: '' },
     { id: 'user-management', label: 'Usuários', icon: '' },
     { id: 'brand-management', label: 'Marcas', icon: '' },
   ];
