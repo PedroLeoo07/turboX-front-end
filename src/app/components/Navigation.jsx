@@ -14,8 +14,7 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
     { id: 'blog', label: 'Blog', icon: '' },
     { id: 'simulation', label: 'Simulação', icon: '' },
     { id: 'about', label: 'Sobre', icon: '' },
-    { id: 'admin-panel', label: 'Administração', icon: '⚙️' },
-    { id: 'users', label: 'Usuários', icon: '👥' },
+    { id: 'admin-panel', label: 'Administração', icon: '' },
   ];
   const adminItems = [
     { id: 'brand-management', label: 'Marcas', icon: '' },
