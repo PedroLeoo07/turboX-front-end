@@ -21,7 +21,7 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
     { id: 'brand-management', label: 'Marcas', icon: '' },
   ];
 
-  const isAdmin = user && user.role === 'admin';
+  const isAdmin = user && (user.role === 'admin' || user.profile === 'admin');
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) {
