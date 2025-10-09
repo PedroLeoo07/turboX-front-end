@@ -19,9 +19,11 @@
   align-items: center;
   justify-content: space-between;
   padding: 1.2rem 2.5rem;
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
   min-height: 75px;
+  gap: 1rem;
+  flex-wrap: nowrap;
 }
 
 /* ==================== LOGO ESTILIZADO ==================== */
@@ -38,8 +40,9 @@
   border-radius: 0;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
-  height: 120px;
-  width: 120px;
+  height: 100px;
+  width: 100px;
+  flex-shrink: 0;
 }
 
 .logo:focus {
@@ -55,8 +58,8 @@
   border-radius: 16px;
   box-shadow: 0 2px 12px 0 rgba(255,0,0,0.10), 0 1px 4px 0 rgba(0,0,0,0.08);
   transition: transform 0.2s, box-shadow 0.2s;
-  width: 110px;
-  height: 110px;
+  width: 90px;
+  height: 90px;
   object-fit: contain;
   background: #fff0 0 0 no-repeat padding-box;
 }
@@ -98,6 +101,9 @@
   padding: 0.6rem;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  flex-wrap: wrap;
+  max-width: calc(100vw - 500px);
+  justify-content: center;
 }
 
 .divider {
@@ -110,8 +116,8 @@
 .desktopNavItem {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.9rem 1.4rem;
+  gap: 0.5rem;
+  padding: 0.85rem 1.2rem;
   background: transparent;
   border: none;
   color: rgba(255, 255, 255, 0.8);
@@ -121,6 +127,8 @@
   position: relative;
   overflow: hidden;
   font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .desktopNavItem::before {
@@ -191,13 +199,14 @@
 .desktopUserSection {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
+  flex-shrink: 0;
 }
 
 .userInfo {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
   padding: 0.8rem 1.4rem;
   background: linear-gradient(135deg, 
     rgba(255, 255, 255, 0.08), 
