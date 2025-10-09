@@ -270,6 +270,13 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .carsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+  }
+}
+
 @media (max-width: 768px) {
   .controls {
     flex-direction: column;
@@ -300,6 +307,24 @@
   }
 }
 
+@media (max-width: 576px) {
+  .controls {
+    gap: 14px;
+  }
+  
+  .carsGrid {
+    gap: 14px;
+  }
+  
+  .carCard {
+    padding: 14px;
+  }
+  
+  .carEmoji {
+    font-size: 2.8rem;
+  }
+}
+
 @media (max-width: 480px) {
   .carCard {
     padding: 12px;
@@ -315,5 +340,23 @@
   
   .carPrice {
     font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .carCard {
+    padding: 10px;
+  }
+  
+  .carEmoji {
+    font-size: 2.2rem;
+  }
+  
+  .carName {
+    font-size: 1rem;
+  }
+  
+  .carPrice {
+    font-size: 1.15rem;
   }
 }

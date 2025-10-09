@@ -405,37 +405,93 @@
   }
 }
 
+/* Responsividade para Tablets */
+@media (max-width: 1200px) {
+  .loginContainer {
+    gap: 50px;
+    padding: 30px;
+  }
+  
+  .loginBox {
+    max-width: 480px;
+  }
+}
+
 @media (max-width: 1024px) {
   .loginContainer {
     grid-template-columns: 1fr;
     gap: 40px;
-    padding: 20px;
+    padding: 30px 20px;
+    min-height: auto;
   }
   
   .features {
     order: -1;
+    max-width: 600px;
+    padding: 30px;
+  }
+  
+  .loginBox {
+    max-width: 550px;
+  }
+  
+  .title {
+    font-size: 2.2rem;
   }
 }
 
+/* Responsividade para Tablets Pequenos */
 @media (max-width: 768px) {
+  .loginContainer {
+    padding: 20px 15px;
+    gap: 30px;
+  }
+  
   .loginBox {
     padding: 30px 25px;
+    max-width: 100%;
+    border-radius: 25px;
   }
   
   .title {
     font-size: 2rem;
   }
   
-  .logo {
-    font-size: 2.5rem;
+  .subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .logoImage {
+    height: 80px;
+    max-width: 250px;
   }
   
   .features {
     padding: 20px;
+    max-width: 100%;
   }
   
   .features h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+  
+  .featuresList {
+    gap: 20px;
+  }
+  
+  .input {
+    padding: 13px 16px;
+    font-size: 0.95rem;
+  }
+  
+  .submitButton {
+    padding: 16px 22px;
+    font-size: 1.05rem;
+  }
+  
+  .testCredentials {
+    padding: 18px;
   }
 }
 
@@ -536,13 +592,83 @@
   transform: translateY(0);
 }
 
-@media (max-width: 480px) {
+/* Responsividade para Smartphones */
+@media (max-width: 576px) {
   .loginContainer {
-    padding: 20px 15px;
+    padding: 15px 10px;
+    gap: 25px;
   }
   
   .loginBox {
-    padding: 25px 20px;
+    padding: 25px 18px;
+    border-radius: 20px;
+  }
+  
+  .header {
+    margin-bottom: 30px;
+  }
+  
+  .logoImage {
+    height: 75px;
+    max-width: 230px;
+  }
+  
+  .title {
+    font-size: 1.9rem;
+    margin-bottom: 12px;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .form {
+    gap: 18px;
+  }
+  
+  .input {
+    padding: 14px 16px;
+    font-size: 0.95rem;
+    border-radius: 10px;
+  }
+  
+  .submitButton {
+    padding: 16px 20px;
+    font-size: 1rem;
+    border-radius: 12px;
+  }
+  
+  .features {
+    padding: 18px;
+  }
+  
+  .features h3 {
+    font-size: 1.5rem;
+  }
+  
+  .feature {
+    padding: 18px;
+    gap: 18px;
+  }
+  
+  .testCredentials {
+    padding: 16px;
+    margin: 18px 0;
+  }
+  
+  .credentialsTitle {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginContainer {
+    padding: 12px 8px;
+  }
+  
+  .loginBox {
+    padding: 22px 16px;
   }
 
   .logoImage {
@@ -551,23 +677,87 @@
   }
   
   .title {
-    font-size: 1.8rem;
+    font-size: 1.75rem;
+  }
+  
+  .subtitle {
+    font-size: 0.85rem;
+  }
+  
+  .input {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+  
+  .submitButton {
+    padding: 15px 18px;
+    font-size: 0.95rem;
   }
   
   .feature {
     flex-direction: column;
     text-align: center;
     gap: 15px;
+    padding: 16px;
+  }
+  
+  .featureIcon {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .feature h4 {
+    font-size: 1.1rem;
+  }
+  
+  .feature p {
+    font-size: 0.9rem;
   }
   
   .credentialItem {
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
+    padding: 8px;
   }
   
   .credentialLabel {
     min-width: auto;
     text-align: center;
+    font-size: 0.85rem;
+  }
+  
+  .credentialValue {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  
+  .fillButton {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Responsividade para Smartphones Muito Pequenos */
+@media (max-width: 360px) {
+  .loginBox {
+    padding: 20px 14px;
+  }
+  
+  .logoImage {
+    height: 65px;
+    max-width: 200px;
+  }
+  
+  .title {
+    font-size: 1.6rem;
+  }
+  
+  .input, .submitButton {
+    font-size: 0.9rem;
+  }
+  
+  .features h3 {
+    font-size: 1.3rem;
   }
 }

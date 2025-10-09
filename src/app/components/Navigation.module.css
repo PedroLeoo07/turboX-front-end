@@ -775,16 +775,21 @@
 
 .mobileAuthButton.loginButton {
   background: linear-gradient(135deg, 
-    #667eea, 
-    #764ba2, 
-    #6B73FF);
-  border-color: transparent;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    #ff0000, 
+    #cc0000);
+  border: 2px solid rgba(255, 0, 0, 0.5);
+  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.4);
+  color: #fff;
+  font-weight: 700;
 }
 
 .mobileAuthButton.loginButton:hover {
   transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 20px 50px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 20px 50px rgba(255, 0, 0, 0.6);
+  background: linear-gradient(135deg, 
+    #ff1a1a, 
+    #ff0000);
+  border-color: rgba(255, 0, 0, 0.8);
 }
 
 .mobileAuthButton.logoutButton {
@@ -883,21 +888,82 @@
 
 /* ==================== RESPONSIVE DESIGN PREMIUM ==================== */
 
+/* Desktop Grande */
+@media (max-width: 1400px) {
+  .navHeader {
+    padding: 1.2rem 2rem;
+  }
+}
+
+/* Desktop Médio */
+@media (max-width: 1200px) {
+  .navHeader {
+    padding: 1.1rem 1.8rem;
+  }
+  
+  .desktopNavItem {
+    padding: 0.85rem 1.3rem;
+  }
+  
+  .navLabel {
+    font-size: 0.92rem;
+  }
+}
+
 /* Tablet Premium */
 @media (max-width: 1024px) {
   .navHeader {
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
   }
   
   .desktopMenu {
     gap: 0.6rem;
+    padding: 0.5rem;
   }
   
   .desktopNavItem {
-    padding: 0.8rem 1.2rem;
+    padding: 0.8rem 1.1rem;
+    gap: 0.5rem;
   }
   
   .navLabel {
+    font-size: 0.88rem;
+  }
+  
+  .navIcon {
+    font-size: 1.1rem;
+  }
+  
+  .userInfo {
+    padding: 0.7rem 1.2rem;
+  }
+  
+  .authButton {
+    padding: 0.8rem 1.4rem;
+  }
+  
+  .logoImg {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* Tablet Pequeno */
+@media (max-width: 900px) {
+  .desktopMenu {
+    gap: 0.4rem;
+  }
+  
+  .desktopNavItem {
+    padding: 0.75rem 1rem;
+  }
+  
+  .navLabel {
+    font-size: 0.85rem;
+  }
+  
+  .authButton {
+    padding: 0.75rem 1.2rem;
     font-size: 0.9rem;
   }
 }
@@ -919,15 +985,110 @@
   }
   
   .logo {
-    padding: 0.5rem 0.8rem;
+    padding: 0;
+    width: 100px;
+    height: 100px;
   }
   
-  .logoText {
-    font-size: clamp(1.2rem, 4vw, 1.4rem);
+  .logoImg {
+    width: 90px;
+    height: 90px;
   }
   
-  .logoIcon {
-    font-size: clamp(1.8rem, 5vw, 2rem);
+  .mobileMenuSlide {
+    width: 90%;
+    max-width: 450px;
+  }
+  
+  .mobileNavGrid {
+    gap: 1rem;
+  }
+  
+  .mobileNavCard {
+    padding: 1.8rem 1.5rem;
+  }
+  
+  .cardIcon {
+    font-size: 2.3rem;
+  }
+  
+  .cardLabel {
+    font-size: 0.98rem;
+  }
+}
+
+/* Mobile Médio */
+@media (max-width: 576px) {
+  .navHeader {
+    padding: 0.7rem 0.9rem;
+  }
+  
+  .logo {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .logoImg {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .mobileMenuSlide {
+    width: 95%;
+    max-width: 100%;
+    padding: 1rem;
+  }
+  
+  .mobileHeader {
+    padding: 2rem 1.5rem;
+  }
+  
+  .mobileBrandText h2 {
+    font-size: 1.9rem;
+  }
+  
+  .mobileNavSection {
+    padding: 1.5rem;
+  }
+  
+  .mobileNavGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .mobileNavCard {
+    flex-direction: row;
+    padding: 1.3rem 1.5rem;
+    text-align: left;
+    gap: 1.2rem;
+    justify-content: flex-start;
+  }
+  
+  .cardIcon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+  
+  .cardLabel {
+    flex: 1;
+    text-align: left;
+    font-size: 1rem;
+  }
+  
+  .mobileActions {
+    padding: 1.5rem;
+  }
+  
+  .mobileAuthButton {
+    padding: 1.2rem 1.5rem;
+  }
+  
+  .actionIcon {
+    font-size: 1.6rem;
+  }
+  
+  .actionText {
+    font-size: 1rem;
   }
 }
 
@@ -938,35 +1099,69 @@
     min-height: 60px;
   }
   
+  .logo {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .logoImg {
+    width: 75px;
+    height: 75px;
+  }
+  
   .mobileMenuSlide {
-    max-width: 100%;
-    padding: 1rem;
+    width: 100%;
+    padding: 0.8rem;
   }
   
-  .mobileNavGrid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .mobileNavCard {
-    flex-direction: row;
-    padding: 1.5rem 2rem;
-    text-align: left;
-    gap: 1.5rem;
-  }
-  
-  .cardIcon {
-    font-size: 2rem;
-  }
-  
-  .cardLabel {
-    flex: 1;
-    text-align: left;
-    font-size: 1.1rem;
+  .mobileHeader {
+    padding: 1.8rem 1.2rem;
   }
   
   .mobileBrandText h2 {
+    font-size: 1.7rem;
+  }
+  
+  .mobileNavSection {
+    padding: 1.2rem;
+  }
+  
+  .mobileNavCard {
+    padding: 1.2rem 1.3rem;
+    gap: 1rem;
+  }
+  
+  .cardIcon {
     font-size: 1.8rem;
+  }
+  
+  .cardLabel {
+    font-size: 0.95rem;
+  }
+  
+  .mobileActions {
+    padding: 1.2rem;
+  }
+  
+  .mobileAuthButton {
+    padding: 1.1rem 1.3rem;
+    gap: 1rem;
+  }
+  
+  .actionIcon {
+    font-size: 1.5rem;
+  }
+  
+  .actionText {
+    font-size: 0.95rem;
+  }
+  
+  .mobileFooter {
+    padding: 1.5rem;
+  }
+  
+  .mobileFooter p {
+    font-size: 0.8rem;
   }
   
   .mobileUserAvatar {
@@ -977,25 +1172,55 @@
 }
 
 /* Mobile Extra Small Premium */
-@media (max-width: 320px) {
+@media (max-width: 360px) {
   .navHeader {
-    padding: 0.8rem 1rem;
+    padding: 0.5rem 0.7rem;
+  }
+  
+  .logo {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .logoImg {
+    width: 65px;
+    height: 65px;
   }
   
   .mobileHeader {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+  
+  .mobileBrandText h2 {
+    font-size: 1.5rem;
   }
   
   .mobileNavSection,
   .mobileActions {
-    padding: 1.5rem;
+    padding: 1rem;
   }
   
-  .logoText {
-    font-size: 1.3rem;
+  .mobileNavCard {
+    padding: 1rem 1.1rem;
   }
   
-  .mobileBrandText h2 {
+  .cardIcon {
     font-size: 1.6rem;
+  }
+  
+  .cardLabel {
+    font-size: 0.9rem;
+  }
+  
+  .mobileAuthButton {
+    padding: 1rem 1.2rem;
+  }
+  
+  .actionIcon {
+    font-size: 1.4rem;
+  }
+  
+  .actionText {
+    font-size: 0.9rem;
   }
 }

@@ -117,6 +117,20 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .modalContent {
+    max-width: 90%;
+  }
+  
+  .modalHeader {
+    padding: 20px;
+  }
+  
+  .modalTitle {
+    font-size: 1.4rem;
+  }
+}
+
 @media (max-width: 768px) {
   .modalOverlay {
     padding: 10px;
@@ -139,6 +153,51 @@
   
   .modalBody {
     padding: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .modalOverlay {
+    padding: 8px;
+  }
+  
+  .modalContent {
+    height: 97vh;
+    border-radius: 10px;
+  }
+  
+  .modalHeader {
+    padding: 14px;
+  }
+  
+  .modalTitle {
+    font-size: 1.15rem;
+  }
+  
+  .modalBody {
+    padding: 14px;
+  }
+  
+  .closeButton {
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalContent {
+    border-radius: 8px;
+  }
+  
+  .modalHeader {
+    padding: 12px;
+  }
+  
+  .modalTitle {
+    font-size: 1.1rem;
+  }
+  
+  .modalBody {
+    padding: 12px;
   }
 }
 

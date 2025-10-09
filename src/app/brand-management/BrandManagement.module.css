@@ -414,6 +414,35 @@
 }
 
 /* Responsividade */
+@media (max-width: 1200px) {
+  .main {
+    padding: 1.5rem;
+  }
+  
+  .controls {
+    gap: 1.5rem;
+  }
+  
+  .stats {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header {
+    gap: 1.5rem;
+  }
+  
+  .addButton {
+    padding: 0.9rem 1.8rem;
+    font-size: 0.95rem;
+  }
+  
+  .brandsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
   .main {
     padding: 1rem;
@@ -428,6 +457,19 @@
   .headerContent {
     text-align: center;
   }
+  
+  .headerContent h1 {
+    font-size: 2rem;
+  }
+  
+  .headerContent p {
+    font-size: 1rem;
+  }
+  
+  .addButton {
+    width: 100%;
+    padding: 1rem;
+  }
 
   .controls {
     flex-direction: column;
@@ -440,6 +482,11 @@
 
   .stats {
     justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .statNumber {
+    font-size: 1.8rem;
   }
 
   .brandsGrid {
@@ -460,7 +507,54 @@
   }
 }
 
+@media (max-width: 576px) {
+  .main {
+    padding: 0.8rem;
+  }
+  
+  .header {
+    gap: 1.2rem;
+  }
+  
+  .headerContent h1 {
+    font-size: 1.8rem;
+  }
+  
+  .stats {
+    gap: 1rem;
+  }
+  
+  .stat {
+    min-width: 80px;
+  }
+  
+  .statNumber {
+    font-size: 1.6rem;
+  }
+  
+  .searchInput {
+    padding: 0.9rem 1.2rem;
+    font-size: 0.95rem;
+  }
+  
+  .brandsGrid {
+    gap: 1.2rem;
+  }
+  
+  .brandCard {
+    padding: 1.2rem;
+  }
+}
+
 @media (max-width: 480px) {
+  .main {
+    padding: 0.6rem;
+  }
+  
+  .headerContent h1 {
+    font-size: 1.6rem;
+  }
+  
   .brandHeader {
     flex-direction: column;
     text-align: center;
@@ -469,5 +563,30 @@
 
   .brandActions {
     flex-direction: column;
+    width: 100%;
+  }
+  
+  .brandActions button {
+    width: 100%;
+  }
+  
+  .stats {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .statNumber {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .headerContent h1 {
+    font-size: 1.5rem;
+  }
+  
+  .addButton {
+    padding: 0.9rem;
+    font-size: 0.9rem;
   }
 }
