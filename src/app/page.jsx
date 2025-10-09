@@ -12,6 +12,8 @@ import Simulation from './Simulation/page';
 import Loading from './components/Loading';
 import BrandManagement from './brand-management/page';
 import UsersCars from './users/page';
+import ComparadorCarros from './comparador/page';
+import Blog from './blog/page';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('loading');
@@ -143,6 +145,24 @@ export default function App() {
       case 'user-management':
         return (
           <UsersCars 
+            navigateTo={navigateTo}
+            isLoggedIn={isLoggedIn}
+            user={user}
+            onLogout={handleLogout}
+          />
+        );
+      case 'comparador':
+        return (
+          <ComparadorCarros 
+            navigateTo={navigateTo}
+            isLoggedIn={isLoggedIn}
+            user={user}
+            onLogout={handleLogout}
+          />
+        );
+      case 'blog':
+        return (
+          <Blog 
             navigateTo={navigateTo}
             isLoggedIn={isLoggedIn}
             user={user}

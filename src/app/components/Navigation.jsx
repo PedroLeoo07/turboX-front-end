@@ -6,32 +6,18 @@ import Image from 'next/image';
 
 export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, onLogout }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState('dark');
-  
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('turboX_theme') || 'dark';
-    setTheme(savedTheme);
-    document.documentElement.setAttribute('data-theme', savedTheme);
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-    localStorage.setItem('turboX_theme', newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
-  };
   
   const navItems = [
-    { id: 'home', label: 'Home', icon: '🏠' },
-    { id: 'carList', label: 'Carros', icon: '🚗' },
-    { id: 'comparador', label: 'Comparador', icon: '⚖️' },
-    { id: 'blog', label: 'Blog', icon: '📰' },
-    { id: 'simulation', label: 'Simulação', icon: '💰' },
-    { id: 'about', label: 'Sobre', icon: 'ℹ️' },
+    { id: 'home', label: 'Home', icon: '' },
+    { id: 'carList', label: 'Carros', icon: '' },
+    { id: 'comparador', label: 'Comparador', icon: '' },
+    { id: 'blog', label: 'Blog', icon: '' },
+    { id: 'simulation', label: 'Simulação', icon: '' },
+    { id: 'about', label: 'Sobre', icon: '' },
   ];
   const adminItems = [
-    { id: 'user-management', label: 'Usuários', icon: '👥' },
-    { id: 'brand-management', label: 'Marcas', icon: '🏷️' },
+    { id: 'user-management', label: 'Usuários', icon: '' },
+    { id: 'brand-management', label: 'Marcas', icon: '' },
   ];
 
   const isAdmin = user && user.role === 'admin';
@@ -175,17 +161,6 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
           )}
           
           <button
-            className={styles.themeToggleDesktop}
-            onClick={toggleTheme}
-            type="button"
-            title={theme === 'dark' ? 'Modo Claro' : 'Modo Noturno'}
-          >
-            <span className={styles.themeIconDesktop}>
-              {theme === 'dark' ? '☀️' : '🌙'}
-            </span>
-          </button>
-          
-          <button
             className={`${styles.authButton} ${isLoggedIn ? styles.logout : styles.login}`}
             onClick={handleAuthAction}
           >
@@ -284,21 +259,6 @@ export default function Navigation({ currentPage, navigateTo, isLoggedIn, user, 
 
         {/* Ações Mobile */}
         <div className={styles.mobileActions}>
-          <button
-            className={styles.themeToggle}
-            onClick={toggleTheme}
-            onTouchStart={toggleTheme}
-            type="button"
-            title={theme === 'dark' ? 'Modo Claro' : 'Modo Noturno'}
-          >
-            <span className={styles.themeIcon}>
-              {theme === 'dark' ? '☀️' : '🌙'}
-            </span>
-            <span className={styles.themeText}>
-              {theme === 'dark' ? 'Modo Claro' : 'Modo Noturno'}
-            </span>
-          </button>
-          
           <button
             className={`${styles.mobileAuthButton} ${isLoggedIn ? styles.logoutButton : styles.loginButton}`}
             onClick={handleAuthAction}
