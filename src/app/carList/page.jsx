@@ -309,6 +309,19 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
   const [viewMode, setViewMode] = useState('grid');
   const [priceRange, setPriceRange] = useState([0, 3000000]);
   const [categories, setCategories] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [editingCar, setEditingCar] = useState(null);
+  const [formData, setFormData] = useState({
+    marca: '',
+    modelo: '',
+    ano: '',
+    potencia: '',
+    torque: '',
+    peso: '',
+    zeroACem: '',
+    preco: '',
+    imagem: ''
+  });
   useEffect(() => {
     setLoading(true);
     fetch(`${API_URL}/cars`)
@@ -377,11 +390,129 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
     }
   });
 
+  const loadCars = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${API_URL}/cars`);
+      if (!response.ok) throw new Error('API não disponível');
+      const data = await response.json();
+      setCars(data.length > 0 ? data : carsDatabase);
+    } catch (error) {
+      console.error('Erro ao carregar carros:', error);
+      setCars(carsDatabase);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleCarSelect = (car) => {
     const brand = car.brand || car.marca;
     const model = car.model || car.modelo;
     toast.success(`${brand} ${model} selecionado!`);
     navigateTo('car', car);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const openCreateModal = () => {
+    setEditingCar(null);
+    setFormData({
+      marca: '',
+      modelo: '',
+      ano: '',
+      potencia: '',
+      torque: '',
+      peso: '',
+      zeroACem: '',
+      preco: '',
+      imagem: ''
+    });
+    setShowModal(true);
+  };
+
+  const openEditModal = (car, e) => {
+    e.stopPropagation();
+    setEditingCar(car);
+    setFormData({
+      marca: car.brand || car.marca || '',
+      modelo: car.model || car.modelo || '',
+      ano: car.year || car.ano || '',
+      potencia: car.power || car.potencia || '',
+      torque: car.torque || '',
+      peso: car.weight || car.peso || '',
+      zeroACem: car.acceleration || car.zeroACem || '',
+      preco: car.price || car.preco || '',
+      imagem: car.image || car.imagem || ''
+    });
+    setShowModal(true);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const carData = {
+      brand: formData.marca,
+      model: formData.modelo,
+      year: parseInt(formData.ano),
+      power: parseInt(formData.potencia),
+      torque: parseInt(formData.torque),
+      weight: parseInt(formData.peso),
+      acceleration: parseFloat(formData.zeroACem),
+      price: parseFloat(formData.preco),
+      image: formData.imagem
+    };
+
+    try {
+      let response;
+      if (editingCar) {
+        response = await fetch(`${API_URL}/cars/${editingCar.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(carData)
+        });
+        toast.success('Carro atualizado com sucesso!');
+      } else {
+        response = await fetch(`${API_URL}/cars`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(carData)
+        });
+        toast.success('Carro criado com sucesso!');
+      }
+
+      if (!response.ok) throw new Error('Erro ao salvar carro');
+      
+      setShowModal(false);
+      loadCars();
+    } catch (error) {
+      console.error('Erro ao salvar carro:', error);
+      toast.error('Erro ao salvar carro');
+    }
+  };
+
+  const handleDelete = async (carId, e) => {
+    e.stopPropagation();
+    if (!window.confirm('Tem certeza que deseja excluir este carro?')) return;
+
+    try {
+      const response = await fetch(`${API_URL}/cars/${carId}`, {
+        method: 'DELETE'
+      });
+
+      if (!response.ok) throw new Error('Erro ao deletar carro');
+      
+      toast.success('Carro excluído com sucesso!');
+      loadCars();
+    } catch (error) {
+      console.error('Erro ao deletar carro:', error);
+      toast.error('Erro ao deletar carro');
+    }
   };
 
   const clearFilters = () => {
@@ -622,6 +753,25 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
                         <span className={styles.arrow}>→</span>
                       </div>
                     </div>
+
+                    {isLoggedIn && user && user.role === 'admin' && (
+                      <div className={styles.carAdminActions}>
+                        <button 
+                          onClick={(e) => openEditModal(car, e)}
+                          className={styles.editBtn}
+                          title="Editar"
+                        >
+                          ✏️ Editar
+                        </button>
+                        <button 
+                          onClick={(e) => handleDelete(car.id, e)}
+                          className={styles.deleteBtn}
+                          title="Excluir"
+                        >
+                          🗑️ Excluir
+                        </button>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -629,6 +779,159 @@ export default function CarList({ navigateTo, filterOptions = {}, isLoggedIn, us
           </div>
         </section>
       </main>
+
+      {isLoggedIn && user && user.role === 'admin' && (
+        <button onClick={openCreateModal} className={styles.fabButton} title="Adicionar novo carro">
+          + Novo Carro
+        </button>
+      )}
+
+      {showModal && (
+        <div className={styles.modalOverlay} onClick={() => setShowModal(false)}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.modalHeader}>
+              <h2>{editingCar ? 'Editar Carro' : 'Adicionar Novo Carro'}</h2>
+              <button 
+                onClick={() => setShowModal(false)}
+                className={styles.closeButton}
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmit} className={styles.form}>
+              <div className={styles.formGrid}>
+                <div className={styles.formGroup}>
+                  <label>Marca *</label>
+                  <input
+                    type="text"
+                    name="marca"
+                    value={formData.marca}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="Ex: Volkswagen"
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label>Modelo *</label>
+                  <input
+                    type="text"
+                    name="modelo"
+                    value={formData.modelo}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="Ex: Golf GTI"
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label>Ano *</label>
+                  <input
+                    type="number"
+                    name="ano"
+                    value={formData.ano}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="2023"
+                    min="1900"
+                    max="2099"
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label>Potência (hp) *</label>
+                  <input
+                    type="number"
+                    name="potencia"
+                    value={formData.potencia}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="320"
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label>Torque (Nm) *</label>
+                  <input
+                    type="number"
+                    name="torque"
+                    value={formData.torque}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="400"
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label>Peso (kg) *</label>
+                  <input
+                    type="number"
+                    name="peso"
+                    value={formData.peso}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="1500"
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label>0-100 km/h (s) *</label>
+                  <input
+                    type="number"
+                    step="0.1"
+                    name="zeroACem"
+                    value={formData.zeroACem}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="5.5"
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label>Preço (R$) *</label>
+                  <input
+                    type="number"
+                    name="preco"
+                    value={formData.preco}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="350000"
+                  />
+                </div>
+
+                <div className={styles.formGroup} style={{ gridColumn: '1 / -1' }}>
+                  <label>URL da Imagem *</label>
+                  <input
+                    type="url"
+                    name="imagem"
+                    value={formData.imagem}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="https://exemplo.com/carro.jpg"
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formActions}>
+                <button 
+                  type="button" 
+                  onClick={() => setShowModal(false)}
+                  className={styles.cancelButton}
+                >
+                  Cancelar
+                </button>
+                <button 
+                  type="submit"
+                  className={styles.submitButton}
+                >
+                  {editingCar ? 'Atualizar' : 'Criar'} Carro
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
