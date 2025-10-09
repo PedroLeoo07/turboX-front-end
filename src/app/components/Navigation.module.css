@@ -284,16 +284,21 @@
 
 .authButton.login {
   background: linear-gradient(135deg, 
-    #667eea, 
-    #764ba2, 
-    #6B73FF);
-  border-color: transparent;
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    #ff0000, 
+    #cc0000);
+  border: 2px solid rgba(255, 0, 0, 0.5);
+  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+  color: #fff;
+  font-weight: 700;
 }
 
 .authButton.login:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 15px 40px rgba(255, 0, 0, 0.6);
+  background: linear-gradient(135deg, 
+    #ff1a1a, 
+    #ff0000);
+  border-color: rgba(255, 0, 0, 0.8);
 }
 
 .authButton.logout {
