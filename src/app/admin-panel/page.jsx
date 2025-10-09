@@ -49,10 +49,22 @@ export default function AdminPanel({ navigateTo, isLoggedIn, user, onLogout }) {
     pecas_incluidas: ''
   });
 
+  // Estados para Usuários
+  const [usuarios, setUsuarios] = useState([]);
+  const [usuarioFormData, setUsuarioFormData] = useState({
+    nome: '',
+    email: '',
+    senha: '',
+    telefone: '',
+    endereco: '',
+    tipo: 'usuario'
+  });
+
   useEffect(() => {
     if (activeTab === 'carros') loadCarros();
     if (activeTab === 'pecas') loadPecas();
     if (activeTab === 'estagios') loadEstagios();
+    if (activeTab === 'usuarios') loadUsuarios();
   }, [activeTab]);
 
   // Funções para Carros
@@ -163,6 +175,48 @@ export default function AdminPanel({ navigateTo, isLoggedIn, user, onLogout }) {
     }
   };
 
+  // Funções para Usuários
+  const loadUsuarios = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/users`);
+      setUsuarios(response.data);
+    } catch (error) {
+      console.error('Erro ao carregar usuários:', error);
+    }
+  };
+
+  const handleUsuarioSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (editingItem) {
+        // Ao editar, não enviar senha se estiver vazia
+        const dataToSend = { ...usuarioFormData };
+        if (!dataToSend.senha) {
+          delete dataToSend.senha;
+        }
+        await axios.put(`${API_URL}/users/${editingItem.id}`, dataToSend);
+      } else {
+        await axios.post(`${API_URL}/users`, usuarioFormData);
+      }
+      loadUsuarios();
+      closeModal();
+    } catch (error) {
+      console.error('Erro ao salvar usuário:', error);
+      alert(error.response?.data?.error || 'Erro ao salvar usuário');
+    }
+  };
+
+  const handleDeleteUsuario = async (id) => {
+    if (window.confirm('Tem certeza que deseja excluir este usuário?')) {
+      try {
+        await axios.delete(`${API_URL}/users/${id}`);
+        loadUsuarios();
+      } catch (error) {
+        console.error('Erro ao excluir usuário:', error);
+      }
+    }
+  };
+
   // Funções de Modal
   const openCreateModal = () => {
     setEditingItem(null);
@@ -181,6 +235,10 @@ export default function AdminPanel({ navigateTo, isLoggedIn, user, onLogout }) {
         nome: '', nivel: '', ganho_potencia: '', ganho_torque: '',
         preco: '', descricao: '', pecas_incluidas: ''
       });
+    } else if (activeTab === 'usuarios') {
+      setUsuarioFormData({
+        nome: '', email: '', senha: '', telefone: '', endereco: '', tipo: 'usuario'
+      });
     }
     setShowModal(true);
   };
@@ -193,6 +251,8 @@ export default function AdminPanel({ navigateTo, isLoggedIn, user, onLogout }) {
       setPecaFormData(item);
     } else if (activeTab === 'estagios') {
       setEstagioFormData(item);
+    } else if (activeTab === 'usuarios') {
+      setUsuarioFormData({ ...item, senha: '' }); // Não mostrar senha ao editar
     }
     setShowModal(true);
   };
@@ -210,6 +270,8 @@ export default function AdminPanel({ navigateTo, isLoggedIn, user, onLogout }) {
       setPecaFormData(prev => ({ ...prev, [name]: value }));
     } else if (formType === 'estagios') {
       setEstagioFormData(prev => ({ ...prev, [name]: value }));
+    } else if (formType === 'usuarios') {
+      setUsuarioFormData(prev => ({ ...prev, [name]: value }));
     }
   };
 
@@ -248,6 +310,12 @@ export default function AdminPanel({ navigateTo, isLoggedIn, user, onLogout }) {
             onClick={() => setActiveTab('estagios')}
           >
             Estágios
+          </button>
+          <button
+            className={`${styles.tab} ${activeTab === 'usuarios' ? styles.active : ''}`}
+            onClick={() => setActiveTab('usuarios')}
+          >
+            Usuários
           </button>
         </div>
 
@@ -405,6 +473,61 @@ export default function AdminPanel({ navigateTo, isLoggedIn, user, onLogout }) {
               </div>
             </div>
           )}
+
+          {/* Usuários Tab */}
+          {activeTab === 'usuarios' && (
+            <div className={styles.section}>
+              <div className={styles.sectionHeader}>
+                <h2>Gerenciar Usuários</h2>
+                <button className={styles.addButton} onClick={openCreateModal}>
+                  + Adicionar Usuário
+                </button>
+              </div>
+              <div className={styles.tableContainer}>
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      <th>Nome</th>
+                      <th>Email</th>
+                      <th>Telefone</th>
+                      <th>Tipo</th>
+                      <th>Carros</th>
+                      <th>Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {usuarios.map(usuario => (
+                      <tr key={usuario.id}>
+                        <td>{usuario.nome}</td>
+                        <td>{usuario.email}</td>
+                        <td>{usuario.telefone || '-'}</td>
+                        <td>
+                          <span className={usuario.tipo === 'admin' ? styles.badgeAdmin : styles.badgeUser}>
+                            {usuario.tipo}
+                          </span>
+                        </td>
+                        <td>{usuario.cars?.length || 0}</td>
+                        <td className={styles.actions}>
+                          <button
+                            className={styles.editBtn}
+                            onClick={() => openEditModal(usuario)}
+                          >
+                            Editar
+                          </button>
+                          <button
+                            className={styles.deleteBtn}
+                            onClick={() => handleDeleteUsuario(usuario.id)}
+                          >
+                            Excluir
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -415,7 +538,10 @@ export default function AdminPanel({ navigateTo, isLoggedIn, user, onLogout }) {
             <div className={styles.modalHeader}>
               <h2>
                 {editingItem ? 'Editar' : 'Adicionar'}{' '}
-                {activeTab === 'carros' ? 'Carro' : activeTab === 'pecas' ? 'Peça' : 'Estágio'}
+                {activeTab === 'carros' ? 'Carro' : 
+                 activeTab === 'pecas' ? 'Peça' : 
+                 activeTab === 'estagios' ? 'Estágio' : 
+                 'Usuário'}
               </h2>
               <button className={styles.closeBtn} onClick={closeModal}>×</button>
             </div>
@@ -634,6 +760,71 @@ export default function AdminPanel({ navigateTo, isLoggedIn, user, onLogout }) {
                     onChange={(e) => handleInputChange(e, 'estagios')}
                     className={styles.fullWidth}
                     rows="2"
+                  />
+                </div>
+                <div className={styles.modalActions}>
+                  <button type="button" className={styles.cancelBtn} onClick={closeModal}>
+                    Cancelar
+                  </button>
+                  <button type="submit" className={styles.submitBtn}>
+                    {editingItem ? 'Salvar' : 'Criar'}
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {/* Form para Usuários */}
+            {activeTab === 'usuarios' && (
+              <form onSubmit={handleUsuarioSubmit} className={styles.form}>
+                <div className={styles.formGrid}>
+                  <input
+                    type="text"
+                    name="nome"
+                    placeholder="Nome Completo"
+                    value={usuarioFormData.nome}
+                    onChange={(e) => handleInputChange(e, 'usuarios')}
+                    required
+                    className={styles.fullWidth}
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="E-mail"
+                    value={usuarioFormData.email}
+                    onChange={(e) => handleInputChange(e, 'usuarios')}
+                    required
+                  />
+                  <input
+                    type="password"
+                    name="senha"
+                    placeholder={editingItem ? "Nova Senha (deixe em branco para manter)" : "Senha"}
+                    value={usuarioFormData.senha}
+                    onChange={(e) => handleInputChange(e, 'usuarios')}
+                    required={!editingItem}
+                  />
+                  <input
+                    type="tel"
+                    name="telefone"
+                    placeholder="Telefone"
+                    value={usuarioFormData.telefone}
+                    onChange={(e) => handleInputChange(e, 'usuarios')}
+                  />
+                  <select
+                    name="tipo"
+                    value={usuarioFormData.tipo}
+                    onChange={(e) => handleInputChange(e, 'usuarios')}
+                    required
+                  >
+                    <option value="usuario">Usuário</option>
+                    <option value="admin">Administrador</option>
+                  </select>
+                  <textarea
+                    name="endereco"
+                    placeholder="Endereço"
+                    value={usuarioFormData.endereco}
+                    onChange={(e) => handleInputChange(e, 'usuarios')}
+                    className={styles.fullWidth}
+                    rows="3"
                   />
                 </div>
                 <div className={styles.modalActions}>

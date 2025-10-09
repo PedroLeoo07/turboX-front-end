@@ -433,3 +433,26 @@
     padding: 1rem;
   }
 }
+
+/* Badges de Tipo de Usuário */
+.badgeAdmin,
+.badgeUser {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badgeAdmin {
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+}
+
+.badgeUser {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
