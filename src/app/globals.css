@@ -75,32 +75,49 @@ html {
   html { font-size: clamp(7px, 1vw + 5px, 9px); }
 }
 
-/* Scrollbar personalizada */
+/* Scrollbar personalizada melhorada */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: clamp(6px, 0.5vw, 10px);
+  height: clamp(6px, 0.5vw, 10px);
 }
 
 ::-webkit-scrollbar-track {
-  background: #222;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #ff0000, #ff3333);
+  background: rgba(34, 34, 34, 0.8);
   border-radius: 4px;
 }
 
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #ff0000, #ff3333);
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  transition: background 0.2s ease;
+}
+
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #ff1111, #ff4444);
+  background: linear-gradient(135deg, #ff1111, #ff4444);
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(34, 34, 34, 0.8);
 }
 
 /* Estilos para dispositivos móveis */
 @media (max-width: 768px) {
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
+    height: 4px;
   }
 }
 
-/* Prevent zoom on iOS */
+/* Scrollbar para Firefox */
+@supports (scrollbar-width: thin) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #ff0000 rgba(34, 34, 34, 0.8);
+  }
+}
+
+/* Prevenção de zoom em iOS - Melhorada */
 @media screen and (max-width: 768px) {
   input[type="color"],
   input[type="date"],
@@ -116,28 +133,154 @@ html {
   input[type="time"],
   input[type="url"],
   input[type="week"],
-  select:focus,
+  select,
   textarea {
-    font-size: 16px;
+    font-size: 16px !important;
+    border-radius: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    /* Previne zoom duplo toque */
+    touch-action: manipulation;
+  }
+  
+  /* Remove highlight azul no toque em iOS */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+  
+  /* Melhora o scroll em dispositivos touch */
+  * {
+    -webkit-overflow-scrolling: touch;
   }
 }
 
-/* Utilidades de responsividade */
+/* Utilidades de container melhoradas */
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: min(1400px, calc(100vw - 2rem));
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 clamp(12px, 2vw, 20px);
+  position: relative;
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 15px;
+    max-width: calc(100vw - 1rem);
+    padding: 0 clamp(8px, 1.5vw, 15px);
   }
 }
 
 @media (max-width: 480px) {
   .container {
-    padding: 0 12px;
+    max-width: calc(100vw - 0.5rem);
+    padding: 0 clamp(6px, 1vw, 12px);
+  }
+}
+
+/* Melhorias de acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Alto contraste */
+@media (prefers-contrast: high) {
+  ::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border: 2px solid #000000;
+  }
+}
+
+/* Focus visível melhorado */
+:focus-visible {
+  outline: 2px solid #ff0000;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Remove outline padrão quando usando :focus-visible */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Melhorias para dispositivos touch */
+@media (hover: none) and (pointer: coarse) {
+  /* Aumenta áreas de toque para melhor usabilidade */
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  [role="button"],
+  [tabindex="0"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Remove hover states em dispositivos touch */
+  .hover\:scale-105:hover {
+    transform: none;
+  }
+}
+
+/* Otimizações de performance */
+img,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+  /* Lazy loading nativo */
+  loading: lazy;
+  /* Decode async para melhor performance */
+  decoding: async;
+}
+
+/* Preload de fontes críticas */
+@font-face {
+  font-family: 'Montserrat';
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Anton';
+  font-display: swap;
+}
+
+/* CSS Grid modernizado para IE11 fallback */
+@supports not (display: grid) {
+  .responsive-grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .responsive-grid > * {
+    flex: 1 1 300px;
+  }
+}
+
+/* Prevent layout shift */
+.prevent-layout-shift {
+  contain: layout style;
+}
+
+/* Smooth scroll com fallback */
+@supports (scroll-behavior: smooth) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Variable fonts support */
+@supports (font-variation-settings: normal) {
+  body {
+    font-variation-settings: 'wght' 400;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-variation-settings: 'wght' 700;
   }
 }
