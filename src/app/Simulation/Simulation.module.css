@@ -254,6 +254,16 @@
   box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
 }
 
+.upgradeCard.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.upgradeCard.disabled .upgradeIcon {
+  background: linear-gradient(135deg, #555555, #333333);
+}
+
 .upgradeIcon {
   width: 48px;
   height: 48px;
@@ -284,11 +294,26 @@
   text-overflow: ellipsis;
 }
 
-.upgradeInfo p {
+.upgradeCost {
   color: #ff0000;
-  margin: 0;
+  margin: 0 0 0.25rem 0;
   font-size: 0.95rem;
   font-weight: 600;
+}
+
+.upgradeGain {
+  color: #00ff00;
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.upgradeDisabled {
+  color: #888888;
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .upgradeCheckbox {
