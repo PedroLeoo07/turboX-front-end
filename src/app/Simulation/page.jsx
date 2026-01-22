@@ -533,16 +533,23 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
                 {upgradeOptions.map(upgrade => (
                   <div
                     key={upgrade.id}
-                    className={`${styles.upgradeCard} ${selectedUpgrades[upgrade.id] ? styles.selected : ''}`}
-                    onClick={() => handleUpgradeToggle(upgrade.id)}
+                    className={`${styles.upgradeCard} ${selectedUpgrades[upgrade.id] ? styles.selected : ''} ${upgrade.disabled ? styles.disabled : ''}`}
+                    onClick={() => !upgrade.disabled && handleUpgradeToggle(upgrade.id)}
+                    title={upgrade.disabled ? 'Incompatível com este motor' : ''}
                   >
                     <div className={styles.upgradeIcon}>{upgrade.icon}</div>
                     <div className={styles.upgradeInfo}>
                       <h4>{upgrade.name}</h4>
-                      <p>{upgrade.cost}</p>
+                      <p className={styles.upgradeCost}>{upgrade.cost}</p>
+                      {upgrade.gain && !upgrade.disabled && (
+                        <p className={styles.upgradeGain}>{upgrade.gain}</p>
+                      )}
+                      {upgrade.disabled && (
+                        <p className={styles.upgradeDisabled}>N/A</p>
+                      )}
                     </div>
                     <div className={styles.upgradeCheckbox}>
-                      {selectedUpgrades[upgrade.id] ? '✓' : '□'}
+                      {upgrade.disabled ? '✗' : selectedUpgrades[upgrade.id] ? '✓' : '□'}
                     </div>
                   </div>
                 ))}
