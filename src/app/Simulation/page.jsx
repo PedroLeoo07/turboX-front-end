@@ -48,35 +48,230 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
     power: 565,
     torque: 637,
     acceleration: 2.7,
-    image: 'GT-R'
+    image: 'GT-R',
+    engine: '3.8L V6 Twin-Turbo',
+    drivetrain: 'AWD',
+    category: 'supercar'
   };
+
+  // Detecta características do motor baseado na string do engine
+  const getEngineCharacteristics = () => {
+    const engine = baseCar.engine || '';
+    const isTurbo = engine.toLowerCase().includes('turbo');
+    const isSupercharged = engine.toLowerCase().includes('supercharged');
+    const isNaturallyAspirated = !isTurbo && !isSupercharged;
+    
+    // Detecta cilindros
+    const cylinderMatch = engine.match(/V(\d+)|I(\d+)|Flat-(\d+)|Boxer/i);
+    let cylinders = 4; // padrão
+    if (cylinderMatch) {
+      cylinders = parseInt(cylinderMatch[1] || cylinderMatch[2] || cylinderMatch[3] || 4);
+    }
+    if (engine.toLowerCase().includes('boxer')) cylinders = 4;
+    
+    // Detecta deslocamento
+    const displacementMatch = engine.match(/(\d+\.?\d*)[Ll]/);
+    const displacement = displacementMatch ? parseFloat(displacementMatch[1]) : 2.0;
+    
+    return { isTurbo, isSupercharged, isNaturallyAspirated, cylinders, displacement };
+  };
+
   const calculatePerformance = () => {
     let powerBonus = 0;
     let torqueBonus = 0;
     let accelImprovement = 0;
-    const stageBonuses = [
-      { power: 0, torque: 0, accel: 0 },
-      { power: 50, torque: 80, accel: 0.3 },
-      { power: 120, torque: 160, accel: 0.7 },
-      { power: 200, torque: 250, accel: 1.2 }
+    
+    const engineChar = getEngineCharacteristics();
+    const basePower = baseCar.power;
+    const baseTorque = baseCar.torque;
+    
+    // Multiplicadores por categoria
+    const categoryMultipliers = {
+      'hypercar': 1.15,    // Carros de alto desempenho respondem melhor
+      'supercar': 1.10,
+      'esportivo': 1.00,
+      'muscle': 0.95,
+      'default': 1.00
+    };
+    const categoryMult = categoryMultipliers[baseCar.category] || 1.00;
+    
+    // ESTÁGIOS - baseados em potência base e tipo de aspiração
+    const stageMultipliers = [
+      { power: 0, torque: 0, accel: 0 }, // Stock
+      // Stage 1 - Remapeamento + básico
+      engineChar.isTurbo ? 
+        { power: basePower * 0.12, torque: baseTorque * 0.15, accel: 0.25 } :
+        engineChar.isSupercharged ?
+          { power: basePower * 0.10, torque: baseTorque * 0.12, accel: 0.20 } :
+          { power: basePower * 0.08, torque: baseTorque * 0.10, accel: 0.15 },
+      // Stage 2 - Hardware médio
+      engineChar.isTurbo ?
+        { power: basePower * 0.25, torque: baseTorque * 0.30, accel: 0.60 } :
+        engineChar.isSupercharged ?
+          { power: basePower * 0.22, torque: baseTorque * 0.25, accel: 0.50 } :
+          { power: basePower * 0.15, torque: baseTorque * 0.18, accel: 0.35 },
+      // Stage 3 - Hardware pesado
+      engineChar.isTurbo ?
+        { power: basePower * 0.45, torque: baseTorque * 0.50, accel: 1.10 } :
+        engineChar.isSupercharged ?
+          { power: basePower * 0.40, torque: baseTorque * 0.45, accel: 0.95 } :
+          { power: basePower * 0.25, torque: baseTorque * 0.28, accel: 0.60 }
     ];
 
-    const stageBonus = stageBonuses[selectedStage];
-    powerBonus += stageBonus.power;
-    torqueBonus += stageBonus.torque;
+    const stageBonus = stageMultipliers[selectedStage];
+    powerBonus += stageBonus.power * categoryMult;
+    torqueBonus += stageBonus.torque * categoryMult;
     accelImprovement += stageBonus.accel;
-  if (selectedUpgrades.intake) { powerBonus += 30; torqueBonus += 40; accelImprovement += 0.18; }
-  if (selectedUpgrades.exhaust) { powerBonus += 50; torqueBonus += 60; accelImprovement += 0.28; }
-  if (selectedUpgrades.turbo) { powerBonus += 180; torqueBonus += 200; accelImprovement += 0.7; }
-  if (selectedUpgrades.intercooler) { powerBonus += 40; torqueBonus += 50; accelImprovement += 0.22; }
-  if (selectedUpgrades.ecu) { powerBonus += 80; torqueBonus += 100; accelImprovement += 0.38; }
-  if (selectedUpgrades.fuel) { powerBonus += 25; torqueBonus += 30; accelImprovement += 0.12; }
-  if (selectedUpgrades.suspension) { accelImprovement += 0.18; }
-  if (selectedUpgrades.tires) { accelImprovement += 0.28; }
-  if (selectedUpgrades.brakes) { accelImprovement += 0.15; }
-  if (selectedUpgrades.clutch) { accelImprovement += 0.13; }
-  if (selectedUpgrades.lightweight) { powerBonus += 30; accelImprovement += 0.32; }
-  if (selectedUpgrades.aerodynamics) { powerBonus += 18; accelImprovement += 0.19; }
+
+    // UPGRADES INDIVIDUAIS - Realistas por tipo de motor
+    
+    // Filtro de ar - maior ganho em NA, menor em turbo
+    if (selectedUpgrades.intake) {
+      if (engineChar.isNaturallyAspirated) {
+        powerBonus += basePower * 0.04; // 4% em NA
+        torqueBonus += baseTorque * 0.03;
+        accelImprovement += 0.12;
+      } else if (engineChar.isTurbo) {
+        powerBonus += basePower * 0.02; // 2% em turbo
+        torqueBonus += baseTorque * 0.025;
+        accelImprovement += 0.08;
+      } else {
+        powerBonus += basePower * 0.03;
+        torqueBonus += baseTorque * 0.035;
+        accelImprovement += 0.10;
+      }
+    }
+
+    // Escape - bom ganho em todos
+    if (selectedUpgrades.exhaust) {
+      if (engineChar.isNaturallyAspirated) {
+        powerBonus += basePower * 0.07; // 7% em NA
+        torqueBonus += baseTorque * 0.06;
+        accelImprovement += 0.20;
+      } else if (engineChar.isTurbo) {
+        powerBonus += basePower * 0.05; // 5% em turbo
+        torqueBonus += baseTorque * 0.06;
+        accelImprovement += 0.18;
+      } else {
+        powerBonus += basePower * 0.06;
+        torqueBonus += baseTorque * 0.07;
+        accelImprovement += 0.22;
+      }
+    }
+
+    // Turbo upgrade - APENAS para carros turbo, ganho massivo
+    if (selectedUpgrades.turbo) {
+      if (engineChar.isTurbo) {
+        powerBonus += basePower * 0.35; // 35% com turbo maior
+        torqueBonus += baseTorque * 0.40;
+        accelImprovement += 0.65;
+      } else if (engineChar.isNaturallyAspirated) {
+        // Turbo kit em NA - ganho gigante mas caro
+        powerBonus += basePower * 0.50; // 50% com turbo kit completo
+        torqueBonus += baseTorque * 0.45;
+        accelImprovement += 0.80;
+      }
+      // Supercharged não se beneficia de turbo
+    }
+
+    // Intercooler - só funciona em turbo/supercharged
+    if (selectedUpgrades.intercooler) {
+      if (engineChar.isTurbo) {
+        powerBonus += basePower * 0.08; // 8% com intercooler melhor
+        torqueBonus += baseTorque * 0.09;
+        accelImprovement += 0.15;
+      } else if (engineChar.isSupercharged) {
+        powerBonus += basePower * 0.06;
+        torqueBonus += baseTorque * 0.07;
+        accelImprovement += 0.12;
+      }
+      // NA não tem intercooler
+    }
+
+    // ECU Remap - excelente em turbo, bom em todos
+    if (selectedUpgrades.ecu) {
+      if (engineChar.isTurbo) {
+        powerBonus += basePower * 0.15; // 15% só com remap em turbo
+        torqueBonus += baseTorque * 0.18;
+        accelImprovement += 0.30;
+      } else if (engineChar.isSupercharged) {
+        powerBonus += basePower * 0.12;
+        torqueBonus += baseTorque * 0.14;
+        accelImprovement += 0.25;
+      } else {
+        powerBonus += basePower * 0.06; // 6% em NA
+        torqueBonus += baseTorque * 0.08;
+        accelImprovement += 0.15;
+      }
+    }
+
+    // Sistema de combustível - necessário para altas potências
+    if (selectedUpgrades.fuel) {
+      const currentPower = basePower + powerBonus;
+      if (currentPower > basePower * 1.3) { // Mais de 30% de ganho
+        powerBonus += basePower * 0.05; // Destrava mais 5%
+        torqueBonus += baseTorque * 0.05;
+        accelImprovement += 0.10;
+      } else {
+        powerBonus += basePower * 0.02; // Ganho mínimo
+        torqueBonus += baseTorque * 0.02;
+        accelImprovement += 0.05;
+      }
+    }
+
+    // Suspensão - melhora handling, não potência
+    if (selectedUpgrades.suspension) {
+      if (baseCar.drivetrain === 'AWD') {
+        accelImprovement += 0.15; // AWD aproveita melhor
+      } else if (baseCar.drivetrain === 'RWD') {
+        accelImprovement += 0.20; // RWD precisa mais de tração
+      } else {
+        accelImprovement += 0.12; // FWD tem limitação
+      }
+    }
+
+    // Pneus - crucial para tração
+    if (selectedUpgrades.tires) {
+      if (baseCar.drivetrain === 'AWD') {
+        accelImprovement += 0.25;
+      } else if (baseCar.drivetrain === 'RWD') {
+        accelImprovement += 0.35; // RWD ganha muito com grip
+      } else {
+        accelImprovement += 0.20; // FWD limitado por wheelspin
+      }
+    }
+
+    // Freios - não afeta aceleração diretamente
+    if (selectedUpgrades.brakes) {
+      accelImprovement += 0.08; // Confiança para entrar mais forte
+    }
+
+    // Embreagem - crucial para manual, menos para automático
+    if (selectedUpgrades.clutch) {
+      if (baseCar.transmission?.toLowerCase().includes('manual')) {
+        accelImprovement += 0.18; // Manual aproveita muito
+      } else {
+        accelImprovement += 0.08; // DCT/Auto já é eficiente
+      }
+    }
+
+    // Redução de peso - universal, escala com peso presumido
+    if (selectedUpgrades.lightweight) {
+      const weightReduction = engineChar.cylinders >= 8 ? 0.05 : 0.04; // V8+ são mais pesados
+      powerBonus += basePower * weightReduction; // Peso reduzido = mais potência útil
+      accelImprovement += baseCar.category === 'hypercar' ? 0.25 : 0.35;
+    }
+
+    // Aerodinâmica - melhor em alta velocidade
+    if (selectedUpgrades.aerodynamics) {
+      if (baseCar.category === 'hypercar' || baseCar.category === 'supercar') {
+        powerBonus += basePower * 0.03; // Menos arrasto
+        accelImprovement += 0.20;
+      } else {
+        powerBonus += basePower * 0.02;
+        accelImprovement += 0.15;
+      }
+    }
 
     return {
       power: Math.round(baseCar.power + powerBonus),
