@@ -337,19 +337,140 @@ export default function Simulation({ car, navigateTo, isLoggedIn, user, onLogout
 
   const shareableLink = `turbox.dev/build/${btoa(JSON.stringify({ stage: selectedStage, upgrades: selectedUpgrades, car: baseCar.model }))}`;
 
+  // Função para calcular ganho estimado de cada upgrade
+  const getUpgradeGains = (upgradeId) => {
+    const engineChar = getEngineCharacteristics();
+    const basePower = baseCar.power;
+    
+    switch(upgradeId) {
+      case 'intake':
+        return engineChar.isNaturallyAspirated ? 
+          `+${Math.round(basePower * 0.04)}CV` : 
+          `+${Math.round(basePower * 0.02)}CV`;
+      case 'exhaust':
+        return engineChar.isNaturallyAspirated ? 
+          `+${Math.round(basePower * 0.07)}CV` : 
+          `+${Math.round(basePower * 0.05)}CV`;
+      case 'turbo':
+        return engineChar.isTurbo ? 
+          `+${Math.round(basePower * 0.35)}CV` : 
+          engineChar.isNaturallyAspirated ? 
+            `+${Math.round(basePower * 0.50)}CV (Kit)` : 
+            'N/A';
+      case 'intercooler':
+        return engineChar.isTurbo || engineChar.isSupercharged ? 
+          `+${Math.round(basePower * 0.08)}CV` : 
+          'N/A (Apenas Turbo)';
+      case 'ecu':
+        return engineChar.isTurbo ? 
+          `+${Math.round(basePower * 0.15)}CV` : 
+          `+${Math.round(basePower * 0.06)}CV`;
+      case 'fuel':
+        return `+${Math.round(basePower * 0.05)}CV`;
+      case 'suspension':
+        return 'Melhor Tração';
+      case 'tires':
+        return baseCar.drivetrain === 'RWD' ? '-0.35s (0-100)' : '-0.25s (0-100)';
+      case 'brakes':
+        return 'Frenagem +40%';
+      case 'clutch':
+        return baseCar.transmission?.includes('Manual') ? 'Shift -30%' : 'Shift -15%';
+      case 'lightweight':
+        return `-${engineChar.cylinders >= 8 ? '150kg' : '100kg'}`;
+      case 'aerodynamics':
+        return 'Downforce +25%';
+      default:
+        return '';
+    }
+  };
+
   const upgradeOptions = [
-    { id: 'intake', name: 'Filtro de Ar Esportivo', cost: 'R$ 500', icon: 'Filtro' },
-    { id: 'exhaust', name: 'Escape Esportivo', cost: 'R$ 2.500', icon: 'Escape' },
-    { id: 'turbo', name: 'Turbo Upgrade', cost: 'R$ 8.000', icon: 'Turbo' },
-    { id: 'intercooler', name: 'Intercooler HD', cost: 'R$ 3.000', icon: 'Intercooler' },
-    { id: 'ecu', name: 'Reprogramação ECU', cost: 'R$ 1.500', icon: 'ECU' },
-    { id: 'fuel', name: 'Sistema Combustível', cost: 'R$ 4.000', icon: 'Combustível' },
-    { id: 'suspension', name: 'Suspensão Esportiva', cost: 'R$ 2.200', icon: 'Suspensão' },
-    { id: 'tires', name: 'Pneus Semi-Slick', cost: 'R$ 3.500', icon: 'Pneus' },
-    { id: 'brakes', name: 'Freios de Alta Performance', cost: 'R$ 2.800', icon: 'Freios' },
-    { id: 'clutch', name: 'Embreagem Reforçada', cost: 'R$ 1.800', icon: 'Embreagem' },
-    { id: 'lightweight', name: 'Alívio de Peso', cost: 'R$ 4.500', icon: 'Peso' },
-    { id: 'aerodynamics', name: 'Kit Aerodinâmico', cost: 'R$ 3.200', icon: 'Aero' }
+    { 
+      id: 'intake', 
+      name: 'Filtro de Ar Esportivo', 
+      cost: 'R$ 500', 
+      icon: 'Filtro',
+      gain: getUpgradeGains('intake')
+    },
+    { 
+      id: 'exhaust', 
+      name: 'Escape Esportivo', 
+      cost: 'R$ 2.500', 
+      icon: 'Escape',
+      gain: getUpgradeGains('exhaust')
+    },
+    { 
+      id: 'turbo', 
+      name: getEngineCharacteristics().isTurbo ? 'Turbo Upgrade' : 'Turbo Kit', 
+      cost: getEngineCharacteristics().isTurbo ? 'R$ 8.000' : 'R$ 25.000', 
+      icon: 'Turbo',
+      gain: getUpgradeGains('turbo'),
+      disabled: getEngineCharacteristics().isSupercharged
+    },
+    { 
+      id: 'intercooler', 
+      name: 'Intercooler HD', 
+      cost: 'R$ 3.000', 
+      icon: 'Intercooler',
+      gain: getUpgradeGains('intercooler'),
+      disabled: getEngineCharacteristics().isNaturallyAspirated
+    },
+    { 
+      id: 'ecu', 
+      name: 'Reprogramação ECU', 
+      cost: 'R$ 1.500', 
+      icon: 'ECU',
+      gain: getUpgradeGains('ecu')
+    },
+    { 
+      id: 'fuel', 
+      name: 'Sistema Combustível', 
+      cost: 'R$ 4.000', 
+      icon: 'Combustível',
+      gain: getUpgradeGains('fuel')
+    },
+    { 
+      id: 'suspension', 
+      name: 'Suspensão Esportiva', 
+      cost: 'R$ 2.200', 
+      icon: 'Suspensão',
+      gain: getUpgradeGains('suspension')
+    },
+    { 
+      id: 'tires', 
+      name: 'Pneus Semi-Slick', 
+      cost: 'R$ 3.500', 
+      icon: 'Pneus',
+      gain: getUpgradeGains('tires')
+    },
+    { 
+      id: 'brakes', 
+      name: 'Freios de Alta Performance', 
+      cost: 'R$ 2.800', 
+      icon: 'Freios',
+      gain: getUpgradeGains('brakes')
+    },
+    { 
+      id: 'clutch', 
+      name: 'Embreagem Reforçada', 
+      cost: 'R$ 1.800', 
+      icon: 'Embreagem',
+      gain: getUpgradeGains('clutch')
+    },
+    { 
+      id: 'lightweight', 
+      name: 'Alívio de Peso', 
+      cost: 'R$ 4.500', 
+      icon: 'Peso',
+      gain: getUpgradeGains('lightweight')
+    },
+    { 
+      id: 'aerodynamics', 
+      name: 'Kit Aerodinâmico', 
+      cost: 'R$ 3.200', 
+      icon: 'Aero',
+      gain: getUpgradeGains('aerodynamics')
+    }
   ];
 
   return (
