@@ -3,19 +3,10 @@
 .container {
   min-height: 100vh;
   background: linear-gradient(135deg, #000000 0%, #1a0000 25%, #0d0208 50%, #1a0000 75%, #000000 100%);
-  background-size: 400% 400%;
-  animation: racingBackground 20s ease infinite;
   color: #ffffff;
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
   position: relative;
-}
-
-@keyframes racingBackground {
-  0%, 100% { background-position: 0% 50%; }
-  25% { background-position: 100% 50%; }
-  50% { background-position: 50% 100%; }
-  75% { background-position: 0% 0%; }
 }
 
 .container::before {
@@ -56,21 +47,10 @@
   width: 100%;
   height: 100%;
   background: 
-    radial-gradient(circle at 70% 20%, rgba(255, 0, 0, 0.25) 0%, transparent 30%),
-    radial-gradient(circle at 30% 80%, rgba(255, 50, 0, 0.2) 0%, transparent 30%),
-    radial-gradient(circle at 50% 50%, rgba(255, 0, 0, 0.15) 0%, transparent 50%);
-  animation: turboPulse 5s ease-in-out infinite;
-}
-
-@keyframes turboPulse {
-  0%, 100% { 
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% { 
-    transform: scale(1.1);
-    opacity: 1;
-  }
+    radial-gradient(circle at 70% 20%, rgba(255, 0, 0, 0.2) 0%, transparent 30%),
+    radial-gradient(circle at 30% 80%, rgba(255, 50, 0, 0.15) 0%, transparent 30%),
+    radial-gradient(circle at 50% 50%, rgba(255, 0, 0, 0.12) 0%, transparent 50%);
+  opacity: 0.8;
 }
 
 .heroContent {
