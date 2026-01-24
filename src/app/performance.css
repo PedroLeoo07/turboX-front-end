@@ -1,0 +1,378 @@
+/* ==================== OTIMIZAÇÕES DE PERFORMANCE E FLUIDEZ ==================== */
+
+/* Aceleração por GPU para elementos principais */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Otimização de scroll */
+* {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Contenção de layout para prevenir reflow */
+.prevent-reflow {
+  contain: layout style paint;
+}
+
+/* Otimização de transformações */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+/* Transições otimizadas para navegação */
+.page-transition {
+  animation: pageSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+/* Fade transition mais suave */
+.fade-in {
+  animation: smoothFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes smoothFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+  }
+}
+
+/* Otimização de hover states */
+.hover-optimize {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+/* Prevenção de jank em animações */
+@media (prefers-reduced-motion: no-preference) {
+  .smooth-animation {
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: both;
+  }
+}
+
+/* Link transitions otimizadas */
+.smooth-link {
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: color;
+  transform: translateZ(0);
+}
+
+/* Botão com resposta instantânea */
+.instant-feedback {
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.instant-feedback:active {
+  transform: scale(0.95) translateZ(0);
+}
+
+/* Menu mobile otimizado */
+.mobile-menu-slide {
+  animation: mobileSlide 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+@keyframes mobileSlide {
+  from {
+    transform: translateX(100%) translateZ(0);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) translateZ(0);
+    opacity: 1;
+  }
+}
+
+/* Overlay suave */
+.overlay-fade {
+  animation: overlayFade 0.2s ease-out;
+}
+
+@keyframes overlayFade {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* Scroll suave com momentum */
+.smooth-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+
+/* Otimização de imagens */
+img, picture, video {
+  will-change: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Card hover otimizado */
+.card-hover-smooth {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.card-hover-smooth:hover {
+  transform: translateY(-5px) scale(1.02) translateZ(0);
+}
+
+/* Ripple effect suave */
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%) translateZ(0);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ripple-effect:active::after {
+  width: 300px;
+  height: 300px;
+  opacity: 1;
+  transition: 0s;
+}
+
+/* Navegação sticky otimizada */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Loading state suave */
+.loading-smooth {
+  animation: loadingPulse 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes loadingPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.98) translateZ(0);
+  }
+}
+
+/* Skeleton loading otimizado */
+.skeleton-shimmer {
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0.05) 25%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    rgba(255, 255, 255, 0.05) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Modal transition otimizada */
+.modal-entrance {
+  animation: modalPop 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px) translateZ(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0) translateZ(0);
+  }
+}
+
+/* Tab transition suave */
+.tab-transition {
+  animation: tabSlide 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes tabSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-10px) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateZ(0);
+  }
+}
+
+/* Dropdown suave */
+.dropdown-smooth {
+  animation: dropdownSlide 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top;
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: scaleY(0.95) translateY(-10px) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1) translateY(0) translateZ(0);
+  }
+}
+
+/* Tooltip suave */
+.tooltip-fade {
+  animation: tooltipFade 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes tooltipFade {
+  from {
+    opacity: 0;
+    transform: translateY(5px) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+/* Notificação slide */
+.notification-slide {
+  animation: notificationSlide 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes notificationSlide {
+  from {
+    opacity: 0;
+    transform: translateX(100%) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateZ(0);
+  }
+}
+
+/* Otimização para touch devices */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove delays de tap em iOS */
+  * {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Feedback tátil mais rápido */
+  button, a, [role="button"] {
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  button:active, a:active, [role="button"]:active {
+    transform: scale(0.97) translateZ(0);
+    opacity: 0.8;
+  }
+}
+
+/* Prefers reduced motion - desativa animações complexas */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .page-transition,
+  .fade-in,
+  .mobile-menu-slide,
+  .overlay-fade,
+  .modal-entrance,
+  .tab-transition,
+  .dropdown-smooth,
+  .tooltip-fade,
+  .notification-slide {
+    animation: none !important;
+  }
+}
+
+/* Performance hints para browser */
+@supports (content-visibility: auto) {
+  .lazy-render {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+  }
+}
+
+/* Will-change para elementos interativos */
+nav, header, aside {
+  will-change: transform;
+}
+
+/* Remover will-change após animação */
+.animate-once {
+  will-change: transform;
+}
+
+.animate-once.done {
+  will-change: auto;
+}
