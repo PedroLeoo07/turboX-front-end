@@ -317,3 +317,190 @@ iframe {
     font-variation-settings: 'wght' 700;
   }
 }
+
+/* ==================== ESTILOS ESPORTIVOS GLOBAIS ==================== */
+
+/* Efeito de speed lines no background */
+@keyframes speedLines {
+  0% { transform: translateX(-100%) skewX(-15deg); opacity: 0; }
+  50% { opacity: 0.3; }
+  100% { transform: translateX(100%) skewX(-15deg); opacity: 0; }
+}
+
+/* Efeito neon pulse */
+@keyframes neonPulse {
+  0%, 100% { 
+    text-shadow: 
+      0 0 5px rgba(255, 0, 0, 0.8),
+      0 0 10px rgba(255, 0, 0, 0.6),
+      0 0 20px rgba(255, 0, 0, 0.4),
+      0 0 40px rgba(255, 0, 0, 0.2);
+  }
+  50% { 
+    text-shadow: 
+      0 0 10px rgba(255, 0, 0, 1),
+      0 0 20px rgba(255, 0, 0, 0.8),
+      0 0 30px rgba(255, 0, 0, 0.6),
+      0 0 60px rgba(255, 0, 0, 0.4);
+  }
+}
+
+/* Efeito de racing stripes */
+@keyframes racingStripes {
+  0% { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
+}
+
+/* Botões esportivos globais */
+button, .btn, a.button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button::before, .btn::before, a.button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+button:hover::before, .btn:hover::before, a.button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+button:active, .btn:active, a.button:active {
+  transform: scale(0.95);
+}
+
+/* Títulos com efeito esportivo */
+h1, h2, h3, h4, h5, h6 {
+  position: relative;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+h1::after, h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff0000 0%, #ff6600 50%, transparent 100%);
+  animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 60px;
+    opacity: 1;
+  }
+}
+
+/* Cards com efeito de velocidade */
+.card, [class*="Card"], [class*="card"] {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  background: linear-gradient(135deg, rgba(20, 0, 0, 0.5), rgba(10, 0, 0, 0.3));
+  backdrop-filter: blur(10px);
+}
+
+.card::before, [class*="Card"]::before, [class*="card"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.card:hover::before, [class*="Card"]:hover::before, [class*="card"]:hover::before {
+  left: 100%;
+}
+
+.card:hover, [class*="Card"]:hover, [class*="card"]:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 10px 40px rgba(255, 0, 0, 0.3),
+    0 0 20px rgba(255, 0, 0, 0.2),
+    inset 0 0 20px rgba(255, 0, 0, 0.1);
+  border-color: rgba(255, 0, 0, 0.5);
+}
+
+/* Links com efeito racing */
+a {
+  color: #ff3333;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff0000, #ff6600);
+  transition: width 0.3s ease;
+}
+
+a:hover {
+  color: #ff0000;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* Inputs esportivos */
+input, textarea, select {
+  background: rgba(20, 0, 0, 0.5);
+  border: 2px solid rgba(255, 0, 0, 0.3);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #ff0000;
+  box-shadow: 
+    0 0 20px rgba(255, 0, 0, 0.3),
+    inset 0 0 10px rgba(255, 0, 0, 0.1);
+  outline: none;
+}
+
+/* Efeito de loading esportivo */
+@keyframes sportLoad {
+  0% { transform: translateX(-100%) scaleX(0); }
+  50% { transform: translateX(0) scaleX(1); }
+  100% { transform: translateX(100%) scaleX(0); }
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ff0000, #ff6600, transparent);
+  animation: sportLoad 1.5s ease-in-out infinite;
+}
