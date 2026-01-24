@@ -165,13 +165,39 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: linear-gradient(135deg, rgba(20, 0, 0, 0.4), rgba(10, 0, 0, 0.3));
   padding: 0.6rem;
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  box-shadow: inset 0 0 20px rgba(255, 0, 0, 0.1);
   flex-wrap: wrap;
   max-width: calc(100vw - 500px);
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.desktopMenu::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 0, 0, 0.05) 10px,
+    rgba(255, 0, 0, 0.05) 20px
+  );
+  animation: racingStripes 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes racingStripes {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
 }
 
 .divider {
@@ -188,15 +214,51 @@
   padding: 0.85rem 1.2rem;
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   border-radius: 14px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.desktopNavItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(255, 0, 0, 0.3),
+    transparent);
+  transition: left 0.4s ease;
+}
+
+.desktopNavItem:hover::before {
+  left: 100%;
+}
+
+.desktopNavItem::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff0000, #ff6600);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.desktopNavItem:hover::after {
+  width: 80%;
 }
 
 .desktopNavItem::before {
