@@ -24,8 +24,6 @@ html, body {
 body {
   font-family: 'Montserrat', sans-serif;
   background: linear-gradient(135deg, #000000 0%, #0d0208 25%, #1a0000 50%, #0d0208 75%, #000000 100%);
-  background-size: 400% 400%;
-  animation: sportGradient 15s ease infinite;
   line-height: 1.6;
   /* Melhor renderização de texto */
   -webkit-font-smoothing: antialiased;
@@ -33,11 +31,6 @@ body {
   text-rendering: optimizeLegibility;
   position: relative;
   overflow-x: hidden;
-}
-
-@keyframes sportGradient {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
 }
 
 body::before {
@@ -48,17 +41,12 @@ body::before {
   width: 100%;
   height: 100%;
   background: 
-    radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(255, 50, 0, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(200, 0, 0, 0.05) 0%, transparent 70%);
+    radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 50, 0, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(200, 0, 0, 0.04) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
-  animation: pulseOverlay 8s ease-in-out infinite;
-}
-
-@keyframes pulseOverlay {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+  opacity: 0.7;
 }
 
 /* Tipografia */
