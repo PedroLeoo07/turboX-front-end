@@ -35,14 +35,18 @@
   --sport-border-glow: 1px solid rgba(255, 0, 0, 0.6);
   
   /* Transições */
-  --sport-transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --sport-transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --sport-transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --sport-transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --sport-transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --sport-transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   
   /* Blur effects */
   --sport-blur-light: blur(10px);
   --sport-blur-medium: blur(20px);
   --sport-blur-heavy: blur(30px);
+  
+  /* Performance */
+  --sport-will-change: transform, opacity;
+  --sport-gpu-hack: translateZ(0);
 }
 
 /* ==================== CLASSES UTILITÁRIAS ESPORTIVAS ==================== */

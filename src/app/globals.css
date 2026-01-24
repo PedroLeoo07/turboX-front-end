@@ -360,7 +360,12 @@ iframe {
 button, .btn, a.button {
   position: relative;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 button::before, .btn::before, a.button::before {
@@ -371,10 +376,12 @@ button::before, .btn::before, a.button::before {
   width: 0;
   height: 0;
   background: radial-gradient(circle, rgba(255, 0, 0, 0.3) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+  transform: translate(-50%, -50%) translateZ(0);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+              height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 50%;
   pointer-events: none;
+  will-change: width, height;
 }
 
 button:hover::before, .btn:hover::before, a.button:hover::before {
@@ -383,7 +390,7 @@ button:hover::before, .btn:hover::before, a.button:hover::before {
 }
 
 button:active, .btn:active, a.button:active {
-  transform: scale(0.95);
+  transform: scale(0.97) translateZ(0);
 }
 
 /* Títulos com efeito esportivo */
@@ -418,10 +425,15 @@ h1::after, h2::after {
 /* Cards com efeito de velocidade */
 .card, [class*="Card"], [class*="card"] {
   position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255, 0, 0, 0.2);
   background: linear-gradient(135deg, rgba(20, 0, 0, 0.5), rgba(10, 0, 0, 0.3));
   backdrop-filter: blur(10px);
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .card::before, [class*="Card"]::before, [class*="card"]::before {
@@ -432,7 +444,9 @@ h1::after, h2::after {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.1), transparent);
-  transition: left 0.5s;
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: left;
+  transform: translateZ(0);
 }
 
 .card:hover::before, [class*="Card"]:hover::before, [class*="card"]:hover::before {
@@ -440,7 +454,7 @@ h1::after, h2::after {
 }
 
 .card:hover, [class*="Card"]:hover, [class*="card"]:hover {
-  transform: translateY(-5px) scale(1.02);
+  transform: translateY(-5px) scale(1.02) translateZ(0);
   box-shadow: 
     0 10px 40px rgba(255, 0, 0, 0.3),
     0 0 20px rgba(255, 0, 0, 0.2),
@@ -453,7 +467,9 @@ a {
   color: #ff3333;
   text-decoration: none;
   position: relative;
-  transition: all 0.3s ease;
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              text-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: color;
 }
 
 a::after {
@@ -464,7 +480,8 @@ a::after {
   width: 0;
   height: 2px;
   background: linear-gradient(90deg, #ff0000, #ff6600);
-  transition: width 0.3s ease;
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: width;
 }
 
 a:hover {
@@ -481,7 +498,10 @@ input, textarea, select {
   background: rgba(20, 0, 0, 0.5);
   border: 2px solid rgba(255, 0, 0, 0.3);
   color: #fff;
-  transition: all 0.3s ease;
+  transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: border-color, box-shadow;
 }
 
 input:focus, textarea:focus, select:focus {
@@ -490,6 +510,7 @@ input:focus, textarea:focus, select:focus {
     0 0 20px rgba(255, 0, 0, 0.3),
     inset 0 0 10px rgba(255, 0, 0, 0.1);
   outline: none;
+  background: rgba(30, 0, 0, 0.6);
 }
 
 /* Efeito de loading esportivo */
