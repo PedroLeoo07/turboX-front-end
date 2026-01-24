@@ -20,8 +20,14 @@
     0 4px 40px rgba(0, 0, 0, 0.8),
     0 0 30px rgba(255, 0, 0, 0.2),
     inset 0 -1px 0 rgba(255, 0, 0, 0.3);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              backdrop-filter 0.2s ease;
   overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .navigation::before {
@@ -76,11 +82,13 @@
   border: none;
   border-radius: 0;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   height: 100px;
   width: 100px;
   flex-shrink: 0;
   position: relative;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .logo::before {
@@ -91,10 +99,11 @@
   width: 100%;
   height: 100%;
   background: radial-gradient(circle, rgba(255, 0, 0, 0.3) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateZ(0);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.2s ease;
   border-radius: 50%;
+  will-change: opacity;
 }
 
 .logo:hover::before {
@@ -123,11 +132,16 @@
 .logoImg {
   border-radius: 16px;
   box-shadow: 0 2px 12px 0 rgba(255,0,0,0.10), 0 1px 4px 0 rgba(0,0,0,0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   width: 90px;
   height: 90px;
   object-fit: contain;
   background: #fff0 0 0 no-repeat padding-box;
+  will-change: transform, filter;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .logoIcon {
@@ -217,7 +231,10 @@
   color: rgba(255, 255, 255, 0.9);
   border-radius: 14px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   font-weight: 600;
@@ -225,6 +242,9 @@
   flex-shrink: 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .desktopNavItem::before {
@@ -238,7 +258,9 @@
     transparent,
     rgba(255, 0, 0, 0.3),
     transparent);
-  transition: left 0.4s ease;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: left;
+  transform: translateZ(0);
 }
 
 .desktopNavItem:hover::before {
@@ -253,8 +275,9 @@
   width: 0;
   height: 2px;
   background: linear-gradient(90deg, #ff0000, #ff6600);
-  transform: translateX(-50%);
-  transition: width 0.3s ease;
+  transform: translateX(-50%) translateZ(0);
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: width;
 }
 
 .desktopNavItem:hover::after {
@@ -266,9 +289,9 @@
     rgba(255, 0, 0, 0.3), 
     rgba(255, 50, 0, 0.2));
   color: #fff;
-  transform: translateY(-3px) scale(1.05);
+  transform: translateY(-2px) scale(1.03) translateZ(0);
   box-shadow: 
-    0 10px 30px rgba(255, 0, 0, 0.3),
+    0 8px 25px rgba(255, 0, 0, 0.3),
     0 0 20px rgba(255, 0, 0, 0.2),
     inset 0 0 20px rgba(255, 0, 0, 0.1);
   text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
