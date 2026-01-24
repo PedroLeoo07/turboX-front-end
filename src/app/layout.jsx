@@ -1,5 +1,6 @@
 import "./globals.css";
 import "./responsive.css";
+import "./sport-theme.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 

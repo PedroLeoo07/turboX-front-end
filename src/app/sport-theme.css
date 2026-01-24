@@ -1,0 +1,407 @@
+/* ==================== TURBOX SPORT THEME ==================== */
+/* Arquivo de tema esportivo com variáveis e estilos globais */
+
+:root {
+  /* Cores principais - Racing Red */
+  --sport-red-primary: #ff0000;
+  --sport-red-secondary: #ff3333;
+  --sport-red-accent: #ff6600;
+  --sport-red-dark: #cc0000;
+  --sport-red-light: #ff4444;
+  
+  /* Cores de fundo */
+  --sport-bg-primary: #000000;
+  --sport-bg-secondary: #0d0208;
+  --sport-bg-tertiary: #1a0000;
+  --sport-bg-card: rgba(20, 0, 0, 0.5);
+  
+  /* Gradientes esportivos */
+  --sport-gradient-primary: linear-gradient(135deg, #ff0000 0%, #ff6600 100%);
+  --sport-gradient-secondary: linear-gradient(135deg, rgba(255, 0, 0, 0.8), rgba(255, 50, 0, 0.6));
+  --sport-gradient-bg: linear-gradient(135deg, #000000 0%, #1a0000 25%, #0d0208 50%, #1a0000 75%, #000000 100%);
+  
+  /* Sombras neon */
+  --sport-shadow-red: 0 0 20px rgba(255, 0, 0, 0.5);
+  --sport-shadow-red-intense: 0 0 40px rgba(255, 0, 0, 0.8);
+  --sport-shadow-card: 0 10px 40px rgba(255, 0, 0, 0.3), 0 0 20px rgba(255, 0, 0, 0.2);
+  
+  /* Text shadows esportivos */
+  --sport-text-glow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.6), 0 0 40px rgba(255, 0, 0, 0.4);
+  --sport-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  
+  /* Bordas */
+  --sport-border-primary: 2px solid rgba(255, 0, 0, 0.4);
+  --sport-border-secondary: 1px solid rgba(255, 0, 0, 0.2);
+  --sport-border-glow: 1px solid rgba(255, 0, 0, 0.6);
+  
+  /* Transições */
+  --sport-transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --sport-transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --sport-transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Blur effects */
+  --sport-blur-light: blur(10px);
+  --sport-blur-medium: blur(20px);
+  --sport-blur-heavy: blur(30px);
+}
+
+/* ==================== CLASSES UTILITÁRIAS ESPORTIVAS ==================== */
+
+/* Botões Racing Style */
+.sport-button {
+  background: var(--sport-gradient-primary);
+  color: white;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--sport-transition-normal);
+  box-shadow: var(--sport-shadow-red), 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.sport-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left var(--sport-transition-slow);
+}
+
+.sport-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--sport-shadow-red-intense), 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+.sport-button:hover::before {
+  left: 100%;
+}
+
+.sport-button:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Cards Racing Style */
+.sport-card {
+  background: var(--sport-bg-card);
+  border: var(--sport-border-secondary);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: var(--sport-blur-light);
+  transition: all var(--sport-transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.sport-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.1), transparent);
+  transition: left var(--sport-transition-slow);
+}
+
+.sport-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(255, 0, 0, 0.5);
+  box-shadow: var(--sport-shadow-card);
+}
+
+.sport-card:hover::before {
+  left: 100%;
+}
+
+/* Títulos Racing Style */
+.sport-title {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--sport-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  display: inline-block;
+}
+
+.sport-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--sport-gradient-primary);
+  border-radius: 2px;
+  box-shadow: var(--sport-shadow-red);
+}
+
+/* Badge Racing Style */
+.sport-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: var(--sport-gradient-secondary);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--sport-shadow-red);
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+  }
+}
+
+/* Input Racing Style */
+.sport-input {
+  background: rgba(20, 0, 0, 0.5);
+  border: 2px solid rgba(255, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 12px 20px;
+  color: white;
+  font-size: 1rem;
+  transition: all var(--sport-transition-normal);
+  outline: none;
+}
+
+.sport-input:focus {
+  border-color: var(--sport-red-primary);
+  box-shadow: 
+    var(--sport-shadow-red),
+    inset 0 0 10px rgba(255, 0, 0, 0.1);
+  background: rgba(30, 0, 0, 0.6);
+}
+
+.sport-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Divider Racing Style */
+.sport-divider {
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    var(--sport-red-primary) 20%,
+    var(--sport-red-accent) 50%,
+    var(--sport-red-primary) 80%,
+    transparent 100%);
+  margin: 24px 0;
+  box-shadow: var(--sport-shadow-red);
+}
+
+/* Loading Bar Racing Style */
+.sport-loading {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 0, 0, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.sport-loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: var(--sport-gradient-primary);
+  box-shadow: var(--sport-shadow-red);
+  animation: loadingRace 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingRace {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Tag Racing Style */
+.sport-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid rgba(255, 0, 0, 0.4);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--sport-red-light);
+}
+
+/* Icon Glow Racing Style */
+.sport-icon-glow {
+  filter: drop-shadow(var(--sport-shadow-red));
+  transition: filter var(--sport-transition-normal);
+}
+
+.sport-icon-glow:hover {
+  filter: drop-shadow(var(--sport-shadow-red-intense));
+  animation: iconSpin 0.5s ease-in-out;
+}
+
+@keyframes iconSpin {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+}
+
+/* ==================== ANIMAÇÕES ESPORTIVAS ==================== */
+
+/* Speed Lines Effect */
+@keyframes speedLines {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(100%) skewX(-15deg);
+    opacity: 0;
+  }
+}
+
+.sport-speed-effect {
+  animation: speedLines 1.5s ease-in-out infinite;
+}
+
+/* Turbo Boost Effect */
+@keyframes turboBoost {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+  }
+}
+
+.sport-turbo-boost {
+  animation: turboBoost 1s ease-in-out infinite;
+}
+
+/* Neon Pulse Effect */
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px rgba(255, 0, 0, 0.8),
+      0 0 10px rgba(255, 0, 0, 0.6),
+      0 0 20px rgba(255, 0, 0, 0.4);
+  }
+  50% {
+    text-shadow: 
+      0 0 10px rgba(255, 0, 0, 1),
+      0 0 20px rgba(255, 0, 0, 0.8),
+      0 0 40px rgba(255, 0, 0, 0.6);
+  }
+}
+
+.sport-neon-pulse {
+  animation: neonPulse 2s ease-in-out infinite;
+}
+
+/* Racing Stripes Background */
+.sport-racing-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 20px,
+    rgba(255, 0, 0, 0.05) 20px,
+    rgba(255, 0, 0, 0.05) 40px
+  );
+  animation: racingStripesMove 20s linear infinite;
+}
+
+@keyframes racingStripesMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100px 100px;
+  }
+}
+
+/* Hover Lift Effect */
+.sport-hover-lift {
+  transition: transform var(--sport-transition-normal), box-shadow var(--sport-transition-normal);
+}
+
+.sport-hover-lift:hover {
+  transform: translateY(-10px);
+  box-shadow: 
+    0 20px 40px rgba(255, 0, 0, 0.3),
+    0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Glow Border Effect */
+.sport-glow-border {
+  border: 2px solid transparent;
+  background: 
+    linear-gradient(var(--sport-bg-card), var(--sport-bg-card)) padding-box,
+    var(--sport-gradient-primary) border-box;
+  border-radius: 16px;
+}
+
+/* ==================== MEDIA QUERIES PARA TEMA ESPORTIVO ==================== */
+
+@media (max-width: 768px) {
+  .sport-button {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+  }
+  
+  .sport-card {
+    padding: 16px;
+  }
+  
+  .sport-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sport-button::before,
+  .sport-card::before,
+  .sport-speed-effect,
+  .sport-turbo-boost,
+  .sport-neon-pulse,
+  .sport-racing-stripes {
+    animation: none;
+  }
+}
+
+/* Dark mode optimization */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sport-bg-primary: #000000;
+    --sport-bg-secondary: #0d0208;
+  }
+}
