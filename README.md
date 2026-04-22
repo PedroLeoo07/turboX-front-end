@@ -24,8 +24,6 @@ npm run build
 npm start
 ```
 
-Acesse [http://localhost:3001](http://localhost:3001) no seu navegador.
-
 ## 📱 Funcionalidades
 
 ### 🏠 **Home**
